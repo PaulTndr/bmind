@@ -1,0 +1,28 @@
+<div class="wrap">
+  <div class="image" [style]="styleForBk">
+    <div class="text">
+      <p style="padding-top: 2vh; padding-bottom: 1vh;">{{article.type}}</p>
+      <div id="separatorH"></div>
+      <p class="title">{{article.title}}</p>
+      <div class="flexRow" id="rowData">
+        <div class="oneDivData" style="justify-content:flex-end">
+          <div class="oneData" style="margin-right:50px">
+            <p>Temps de lecture</p>
+            <p class="data">{{article.time}}</p>
+          </div>
+        </div>
+        <div id="separatorV"></div>
+        <div class="oneDivData" style="justify-content:flex-start">
+          <div class="oneData" style="margin-left:50px">
+            <p>Difficulté</p>
+            <p class="data" *ngIf="article.difficulte==1">+</p>
+            <p class="data" *ngIf="article.difficulte==2">++</p>
+            <p class="data" *ngIf="article.difficulte==3">+++</p>
+            <p class="data" *ngIf="article.difficulte==4">++++</p>
+            <p class="data" *ngIf="article.difficulte==5">+++++</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

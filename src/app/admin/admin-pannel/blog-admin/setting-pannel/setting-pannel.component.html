@@ -1,0 +1,140 @@
+<h1 style="text-align:center">Modification des entrées</h1>
+
+<div class="flexRow" id="filters">
+  <h2>Entrée à modifier</h2>
+  <mat-form-field>
+    <mat-select [(value)]="entryToEdit">
+      <mat-option value="keyword" (click)="refreshData()">Mots clés</mat-option>
+      <mat-option value="autor" (click)="refreshData()">Auteurs</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="search__container">
+    <input class="search__input" type="text" placeholder="Rechercher..." [(ngModel)]="filterText" (keyup)="filter()">
+  </div>
+
+  <img class="button" style="width:40px" src="https://image.flaticon.com/icons/svg/148/148764.svg" (click)="addItem()"/>
+</div>
+
+<!-- Table Mots clés -->
+<div *ngIf="entryToEdit==='keyword'" id="tableKw">
+  <table mat-table [dataSource]="dataSourceKeyword" class="mat-elevation-z8">
+
+    <!-- Key Column -->
+    <ng-container matColumnDef="key">
+      <th mat-header-cell *matHeaderCellDef> Mot </th>
+      <td mat-cell *matCellDef="let element"> {{element.key}} </td>
+    </ng-container>
+
+    <!-- Def Column -->
+    <ng-container matColumnDef="def">
+      <th mat-header-cell *matHeaderCellDef> Définition </th>
+      <td mat-cell *matCellDef="let element"> {{element.def}} </td>
+    </ng-container>
+
+    <!-- Action Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let element">
+        <div class="actions flexRow">
+          <img class="button" src="https://image.flaticon.com/icons/svg/61/61456.svg" (click)="editItem(element.id)"/>
+          <img class="button" src="https://image.flaticon.com/icons/svg/395/395848.svg"(click)="deleteItem(element.id)"/>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumnsKeyword; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumnsKeyword;"></tr>
+  </table>
+</div>
+
+<!-- Table auteur -->
+<div *ngIf="entryToEdit==='autor'" id="tableAutor">
+  <table mat-table [dataSource]="dataSourceAutor" class="mat-elevation-z8">
+
+    <!-- Prénom Column -->
+    <ng-container matColumnDef="prenom">
+      <th mat-header-cell *matHeaderCellDef> Prénom </th>
+      <td mat-cell *matCellDef="let element"> {{element.prenom}} </td>
+    </ng-container>
+
+    <!-- Nom Column -->
+    <ng-container matColumnDef="nom">
+      <th mat-header-cell *matHeaderCellDef> Nom </th>
+      <td mat-cell *matCellDef="let element"> {{element.nom}} </td>
+    </ng-container>
+
+    <!-- Fonction Column -->
+    <ng-container matColumnDef="fonction">
+      <th mat-header-cell *matHeaderCellDef> Fonction </th>
+      <td mat-cell *matCellDef="let element"> {{element.fonction}} </td>
+    </ng-container>
+
+    <!-- Action Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let element">
+        <div class="actions flexRow">
+          <img class="button" src="https://image.flaticon.com/icons/svg/61/61456.svg" (click)="editItem(element.id)"/>
+          <img class="button" src="https://image.flaticon.com/icons/svg/395/395848.svg"(click)="deleteItem(element.id)"/>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumnsAutor; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumnsAutor;"></tr>
+  </table>
+</div>
+
+<!-- Popups pour ajouter/editer des éléments -->
+<div *ngIf="isAddOrEditPopup">
+  <div id="popupKw" *ngIf="entryToEdit==='keyword'">
+    <h2>{{mode}} d'un mot clé</h2>
+    <div class="flexCol">
+      <mat-form-field class="example-full-width smallInput">
+        <input matInput placeholder="Mot clé" [(ngModel)]="newKeyword.key">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Définition" [(ngModel)]="newKeyword.def"></textarea>
+      </mat-form-field>
+    </div>
+
+    <div id="listButtons" class="flexRow">
+      <p *ngIf="mode==='Ajout'" class="button addButton" (click)="validateAction()">Ajouter</p>
+      <p *ngIf="mode==='Édition'" class="button editButton" (click)="validateAction()">Éditer</p>
+      <p class="button cancelButton" (click)="closePopup()">Annuler</p>
+    </div>
+  </div>
+
+  <div id="popupAutor" *ngIf="entryToEdit==='autor'">
+    <h2>{{mode}} d'un auteur</h2>
+    <div class="flexCol">
+      <mat-form-field class="example-full-width smallInput">
+        <input matInput placeholder="Prénom" [(ngModel)]="newAutor.prenom">
+      </mat-form-field>
+      <mat-form-field class="example-full-width smallInput">
+        <input matInput placeholder="Nom" [(ngModel)]="newAutor.nom">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Fonction" [(ngModel)]="newAutor.fonction">
+      </mat-form-field>
+    </div>
+
+    <div id="listButtons" class="flexRow">
+      <p *ngIf="mode==='Ajout'" class="button addButton" (click)="validateAction()">Ajouter</p>
+      <p *ngIf="mode==='Édition'" class="button editButton" (click)="validateAction()">Éditer</p>
+      <p class="button cancelButton" (click)="closePopup()">Annuler</p>
+    </div>
+  </div>
+</div>
+
+<!-- Popup pour supprimer un élément -->
+<div id="popupDelete" *ngIf="isDeletePopup">
+  <h2>Suppression d'une entrée</h2>
+  <p>Êtes-vous sûr.e de vouloir supprimer l'entrée ?</p>
+
+  <div id="listButtons" class="flexRow">
+    <p class="button cancelButton" (click)="validateAction()">Supprimer</p>
+    <p class="button backButton" (click)="closePopup()">Annuler</p>
+  </div>
+</div>

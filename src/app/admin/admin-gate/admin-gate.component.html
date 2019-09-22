@@ -1,0 +1,17 @@
+<h1>B.Admin</h1>
+<img id="logo" src="../../assets/images/logo.svg"/>
+
+<div id="form">
+  <div class="flexCol">
+    <mat-form-field class="example-full-width smallInput">
+        <input id="login" matInput placeholder="Login" [(ngModel)]="login">
+    </mat-form-field>
+    <mat-form-field class="example-full-width smallInput">
+        <input id="mdp" matInput type="password" placeholder="Password" [(ngModel)]="mdp" (keyup.enter)="logIn()">
+    </mat-form-field>
+  </div>
+
+  <div class="button" (click)="logIn()">
+    <p>Se connecter</p>
+  </div>
+</div>

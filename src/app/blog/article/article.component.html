@@ -1,0 +1,36 @@
+<div id="mainArticle">
+  <div id="resume" [innerHTML]="article.resume"></div>
+  
+  <div style="position:relative">
+    <div id="corps" [innerHTML]="corpsArticleFilled | safeHtml"></div>
+    <!--<div id="corps">
+      <p>Les effets de la nature sur la <b class='descWord' id='word-psychologie' (mouseover)="printDescWord('psychologie', true)" (mouseout)="printDescWord('psychologie', false)">psychologie</b> et le fonctionnement du cerveau et le comportement sont désormais largement validés
+    </div>-->
+    <div id="tooltipDescWord" *ngIf="isOneWordHovered" [style]="styleTooltip">
+      <div id="arrow"></div>
+      <div id="textDesc">
+        <p><b>{{keywordHovered}}</b> : {{descHovered}}</p>
+      </div>
+  </div>
+  </div>
+
+  <div id="listAuteurs">
+    <p *ngIf="article.listAuteurs.length==0">L'auteur de cet article n'est pas renseigné</p>
+    <div *ngFor="let auteur of article.listAuteurs; let i=index">
+      <div class="oneAuteur">
+        <p>{{auteur.prenom}} {{auteur.nom}}</p>
+        <p>{{auteur.fonction}}</p>
+      </div>
+      <div *ngIf="i!=article.listAuteurs.length-1" class="horizontalSeparator"></div>
+    </div>
+  </div>
+</div>
+
+<div id="sources">
+  <h1>Sources</h1>
+  <div id="listSources">
+    <p *ngIf="article.listSources.length==0">Aucune source renseignée pour cet article</p>
+    <p *ngFor="let source of article.listSources"><b>{{source.name}}</b> : {{source.link}}</p>
+  </div>
+</div>
+

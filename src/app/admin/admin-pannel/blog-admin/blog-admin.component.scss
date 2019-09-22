@@ -1,0 +1,25 @@
+#logo{
+  display:block;
+  width:10%;
+  margin:auto;
+  filter: brightness(0);
+}
+
+h1{
+  text-align:center;
+  font: Bold 45px/55px Montserrat;
+}
+
+#listAction{
+  text-align:center;
+  width:30vw;
+  margin:auto;
+  .button{
+    color: black;
+    font: Bold 35px/45px Montserrat;
+
+    &:hover{
+      color: orange;
+    }
+  }
+}

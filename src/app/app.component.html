@@ -1,0 +1,23 @@
+<router-outlet></router-outlet>
+
+<!--Popup de contact-->
+<div id="popupContact" *ngIf="isPopupContactActive">
+  <div *ngIf="!hasBeenSent">
+    <img style="width: 30px;position: absolute;right: 20px;top: 20px; filter:invert(1)" class="button" (click)="closePopup()" src="https://image.flaticon.com/icons/svg/151/151882.svg">
+    <h1>Contactez nous</h1>
+    <div class="flexCol">
+      <input id="mailContact" type="text" placeholder="E-MAIL" [(ngModel)]="mailContact">
+      <textarea  id="message" type="text" placeholder="VOTRE MESSAGE" [(ngModel)]="message"></textarea>
+    </div>
+
+    <div id="buttonsPopup" class="flexRow">
+      <div class="button" (click)="sendMessage()">
+        <p>Envoyer</p>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="hasBeenSent">
+    <p>Merci pour votre message. Il a bien été envoyé</p>
+  </div>
+</div>

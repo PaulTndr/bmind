@@ -1,0 +1,75 @@
+<h1 style="text-align:center;">Gestion des articles</h1>
+
+<div class="search__container">
+    <input class="search__input" type="text" placeholder="Rechercher..." [(ngModel)]="filterText" (keyup)="refreshDisplayedArticles()">
+  </div>
+
+<!-- Table Articles -->
+<div>
+  <table mat-table [dataSource]="dataSourceArticle" class="mat-elevation-z8">
+
+    <!-- Titre Column -->
+    <ng-container matColumnDef="img">
+      <th mat-header-cell *matHeaderCellDef> Miniature </th>
+      <td mat-cell *matCellDef="let element">
+        <img [src]="element.srcImg"/>
+      </td>
+    </ng-container>
+
+    <!-- Titre Column -->
+    <ng-container matColumnDef="resume">
+      <th mat-header-cell *matHeaderCellDef> Résumé </th>
+      <td mat-cell *matCellDef="let element">
+        <div>
+          <p class="title">{{element.title}}</p>
+          <p class="resume" [innerHtml]="element.resume"></p>
+        </div>
+      </td>
+    </ng-container>
+
+    <!-- Date Column -->
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef> Date </th>
+      <td mat-cell *matCellDef="let element"> {{element.timestamp | date}} </td>
+    </ng-container>
+
+    <!-- Vues Column -->
+    <ng-container matColumnDef="views">
+      <th mat-header-cell *matHeaderCellDef> Vues </th>
+      <td mat-cell *matCellDef="let element"> {{element.vues}} </td>
+    </ng-container>
+
+    <!-- Action Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let element">
+        <div class="actions flexRow">
+          <img class="button" src="https://image.flaticon.com/icons/svg/61/61456.svg" (click)="editArticle(element)"/>
+          <img class="button" src="https://image.flaticon.com/icons/svg/395/395848.svg"(click)="openDeletePopup(element)"/>
+          <img class="button" *ngIf="mapFavorite[element.id]" src="https://image.flaticon.com/icons/svg/148/148841.svg" (click)="removeFavorite(element.id)"/> <!-- Favorite -->
+          <img class="button" *ngIf="!mapFavorite[element.id]" src="https://image.flaticon.com/icons/svg/118/118669.svg" (click)="addToFavorite(element.id)"/> <!-- Not Favorite -->
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumnsArticle; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumnsArticle;"></tr>
+  </table>
+</div>
+
+<div id="popupEdit" *ngIf="isEditionMode">
+  <app-writing-pannel [isEdit]="true" [articleToEdit]="articleToEdit"></app-writing-pannel>
+  <img style="width: 30px;position: absolute;right: 20px;top: 20px;" class="button" (click)="closeEditArticle()" src="https://image.flaticon.com/icons/svg/151/151882.svg">
+</div>
+
+<!-- Popup pour supprimer un élément -->
+<div id="popupDelete" *ngIf="isDeletePopup">
+  <h2>Suppression d'un article</h2>
+  <p>Êtes-vous sûr.e de vouloir supprimer l'article ?</p>
+  <p>(Cette action est irréversible)</p>
+
+  <div id="listButtons" class="flexRow">
+    <p class="button cancelButton" (click)="validateDelete()">Supprimer</p>
+    <p class="button backButton" (click)="closePopup()">Annuler</p>
+  </div>
+</div>

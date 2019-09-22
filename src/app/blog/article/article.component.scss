@@ -1,0 +1,70 @@
+:host ::ng-deep .descWord { 
+  color:#D17B53;
+  border-bottom:1px solid #D17B53;
+}
+
+#mainArticle{
+  width:60%;
+  margin:auto;
+  #resume{
+    font: Bold 25px/30px Montserrat;
+  }
+  #corps{
+    font-weight:500;
+    font-size:20px;
+    .descWord{
+      color:#D17B53;
+    }
+  }
+  #listAuteurs{
+    margin-left: auto;
+    text-align: end;
+    align-items:flex-end;
+
+    .oneAuteur{
+      color:#D17B53;
+      font-weight:500;
+      font-size:20px;
+    }
+
+    .horizontalSeparator{
+      height: 2px;
+      width: 10px;
+      background-color: #D17B53;
+      margin-right: 40px;
+      margin-left: auto;
+    }
+  }
+}
+
+#sources{
+  background-color:#E4E4E4;
+  padding-top:5vh;
+  padding-bottom:5vh;
+  h1{
+    text-align:center;
+  }
+  #listSources{
+    width:80%;
+    margin:auto;
+  }
+}
+
+#tooltipDescWord{
+  position: absolute;
+  width: 20vw;
+  #arrow{
+    height: 0;
+    width: 0px;
+    margin: auto;
+    border-right: 15px solid transparent;
+    border-bottom: 10px solid #D17B53;
+    border-left: 15px solid transparent;
+  }
+  #textDesc{
+    width: 100%;
+    background-color: #D17B53;
+    color: white;
+    padding: 5px 20px 5px 20px;
+  }
+}

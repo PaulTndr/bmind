@@ -1,0 +1,46 @@
+#popupContact{
+  width:45vw;
+  position:fixed;
+  top:25vh;
+  left:25vw;
+  padding-left:2.5vw;
+  padding-right:2.5vw;
+  padding-top:2vh;
+  background: #D17B53;
+  h1{
+    color:white;
+    text-align:center;
+  }
+
+  input, textarea{
+    padding: 10px 10px 5px 15px;
+    font-size: 15px;
+    font-weight: 500;
+  }
+  #mailContact{
+    height: 30px;
+    
+  }
+
+  #message{
+    height: 27vh;
+    margin-top: 15px;
+  }
+
+  #buttonsPopup{
+    justify-content: flex-end;
+    margin-top:2vh;
+    margin-bottom:2vh;
+    .button{
+      border:1px solid white;
+      text-transform: uppercase;
+      color:white;
+      width:35%;
+      padding: 15px 10px 15px 10px;
+      p{
+        margin:0;
+        text-align:center;
+      }
+    }
+  }
+}

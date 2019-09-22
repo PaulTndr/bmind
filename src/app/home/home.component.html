@@ -1,0 +1,291 @@
+<!--<p class="button" routerLink="blog">blog</p>
+<p class="button" routerLink="admin/pannel">adminPannel</p>-->
+<div id="topPannel">
+  <img class="fond" src="../../assets/images/fond.svg"/>
+  <div class="flexRow" id="header">
+    <a id="toggle" [ngClass]="{'on': isMenuOpen}" (click)="openOrCloseMenu()"><span></span></a>
+    <div class="logoTitre">
+      <h1>B.mind</h1>
+      <p>cognitive innovation</p>
+    </div>
+    <div class="logos flexRow">
+      <a href="https://www.linkedin.com/in/jane-bourgninaud" target="_blank"><div class="divImage button">
+        <img src="https://image.flaticon.com/icons/svg/733/733635.svg">
+      </div></a>
+      <a href="https://www.linkedin.com/in/jane-bourgninaud" target="_blank"><div class="divImage button">
+        <img src="https://image.flaticon.com/icons/svg/34/34227.svg">
+      </div></a>
+      <div class="verticalSeparator"></div>
+      <p class="button buttonLangue" [ngClass]="{'isSelected': isFrSelected}" (click)="switchLangue('fr')">FR</p>
+      <p class="button buttonLangue" [ngClass]="{'isSelected': isEnSelected}" (click)="switchLangue('en')">EN</p>
+    </div>
+  </div>
+  <div *ngIf="!isMenuOpen" id="textTitle">
+    <h1 class="title">Bureau d’innovation en sciences cognitives</h1>
+    <h2 class="subTitle">Conseil - Etudes - Formation</h2>
+    <div class="orangeCircle"></div>
+  </div>
+
+  <div *ngIf="isMenuOpen" id="menu" class="flexCol">
+    <a class="button" href="#projets">Nos projets</a>
+    <a class="button" href="#savoirFaire">Notre savoir-faire</a>
+    <a class="button" href="#offres">Nos offres</a>
+    <a class="button" href="#thirdPannel">Charte éthique</a>
+    <a class="button" href="#partenaires">Partenaires</a>
+    <a class="button" href="#carriere">Carrière</a>
+    <a class="button" href="#contact">Contact</a>
+    <div class="orangeCircle"></div>
+    <a class="button" routerLink="blog">Blog</a>
+  </div>
+
+  <div class="flexRow" style="margin:auto; justify-content:space-between; width: 70%;" id="projets">
+    <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticles[0].id)">
+      <app-miniature-article-small [article]="favoriteArticles[0]" [size]="'medium'"></app-miniature-article-small>
+    </div>
+    <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticles[1].id)">
+      <app-miniature-article-small [article]="favoriteArticles[1]" [size]="'medium'"></app-miniature-article-small>
+    </div>
+  </div>
+</div>
+
+<div id="mainPannel">
+  <div id="savoirFaire">
+
+    <h1 style="text-align:center;">La cognition au service de vos solutions digitales et IA</h1>
+    <div id="imageDyn">
+      <div class="oneText">
+        <p style="text-align:center; left: 41vw; top: 6vh; width:17vw; ">Développer des solutions en fonction des humains qui les utilisent</p>
+        <div class="oneSegment" id="segment0" [style]="styleSegment0"> 
+          <div class="rond" [style]="styleRondSmallR"></div>
+        </div>
+      </div>
+
+      <div class="oneText">
+        <p style="text-align:center; right: 10vw; top: 16vh; width:17vw; ">Optimiser le niveau de concentration, diminuer le nombre d’erreurs</p>
+        <div class="oneSegment rondEnd" id="segment1" [style]="styleSegment1">
+          <div class="rond" [style]="styleRondLargeL"></div>
+        </div>
+      </div>
+
+      <div class="oneText">
+        <p style="text-align:center; right: 13vw; bottom: 13vh; width:17vw; ">Comprendre et parler le language du cerveau</p>
+        <div class="oneSegment" id="segment2" [style]="styleSegment2">
+          <div class="rond" [style]="styleRondLargeR"></div>
+        </div>
+      </div>
+
+      <div class="oneText">
+        <p style="text-align:center; left: 13vw; bottom: 13vh; width:17vw; ">Utilisation intuitive Flexibilité, Acceptation, Performance</p>
+        <div class="oneSegment" id="segment3" [style]="styleSegment3">
+          <div class="rond" [style]="styleRondLargeR"></div>
+        </div>
+      </div>
+
+      <div class="oneText">
+        <p style="text-align:center; left: 10vw; top: 16vh; width:17vw; ">Donner du sens à la donnée humaine avant de l’intégrer à l’IA</p>
+        <div class="oneSegment" id="segment4" [style]="styleSegment4">
+          <div class="rond" [style]="styleRondLargeR"></div>
+        </div>
+      </div>
+
+      <div class="logoTitre" snInViewport (inViewportChange)="onInViewportChange($event)">
+        <h1>B.mind</h1>
+        <p>cognitive innovation</p>
+      </div>
+    </div>
+  </div>
+
+  <iframe id="videoYt" width="560" height="315" src="https://www.youtube.com/embed/EynJFQObnqI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
+
+  <div id="offres">
+    <img class="fond" src="../../assets/images/fond.svg" style="pointer-events:none;"/>
+    <h1 style="text-align:center; margin-bottom: 10vh;margin-top: 17vh;">Nos offres</h1>
+    <div class="flexRow" id="listOffer">
+      <div class="oneOffer">
+        <img class="logoOffer" src="../../assets/images/conseil.svg"/>
+        <h2>Conseil</h2>
+        <p>Boostez vos solutions en anticipant la réaction de vos utilisateurs. B.mind met à votre disposition toutes les connaissances actuelles en cognition adaptées à votre projet.</p>
+      </div>
+      <div class="oneOffer">
+        <img class="logoOffer" src="../../assets/images/etude.svg" style="margin-left:20px;"/>
+        <h2>Étude</h2>
+        <p>Entrez dans le cerveau de vos utilisateurs et consommateurs. B.mind vous propose des études ad hoc en partenariat avec de prestigieux laboratoires français.</p>
+      </div>
+
+      <div class="oneOffer">
+        <img class="logoOffer" src="../../assets/images/formation.svg"/>
+        <h2>Formation</h2>
+        <p>Formez vos équipes aux concepts de la cognition qui impactent leurs activités au quotidien.</p>
+      </div>
+    </div>
+
+    <div class="textOffer">
+      <p class="text">Voyons ensemble ce que la cognition peut faire pour vous.</p>
+      <p class="button contactButton" (click)="openPopup('diagnostic')">Demandez votre diagnostic !</p>
+    </div>
+  </div>
+</div>
+
+<div id="thirdPannel">
+  <h1 class="title" style="padding-bottom:15vh;">Charte Éthique</h1>
+  <div class="flexRow" id="listValeurs">
+    <div class="oneValeur">
+      <p class="valeur">Transparence</p>
+      <div class="divImage">
+        <img src="../../../assets/images/arrow.svg"/>
+      </div>
+      <p class="descValeur">Chez B.mind nous expliquons et publions l’ensemble de nos recherches réalisées avec nos laboratoires partenaires.</p>
+    </div>
+    <div class="verticalSeparator"></div>
+    <div class="oneValeur">
+      <div>
+        <p class="valeur">Pertinence<br>Scientifique</p>
+      </div>
+      <div class="divImage">
+        <img src="../../../assets/images/arrow.svg"/>
+      </div>
+      <p class="descValeur">Chez B.mind nous expliquons et publions l’ensemble de nos recherches réalisées avec nos laboratoires partenaires.</p>
+    </div>
+    <div class="verticalSeparator"></div>
+    <div class="oneValeur">
+      <p class="valeur">Nudge for good</p>
+      <div class="divImage">
+        <img src="../../../assets/images/arrow.svg"/>
+      </div>
+      <p class="descValeur">Chez B.mind nous expliquons et publions l’ensemble de nos recherches réalisées avec nos laboratoires partenaires.</p>
+    </div>
+    <div class="verticalSeparator"></div>
+    <div class="oneValeur">
+      <p class="valeur">Libre arbitre</p>
+      <div class="divImage">
+        <img src="../../../assets/images/arrow.svg"/>
+      </div>
+      <p class="descValeur">Chez B.mind nous expliquons et publions l’ensemble de nos recherches réalisées avec nos laboratoires partenaires.</p>
+    </div>
+  </div>
+</div>
+
+<div id="pannelBlog">
+  <p class="mainText">Vous souhaitez en apprendre davantage sur la cognition, nos projets et nos engagements ?</p>
+  <p style="margin-bottom:10vh;" class="mainText"> Découvrez notre blog.</p>
+  <div id="articlesUnes" class="flexRow">
+    <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticles[0].id)">
+      <app-miniature-article-small [article]="favoriteArticles[0]" [size]="'small'"></app-miniature-article-small>
+    </div>
+    <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticles[1].id)">
+      <app-miniature-article-small [article]="favoriteArticles[1]" [size]="'small'"></app-miniature-article-small>
+    </div>
+    <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticles[2].id)">
+      <app-miniature-article-small [article]="favoriteArticles[2]" [size]="'small'"></app-miniature-article-small>
+    </div>
+  </div>
+  <p class="button contactButton" routerLink="blog">Voir plus</p>
+</div>
+
+<div id="partenaires">
+  <div class="blockFond">
+    <img class="fond" src="../../assets/images/fond.svg"/>
+  </div>
+  <h1>Partenaires</h1>
+  <p class="text">Nous travaillons avec de prestigieux partenaires afin d'assurer notamment la pertinence scientifique de nos prestations</p>
+  <div class="flexRow listPart" style="width:40%;">
+    <img class="brandImage" style="width:238px; height:122px" src="https://zupimages.net/up/19/38/s657.png"/>
+    <img class="brandImage" style="width:112px; height:118px" src="https://zupimages.net/up/19/38/cw39.jpg"/>
+    <img class="brandImage" style="width:271px; height:94px" src="https://zupimages.net/up/19/38/r7ho.png"/>
+  </div>
+  <div class="flexRow listPart" style="width:20%;">
+    <img class="brandImage" style="width:130px; height:120px" src="https://zupimages.net/up/19/38/wg1j.png"/>
+    <img class="brandImage" src="https://zupimages.net/up/19/38/ff06.png"/>
+  </div>
+</div>
+
+<div id="carriere">
+  <h1>Carrière</h1>
+  <p>Nous n'avons malheureusement pas d'ouverture de poste actuellement.</p>
+</div>
+
+<div id="contact">
+  <h1 style="text-align:center; margin-bottom:7vh;">Contact</h1>
+  <div class="flexRow" id="carteContact" style="">
+    <img id="photoJane" src="https://zupimages.net/up/19/37/f4yl.png"/>
+    <div id="fondPhoto"></div>
+    <div class="infosJane">
+      <p class="importantText">Jane Bourgninaud</p>
+      <p class="importantText" style="margin-bottom:1vw;">CEO</p>
+      <p>Ingénieur en sciences cognitives</p>
+      <p>MBA en entrepreneuriat</p>
+      <p style="margin-bottom:4vh;">Passionnées de sciences cognitives et d’innovation, j’ai hâte de voir toutes les applications innovantes et concrètes qui verront le jour grâce à la prise en compte des cette discipline et de ses concepts.</p>
+      <p class="button contactButton" (click)="openPopup('bottomMain')">Contactez-nous</p>
+    </div>
+  </div>
+</div>
+
+<div id="footer">
+  <div id="info" class="flexRow">
+    <div class="img">
+      <img id="logoSignature" src="../../assets/images/logo.svg"/>
+    </div>
+    <div class="verticalSeparator"></div>
+    <div class="redirect flexCol">
+      <p>Blog</p>
+      <p>Mentions légales</p>
+      <p>Cookie Policy</p>
+    </div>
+    <div class="verticalSeparator"></div>
+    <div class="contact flexCol">
+      <p>Suivez-nous<br>sur les réseaux sociaux</p>
+      <div class="flexRow" style="width:5vw; justify-content:space-between; margin:auto;">
+        <a href="https://www.linkedin.com/in/jane-bourgninaud" target="_blank"><div class="divImage button">
+          <img src="https://image.flaticon.com/icons/svg/733/733635.svg">
+        </div></a>
+        <a href="https://www.linkedin.com/in/jane-bourgninaud" target="_blank"><div class="divImage button">
+          <img src="https://image.flaticon.com/icons/svg/34/34227.svg">
+        </div></a>
+      </div>
+    </div>
+    <div class="verticalSeparator"></div>
+    <div class="legal">
+      <p>B.mind S.A.S.U. - 849 322 656 R.C.S. Marseille -<br>capital social 10 000€</p>
+      <p>27 impasse des Aurengues 13013 MARSEILLE</p>
+    </div>
+    
+  </div>
+</div>
+
+<div id="timeline" class="flexRow">
+  <div class="points flexCol">
+    <a href="#projets"><div class="pointOnTimeline" id="pointProjet" [ngClass]="{'isHovered': mapTimeline.projets, 'selectedForHovers' : (!mapHover.projets && (mapTimeline.projets||mapTimeline.savoirs||mapTimeline.offres||mapTimeline.charte||mapTimeline.parts||mapTimeline.carriere||mapTimeline.contact)) || mapHover.projets}" (mouseover)="changeHoverPoints('projets', true)" (mouseout)="changeHoverPoints('projets', false)"></div></a>
+    <a href="#savoirFaire"><div class="pointOnTimeline" id="pointSavoir" [ngClass]="{'isHovered': mapTimeline.savoirs, 'selectedForHovers' : (!mapHover.projets && (mapTimeline.savoirs||mapTimeline.offres||mapTimeline.charte||mapTimeline.parts||mapTimeline.carriere||mapTimeline.contact)) || mapHover.savoirs}" (mouseover)="changeHoverPoints('savoirs', true)" (mouseout)="changeHoverPoints('savoirs', false)"></div></a>
+    <a href="#offres"><div class="pointOnTimeline" id="pointOffre" [ngClass]="{'isHovered': mapTimeline.offres, 'selectedForHovers' : (!mapHover.projets && (mapTimeline.offres||mapTimeline.charte||mapTimeline.parts||mapTimeline.carriere||mapTimeline.contact)) || mapHover.offres}" (mouseover)="changeHoverPoints('offres', true)" (mouseout)="changeHoverPoints('offres', false)"></div></a>
+    <a href="#thirdPannel"><div class="pointOnTimeline" id="pointCharte" [ngClass]="{'isHovered': mapTimeline.charte, 'selectedForHovers' : (!mapHover.projets && (mapTimeline.charte||mapTimeline.parts||mapTimeline.carriere||mapTimeline.contact)) || mapHover.charte}" (mouseout)="changeHoverPoints('charte', false)" (mouseover)="changeHoverPoints('charte', true)"></div></a>
+    <a href="#partenaires"><div class="pointOnTimeline" id="pointParts" [ngClass]="{'isHovered': mapTimeline.parts, 'selectedForHovers' : (!mapHover.projets && (mapTimeline.parts||mapTimeline.carriere||mapTimeline.contact)) || mapHover.parts}" (mouseover)="changeHoverPoints('parts', true)" (mouseout)="changeHoverPoints('parts', false)"></div></a>
+    <a href="#carriere"><div class="pointOnTimeline" id="pointCarriere" [ngClass]="{'isHovered': mapTimeline.carriere, 'selectedForHovers' : (!mapHover.projets && (mapTimeline.carriere||mapTimeline.contact)) || mapHover.carriere}" (mouseover)="changeHoverPoints('carriere', true)" (mouseout)="changeHoverPoints('carriere', false)"></div></a>
+    <a href="#contact"><div class="pointOnTimeline" id="pointContact" [ngClass]="{'isHovered': mapTimeline.contact, 'selectedForHovers' : (!mapHover.projets && (mapTimeline.contact)) || mapHover.contact}" (mouseover)="changeHoverPoints('contact', true)" (mouseout)="changeHoverPoints('contact', false)"></div></a>
+  </div>
+
+  <div class="solidLine" [style]="sizeSolidLineForTimeLine"></div>
+
+  <div class="anchors flexCol">
+    <div class="oneAnchor" [ngClass]="{'isVisible': mapTimeline.projets || mapHoverPoint.projets, isHoveredByTimeline : mapHoverPoint.projets || (!mapHover.projets)}">
+      <p>Nos projets</p>
+    </div>
+    <div class="oneAnchor" [ngClass]="{'isVisible': mapTimeline.savoirs || mapHoverPoint.savoirs, isHoveredByTimeline : mapHoverPoint.savoirs || (!mapHover.projets)}">
+      <p>Notre savoir-faire</p>
+    </div>
+    <div class="oneAnchor" [ngClass]="{'isVisible': mapTimeline.offres || mapHoverPoint.offres, isHoveredByTimeline : mapHoverPoint.offres || (!mapHover.projets)}">
+      <p>Nos offres</p>
+    </div>
+    <div class="oneAnchor" [ngClass]="{'isVisible': mapTimeline.charte || mapHoverPoint.charte, isHoveredByTimeline : mapHoverPoint.charte || (!mapHover.projets)}">
+      <p>Charte éthique</p>
+    </div>
+    <div class="oneAnchor" [ngClass]="{'isVisible': mapTimeline.parts || mapHoverPoint.parts, isHoveredByTimeline : mapHoverPoint.parts || (!mapHover.projets)}">
+      <p>Partenaires</p>
+    </div>
+    <div class="oneAnchor" [ngClass]="{'isVisible': mapTimeline.carriere || mapHoverPoint.carriere, isHoveredByTimeline : mapHoverPoint.carriere || (!mapHover.projets)}">
+      <p>Carrière</p>
+    </div>
+    <div class="oneAnchor" [ngClass]="{'isVisible': mapTimeline.contact || mapHoverPoint.contact, isHoveredByTimeline : mapHoverPoint.contact || (!mapHover.projets)}">
+      <p>Contact</p>
+    </div>
+  </div>
+</div>
