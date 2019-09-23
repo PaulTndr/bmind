@@ -97,7 +97,7 @@ export class BlogComponent implements OnInit {
     }
 
     document.body.addEventListener('click', (e) => {
-      if(/*<HTMLTextAreaElement>*/e.target.id=="listArticle" || /*<HTMLTextAreaElement>*/e.target.className=="fond"){
+      if((e.target as HTMLTextAreaElement).id=="listArticle" || (e.target as HTMLTextAreaElement).className=="fond"){
         this.mapOpenFilter = {
           "difficulte":false,
           "temps":false,

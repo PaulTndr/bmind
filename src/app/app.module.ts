@@ -30,6 +30,7 @@ import { WritingPannelComponent } from './admin/admin-pannel/blog-admin/writing-
 import { EditingPannelComponent } from './admin/admin-pannel/blog-admin/editing-pannel/editing-pannel.component';
 import { SettingPannelComponent } from './admin/admin-pannel/blog-admin/setting-pannel/setting-pannel.component';
 
+import {APP_BASE_HREF} from '@angular/common';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -48,6 +49,6 @@ const appRoutes: Routes = [
   imports:      [ BrowserModule, FormsModule, RouterModule.forRoot(appRoutes), MatSelectModule,MatTableModule,MatInputModule,BrowserAnimationsModule, HttpClientModule, CKEditorModule, MatCheckboxModule, InViewportModule],
   declarations: [ AppComponent, MiniatureArticleSmallComponent,MiniatureArticleComponent, HomeComponent, BlogComponent, ArticleComponent, AdminGateComponent, AdminPannelComponent, StatisticsPannelComponent, BlogAdminComponent, WritingPannelComponent, EditingPannelComponent, SettingPannelComponent,SafeHtmlPipe ],
   bootstrap:    [ AppComponent ],
-  providers: [GlobalService, BlogService, AdminService]
+  providers: [GlobalService, BlogService, AdminService, {provide: APP_BASE_HREF, useValue: ''}]
 })
 export class AppModule { }

@@ -46,7 +46,7 @@ export class ArticleComponent implements OnInit {
     this.blogService.incrementVues(this.article.id)
 
     document.body.addEventListener('mouseover', (e) => {
-      this.printDescWord(""+(/*<HTMLTextAreaElement>*/e.target).id);
+      this.printDescWord((e.target as HTMLTextAreaElement).id);
     });
 
     this.listKeywordsSubscription = this.blogService.listKeywordsSubject.subscribe(
