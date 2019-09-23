@@ -6,14 +6,15 @@
     <mat-select [(value)]="entryToEdit">
       <mat-option value="keyword" (click)="refreshData()">Mots clés</mat-option>
       <mat-option value="autor" (click)="refreshData()">Auteurs</mat-option>
+      <mat-option value="secteurAndType" (click)="refreshData()">Secteurs et type</mat-option>
     </mat-select>
   </mat-form-field>
 
-  <div class="search__container">
+  <div class="search__container" *ngIf="entryToEdit!=='secteurAndType'">
     <input class="search__input" type="text" placeholder="Rechercher..." [(ngModel)]="filterText" (keyup)="filter()">
   </div>
 
-  <img class="button" style="width:40px" src="https://image.flaticon.com/icons/svg/148/148764.svg" (click)="addItem()"/>
+  <img class="button" *ngIf="entryToEdit!='secteurAndType'" style="width:40px" src="https://image.flaticon.com/icons/svg/148/148764.svg" (click)="addItem()"/>
 </div>
 
 <!-- Table Mots clés -->
@@ -84,6 +85,62 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumnsAutor; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumnsAutor;"></tr>
   </table>
+</div>
+
+<div class="flexRow" *ngIf="entryToEdit==='secteurAndType'" style="justify-content: space-around;">
+
+  <!-- Table Secteurs -->
+  <div id="tableSecteurs">
+      <h2 style="text-align: center;">Secteurs</h2>
+      <table mat-table [dataSource]="dataSourceSecteurs" class="mat-elevation-z8">
+  
+        <!-- Key Column -->
+        <ng-container matColumnDef="key">
+          <th mat-header-cell *matHeaderCellDef> Clé </th>
+          <td mat-cell *matCellDef="let element"> {{element}} </td>
+        </ng-container>
+  
+        <!-- Action Column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Actions </th>
+          <td mat-cell *matCellDef="let element">
+            <div class="actions flexRow">
+              <img class="button" src="https://image.flaticon.com/icons/svg/395/395848.svg"(click)="deleteItemDirect('sector', element)"/>
+            </div>
+          </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsSecteurs; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsSecteurs;"></tr>
+      </table>
+    </div>
+
+  <!-- Table Types -->
+  <div id="tableSecteurs">
+    <h2 style="text-align: center;">Types</h2>
+    <table mat-table [dataSource]="dataSourceTypes" class="mat-elevation-z8">
+
+      <!-- Key Column -->
+      <ng-container matColumnDef="key">
+        <th mat-header-cell *matHeaderCellDef> Clé </th>
+        <td mat-cell *matCellDef="let element"> {{element}} </td>
+      </ng-container>
+
+      <!-- Action Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let element">
+          <div class="actions flexRow">
+            <img class="button" src="https://image.flaticon.com/icons/svg/395/395848.svg"(click)="deleteItemDirect('type', element)"/>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsTypes; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsTypes;"></tr>
+    </table>
+  </div>
+
 </div>
 
 <!-- Popups pour ajouter/editer des éléments -->

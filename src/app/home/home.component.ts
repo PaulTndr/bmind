@@ -235,4 +235,8 @@ export class HomeComponent implements OnInit {
       window.location.href = "https://bmind-v3.stackblitz.io/blog"+"?idArticle="+idArticle
     }
   }
+
+  resetMenu(){
+    this.isMenuOpen=false;
+  }
 }

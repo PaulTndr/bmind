@@ -25,6 +25,14 @@ export class SettingPannelComponent implements OnInit {
   listAutor : Auteur[] = [];
   dataSourceAutor = new MatTableDataSource<Auteur>();
 
+  displayedColumnsSecteurs : String[] = ['key', 'actions'];
+  listSecteurs : String[] = [];
+  dataSourceSecteurs = new MatTableDataSource<String>();
+
+  displayedColumnsTypes : String[] = ['key', 'actions'];
+  listTypes : String[] = [];
+  dataSourceTypes = new MatTableDataSource<String>();
+
   isDeletePopup : boolean = false;
   isAddOrEditPopup : boolean = false;
 
@@ -38,14 +46,10 @@ export class SettingPannelComponent implements OnInit {
   constructor(private httpClient: HttpClient) { }
 
   ngOnInit() {
+
     this.fillDataFromBase()
 
     this.entryToEdit = "keyword";
-
-    this.lastIdAutor = 0;
-    for (var k=0; k<this.listAutor.length; k++){
-      this.lastIdAutor=+Math.max(Number(this.lastIdAutor),Number(this.listAutor[k].id))
-    }
 
     this.refreshData()
   }
@@ -86,6 +90,24 @@ export class SettingPannelComponent implements OnInit {
         for (var k=0; k<this.listAutor.length; k++){
           this.lastIdAutor=+Math.max(Number(this.lastIdAutor),Number(this.listAutor[k].id))
         }
+      },
+      (error) => {
+        console.log('Erreur ! : ' + error);
+      }
+    );
+
+    this.httpClient.get<any[]>('https://bminddev.firebaseio.com/secteurs.json').subscribe(
+      (response) => {
+        this.listSecteurs = response.slice();
+      },
+      (error) => {
+        console.log('Erreur ! : ' + error);
+      }
+    );
+
+    this.httpClient.get<any[]>('https://bminddev.firebaseio.com/types.json').subscribe(
+      (response) => {
+        this.listTypes = response.slice();
       },
       (error) => {
         console.log('Erreur ! : ' + error);
@@ -289,6 +311,48 @@ export class SettingPannelComponent implements OnInit {
       this.dataSourceKeyword = new MatTableDataSource<Keyword>(this.listKeyword);
     } else if(this.entryToEdit==='autor'){
       this.dataSourceAutor = new MatTableDataSource<Auteur>(this.listAutor);
+    } else if(this.entryToEdit==='secteurAndType'){
+      this.dataSourceSecteurs = new MatTableDataSource<String>(this.listSecteurs);
+      this.dataSourceTypes = new MatTableDataSource<String>(this.listTypes);
     }
+  }
+
+  deleteItemDirect(keyType : String, element : String){
+    if (keyType==='sector'){
+      var newListSecteurs=[]
+      for (var k=0; k<this.listSecteurs.length;k++){
+        if (this.listSecteurs[k]!=element){
+          newListSecteurs.push(this.listSecteurs[k])
+        }
+      }
+      this.listSecteurs=newListSecteurs.slice();
+      //Changement base
+      this.httpClient.put('https://bminddev.firebaseio.com/secteurs.json', this.listSecteurs).subscribe(
+        () => {
+          console.log('Suppression du secteur terminée !');
+        },
+        (error) => {
+          console.log('Erreur lors de la suppression du mot secteur! : ' + error);
+        }
+      );
+    } else if (keyType==='type'){
+      var newListTypes=[]
+      for (var k=0; k<this.listTypes.length;k++){
+        if (this.listTypes[k]!=element){
+          newListTypes.push(this.listTypes[k])
+        }
+      }
+      this.listTypes=newListTypes.slice();
+      //Changement base
+      this.httpClient.put('https://bminddev.firebaseio.com/types.json', this.listTypes).subscribe(
+        () => {
+          console.log('Suppression du type terminée !');
+        },
+        (error) => {
+          console.log('Erreur lors de la suppression du mot type! : ' + error);
+        }
+      );
+    }
+    this.refreshData();
   }
 }

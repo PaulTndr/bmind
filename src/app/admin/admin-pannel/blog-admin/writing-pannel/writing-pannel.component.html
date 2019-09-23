@@ -17,15 +17,6 @@
     <h2>Informations supplémentaires</h2>
     <div id="listSelectInput" class="flexRow">
       <div class="flexRow oneInputSelect">
-        <p>Type</p>
-        <mat-form-field class="smallInput">
-          <mat-select [(value)]="newArticle.type">
-            <mat-option *ngFor="let type of listType" [value]="type">{{type}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-
-      <div class="flexRow oneInputSelect">
         <p>Temps de lecture</p>
         <mat-form-field class="smallInput">
           <mat-select [(value)]="newArticle.time">
@@ -52,6 +43,35 @@
     <div style="border:1px solid black; height: 100px; width: 200px; margin-left:2vw;">
       <img *ngIf="newArticle.srcImg.length!=0" [src]="newArticle.srcImg"/>
     </div>
+  </div>
+
+  <div id="type">
+    <div class="flexRow">
+      <h2 style="margin-right:3vw;">Type</h2>
+      <mat-form-field class="smallInput">
+        <mat-select [(value)]="newArticle.type">
+          <mat-option *ngFor="let type of listTypes" [value]="type">{{type}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <img *ngIf="!isAddType" class="button logoAdd" (click)="openAdd('type')" src="https://image.flaticon.com/icons/svg/148/148764.svg"/>
+      <img *ngIf="isAddType" class="button logoAdd" (click)="closeAdd('type')" src="https://image.flaticon.com/icons/svg/118/118743.svg"/>
+    </div>
+
+    <div class="flexRow" *ngIf="isAddType">
+      <p style="margin-right:3vw;">Ajouter un nouveau type</p>
+      <div class="flexRow inputAdd">
+        <mat-form-field class="example-full-width smallInput">
+            <input matInput placeholder="Type" [(ngModel)]="newType">
+        </mat-form-field>
+        <p style="margin-left:3vw;" class="button buttonAdd" (click)="addItemToLists('type')">Ajouter</p>
+      </div>
+    </div>
+
+    <div class="flexRow" *ngIf="newArticle.type===''">
+      <img style="width:10px; margin-right:10px;" src="https://image.flaticon.com/icons/svg/196/196760.svg"/>
+      <p>Aucun type n'a été sélectionné</p>
+    </div>
+
   </div>
 
   <div id="sources">
@@ -123,17 +143,38 @@
       <img *ngIf="!isAddSector" class="button logoAdd" (click)="openAdd('sector')" src="https://image.flaticon.com/icons/svg/148/148764.svg"/>
       <img *ngIf="isAddSector" class="button logoAdd" (click)="closeAdd('sector')" src="https://image.flaticon.com/icons/svg/118/118743.svg"/>
     </div>
-    <div class="flexRow inputAdd" *ngIf="isAddSector">
-      <mat-form-field class="example-full-width smallInput">
-          <input matInput placeholder="Nom" [(ngModel)]="newSector">
-      </mat-form-field>
-      <p class="button buttonAdd" (click)="addItemToLists('secteur')">Ajouter</p>
+    <div class="flexCol" *ngIf="isAddSector">
+      <p style="margin: 0px;">Sélectionner parmi les secteurs connus</p>
+      <div class="flexRow">
+        <div class="flexRow" style="max-width:80%;">
+          <div class="oneSectorSelected" *ngFor="let sector of fullListSectors; let i=index">
+            <div *ngIf="mapSectorSelected[sector]">
+              <img class="button" src="https://image.flaticon.com/icons/svg/149/149158.svg" (click)="changeSelect(sector)"/>
+              <p class="oneChoiceToPick selected">{{sector}}</p>
+            </div>
+          </div>
+          <div class="oneSectorSelected" *ngFor="let sector of fullListSectors; let i=index">
+            <div *ngIf="!mapSectorSelected[sector]">
+              <img class="button" src="https://image.flaticon.com/icons/svg/149/149156.svg" (click)="changeSelect(sector)"/>
+              <p class="oneChoiceToPick">{{sector}}</p>
+            </div>
+          </div>
+        </div>
+        <p class="button buttonAdd" style="margin-left:3vw;" (click)="validateCheckbox('secteur')">Valider</p>
+      </div>
+      <div class="flexRow inputAdd">
+        <mat-form-field class="example-full-width smallInput">
+            <input matInput placeholder="Nom" [(ngModel)]="newSector">
+        </mat-form-field>
+        <p class="button buttonAdd" (click)="addItemToLists('secteur')">Ajouter</p>
+      </div>
     </div>
+
     <div class="flexRow" *ngIf="newArticle.listSectors.length==0">
       <img style="width:10px; margin-right:10px;"src="https://image.flaticon.com/icons/svg/196/196760.svg"/>
       <p>Aucun secteur n'a été ajouté</p>
     </div>
-    <div class="flexRow">
+    <div class="flexRow" *ngIf="!isAddSector">
       <div class="oneSectorSelected" *ngFor="let sector of newArticle.listSectors">
         <img class="button" src="https://image.flaticon.com/icons/svg/149/149158.svg" (click)="removeItem('secteur', sector)"/>
         <p class="oneChoiceToPick">{{sector}}</p>

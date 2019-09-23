@@ -20,17 +20,18 @@ export class WritingPannelComponent implements OnInit {
   newArticle : Article = new Article();
   editor = ClassicEditor;
 
-  listType = ["Projet", "Actualité", "Revue"]
-  listTime = ["2min", "5 min","10 min","30 min", "1 heure"]
+  listTime = ["5 min","10 min","30 min", "1 heure"]
   listDifficulte = [1,2,3,4,5]
 
   newSource : Source = new Source();
   newAutor : Auteur = new Auteur();
   newSector : String = new String();
+  newType : String = new String();
 
   isAddSource : Boolean = false;
   isAddAuteur : Boolean = false;
   isAddSector : Boolean = false;
+  isAddType : Boolean = false;
 
   fullListAutor : Auteur[];
   fullListArticle : Article[];
@@ -45,11 +46,25 @@ export class WritingPannelComponent implements OnInit {
 
   isPosted : Boolean = false;
 
+  fullListSectors=[]
+  originalListSectors = [];
+  listTypes=[];
+  originalListTypes = [];
+
+  mapSectorSelected = {
+    "Entreprise":false,
+    "Formation":false,
+    "Enfance":false,
+  }
+  nouveauxSecteurs : String[] = []
+
   constructor(private httpClient: HttpClient, private adminService : AdminService) { }
 
   ngOnInit() {
+    this.fillData(['autors', 'articles', 'sectors', 'types'])
+
     if (!this.isEdit){
-      this.newArticle.type=this.listType[0]
+      this.newArticle.type=""
       this.newArticle.time=this.listTime[0]
       this.newArticle.difficulte=this.listDifficulte[0]
       this.newArticle.listAuteurs = [];
@@ -58,15 +73,25 @@ export class WritingPannelComponent implements OnInit {
     } else {
       this.newArticle=this.articleToEdit
     }
-    
-
-    this.fillData(['autors', 'articles'])
   }
 
   write(){
     this.newArticle.id=(+this.lastIdArticle)+1
     this.lastIdArticle = (+this.lastIdArticle)+1
     this.newArticle.vues=0;
+
+    //Ajout du nouveau type ??
+    if(this.originalListTypes.indexOf(this.newArticle.type)==-1){
+      this.originalListTypes.push(this.newArticle.type)
+      this.httpClient.put('https://bminddev.firebaseio.com/types.json', this.originalListTypes).subscribe(
+        () => {
+          console.log('Enregistrement du type terminé !');
+        },
+        (error) => {
+          console.log('Erreur lors de l\'enregistrment du type! : ' + error);
+        }
+      );
+    }
 
     //AJOUT BASE
     this.httpClient.post('https://bminddev.firebaseio.com/articles.json', this.newArticle).subscribe(
@@ -79,6 +104,22 @@ export class WritingPannelComponent implements OnInit {
       },
       (error) => {
         console.log('Erreur lors de l\'enregistrment de l\'article! : ' + error);
+      }
+    );
+    
+    //Ajout des nouveaux secteurs
+    for (var k=0; k<this.nouveauxSecteurs.length; k++){
+      if (this.newArticle.listSectors.indexOf(""+this.nouveauxSecteurs[k])>-1){
+        this.originalListSectors.push(""+this.nouveauxSecteurs[k])
+      }
+    }
+    this.httpClient.put('https://bminddev.firebaseio.com/secteurs.json', this.originalListSectors).subscribe(
+      () => {
+        console.log('Enregistrement du secteur terminé !');
+        this.nouveauxSecteurs=[]
+      },
+      (error) => {
+        console.log('Erreur lors de l\'enregistrment du secteur! : ' + error);
       }
     );
   }
@@ -94,7 +135,37 @@ export class WritingPannelComponent implements OnInit {
         newListArticle.push(this.newArticle)
       }
     }
-    console.log(newListArticle)
+    
+    //Ajout du nouveau type ??
+    if(this.originalListTypes.indexOf(this.articleToEdit.type)==-1){
+      this.originalListTypes.push(this.articleToEdit.type)
+      this.httpClient.put('https://bminddev.firebaseio.com/types.json', this.originalListTypes).subscribe(
+        () => {
+          console.log('Enregistrement du type terminé !');
+        },
+        (error) => {
+          console.log('Erreur lors de l\'enregistrment du type! : ' + error);
+        }
+      );
+    }
+
+    //Ajout des nouveaux secteurs
+    for (var k=0; k<this.nouveauxSecteurs.length; k++){
+      if (this.newArticle.listSectors.indexOf(""+this.nouveauxSecteurs[k])>-1){
+        this.originalListSectors.push(""+this.nouveauxSecteurs[k])
+      }
+    }
+    this.httpClient.put('https://bminddev.firebaseio.com/secteurs.json', this.originalListSectors).subscribe(
+      () => {
+        console.log('Enregistrement du secteur terminé !');
+        this.nouveauxSecteurs=[]
+      },
+      (error) => {
+        console.log('Erreur lors de l\'enregistrment du secteur! : ' + error);
+      }
+    );
+
+    //EDIT DE L'ARTICLE
     this.httpClient.put('https://bminddev.firebaseio.com/articles.json', newListArticle).subscribe(
       () => {
         console.log('Edition de l\'article terminée !');
@@ -113,6 +184,8 @@ export class WritingPannelComponent implements OnInit {
       this.isAddAuteur=true;
     } else if (keyList==='sector'){
       this.isAddSector=true;
+    } else if (keyList==='type'){
+      this.isAddType=true;
     }
   }
   closeAdd(keyList : String){
@@ -122,15 +195,22 @@ export class WritingPannelComponent implements OnInit {
       this.isAddAuteur=false;
     } else if (keyList==='sector'){
       this.isAddSector=false;
+    } else if (keyList==='type'){
+      this.isAddType=false;
     }
   }
 
   addItemToLists(keyList : String){
     if (keyList==='source'){
-      console.log(this.newSource)
       this.newArticle.listSources.push(this.newSource)
       this.newSource = new Source()
       this.isAddSource=false;
+    } else if (keyList==='type'){
+      this.listTypes.push(this.newType)
+      this.newArticle.type=this.newType
+      this.newType=''
+      this.isAddType=false;
+      
     } else if (keyList==='auteur'){
       //On doit ajouter à la liste plus haut, le mettre dans la map et le cocher
       this.newAutor.id = (+this.lastIdAutor)+1
@@ -141,9 +221,10 @@ export class WritingPannelComponent implements OnInit {
 
       this.newAutor = new Auteur()
     } else if (keyList==='secteur'){
-      this.newArticle.listSectors.push(this.newSector)
-      this.newSector = new String()
-      this.isAddSector=false;
+      this.mapSectorSelected[""+this.newSector]=true;
+      this.fullListSectors.push(""+this.newSector);
+      this.nouveauxSecteurs.push(""+this.newSector)
+      this.newSector="";
     }
   }
 
@@ -192,10 +273,19 @@ export class WritingPannelComponent implements OnInit {
           }
         }
       }
-    }
-    this.isAddAuteur=false;
-    for (var k=0; k<this.fullListAutor.length; k++){
-      this.mapCheckBox[""+this.fullListAutor[k].id]=false
+      this.isAddAuteur=false;
+      for (var k=0; k<this.fullListAutor.length; k++){
+        this.mapCheckBox[""+this.fullListAutor[k].id]=false
+      }
+    } else if (keyList==='secteur'){
+      var keysSector = Object.keys(this.mapSectorSelected)
+      this.newArticle.listSectors = []
+      for (var k=0; k<keysSector.length; k++){
+        if(this.mapSectorSelected[keysSector[k]]){
+          this.newArticle.listSectors.push(keysSector[k])
+        }
+      }
+      this.isAddSector = false;
     }
   }
 
@@ -280,6 +370,30 @@ export class WritingPannelComponent implements OnInit {
       );
     }
 
+    if (toBeRereshed.indexOf('sectors')>-1){
+      this.httpClient.get<any[]>('https://bminddev.firebaseio.com/secteurs.json').subscribe(
+        (response) => {
+          this.fullListSectors=response.slice();
+          this.originalListSectors=response.slice();
+        },
+        (error) => {
+          console.log('Erreur ! : ' + error);
+        }
+      );
+    }
+
+    if (toBeRereshed.indexOf('types')>-1){
+      this.httpClient.get<any[]>('https://bminddev.firebaseio.com/types.json').subscribe(
+        (response) => {
+          this.listTypes = response.slice();
+          this.originalListTypes = response.slice();
+        },
+        (error) => {
+          console.log('Erreur ! : ' + error);
+        }
+      );
+      }
+
     if (toBeRereshed.indexOf('articles')>-1){
       this.httpClient.get<any[]>('https://bminddev.firebaseio.com/articles.json').subscribe(
         (response) => {
@@ -324,5 +438,9 @@ export class WritingPannelComponent implements OnInit {
         }
       );
     }
+  }
+
+  changeSelect(secteur : String){
+    this.mapSectorSelected[""+secteur]=!this.mapSectorSelected[""+secteur];
   }
 }

@@ -710,3 +710,29 @@
     border-color: #D17B53;
   }
 }
+
+//SPECIFIC FOR RESPONSIVITE
+
+@media screen and (max-width: 640px) {
+  #toggle{
+    position: fixed;
+    left: 50px;
+    top: 75px;
+    transform: scale(2);
+    z-index:2;
+  }
+
+  #boxMenu{
+    background-color:#171817;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top:0px;
+    left:0px;
+  }
+
+  #timeline{
+    display:none;
+  }
+
+}

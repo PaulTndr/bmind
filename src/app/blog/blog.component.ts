@@ -39,7 +39,6 @@ export class BlogComponent implements OnInit {
       "5":true,
     },
     "temps":{
-      "2 min":true,
       "5 min":true,
       "10 min":true,
       "30 min":true,

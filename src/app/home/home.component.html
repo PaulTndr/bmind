@@ -26,16 +26,18 @@
     <div class="orangeCircle"></div>
   </div>
 
-  <div *ngIf="isMenuOpen" id="menu" class="flexCol">
-    <a class="button" href="#projets">{{ 'home.menuProjets' | translate }}</a>
-    <a class="button" href="#savoirFaire">{{ 'home.menuSavoirs' | translate }}</a>
-    <a class="button" href="#offres">{{ 'home.menuOffres' | translate }}</a>
-    <a class="button" href="#thirdPannel">{{ 'home.menuCharte' | translate }}</a>
-    <a class="button" href="#partenaires">{{ 'home.menuParts' | translate }}</a>
-    <a class="button" href="#carriere">{{ 'home.menuCarr' | translate }}</a>
-    <a class="button" href="#contact">{{ 'home.menuContact' | translate }}</a>
-    <div class="orangeCircle"></div>
-    <a class="button" routerLink="blog">{{ 'home.menuBlog' | translate }}</a>
+  <div *ngIf="isMenuOpen" id="boxMenu">
+    <div id="menu" class="flexCol">
+      <a class="button" href="#projets" (click)="resetMenu()">{{ 'home.menuProjets' | translate }}</a>
+      <a class="button" href="#savoirFaire" (click)="resetMenu()">{{ 'home.menuSavoirs' | translate }}</a>
+      <a class="button" href="#offres" (click)="resetMenu()">{{ 'home.menuOffres' | translate }}</a>
+      <a class="button" href="#thirdPannel" (click)="resetMenu()">{{ 'home.menuCharte' | translate }}</a>
+      <a class="button" href="#partenaires" (click)="resetMenu()">{{ 'home.menuParts' | translate }}</a>
+      <a class="button" href="#carriere" (click)="resetMenu()">{{ 'home.menuCarr' | translate }}</a>
+      <a class="button" href="#contact" (click)="resetMenu()">{{ 'home.menuContact' | translate }}</a>
+      <div class="orangeCircle"></div>
+      <a class="button" routerLink="blog">{{ 'home.menuBlog' | translate }}</a>
+    </div>
   </div>
 
   <div class="flexRow" style="margin:auto; justify-content:space-between; width: 70%;" id="projets">
