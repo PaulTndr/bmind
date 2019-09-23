@@ -16,7 +16,6 @@ export class MiniatureArticleComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.styleForBk = this.sanitizer.bypassSecurityTrustStyle("background-image: url("+this.article.srcImg+");");
-    console.log("hey")
   }
 
   ngOnChanges(changes: SimpleChanges){

@@ -9,7 +9,7 @@ import { GlobalService } from '../global.service';
 import { BlogService } from '../blog/blog.service';
 
 import { Router } from '@angular/router';
-
+import {TranslateService} from '@ngx-translate/core';
 
 import { Article } from '../classes/articles/article'
 
@@ -21,7 +21,7 @@ import { Article } from '../classes/articles/article'
 export class HomeComponent implements OnInit {
 
   isMenuOpen : Boolean = false;
-  favoriteArticles : Article[]
+  favoriteArticles : Article[] = []
   
   isFrSelected : Boolean;
   isEnSelected : Boolean;
@@ -105,34 +105,34 @@ export class HomeComponent implements OnInit {
     setTimeout(() => {this.handler()},100);
   });
 
-  constructor(private globalService : GlobalService, private blogService : BlogService, private sanitizer : DomSanitizer, private router: Router) { }
+  constructor(private globalService : GlobalService, private blogService : BlogService, private sanitizer : DomSanitizer, private router: Router, private translate: TranslateService) { }
 
   ngOnInit() {
     this.isFrSelected=this.globalService.isFrSelected
     this.isEnSelected=this.globalService.isEnSelected
     //Si on arrive directement ici
     this.blogService.fillListArticle();
+    this.listFavoriteArticlesSubscription = this.blogService.listFavoriteArticlesSubject.subscribe(
+      (listFavoriteArticles: Article[]) => {
+        this.favoriteArticles = listFavoriteArticles.slice();
+        this.blogService.emitListFavoriteArticlesSubject();
+        
+      }
+    );
 
-    setTimeout(()=>{
-      this.listFavoriteArticlesSubscription = this.blogService.listFavoriteArticlesSubject.subscribe(
-        (listFavoriteArticles: Article[]) => {
-          this.favoriteArticles = listFavoriteArticles.slice();
-        }
-      );
-    },100);
-    
-    this.blogService.emitListFavoriteArticlesSubject();
-    
+    if(this.favoriteArticles.length==0){
+      this.favoriteArticles = this.blogService.listFavoriteArticles
+    }
     // Usage.
     this.handler()
   }
 
   onInViewportChange(inViewport: boolean) {
     if (inViewport){
-      this.styleRondLargeL=this.sanitizer.bypassSecurityTrustStyle("margin-left:10vw;");
+      this.styleRondLargeL=this.sanitizer.bypassSecurityTrustStyle("margin-left:10vw;"); 
       this.styleRondLargeR=this.sanitizer.bypassSecurityTrustStyle("margin-right:10vw;");
-      this.styleRondSmallR=this.sanitizer.bypassSecurityTrustStyle("margin-left:5vh;");
-      this.styleSegment0=this.sanitizer.bypassSecurityTrustStyle("right: 48vw;top: 26vh;");
+      this.styleRondSmallR=this.sanitizer.bypassSecurityTrustStyle("margin-bottom:5vh; margin-top:0vh;");
+      this.styleSegment0=this.sanitizer.bypassSecurityTrustStyle("left: 49.5vw;top: 25vh;");
       this.styleSegment1=this.sanitizer.bypassSecurityTrustStyle("right: 29vw;top: 35vh;");
       this.styleSegment2=this.sanitizer.bypassSecurityTrustStyle("bottom: 28vh; right:31vw;"); 
       this.styleSegment3=this.sanitizer.bypassSecurityTrustStyle("bottom: 29vh; left:31vw;");
@@ -221,8 +221,10 @@ export class HomeComponent implements OnInit {
     this.isFrSelected=false;
     if (langue=="fr"){
       this.isFrSelected=true;
+      this.translate.use('fr');
     } else if(langue=="en"){
       this.isEnSelected=true;
+      this.translate.use('en');
     }
   }
 

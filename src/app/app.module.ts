@@ -2,7 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 import { InViewportModule } from '@thisissoon/angular-inviewport';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -46,9 +48,23 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-  imports:      [ BrowserModule, FormsModule, RouterModule.forRoot(appRoutes), MatSelectModule,MatTableModule,MatInputModule,BrowserAnimationsModule, HttpClientModule, CKEditorModule, MatCheckboxModule, InViewportModule],
+  imports: [ BrowserModule, FormsModule, RouterModule.forRoot(appRoutes), MatSelectModule,MatTableModule,MatInputModule,BrowserAnimationsModule, HttpClientModule, CKEditorModule, MatCheckboxModule, InViewportModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
+  ],
+
   declarations: [ AppComponent, MiniatureArticleSmallComponent,MiniatureArticleComponent, HomeComponent, BlogComponent, ArticleComponent, AdminGateComponent, AdminPannelComponent, StatisticsPannelComponent, BlogAdminComponent, WritingPannelComponent, EditingPannelComponent, SettingPannelComponent,SafeHtmlPipe ],
   bootstrap:    [ AppComponent ],
   providers: [GlobalService, BlogService, AdminService, {provide: APP_BASE_HREF, useValue: ''}]
 })
 export class AppModule { }
+
+// required for AOT compilation
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}

@@ -1,0 +1,60 @@
+{
+    "home": {
+        "title": "Bureauu d’innovation en sciences cognitives",
+        "subtitle": "Conseil - Etudes - Formation",
+
+        "menuProjets": "Nos projets",
+        "menuSavoirs": "Notre savoir-faire",
+        "menuOffres": "Nos offres",
+        "menuCharte": "Charte éthique",
+        "menuParts": "Partenaires",
+        "menuCarr": "Carrière",
+        "menuContact": "Contact",
+        "menuBlog": "Blog",
+
+        "titleDyn" : "La cognition au service de vos solutions digitales et IA",
+        "textDyn1" : "Développer des solutions en fonction des humains qui les utilisent",
+        "textDyn2" : "Optimiser le niveau de concentration, diminuer le nombre d’erreurs",
+        "textDyn3" : "Comprendre et parler le language du cerveau",
+        "textDyn4" : "Utilisation intuitive Flexibilité, Acceptation, Performance",
+        "textDyn5" : "Donner du sens à la donnée humaine avant de l’intégrer à l’IA",
+
+        "activitieTitle1":"Conseil",
+        "activitieDesc1":"Boostez vos solutions en anticipant la réaction de vos utilisateurs. B.mind met à votre disposition toutes les connaissances actuelles en cognition adaptées à votre projet.",
+        "activitieTitle2":"Étude",
+        "activitieDesc2":"Entrez dans le cerveau de vos utilisateurs et consommateurs. B.mind vous propose des études ad hoc en partenariat avec de prestigieux laboratoires français.",
+        "activitieTitle3":"Formation",
+        "activitieDesc3":"Formez vos équipes aux concepts de la cognition qui impactent leurs activités au quotidien.",
+        "accrocheOffer": "Voyons ensemble ce que la cognition peut faire pour vous.",
+        "diagnosticOffer": "Demandez votre diagnostic !",
+    
+        "valeurTitle1" : "Transparence",
+        "valeurDesc1" : "Chez B.mind nous expliquons et publions l’ensemble de nos recherches réalisées avec nos laboratoires partenaires.",
+        "valeurTitle2" : "Pertinence Scientifique",
+        "valeurDesc2" : "Chez B.mind nous expliquons et publions l’ensemble de nos recherches réalisées avec nos laboratoires partenaires.",
+        "valeurTitle3" : "Nudge for good",
+        "valeurDesc3" : "Chez B.mind nous expliquons et publions l’ensemble de nos recherches réalisées avec nos laboratoires partenaires.",
+        "valeurTitle4" : "Libre arbitre",
+        "valeurDesc4" : "Chez B.mind nous expliquons et publions l’ensemble de nos recherches réalisées avec nos laboratoires partenaires.",
+    
+        "titleBlog" : "Vous souhaitez en apprendre davantage sur la cognition, nos projets et nos engagements ?",
+        "blogRedirect" : "Découvrez notre blog.",
+        "moreBlog" : "Voir plus",
+
+        "descPart":"Nous travaillons avec de prestigieux partenaires afin d'assurer notamment la pertinence scientifique de nos prestations",
+    
+        "noJobOffer" : "Nous n'avons malheureusement pas d'ouverture de poste actuellement.",
+    
+        "janeJob": "Ingénieur en sciences cognitives",
+        "janeMba":"MBA en entrepreneuriat",
+        "janeDesc":"Passionnées de sciences cognitives et d’innovation, j’ai hâte de voir toutes les applications innovantes et concrètes qui verront le jour grâce à la prise en compte des cette discipline et de ses concepts.",
+        "contactButtonLabel":"Contactez-nous",
+
+        "legalMention":"Mentions légales",
+        "cookie":"Cookie Policy",
+        "reseauxFollow":"Suivez-nous<br>sur les réseaux sociaux",
+        "bmindLoc":"B.mind S.A.S.U. - 849 322 656 R.C.S. Marseille -",
+        "bmindCapital":"capital social 10 000€",
+        "bmindAdresse":"27 impasse des Aurengues 13013 MARSEILLE"
+    }
+}

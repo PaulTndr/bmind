@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 import $ from 'jquery';
+import {TranslateService} from '@ngx-translate/core';
 
 import { GlobalService } from '../global.service';
 import { BlogService } from './blog.service';
@@ -86,7 +87,7 @@ export class BlogComponent implements OnInit {
   isDirectlyOpen = false;
   articleToOpen : Article = new Article()
   
-  constructor(private globalService : GlobalService, private blogService : BlogService, private sanitizer : DomSanitizer) { }
+  constructor(private globalService : GlobalService, private blogService : BlogService, private sanitizer : DomSanitizer, private translate: TranslateService) { }
 
   
   ngOnInit() {
@@ -304,8 +305,10 @@ export class BlogComponent implements OnInit {
     this.isFrSelected=false;
     if (langue=="fr"){
       this.isFrSelected=true;
+      this.translate.use('fr');
     } else if(langue=="en"){
       this.isEnSelected=true;
+      this.translate.use('en');
     }
   }
 

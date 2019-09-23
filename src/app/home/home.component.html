@@ -21,28 +21,28 @@
     </div>
   </div>
   <div *ngIf="!isMenuOpen" id="textTitle">
-    <h1 class="title">Bureau d’innovation en sciences cognitives</h1>
-    <h2 class="subTitle">Conseil - Etudes - Formation</h2>
+    <h1 class="title">{{ 'home.title' | translate }}</h1>
+    <h2 class="subTitle">{{ 'home.subtitle' | translate }}</h2>
     <div class="orangeCircle"></div>
   </div>
 
   <div *ngIf="isMenuOpen" id="menu" class="flexCol">
-    <a class="button" href="#projets">Nos projets</a>
-    <a class="button" href="#savoirFaire">Notre savoir-faire</a>
-    <a class="button" href="#offres">Nos offres</a>
-    <a class="button" href="#thirdPannel">Charte éthique</a>
-    <a class="button" href="#partenaires">Partenaires</a>
-    <a class="button" href="#carriere">Carrière</a>
-    <a class="button" href="#contact">Contact</a>
+    <a class="button" href="#projets">{{ 'home.menuProjets' | translate }}</a>
+    <a class="button" href="#savoirFaire">{{ 'home.menuSavoirs' | translate }}</a>
+    <a class="button" href="#offres">{{ 'home.menuOffres' | translate }}</a>
+    <a class="button" href="#thirdPannel">{{ 'home.menuCharte' | translate }}</a>
+    <a class="button" href="#partenaires">{{ 'home.menuParts' | translate }}</a>
+    <a class="button" href="#carriere">{{ 'home.menuCarr' | translate }}</a>
+    <a class="button" href="#contact">{{ 'home.menuContact' | translate }}</a>
     <div class="orangeCircle"></div>
-    <a class="button" routerLink="blog">Blog</a>
+    <a class="button" routerLink="blog">{{ 'home.menuBlog' | translate }}</a>
   </div>
 
   <div class="flexRow" style="margin:auto; justify-content:space-between; width: 70%;" id="projets">
-    <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticles[0].id)">
+    <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticles[0].id)" *ngIf="favoriteArticles.length>0">
       <app-miniature-article-small [article]="favoriteArticles[0]" [size]="'medium'"></app-miniature-article-small>
     </div>
-    <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticles[1].id)">
+    <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticles[1].id)" *ngIf="favoriteArticles.length>1">
       <app-miniature-article-small [article]="favoriteArticles[1]" [size]="'medium'"></app-miniature-article-small>
     </div>
   </div>
@@ -51,38 +51,38 @@
 <div id="mainPannel">
   <div id="savoirFaire">
 
-    <h1 style="text-align:center;">La cognition au service de vos solutions digitales et IA</h1>
+    <h1 style="text-align:center;">{{ 'home.titleDyn' | translate }}</h1>
     <div id="imageDyn">
       <div class="oneText">
-        <p style="text-align:center; left: 41vw; top: 6vh; width:17vw; ">Développer des solutions en fonction des humains qui les utilisent</p>
-        <div class="oneSegment" id="segment0" [style]="styleSegment0"> 
+        <p style="text-align:center; left: 41vw; top: 6vh; width:17vw; ">{{ 'home.textDyn1' | translate }}</p>
+        <div class="oneSegmentV" id="segment0" [style]="styleSegment0"> 
           <div class="rond" [style]="styleRondSmallR"></div>
         </div>
       </div>
 
       <div class="oneText">
-        <p style="text-align:center; right: 10vw; top: 16vh; width:17vw; ">Optimiser le niveau de concentration, diminuer le nombre d’erreurs</p>
+        <p style="text-align:center; right: 10vw; top: 16vh; width:17vw; ">{{ 'home.textDyn2' | translate }}</p>
         <div class="oneSegment rondEnd" id="segment1" [style]="styleSegment1">
           <div class="rond" [style]="styleRondLargeL"></div>
         </div>
       </div>
 
       <div class="oneText">
-        <p style="text-align:center; right: 13vw; bottom: 13vh; width:17vw; ">Comprendre et parler le language du cerveau</p>
+        <p style="text-align:center; right: 13vw; bottom: 13vh; width:17vw; ">{{ 'home.textDyn3' | translate }}</p>
         <div class="oneSegment" id="segment2" [style]="styleSegment2">
           <div class="rond" [style]="styleRondLargeR"></div>
         </div>
       </div>
 
       <div class="oneText">
-        <p style="text-align:center; left: 13vw; bottom: 13vh; width:17vw; ">Utilisation intuitive Flexibilité, Acceptation, Performance</p>
+        <p style="text-align:center; left: 13vw; bottom: 13vh; width:17vw; ">{{ 'home.textDyn4' | translate }}</p>
         <div class="oneSegment" id="segment3" [style]="styleSegment3">
           <div class="rond" [style]="styleRondLargeR"></div>
         </div>
       </div>
 
       <div class="oneText">
-        <p style="text-align:center; left: 10vw; top: 16vh; width:17vw; ">Donner du sens à la donnée humaine avant de l’intégrer à l’IA</p>
+        <p style="text-align:center; left: 10vw; top: 16vh; width:17vw; ">{{ 'home.textDyn5' | translate }}</p>
         <div class="oneSegment" id="segment4" [style]="styleSegment4">
           <div class="rond" [style]="styleRondLargeR"></div>
         </div>
@@ -99,95 +99,95 @@
 
   <div id="offres">
     <img class="fond" src="../../assets/images/fond.svg" style="pointer-events:none;"/>
-    <h1 style="text-align:center; margin-bottom: 10vh;margin-top: 17vh;">Nos offres</h1>
+    <h1 style="text-align:center; margin-bottom: 10vh;margin-top: 17vh;">{{ 'home.menuOffres' | translate }}</h1>
     <div class="flexRow" id="listOffer">
       <div class="oneOffer">
         <img class="logoOffer" src="../../assets/images/conseil.svg"/>
-        <h2>Conseil</h2>
-        <p>Boostez vos solutions en anticipant la réaction de vos utilisateurs. B.mind met à votre disposition toutes les connaissances actuelles en cognition adaptées à votre projet.</p>
+        <h2>{{ 'home.activitieTitle1' | translate }}</h2>
+        <p>{{ 'home.activitieDesc1' | translate }}</p>
       </div>
       <div class="oneOffer">
         <img class="logoOffer" src="../../assets/images/etude.svg" style="margin-left:20px;"/>
-        <h2>Étude</h2>
-        <p>Entrez dans le cerveau de vos utilisateurs et consommateurs. B.mind vous propose des études ad hoc en partenariat avec de prestigieux laboratoires français.</p>
+        <h2>{{ 'home.activitieTitle2' | translate }}</h2>
+        <p>{{ 'home.activitieDesc2' | translate }}</p>
       </div>
 
       <div class="oneOffer">
         <img class="logoOffer" src="../../assets/images/formation.svg"/>
-        <h2>Formation</h2>
-        <p>Formez vos équipes aux concepts de la cognition qui impactent leurs activités au quotidien.</p>
+        <h2>{{ 'home.activitieTitle3' | translate }}</h2>
+        <p>{{ 'home.activitieDesc3' | translate }}</p>
       </div>
     </div>
 
     <div class="textOffer">
-      <p class="text">Voyons ensemble ce que la cognition peut faire pour vous.</p>
-      <p class="button contactButton" (click)="openPopup('diagnostic')">Demandez votre diagnostic !</p>
+      <p class="text">{{ 'home.accrocheOffer' | translate }}</p>
+      <p class="button contactButton" (click)="openPopup('diagnostic')">{{ 'home.diagnosticOffer' | translate }}</p>
     </div>
   </div>
 </div>
 
 <div id="thirdPannel">
-  <h1 class="title" style="padding-bottom:15vh;">Charte Éthique</h1>
+  <h1 class="title" style="padding-bottom:15vh;">{{ 'home.menuCharte' | translate }}</h1>
   <div class="flexRow" id="listValeurs">
     <div class="oneValeur">
-      <p class="valeur">Transparence</p>
+      <p class="valeur">{{ 'home.valeurTitle1' | translate }}</p>
       <div class="divImage">
         <img src="../../../assets/images/arrow.svg"/>
       </div>
-      <p class="descValeur">Chez B.mind nous expliquons et publions l’ensemble de nos recherches réalisées avec nos laboratoires partenaires.</p>
+      <p class="descValeur">{{ 'home.valeurDesc1' | translate }}</p>
     </div>
     <div class="verticalSeparator"></div>
     <div class="oneValeur">
       <div>
-        <p class="valeur">Pertinence<br>Scientifique</p>
+        <p class="valeur">{{ 'home.valeurTitle2' | translate }}</p>
       </div>
       <div class="divImage">
         <img src="../../../assets/images/arrow.svg"/>
       </div>
-      <p class="descValeur">Chez B.mind nous expliquons et publions l’ensemble de nos recherches réalisées avec nos laboratoires partenaires.</p>
+      <p class="descValeur">{{ 'home.valeurDesc2' | translate }}</p>
     </div>
     <div class="verticalSeparator"></div>
     <div class="oneValeur">
-      <p class="valeur">Nudge for good</p>
+      <p class="valeur">{{ 'home.valeurTitle3' | translate }}</p>
       <div class="divImage">
         <img src="../../../assets/images/arrow.svg"/>
       </div>
-      <p class="descValeur">Chez B.mind nous expliquons et publions l’ensemble de nos recherches réalisées avec nos laboratoires partenaires.</p>
+      <p class="descValeur">{{ 'home.valeurDesc3' | translate }}</p>
     </div>
     <div class="verticalSeparator"></div>
     <div class="oneValeur">
-      <p class="valeur">Libre arbitre</p>
+      <p class="valeur">{{ 'home.valeurTitle4' | translate }}</p>
       <div class="divImage">
         <img src="../../../assets/images/arrow.svg"/>
       </div>
-      <p class="descValeur">Chez B.mind nous expliquons et publions l’ensemble de nos recherches réalisées avec nos laboratoires partenaires.</p>
+      <p class="descValeur">{{ 'home.valeurDesc4' | translate }}</p>
     </div>
   </div>
 </div>
 
 <div id="pannelBlog">
-  <p class="mainText">Vous souhaitez en apprendre davantage sur la cognition, nos projets et nos engagements ?</p>
-  <p style="margin-bottom:10vh;" class="mainText"> Découvrez notre blog.</p>
+  <p class="mainText">{{ 'home.titleBlog' | translate }}</p>
+  <p style="margin-bottom:10vh;" class="mainText">{{ 'home.blogRedirect' | translate }}</p>
   <div id="articlesUnes" class="flexRow">
-    <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticles[0].id)">
+    <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticles[0].id)" *ngIf="favoriteArticles.length>0">
       <app-miniature-article-small [article]="favoriteArticles[0]" [size]="'small'"></app-miniature-article-small>
     </div>
-    <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticles[1].id)">
+    <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticles[1].id)" *ngIf="favoriteArticles.length>1">
       <app-miniature-article-small [article]="favoriteArticles[1]" [size]="'small'"></app-miniature-article-small>
     </div>
-    <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticles[2].id)">
+    <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticles[2].id)" *ngIf="favoriteArticles.length>2">
       <app-miniature-article-small [article]="favoriteArticles[2]" [size]="'small'"></app-miniature-article-small>
     </div>
   </div>
-  <p class="button contactButton" routerLink="blog">Voir plus</p>
+  <p class="button contactButton" routerLink="blog">{{ 'home.moreBlog' | translate }}</p>
 </div>
 
 <div id="partenaires">
   <div class="blockFond">
     <img class="fond" src="../../assets/images/fond.svg"/>
   </div>
-  <h1>Partenaires</h1>
-  <p class="text">Nous travaillons avec de prestigieux partenaires afin d'assurer notamment la pertinence scientifique de nos prestations</p>
+  <h1>{{ 'home.menuParts' | translate }}</h1>
+  <p class="text">{{ 'home.descPart' | translate }}</p>
   <div class="flexRow listPart" style="width:40%;">
     <img class="brandImage" style="width:238px; height:122px" src="https://zupimages.net/up/19/38/s657.png"/>
     <img class="brandImage" style="width:112px; height:118px" src="https://zupimages.net/up/19/38/cw39.jpg"/>
@@ -200,22 +200,22 @@
 </div>
 
 <div id="carriere">
-  <h1>Carrière</h1>
-  <p>Nous n'avons malheureusement pas d'ouverture de poste actuellement.</p>
+  <h1>{{ 'home.menuCarr' | translate }}</h1>
+  <p>{{ 'home.noJobOffer' | translate }}</p>
 </div>
 
 <div id="contact">
-  <h1 style="text-align:center; margin-bottom:7vh;">Contact</h1>
+  <h1 style="text-align:center; margin-bottom:7vh;">{{ 'home.menuContact' | translate }}</h1>
   <div class="flexRow" id="carteContact" style="">
     <img id="photoJane" src="https://zupimages.net/up/19/37/f4yl.png"/>
     <div id="fondPhoto"></div>
     <div class="infosJane">
       <p class="importantText">Jane Bourgninaud</p>
       <p class="importantText" style="margin-bottom:1vw;">CEO</p>
-      <p>Ingénieur en sciences cognitives</p>
-      <p>MBA en entrepreneuriat</p>
-      <p style="margin-bottom:4vh;">Passionnées de sciences cognitives et d’innovation, j’ai hâte de voir toutes les applications innovantes et concrètes qui verront le jour grâce à la prise en compte des cette discipline et de ses concepts.</p>
-      <p class="button contactButton" (click)="openPopup('bottomMain')">Contactez-nous</p>
+      <p>{{ 'home.janeJob' | translate }}</p>
+      <p>{{ 'home.janeMba' | translate }}</p>
+      <p style="margin-bottom:4vh;">{{ 'home.janeDesc' | translate }}</p>
+      <p class="button contactButton" (click)="openPopup('bottomMain')">{{ 'home.contactButtonLabel' | translate }}</p>
     </div>
   </div>
 </div>
@@ -227,13 +227,13 @@
     </div>
     <div class="verticalSeparator"></div>
     <div class="redirect flexCol">
-      <p>Blog</p>
-      <p>Mentions légales</p>
-      <p>Cookie Policy</p>
+      <p>{{ 'home.menuBlog' | translate }}</p>
+      <p>{{ 'home.legalMention' | translate }}</p>
+      <p>{{ 'home.cookie' | translate }}</p>
     </div>
     <div class="verticalSeparator"></div>
     <div class="contact flexCol">
-      <p>Suivez-nous<br>sur les réseaux sociaux</p>
+      <p>{{ 'home.reseauxFollow' | translate }}</p>
       <div class="flexRow" style="width:5vw; justify-content:space-between; margin:auto;">
         <a href="https://www.linkedin.com/in/jane-bourgninaud" target="_blank"><div class="divImage button">
           <img src="https://image.flaticon.com/icons/svg/733/733635.svg">
@@ -244,9 +244,10 @@
       </div>
     </div>
     <div class="verticalSeparator"></div>
-    <div class="legal">
-      <p>B.mind S.A.S.U. - 849 322 656 R.C.S. Marseille -<br>capital social 10 000€</p>
-      <p>27 impasse des Aurengues 13013 MARSEILLE</p>
+    <div class="legal flexCol">
+      <p>{{ 'home.bmindLoc' | translate }}</p>
+      <p>{{ 'home.bmindCapital' | translate }}</p>
+      <p>{{ 'home.bmindAdresse' | translate }}</p>
     </div>
     
   </div>
@@ -267,25 +268,25 @@
 
   <div class="anchors flexCol">
     <div class="oneAnchor" [ngClass]="{'isVisible': mapTimeline.projets || mapHoverPoint.projets, isHoveredByTimeline : mapHoverPoint.projets || (!mapHover.projets)}">
-      <p>Nos projets</p>
+      <p>{{ 'home.menuProjets' | translate }}</p>
     </div>
     <div class="oneAnchor" [ngClass]="{'isVisible': mapTimeline.savoirs || mapHoverPoint.savoirs, isHoveredByTimeline : mapHoverPoint.savoirs || (!mapHover.projets)}">
-      <p>Notre savoir-faire</p>
+      <p>{{ 'home.menuSavoirs' | translate }}</p>
     </div>
     <div class="oneAnchor" [ngClass]="{'isVisible': mapTimeline.offres || mapHoverPoint.offres, isHoveredByTimeline : mapHoverPoint.offres || (!mapHover.projets)}">
-      <p>Nos offres</p>
+      <p>{{ 'home.menuOffres' | translate }}</p>
     </div>
     <div class="oneAnchor" [ngClass]="{'isVisible': mapTimeline.charte || mapHoverPoint.charte, isHoveredByTimeline : mapHoverPoint.charte || (!mapHover.projets)}">
-      <p>Charte éthique</p>
+      <p>{{ 'home.menuCharte' | translate }}</p>
     </div>
     <div class="oneAnchor" [ngClass]="{'isVisible': mapTimeline.parts || mapHoverPoint.parts, isHoveredByTimeline : mapHoverPoint.parts || (!mapHover.projets)}">
-      <p>Partenaires</p>
+      <p>{{ 'home.menuParts' | translate }}</p>
     </div>
     <div class="oneAnchor" [ngClass]="{'isVisible': mapTimeline.carriere || mapHoverPoint.carriere, isHoveredByTimeline : mapHoverPoint.carriere || (!mapHover.projets)}">
-      <p>Carrière</p>
+      <p>{{ 'home.menuCarr' | translate }}</p>
     </div>
     <div class="oneAnchor" [ngClass]="{'isVisible': mapTimeline.contact || mapHoverPoint.contact, isHoveredByTimeline : mapHoverPoint.contact || (!mapHover.projets)}">
-      <p>Contact</p>
+      <p>{{ 'home.menuContact' | translate }}</p>
     </div>
   </div>
 </div>

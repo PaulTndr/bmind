@@ -20,6 +20,8 @@ export class BlogService {
     if (this.listArticles.length!=0 && this.listFavoriteArticles.length!=0){
       console.log("Liste articles déjà chargée")
       console.log(this.listArticles.length+" articles dont "+this.listFavoriteArticles.length+" en favori")
+      this.emitListFavoriteArticlesSubject()
+      this.emitListArticlesSubject();
       return;
     }
     this.httpClient.get<any[]>('https://bminddev.firebaseio.com/articles.json').subscribe(

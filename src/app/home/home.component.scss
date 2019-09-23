@@ -187,6 +187,10 @@
     }
     .legal{
       padding-left:2.5vw;
+      justify-content: space-around;
+      p{
+        margin:0px;
+      }
     }
     p{
       font-weight: 600;
@@ -327,9 +331,8 @@
       height:50vh;
 
       #segment0{
-        transform:rotate(-90deg);
         top: 26vh;
-        left: 48vw;
+        left: 49.5vw;
         transition-property: left top;
         transition-duration:1s;
       }
@@ -381,7 +384,25 @@
           background-color:#D17B53;
 
           transition-property: margin-left, margin-right;
-          transition-duration:3s; 
+          transition-duration:1s; 
+        }
+      }
+
+      .oneSegmentV{
+        position:absolute;
+        border-right:1px dashed white;
+        display:flex;
+        .rond{
+          width:15px;
+          margin-bottom:0px;
+          margin-top:5vh;
+          height:15px;
+          border-radius:100%;
+          margin-right:-7px;
+          background-color:#D17B53;
+
+          transition-property: margin-top, margin-bottom;
+          transition-duration:1s; 
         }
       }
     }

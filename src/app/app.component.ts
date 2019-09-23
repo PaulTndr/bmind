@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { GlobalService } from './global.service';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'my-app',
@@ -17,7 +18,9 @@ export class AppComponent implements OnInit {
 
   hasBeenSent : Boolean = false;
 
-  constructor(private globalService: GlobalService) { }
+  constructor(private globalService: GlobalService, private translate: TranslateService) {
+    translate.setDefaultLang('fr');
+  }
 
    ngOnInit() {
     this.globalService.init()
