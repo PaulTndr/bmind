@@ -1,7 +1,7 @@
 <!--<p class="button" routerLink="blog">blog</p>
 <p class="button" routerLink="admin/pannel">adminPannel</p>-->
 <div id="topPannel">
-  <img class="fond" src="../../assets/images/fond.svg"/>
+  <img class="fond" src="../../assets/images/fond.svg" />
   <div class="flexRow" id="header">
     <a id="toggle" [ngClass]="{'on': isMenuOpen}" (click)="openOrCloseMenu()"><span></span></a>
     <div class="logoTitre">
@@ -9,12 +9,16 @@
       <p>cognitive innovation</p>
     </div>
     <div class="logos flexRow">
-      <a href="https://www.linkedin.com/in/jane-bourgninaud" target="_blank"><div class="divImage button">
-        <img src="https://image.flaticon.com/icons/svg/733/733635.svg">
-      </div></a>
-      <a href="https://www.linkedin.com/in/jane-bourgninaud" target="_blank"><div class="divImage button">
-        <img src="https://image.flaticon.com/icons/svg/34/34227.svg">
-      </div></a>
+      <a href="https://www.linkedin.com/in/jane-bourgninaud" target="_blank">
+        <div class="divImage button">
+          <img src="https://image.flaticon.com/icons/svg/733/733635.svg">
+        </div>
+      </a>
+      <a href="https://www.linkedin.com/in/jane-bourgninaud" target="_blank">
+        <div class="divImage button">
+          <img src="https://image.flaticon.com/icons/svg/34/34227.svg">
+        </div>
+      </a>
       <div class="verticalSeparator"></div>
       <p class="button buttonLangue" [ngClass]="{'isSelected': isFrSelected}" (click)="switchLangue('fr')">FR</p>
       <p class="button buttonLangue" [ngClass]="{'isSelected': isEnSelected}" (click)="switchLangue('en')">EN</p>
@@ -41,10 +45,12 @@
   </div>
 
   <div class="flexRow" style="margin:auto; justify-content:space-between; width: 70%;" id="projets">
-    <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticles[0].id)" *ngIf="favoriteArticles.length>0">
+    <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticles[0].id)"
+      *ngIf="favoriteArticles.length>0">
       <app-miniature-article-small [article]="favoriteArticles[0]" [size]="'medium'"></app-miniature-article-small>
     </div>
-    <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticles[1].id)" *ngIf="favoriteArticles.length>1">
+    <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticles[1].id)"
+      *ngIf="favoriteArticles.length>1">
       <app-miniature-article-small [article]="favoriteArticles[1]" [size]="'medium'"></app-miniature-article-small>
     </div>
   </div>
@@ -57,7 +63,7 @@
     <div id="imageDyn">
       <div class="oneText">
         <p style="text-align:center; left: 41vw; top: 6vh; width:17vw; ">{{ 'home.textDyn1' | translate }}</p>
-        <div class="oneSegmentV" id="segment0" [style]="styleSegment0"> 
+        <div class="oneSegmentV" id="segment0" [style]="styleSegment0">
           <div class="rond" [style]="styleRondSmallR"></div>
         </div>
       </div>
@@ -97,25 +103,26 @@
     </div>
   </div>
 
-  <iframe id="videoYt" width="560" height="315" src="https://www.youtube.com/embed/EynJFQObnqI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
+  <iframe id="videoYt" width="560" height="315" src="https://www.youtube.com/embed/EynJFQObnqI" frameborder="0"
+    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
 
   <div id="offres">
-    <img class="fond" src="../../assets/images/fond.svg" style="pointer-events:none;"/>
+    <img class="fond" src="../../assets/images/fond.svg" style="pointer-events:none;" />
     <h1 style="text-align:center; margin-bottom: 10vh;margin-top: 17vh;">{{ 'home.menuOffres' | translate }}</h1>
     <div class="flexRow" id="listOffer">
       <div class="oneOffer">
-        <img class="logoOffer" src="../../assets/images/conseil.svg"/>
+        <img class="logoOffer" src="../../assets/images/conseil.svg" />
         <h2>{{ 'home.activitieTitle1' | translate }}</h2>
         <p>{{ 'home.activitieDesc1' | translate }}</p>
       </div>
       <div class="oneOffer">
-        <img class="logoOffer" src="../../assets/images/etude.svg" style="margin-left:20px;"/>
+        <img class="logoOffer" src="../../assets/images/etude.svg" style="margin-left:20px;" />
         <h2>{{ 'home.activitieTitle2' | translate }}</h2>
         <p>{{ 'home.activitieDesc2' | translate }}</p>
       </div>
 
       <div class="oneOffer">
-        <img class="logoOffer" src="../../assets/images/formation.svg"/>
+        <img class="logoOffer" src="../../assets/images/formation.svg" />
         <h2>{{ 'home.activitieTitle3' | translate }}</h2>
         <p>{{ 'home.activitieDesc3' | translate }}</p>
       </div>
@@ -134,7 +141,7 @@
     <div class="oneValeur">
       <p class="valeur">{{ 'home.valeurTitle1' | translate }}</p>
       <div class="divImage">
-        <img src="../../../assets/images/arrow.svg"/>
+        <img src="../../../assets/images/arrow.svg" />
       </div>
       <p class="descValeur">{{ 'home.valeurDesc1' | translate }}</p>
     </div>
@@ -144,7 +151,7 @@
         <p class="valeur">{{ 'home.valeurTitle2' | translate }}</p>
       </div>
       <div class="divImage">
-        <img src="../../../assets/images/arrow.svg"/>
+        <img src="../../../assets/images/arrow.svg" />
       </div>
       <p class="descValeur">{{ 'home.valeurDesc2' | translate }}</p>
     </div>
@@ -152,7 +159,7 @@
     <div class="oneValeur">
       <p class="valeur">{{ 'home.valeurTitle3' | translate }}</p>
       <div class="divImage">
-        <img src="../../../assets/images/arrow.svg"/>
+        <img src="../../../assets/images/arrow.svg" />
       </div>
       <p class="descValeur">{{ 'home.valeurDesc3' | translate }}</p>
     </div>
@@ -160,7 +167,7 @@
     <div class="oneValeur">
       <p class="valeur">{{ 'home.valeurTitle4' | translate }}</p>
       <div class="divImage">
-        <img src="../../../assets/images/arrow.svg"/>
+        <img src="../../../assets/images/arrow.svg" />
       </div>
       <p class="descValeur">{{ 'home.valeurDesc4' | translate }}</p>
     </div>
@@ -171,13 +178,16 @@
   <p class="mainText">{{ 'home.titleBlog' | translate }}</p>
   <p style="margin-bottom:10vh;" class="mainText">{{ 'home.blogRedirect' | translate }}</p>
   <div id="articlesUnes" class="flexRow">
-    <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticles[0].id)" *ngIf="favoriteArticles.length>0">
+    <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticles[0].id)"
+      *ngIf="favoriteArticles.length>0">
       <app-miniature-article-small [article]="favoriteArticles[0]" [size]="'small'"></app-miniature-article-small>
     </div>
-    <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticles[1].id)" *ngIf="favoriteArticles.length>1">
+    <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticles[1].id)"
+      *ngIf="favoriteArticles.length>1">
       <app-miniature-article-small [article]="favoriteArticles[1]" [size]="'small'"></app-miniature-article-small>
     </div>
-    <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticles[2].id)" *ngIf="favoriteArticles.length>2">
+    <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticles[2].id)"
+      *ngIf="favoriteArticles.length>2">
       <app-miniature-article-small [article]="favoriteArticles[2]" [size]="'small'"></app-miniature-article-small>
     </div>
   </div>
@@ -186,30 +196,44 @@
 
 <div id="partenaires">
   <div class="blockFond">
-    <img class="fond" src="../../assets/images/fond.svg"/>
+    <img class="fond" src="../../assets/images/fond.svg" />
   </div>
   <h1>{{ 'home.menuParts' | translate }}</h1>
   <p class="text">{{ 'home.descPart' | translate }}</p>
   <div class="flexRow listPart" style="width:40%;">
-    <img class="brandImage" style="width:238px; height:122px" src="https://zupimages.net/up/19/38/s657.png"/>
-    <img class="brandImage" style="width:112px; height:118px" src="https://zupimages.net/up/19/38/cw39.jpg"/>
-    <img class="brandImage" style="width:271px; height:94px" src="https://zupimages.net/up/19/38/r7ho.png"/>
+    <img class="brandImage" style="width:238px; height:122px" src="https://zupimages.net/up/19/38/s657.png" />
+    <img class="brandImage" style="width:112px; height:118px" src="https://zupimages.net/up/19/38/cw39.jpg" />
+    <img class="brandImage" style="width:271px; height:94px" src="https://zupimages.net/up/19/38/r7ho.png" />
   </div>
   <div class="flexRow listPart" style="width:20%;">
-    <img class="brandImage" style="width:130px; height:120px" src="https://zupimages.net/up/19/38/wg1j.png"/>
-    <img class="brandImage" src="https://zupimages.net/up/19/38/ff06.png"/>
+    <img class="brandImage" style="width:130px; height:120px" src="https://zupimages.net/up/19/38/wg1j.png" />
+    <img class="brandImage" src="https://zupimages.net/up/19/38/ff06.png" />
   </div>
 </div>
 
 <div id="carriere">
   <h1>{{ 'home.menuCarr' | translate }}</h1>
-  <p>{{ 'home.noJobOffer' | translate }}</p>
+  <p *ngIf="listOffers.length==0">{{ 'home.noJobOffer' | translate }}</p>
+  <div id="listCarriereOffer" class="flexRow">
+    <div class="oneOffer" *ngFor="let offer of listOffers">
+      <div class="oneOfferBox">
+        <img src="https://image.flaticon.com/icons/svg/942/942799.svg" />
+        <a [href]="offer.linkPDF" target="_blank">
+          <div class="divImage button">
+            <img class="orangeArrow" src="../../../assets/images/arrow.svg" />
+            <img class="whiteArrow" src="https://image.flaticon.com/icons/svg/109/109609.svg" />
+          </div>
+        </a>
+      </div>
+      <p>{{offer.title}}</p>
+    </div>
+  </div>
 </div>
 
 <div id="contact">
   <h1 style="text-align:center; margin-bottom:7vh;">{{ 'home.menuContact' | translate }}</h1>
   <div class="flexRow" id="carteContact" style="">
-    <img id="photoJane" src="https://zupimages.net/up/19/37/f4yl.png"/>
+    <img id="photoJane" src="https://zupimages.net/up/19/37/f4yl.png" />
     <div id="fondPhoto"></div>
     <div class="infosJane">
       <p class="importantText">Jane Bourgninaud</p>
@@ -225,7 +249,7 @@
 <div id="footer">
   <div id="info" class="flexRow">
     <div class="img">
-      <img id="logoSignature" src="../../assets/images/logo.svg"/>
+      <img id="logoSignature" src="../../assets/images/logo.svg" />
     </div>
     <div class="verticalSeparator"></div>
     <div class="redirect flexCol">
@@ -237,12 +261,16 @@
     <div class="contact flexCol">
       <p>{{ 'home.reseauxFollow' | translate }}</p>
       <div class="flexRow" style="width:5vw; justify-content:space-between; margin:auto;">
-        <a href="https://www.linkedin.com/in/jane-bourgninaud" target="_blank"><div class="divImage button">
-          <img src="https://image.flaticon.com/icons/svg/733/733635.svg">
-        </div></a>
-        <a href="https://www.linkedin.com/in/jane-bourgninaud" target="_blank"><div class="divImage button">
-          <img src="https://image.flaticon.com/icons/svg/34/34227.svg">
-        </div></a>
+        <a href="https://www.linkedin.com/in/jane-bourgninaud" target="_blank">
+          <div class="divImage button">
+            <img src="https://image.flaticon.com/icons/svg/733/733635.svg">
+          </div>
+        </a>
+        <a href="https://www.linkedin.com/in/jane-bourgninaud" target="_blank">
+          <div class="divImage button">
+            <img src="https://image.flaticon.com/icons/svg/34/34227.svg">
+          </div>
+        </a>
       </div>
     </div>
     <div class="verticalSeparator"></div>
@@ -251,43 +279,78 @@
       <p>{{ 'home.bmindCapital' | translate }}</p>
       <p>{{ 'home.bmindAdresse' | translate }}</p>
     </div>
-    
+
   </div>
 </div>
 
 <div id="timeline" class="flexRow">
   <div class="points flexCol">
-    <a href="#projets"><div class="pointOnTimeline" id="pointProjet" [ngClass]="{'isHovered': mapTimeline.projets, 'selectedForHovers' : (!mapHover.projets && (mapTimeline.projets||mapTimeline.savoirs||mapTimeline.offres||mapTimeline.charte||mapTimeline.parts||mapTimeline.carriere||mapTimeline.contact)) || mapHover.projets}" (mouseover)="changeHoverPoints('projets', true)" (mouseout)="changeHoverPoints('projets', false)"></div></a>
-    <a href="#savoirFaire"><div class="pointOnTimeline" id="pointSavoir" [ngClass]="{'isHovered': mapTimeline.savoirs, 'selectedForHovers' : (!mapHover.projets && (mapTimeline.savoirs||mapTimeline.offres||mapTimeline.charte||mapTimeline.parts||mapTimeline.carriere||mapTimeline.contact)) || mapHover.savoirs}" (mouseover)="changeHoverPoints('savoirs', true)" (mouseout)="changeHoverPoints('savoirs', false)"></div></a>
-    <a href="#offres"><div class="pointOnTimeline" id="pointOffre" [ngClass]="{'isHovered': mapTimeline.offres, 'selectedForHovers' : (!mapHover.projets && (mapTimeline.offres||mapTimeline.charte||mapTimeline.parts||mapTimeline.carriere||mapTimeline.contact)) || mapHover.offres}" (mouseover)="changeHoverPoints('offres', true)" (mouseout)="changeHoverPoints('offres', false)"></div></a>
-    <a href="#thirdPannel"><div class="pointOnTimeline" id="pointCharte" [ngClass]="{'isHovered': mapTimeline.charte, 'selectedForHovers' : (!mapHover.projets && (mapTimeline.charte||mapTimeline.parts||mapTimeline.carriere||mapTimeline.contact)) || mapHover.charte}" (mouseout)="changeHoverPoints('charte', false)" (mouseover)="changeHoverPoints('charte', true)"></div></a>
-    <a href="#partenaires"><div class="pointOnTimeline" id="pointParts" [ngClass]="{'isHovered': mapTimeline.parts, 'selectedForHovers' : (!mapHover.projets && (mapTimeline.parts||mapTimeline.carriere||mapTimeline.contact)) || mapHover.parts}" (mouseover)="changeHoverPoints('parts', true)" (mouseout)="changeHoverPoints('parts', false)"></div></a>
-    <a href="#carriere"><div class="pointOnTimeline" id="pointCarriere" [ngClass]="{'isHovered': mapTimeline.carriere, 'selectedForHovers' : (!mapHover.projets && (mapTimeline.carriere||mapTimeline.contact)) || mapHover.carriere}" (mouseover)="changeHoverPoints('carriere', true)" (mouseout)="changeHoverPoints('carriere', false)"></div></a>
-    <a href="#contact"><div class="pointOnTimeline" id="pointContact" [ngClass]="{'isHovered': mapTimeline.contact, 'selectedForHovers' : (!mapHover.projets && (mapTimeline.contact)) || mapHover.contact}" (mouseover)="changeHoverPoints('contact', true)" (mouseout)="changeHoverPoints('contact', false)"></div></a>
+    <a href="#projets">
+      <div class="pointOnTimeline" id="pointProjet"
+        [ngClass]="{'isHovered': mapTimeline.projets, 'selectedForHovers' : (!mapHover.projets && (mapTimeline.projets||mapTimeline.savoirs||mapTimeline.offres||mapTimeline.charte||mapTimeline.parts||mapTimeline.carriere||mapTimeline.contact)) || mapHover.projets}"
+        (mouseover)="changeHoverPoints('projets', true)" (mouseout)="changeHoverPoints('projets', false)"></div>
+    </a>
+    <a href="#savoirFaire">
+      <div class="pointOnTimeline" id="pointSavoir"
+        [ngClass]="{'isHovered': mapTimeline.savoirs, 'selectedForHovers' : (!mapHover.projets && (mapTimeline.savoirs||mapTimeline.offres||mapTimeline.charte||mapTimeline.parts||mapTimeline.carriere||mapTimeline.contact)) || mapHover.savoirs}"
+        (mouseover)="changeHoverPoints('savoirs', true)" (mouseout)="changeHoverPoints('savoirs', false)"></div>
+    </a>
+    <a href="#offres">
+      <div class="pointOnTimeline" id="pointOffre"
+        [ngClass]="{'isHovered': mapTimeline.offres, 'selectedForHovers' : (!mapHover.projets && (mapTimeline.offres||mapTimeline.charte||mapTimeline.parts||mapTimeline.carriere||mapTimeline.contact)) || mapHover.offres}"
+        (mouseover)="changeHoverPoints('offres', true)" (mouseout)="changeHoverPoints('offres', false)"></div>
+    </a>
+    <a href="#thirdPannel">
+      <div class="pointOnTimeline" id="pointCharte"
+        [ngClass]="{'isHovered': mapTimeline.charte, 'selectedForHovers' : (!mapHover.projets && (mapTimeline.charte||mapTimeline.parts||mapTimeline.carriere||mapTimeline.contact)) || mapHover.charte}"
+        (mouseout)="changeHoverPoints('charte', false)" (mouseover)="changeHoverPoints('charte', true)"></div>
+    </a>
+    <a href="#partenaires">
+      <div class="pointOnTimeline" id="pointParts"
+        [ngClass]="{'isHovered': mapTimeline.parts, 'selectedForHovers' : (!mapHover.projets && (mapTimeline.parts||mapTimeline.carriere||mapTimeline.contact)) || mapHover.parts}"
+        (mouseover)="changeHoverPoints('parts', true)" (mouseout)="changeHoverPoints('parts', false)"></div>
+    </a>
+    <a href="#carriere">
+      <div class="pointOnTimeline" id="pointCarriere"
+        [ngClass]="{'isHovered': mapTimeline.carriere, 'selectedForHovers' : (!mapHover.projets && (mapTimeline.carriere||mapTimeline.contact)) || mapHover.carriere}"
+        (mouseover)="changeHoverPoints('carriere', true)" (mouseout)="changeHoverPoints('carriere', false)"></div>
+    </a>
+    <a href="#contact">
+      <div class="pointOnTimeline" id="pointContact"
+        [ngClass]="{'isHovered': mapTimeline.contact, 'selectedForHovers' : (!mapHover.projets && (mapTimeline.contact)) || mapHover.contact}"
+        (mouseover)="changeHoverPoints('contact', true)" (mouseout)="changeHoverPoints('contact', false)"></div>
+    </a>
   </div>
 
   <div class="solidLine" [style]="sizeSolidLineForTimeLine"></div>
 
   <div class="anchors flexCol">
-    <div class="oneAnchor" [ngClass]="{'isVisible': mapTimeline.projets || mapHoverPoint.projets, isHoveredByTimeline : mapHoverPoint.projets || (!mapHover.projets)}">
+    <div class="oneAnchor"
+      [ngClass]="{'isVisible': mapTimeline.projets || mapHoverPoint.projets, isHoveredByTimeline : mapHoverPoint.projets || (!mapHover.projets)}">
       <p>{{ 'home.menuProjets' | translate }}</p>
     </div>
-    <div class="oneAnchor" [ngClass]="{'isVisible': mapTimeline.savoirs || mapHoverPoint.savoirs, isHoveredByTimeline : mapHoverPoint.savoirs || (!mapHover.projets)}">
+    <div class="oneAnchor"
+      [ngClass]="{'isVisible': mapTimeline.savoirs || mapHoverPoint.savoirs, isHoveredByTimeline : mapHoverPoint.savoirs || (!mapHover.projets)}">
       <p>{{ 'home.menuSavoirs' | translate }}</p>
     </div>
-    <div class="oneAnchor" [ngClass]="{'isVisible': mapTimeline.offres || mapHoverPoint.offres, isHoveredByTimeline : mapHoverPoint.offres || (!mapHover.projets)}">
+    <div class="oneAnchor"
+      [ngClass]="{'isVisible': mapTimeline.offres || mapHoverPoint.offres, isHoveredByTimeline : mapHoverPoint.offres || (!mapHover.projets)}">
       <p>{{ 'home.menuOffres' | translate }}</p>
     </div>
-    <div class="oneAnchor" [ngClass]="{'isVisible': mapTimeline.charte || mapHoverPoint.charte, isHoveredByTimeline : mapHoverPoint.charte || (!mapHover.projets)}">
+    <div class="oneAnchor"
+      [ngClass]="{'isVisible': mapTimeline.charte || mapHoverPoint.charte, isHoveredByTimeline : mapHoverPoint.charte || (!mapHover.projets)}">
       <p>{{ 'home.menuCharte' | translate }}</p>
     </div>
-    <div class="oneAnchor" [ngClass]="{'isVisible': mapTimeline.parts || mapHoverPoint.parts, isHoveredByTimeline : mapHoverPoint.parts || (!mapHover.projets)}">
+    <div class="oneAnchor"
+      [ngClass]="{'isVisible': mapTimeline.parts || mapHoverPoint.parts, isHoveredByTimeline : mapHoverPoint.parts || (!mapHover.projets)}">
       <p>{{ 'home.menuParts' | translate }}</p>
     </div>
-    <div class="oneAnchor" [ngClass]="{'isVisible': mapTimeline.carriere || mapHoverPoint.carriere, isHoveredByTimeline : mapHoverPoint.carriere || (!mapHover.projets)}">
+    <div class="oneAnchor"
+      [ngClass]="{'isVisible': mapTimeline.carriere || mapHoverPoint.carriere, isHoveredByTimeline : mapHoverPoint.carriere || (!mapHover.projets)}">
       <p>{{ 'home.menuCarr' | translate }}</p>
     </div>
-    <div class="oneAnchor" [ngClass]="{'isVisible': mapTimeline.contact || mapHoverPoint.contact, isHoveredByTimeline : mapHoverPoint.contact || (!mapHover.projets)}">
+    <div class="oneAnchor"
+      [ngClass]="{'isVisible': mapTimeline.contact || mapHoverPoint.contact, isHoveredByTimeline : mapHoverPoint.contact || (!mapHover.projets)}">
       <p>{{ 'home.menuContact' | translate }}</p>
     </div>
   </div>
