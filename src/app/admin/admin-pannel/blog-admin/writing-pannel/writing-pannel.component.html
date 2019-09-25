@@ -4,7 +4,7 @@
 <div id="formulaire">
   <div id="general" class="flexCol">
     <h2>Général</h2>
-    <mat-form-field class="example-full-width smallInput">
+    <mat-form-field class="example-full-width mediumInput">
         <input matInput placeholder="Titre" [(ngModel)]="newArticle.title">
     </mat-form-field>
     <h3>Résumé de l'article</h3>
@@ -81,7 +81,7 @@
       <img *ngIf="isAddSource" class="button logoAdd" (click)="closeAdd('source')" src="https://image.flaticon.com/icons/svg/118/118743.svg"/>
     </div>
     <div class="flexRow inputAdd" *ngIf="isAddSource">
-      <mat-form-field class="example-full-width smallInput">
+      <mat-form-field class="example-full-width smallInput" style="margin-right: 30px;">
           <input matInput placeholder="Nom" [(ngModel)]="newSource.name">
       </mat-form-field>
       <mat-form-field class="example-full-width mediumInput">
@@ -115,13 +115,13 @@
       </div>
       <p>Ajouter un nouvel auteur</p>
       <div class="flexRow inputAdd">
-        <mat-form-field class="example-full-width smallInput">
+        <mat-form-field class="example-full-width smallInput" style="margin-right: 30px;">
             <input matInput placeholder="Prénom" [(ngModel)]="newAutor.prenom">
         </mat-form-field>
-        <mat-form-field class="example-full-width smallInput">
+        <mat-form-field class="example-full-width smallInput" style="margin-right: 30px;">
             <input matInput placeholder="Nom" [(ngModel)]="newAutor.nom">
         </mat-form-field>
-        <mat-form-field class="example-full-width mediumInput">
+        <mat-form-field class="example-full-width mediumInput" style="margin-right: 30px;">
             <input matInput placeholder="Fonction" [(ngModel)]="newAutor.fonction">
         </mat-form-field>
         <p class="button buttonAdd" (click)="addItemToLists('auteur')">Ajouter</p>
@@ -241,12 +241,6 @@
   </div>
   <div id="miniatures">
     <div *ngFor="let rowArticle of displayedListArticle">
-      <div class="flexRow rowInNavArticle">
-        <app-miniature-article-small class="button oneMinia" (click)="selectArticle(article)" *ngFor="let article of rowArticle" [article]="article" [size]="'small'"></app-miniature-article-small>
-      </div>
-      <div class="flexRow rowInNavArticle">
-        <app-miniature-article-small class="button oneMinia" (click)="selectArticle(article)" *ngFor="let article of rowArticle" [article]="article" [size]="'small'"></app-miniature-article-small>
-      </div>
       <div class="flexRow rowInNavArticle">
         <app-miniature-article-small class="button oneMinia" (click)="selectArticle(article)" *ngFor="let article of rowArticle" [article]="article" [size]="'small'"></app-miniature-article-small>
       </div>

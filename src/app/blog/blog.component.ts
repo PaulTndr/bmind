@@ -132,11 +132,11 @@ export class BlogComponent implements OnInit {
     this.isFilterOpen = !this.isFilterOpen;
     if (this.isFilterOpen) {
       $("#imgFiltrageMenu").css("transform", "rotate(180deg)")
-      $("#fondBlock").css("height", "61vh")
+      //$("#fondBlock").css("height", "61vh")
 
     } else {
       $("#imgFiltrageMenu").css("transform", "rotate(0deg)")
-      $("#fondBlock").css("height", "54.3vh")
+      //$("#fondBlock").css("height", "54.3vh")
     }
   }
 
@@ -323,7 +323,7 @@ export class BlogComponent implements OnInit {
     }
 
     this.styleForSizeingArticle = this.sanitizer.bypassSecurityTrustStyle("width:100%; margin-top:0px;")
-    $("#fondBlock").css("height", "44vh")
+    //$("#fondBlock").css("height", "44vh")
     this.isArticleReading = true
     this.articleOnReader = article
     $("html, body").animate({
@@ -336,7 +336,7 @@ export class BlogComponent implements OnInit {
     this.isDirectlyOpen = false;
     this.isFilterOpen = false;
     this.styleForSizeingArticle = this.sanitizer.bypassSecurityTrustStyle("width:60%; margin-top:3vh;")
-    $("#fondBlock").css("height", "54.3vh")
+    //$("#fondBlock").css("height", "54.3vh")
     this.isArticleReading = false
     this.articleOnReader = new Article()
     this.listArticlesLies = []

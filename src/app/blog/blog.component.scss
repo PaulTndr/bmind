@@ -10,10 +10,15 @@
   position: relative;
   z-index: 2;
 
+  a{
+    color: #F7F7F7;
+    text-decoration: none;
+  }
+
   .divFond{
     position: absolute;
     overflow: hidden;
-    height: 54.3vh;
+    height: -webkit-fill-available;
   }
   .fond{
     width: 140vw;
