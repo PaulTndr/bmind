@@ -1,5 +1,3 @@
-<!--<p class="button" routerLink="blog">blog</p>
-<p class="button" routerLink="admin/pannel">adminPannel</p>-->
 <div id="topPannel">
   <img class="fond" src="../../assets/images/fond.svg" />
   <div class="flexRow" id="header">
@@ -40,7 +38,7 @@
       <a class="button" href="#carriere" (click)="resetMenu()">{{ 'home.menuCarr' | translate }}</a>
       <a class="button" href="#contact" (click)="resetMenu()">{{ 'home.menuContact' | translate }}</a>
       <div class="orangeCircle"></div>
-      <a class="button" routerLink="blog">{{ 'home.menuBlog' | translate }}</a>
+      <a class="button" routerLink="/blog">{{ 'home.menuBlog' | translate }}</a>
     </div>
   </div>
 
@@ -191,7 +189,7 @@
       <app-miniature-article-small [article]="favoriteArticles[2]" [size]="'small'"></app-miniature-article-small>
     </div>
   </div>
-  <p class="button contactButton" routerLink="blog">{{ 'home.moreBlog' | translate }}</p>
+  <p class="button contactButton" routerLink="/blog">{{ 'home.moreBlog' | translate }}</p>
 </div>
 
 <div id="partenaires">
@@ -255,7 +253,7 @@
     </div>
     <div class="verticalSeparator"></div>
     <div class="redirect flexCol">
-      <p>{{ 'home.menuBlog' | translate }}</p>
+      <a class="button" routerLink="/blog"><p>{{ 'home.menuBlog' | translate }}</p></a>
       <p>{{ 'home.legalMention' | translate }}</p>
       <p>{{ 'home.cookie' | translate }}</p>
     </div>
