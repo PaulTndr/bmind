@@ -45,9 +45,11 @@ export class SettingPannelComponent implements OnInit {
   lastIdKw: Number;
   newAutor: Auteur = new Auteur();
   lastIdAutor: Number;
-
+  newOffre: Offre = new Offre();
+  lastIdOffre: Number;
   mode: String;
 
+  basePdfLink = "http://ptondereau.perso.centrale-marseille.fr/assets/pdfOffres/";
   constructor(private httpClient: HttpClient) { }
 
   ngOnInit() {
@@ -119,29 +121,7 @@ export class SettingPannelComponent implements OnInit {
       }
     );
 
-    var offer1 = new Offre();
-    offer1.title = "Chargé.e de communication"
-    offer1.linkPDF = "http://ptondereau.perso.centrale-marseille.fr/assets/pdfOffres/offre1.pdf"
-    var offer2 = new Offre();
-    offer2.title = "Développeur web"
-    offer2.linkPDF = "http://ptondereau.perso.centrale-marseille.fr/assets/pdfOffres/offre2.pdf"
-    var offer3 = new Offre();
-    offer3.title = "Traducteur anglais/français"
-    offer3.linkPDF = "http://ptondereau.perso.centrale-marseille.fr/assets/pdfOffres/offre3.pdf"
-    var listInit = [];
-    listInit.push(offer1);
-    listInit.push(offer2);
-    listInit.push(offer3);
-
-    this.httpClient.put('https://bminddev.firebaseio.com/offers.json', listInit).subscribe(
-      () => {
-        console.log('Edition du mot clé terminée !');
-      },
-      (error) => {
-        console.log('Erreur lors de l\'edition du mot clé! : ' + error);
-      }
-    );
-
+    var basePdfLink = this.basePdfLink
     this.httpClient.get<any[]>('https://bminddev.firebaseio.com/offers.json').subscribe(
       (response) => {
         var lKeys = Object.keys(response)
@@ -149,10 +129,15 @@ export class SettingPannelComponent implements OnInit {
         lKeys.forEach(function (kw) {
           var oneOffre = new Offre()
           oneOffre.fromHashMap(response[kw])
+          oneOffre.linkPDF = oneOffre.linkPDF.replace(basePdfLink, '')
           listObject.push(oneOffre)
         })
         this.listOffers = listObject.slice();
-        this.lastIdKw = 0;
+        this.lastIdOffre = 0;
+        for (var k = 0; k < this.listOffers.length; k++) {
+          this.lastIdOffre = +Math.max(Number(this.lastIdOffre), Number(this.listOffers[k].id))
+        }
+        console.log(this.lastIdOffre)
         this.refreshData()
       },
       (error) => {
@@ -220,6 +205,13 @@ export class SettingPannelComponent implements OnInit {
           this.newAutor = this.listAutor[k].copy()
         }
       }
+    } else if (this.entryToEdit === 'offerCarr') {
+      for (var k = 0; k < this.listOffers.length; k++) {
+        if (this.listOffers[k].id === idItem) {
+          this.newOffre = this.listOffers[k].copy()
+        }
+      }
+      this.newOffre.linkPDF = this.newOffre.linkPDF.replace('.pdf', '')
     }
     this.openPopup();
   }
@@ -341,6 +333,81 @@ export class SettingPannelComponent implements OnInit {
           },
           (error) => {
             console.log('Erreur lors de la suppression de l\'auteur! : ' + error);
+          }
+        );
+      }
+    } else if (this.entryToEdit === 'offerCarr') {
+      if (this.mode === "Ajout") {
+        this.newOffre.linkPDF = this.newOffre.linkPDF + ".pdf"
+        this.newOffre.id = (+this.lastIdOffre) + 1;
+        this.lastIdOffre = (+this.lastIdOffre) + 1;
+
+        this.listOffers.push(this.newOffre)
+
+        this.newOffre.linkPDF = this.basePdfLink + this.newOffre.linkPDF
+
+        //AJOUT BASE
+        this.httpClient.post('https://bminddev.firebaseio.com/offers.json', this.newOffre).subscribe(
+          () => {
+            console.log('Enregistrement de l\'offre terminé !');
+            this.newOffre = new Offre()
+          },
+          (error) => {
+            console.log('Erreur lors de l\'enregistrment de l\'offre! : ' + error);
+          }
+        );
+
+      } else if (this.mode === "Édition") {
+        for (var k = 0; k < this.listOffers.length; k++) {
+          if (this.listOffers[k].id === this.newOffre.id) {
+            this.listOffers[k].title = this.newOffre.title;
+            this.listOffers[k].linkPDF = this.newOffre.linkPDF;
+          }
+        }
+
+        //On reforme les liens
+        var listOffreWithBaseLink: Offre[] = []
+        for (var k = 0; k < this.listOffers.length; k++) {
+          var offreToPush = new Offre()
+          offreToPush.id = this.listOffers[k].id;
+          offreToPush.title = this.listOffers[k].title;
+          offreToPush.linkPDF = this.basePdfLink + this.listOffers[k].linkPDF;
+          listOffreWithBaseLink.push(offreToPush)
+        }
+
+        this.httpClient.put('https://bminddev.firebaseio.com/offers.json', listOffreWithBaseLink).subscribe(
+          () => {
+            console.log('Edition de l\'offre terminée !');
+          },
+          (error) => {
+            console.log('Erreur lors de l\'edition de l\'offre! : ' + error);
+          }
+        );
+      } else if (this.mode === "Suppression") {
+        var newListOffers: Offre[] = [];
+        for (var k = 0; k < this.listOffers.length; k++) {
+          if (this.listOffers[k].id !== this.newOffre.id) {
+            newListOffers.push(this.listOffers[k])
+          }
+        }
+        this.listOffers = newListOffers.slice();
+
+        //On reforme les liens
+        var listOffreWithBaseLink: Offre[] = []
+        for (var k = 0; k < this.listOffers.length; k++) {
+          var offreToPush = new Offre()
+          offreToPush.id = this.listOffers[k].id;
+          offreToPush.title = this.listOffers[k].title;
+          offreToPush.linkPDF = this.basePdfLink + this.listOffers[k].linkPDF;
+          listOffreWithBaseLink.push(offreToPush)
+        }
+
+        this.httpClient.put('https://bminddev.firebaseio.com/offers.json', listOffreWithBaseLink).subscribe(
+          () => {
+            console.log('Suppression de l\'offre terminée !');
+          },
+          (error) => {
+            console.log('Erreur lors de la suppression de l\'offre! : ' + error);
           }
         );
       }

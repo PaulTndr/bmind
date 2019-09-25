@@ -150,7 +150,7 @@
 </div>
 
 
-<!-- Table auteur -->
+<!-- Table Offer -->
 <div *ngIf="entryToEdit==='offerCarr'" id="tableOffer">
   <table mat-table [dataSource]="dataSourceOffers" class="mat-elevation-z8">
 
@@ -162,7 +162,7 @@
 
     <!-- LinkPDF Column -->
     <ng-container matColumnDef="linkPDF">
-      <th mat-header-cell *matHeaderCellDef> Lien du pdf </th>
+      <th mat-header-cell *matHeaderCellDef> Nom du pdf </th>
       <td mat-cell *matCellDef="let element"> {{element.linkPDF}} </td>
     </ng-container>
 
@@ -216,6 +216,30 @@
       <mat-form-field class="example-full-width">
         <input matInput placeholder="Fonction" [(ngModel)]="newAutor.fonction">
       </mat-form-field>
+    </div>
+
+    <div id="listButtons" class="flexRow">
+      <p *ngIf="mode==='Ajout'" class="button addButton" (click)="validateAction()">Ajouter</p>
+      <p *ngIf="mode==='Édition'" class="button editButton" (click)="validateAction()">Éditer</p>
+      <p class="button cancelButton" (click)="closePopup()">Annuler</p>
+    </div>
+  </div>
+
+  <div id="popupOffer" *ngIf="entryToEdit==='offerCarr'">
+    <h2>{{mode}} d'une offre carrière</h2>
+    <div class="flexCol">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Titre" [(ngModel)]="newOffre.title">
+      </mat-form-field>
+      <mat-form-field style="display:flex" class="example-full-width">
+        <input matInput placeholder="Nom du pdf" [(ngModel)]="newOffre.linkPDF">
+        <p>.pdf</p>
+      </mat-form-field>
+      <p *ngIf="mode==='Ajout'">(!) Le PDF de l'offre doit être uploadé conformément au manuel sinon le téléchargement
+        de l'offre n'aboutira
+        pas (!)</p>
+      <p *ngIf="mode!=='Ajout'">(!) Si le nom du pdf est changé il faut aussi le changer sur l'hébergeur conformément au
+        manuel d'utilisation, c'est clairement déconseillé (!)</p>
     </div>
 
     <div id="listButtons" class="flexRow">

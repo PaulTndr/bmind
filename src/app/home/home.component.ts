@@ -108,7 +108,7 @@ export class HomeComponent implements OnInit {
     setTimeout(() => { this.handler() }, 100);
   });
 
-  constructor(private globalService: GlobalService, private blogService: BlogService, private sanitizer: DomSanitizer, private router: Router, private translate: TranslateService) { }
+  constructor(private globalService: GlobalService, private blogService: BlogService, private sanitizer: DomSanitizer, private router: Router, private translate: TranslateService, private httpClient: HttpClient) { }
 
   ngOnInit() {
     this.isFrSelected = this.globalService.isFrSelected
@@ -129,17 +129,21 @@ export class HomeComponent implements OnInit {
     // Usage.
     this.handler()
 
-    var offer1 = new Offre();
-    offer1.title = "Chargé.e de communication"
-    offer1.linkPDF = "http://ptondereau.perso.centrale-marseille.fr/assets/pdfOffres/offre1.pdf"
-    var offer2 = new Offre();
-    offer2.title = "Développeur web"
-    offer2.linkPDF = "http://ptondereau.perso.centrale-marseille.fr/assets/pdfOffres/offre2.pdf"
-    var offer3 = new Offre();
-    offer3.title = "Traducteur anglais/français"
-    offer3.linkPDF = "http://ptondereau.perso.centrale-marseille.fr/assets/pdfOffres/offre3.pdf"
-    this.listOffers.push(offer1);
-    this.listOffers.push(offer2);
+    this.httpClient.get<any[]>('https://bminddev.firebaseio.com/offers.json').subscribe(
+      (response) => {
+        var lKeys = Object.keys(response)
+        var listObject: Offre[] = [];
+        lKeys.forEach(function (kw) {
+          var oneOffre = new Offre()
+          oneOffre.fromHashMap(response[kw])
+          listObject.push(oneOffre)
+        })
+        this.listOffers = listObject.slice();
+      },
+      (error) => {
+        console.log('Erreur ! : ' + error);
+      }
+    );
   }
 
   onInViewportChange(inViewport: boolean) {

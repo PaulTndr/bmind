@@ -106,6 +106,60 @@ table {
   }
 }
 
+#tableOffer {
+  table {
+    .mat-column-title {
+      word-wrap: break-word !important;
+      white-space: unset !important;
+      flex: 0 0 28% !important;
+      width: 40vw !important;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      word-break: break-word;
+      -ms-hyphens: auto;
+      -moz-hyphens: auto;
+      -webkit-hyphens: auto;
+      hyphens: auto;
+      text-align: center !important;
+      border-right: 1px solid #545454;
+    }
+
+    .mat-column-linkPDF {
+      word-wrap: break-word !important;
+      white-space: unset !important;
+      flex: 0 0 28% !important;
+      width: 40vw !important;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+
+      word-break: break-word;
+
+      -ms-hyphens: auto;
+      -moz-hyphens: auto;
+      -webkit-hyphens: auto;
+      hyphens: auto;
+      text-align: center !important;
+      border-right: 1px solid #545454;
+    }
+
+    .mat-column-actions {
+      word-wrap: break-word !important;
+      white-space: unset !important;
+      flex: 0 0 28% !important;
+      width: 3vw !important;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+
+      word-break: break-word;
+
+      -ms-hyphens: auto;
+      -moz-hyphens: auto;
+      -webkit-hyphens: auto;
+      hyphens: auto;
+    }
+  }
+}
+
 #tableSecteurs {
   table {
     width: 40vw;
@@ -217,7 +271,8 @@ table {
 
 #popupDelete,
 #popupKw,
-#popupAutor {
+#popupAutor,
+#popupOffer {
   width: 50vw;
   position: fixed;
   top: 25vh;

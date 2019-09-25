@@ -85,6 +85,10 @@
       width: 22.5vw;
       margin-right: 3vw;
 
+      &:last-of-type {
+        margin-right: 0px;
+      }
+
       .oneOfferBox {
         background-color: #D17B53;
         width: 14vw;
