@@ -1,6 +1,6 @@
 <div id="topPannel">
   <div class="divFond" id="fondBlock">
-    <img class="fond" src="../../assets/images/fond.svg"/>
+    <img class="fond" src="../../assets/images/fond.svg" />
   </div>
   <div class="flexRow" id="header">
     <a id="toggle" [ngClass]="{'on': isMenuOpen}" (click)="openOrCloseMenu()"><span></span></a>
@@ -9,12 +9,16 @@
       <p>cognitive innovation</p>
     </div>
     <div class="logos flexRow">
-      <a href="https://www.linkedin.com/in/jane-bourgninaud" target="_blank"><div class="divImage button">
-        <img src="https://image.flaticon.com/icons/svg/733/733635.svg">
-      </div></a>
-      <a href="https://www.linkedin.com/in/jane-bourgninaud" target="_blank"><div class="divImage button">
-        <img src="https://image.flaticon.com/icons/svg/34/34227.svg">
-      </div></a>
+      <a href="https://www.linkedin.com/in/jane-bourgninaud" target="_blank">
+        <div class="divImage button">
+          <img src="https://image.flaticon.com/icons/svg/733/733635.svg">
+        </div>
+      </a>
+      <a href="https://www.linkedin.com/in/jane-bourgninaud" target="_blank">
+        <div class="divImage button">
+          <img src="https://image.flaticon.com/icons/svg/34/34227.svg">
+        </div>
+      </a>
       <div class="verticalSeparator"></div>
       <p class="button buttonLangue" [ngClass]="{'isSelected': isFrSelected}" (click)="switchLangue('fr')">FR</p>
       <p class="button buttonLangue" [ngClass]="{'isSelected': isEnSelected}" (click)="switchLangue('en')">EN</p>
@@ -24,15 +28,18 @@
   <div class="orangeCircle"></div>
   <div class="flexRow" id="listInput" *ngIf="!isArticleReading">
     <div class="flexRow oneInputDiv" id="filtrageInput">
-      <input style="pointer-events:none; width: 100%;" type="text" placeholder="Filtrer" [(ngModel)]="filtrageTxt" id="inputFilterText">
+      <input style="pointer-events:none; width: 100%;" type="text" placeholder="Filtrer" [(ngModel)]="filtrageTxt"
+        id="inputFilterText">
       <div class="divImage" (click)="invertFilter()">
-        <img class="button" src="https://image.flaticon.com/icons/svg/109/109609.svg" id="imgFiltrageMenu"/>
+        <img class="button" src="https://image.flaticon.com/icons/svg/109/109609.svg" id="imgFiltrageMenu" />
       </div>
     </div>
     <div class="flexRow oneInputDiv" id="rechercheInput">
-      <input style="width: 100%;" type="text" placeholder="RECHERCHER" [(ngModel)]="rechercheTxt" (keyup.enter)="filter()">
+      <input style="width: 100%;" type="text" placeholder="RECHERCHER" [(ngModel)]="rechercheTxt"
+        (keyup.enter)="filter()">
       <div class="divImage" (click)="filter()">
-        <img class="button" style="transform:rotate(-90deg)" src="https://image.flaticon.com/icons/svg/109/109609.svg"/>
+        <img class="button" style="transform:rotate(-90deg)"
+          src="https://image.flaticon.com/icons/svg/109/109609.svg" />
       </div>
     </div>
   </div>
@@ -51,8 +58,10 @@
         <mat-checkbox [(ngModel)]="mapFilter.difficulte['1']" (click)="checkboxChecked('difficulte')">+</mat-checkbox>
         <mat-checkbox [(ngModel)]="mapFilter.difficulte['2']" (click)="checkboxChecked('difficulte')">++</mat-checkbox>
         <mat-checkbox [(ngModel)]="mapFilter.difficulte['3']" (click)="checkboxChecked('difficulte')">+++</mat-checkbox>
-        <mat-checkbox [(ngModel)]="mapFilter.difficulte['4']" (click)="checkboxChecked('difficulte')">++++</mat-checkbox>
-        <mat-checkbox [(ngModel)]="mapFilter.difficulte['5']" (click)="checkboxChecked('difficulte')">+++++</mat-checkbox>
+        <mat-checkbox [(ngModel)]="mapFilter.difficulte['4']" (click)="checkboxChecked('difficulte')">++++
+        </mat-checkbox>
+        <mat-checkbox [(ngModel)]="mapFilter.difficulte['5']" (click)="checkboxChecked('difficulte')">+++++
+        </mat-checkbox>
       </div>
     </div>
 
@@ -102,9 +111,12 @@
           <p>|</p>
           <p class="button" (click)="checkUncheckAll('secteur', false)">Aucun</p>
         </div>
-        <mat-checkbox [(ngModel)]="mapFilter.secteur['entreprise']" (click)="checkboxChecked('secteur')">Entreprise</mat-checkbox>
-        <mat-checkbox [(ngModel)]="mapFilter.secteur['formation']" (click)="checkboxChecked('secteur')">Formation</mat-checkbox>
-        <mat-checkbox [(ngModel)]="mapFilter.secteur['management']" (click)="checkboxChecked('secteur')">Management</mat-checkbox>
+        <mat-checkbox [(ngModel)]="mapFilter.secteur['entreprise']" (click)="checkboxChecked('secteur')">Entreprise
+        </mat-checkbox>
+        <mat-checkbox [(ngModel)]="mapFilter.secteur['formation']" (click)="checkboxChecked('secteur')">Formation
+        </mat-checkbox>
+        <mat-checkbox [(ngModel)]="mapFilter.secteur['management']" (click)="checkboxChecked('secteur')">Management
+        </mat-checkbox>
       </div>
     </div>
 
@@ -131,10 +143,12 @@
 
 <div id="listArticle" *ngIf="listArticleDisplay.length>0">
   <div class="oneArticle" [style]="styleForSizeingArticle" *ngFor="let article of listPagesArticles[indicePage]">
-    <app-miniature-article *ngIf="!isArticleReading || (isArticleReading && article==articleOnReader)" [article]="article" (click)="openArticle(article)"></app-miniature-article>
-    <div id="retourNav" class="flexRow button" *ngIf="isArticleReading" (click)="backToNav()">
+    <app-miniature-article *ngIf="!isArticleReading || (isArticleReading && article==articleOnReader)"
+      [article]="article" (click)="openArticle(article)"></app-miniature-article>
+    <div id="retourNav" class="flexRow button" *ngIf="isArticleReading && article==articleOnReader"
+      (click)="backToNav()">
       <div class="divImage">
-        <img  style="transform:rotate(90deg)" src="https://image.flaticon.com/icons/svg/109/109609.svg"/>
+        <img style="transform:rotate(90deg)" src="https://image.flaticon.com/icons/svg/109/109609.svg" />
       </div>
       <p>Retour aux articles</p>
     </div>
@@ -144,7 +158,7 @@
     <app-miniature-article [article]="articleToOpen" (click)="openArticle(articleToOpen)"></app-miniature-article>
     <div id="retourNav" class="flexRow button" *ngIf="isArticleReading" (click)="backToNav()">
       <div class="divImage">
-        <img  style="transform:rotate(90deg)" src="https://image.flaticon.com/icons/svg/109/109609.svg"/>
+        <img style="transform:rotate(90deg)" src="https://image.flaticon.com/icons/svg/109/109609.svg" />
       </div>
       <p>Retour aux articles</p>
     </div>
@@ -152,14 +166,14 @@
 
   <div id="pagination" class="flexRow" *ngIf="listPagesArticles.length>1 && !isArticleReading">
     <div class="divImage" (click)="changePage('prec', 0)">
-      <img class="button" style="transform:rotate(90deg)" src="../../../assets/images/arrow.svg"/>
+      <img class="button" style="transform:rotate(90deg)" src="../../../assets/images/arrow.svg" />
     </div>
     <div class="divImage" *ngFor="let page of listPagesArticles; let i=index" (click)="changePage('', i)">
       <p class="button">{{i+1}}</p>
     </div>
 
     <div class="divImage" (click)="changePage('next', 0)">
-      <img class="button" style="transform:rotate(-90deg)" src="../../../assets/images/arrow.svg"/>
+      <img class="button" style="transform:rotate(-90deg)" src="../../../assets/images/arrow.svg" />
     </div>
   </div>
 </div>
@@ -176,26 +190,30 @@
   <h1>Ces articles pourraient également vous intéresser</h1>
   <div id="articlesUnes" class="flexRow">
     <div class="oneArticle button" *ngIf="listArticlesLies.length>=1">
-      <app-miniature-article-small [article]="listArticlesLies[0]" [size]="'small'" (click)="openArticle(listArticlesLies[0])"></app-miniature-article-small>
+      <app-miniature-article-small [article]="listArticlesLies[0]" [size]="'small'"
+        (click)="openArticle(listArticlesLies[0])"></app-miniature-article-small>
     </div>
     <div class="oneArticle button" *ngIf="listArticlesLies.length>=2">
-      <app-miniature-article-small [article]="listArticlesLies[1]" [size]="'small'" (click)="openArticle(listArticlesLies[1])"></app-miniature-article-small>
+      <app-miniature-article-small [article]="listArticlesLies[1]" [size]="'small'"
+        (click)="openArticle(listArticlesLies[1])"></app-miniature-article-small>
     </div>
     <div class="oneArticle button" *ngIf="listArticlesLies.length>=3">
-      <app-miniature-article-small [article]="listArticlesLies[2]" [size]="'small'" (click)="openArticle(listArticlesLies[2])"></app-miniature-article-small>
+      <app-miniature-article-small [article]="listArticlesLies[2]" [size]="'small'"
+        (click)="openArticle(listArticlesLies[2])"></app-miniature-article-small>
     </div>
   </div>
 </div>
 
 <div id="bottomContact">
-  <p class="contactText">Vous avez une question, une suggestion, une remarque, un commentaire, envie de nous dire bonjour et de nous féliciter pour notre travail,</p>
+  <p class="contactText">Vous avez une question, une suggestion, une remarque, un commentaire, envie de nous dire
+    bonjour et de nous féliciter pour notre travail,</p>
   <p class="button contactButton" (click)="openPopup('blog')">Contactez-nous</p>
 </div>
 
 <div id="footer">
   <div id="info" class="flexRow">
     <div class="img">
-      <img id="logoSignature" src="../../assets/images/logo.svg"/>
+      <img id="logoSignature" src="../../assets/images/logo.svg" />
     </div>
     <div class="verticalSeparator"></div>
     <div class="redirect flexCol">
@@ -207,12 +225,16 @@
     <div class="contact flexCol">
       <p>Suivez-nous<br>sur les réseaux sociaux</p>
       <div class="flexRow" style="width:5vw; justify-content:space-between; margin:auto;">
-        <a href="https://www.linkedin.com/in/jane-bourgninaud" target="_blank"><div class="divImage button">
-          <img src="https://image.flaticon.com/icons/svg/733/733635.svg">
-        </div></a>
-        <a href="https://www.linkedin.com/in/jane-bourgninaud" target="_blank"><div class="divImage button">
-          <img src="https://image.flaticon.com/icons/svg/34/34227.svg">
-        </div></a>
+        <a href="https://www.linkedin.com/in/jane-bourgninaud" target="_blank">
+          <div class="divImage button">
+            <img src="https://image.flaticon.com/icons/svg/733/733635.svg">
+          </div>
+        </a>
+        <a href="https://www.linkedin.com/in/jane-bourgninaud" target="_blank">
+          <div class="divImage button">
+            <img src="https://image.flaticon.com/icons/svg/34/34227.svg">
+          </div>
+        </a>
       </div>
     </div>
     <div class="verticalSeparator"></div>
@@ -220,6 +242,6 @@
       <p>B.mind S.A.S.U. - 849 322 656 R.C.S. Marseille -<br>capital social 10 000€</p>
       <p>27 impasse des Aurengues 13013 MARSEILLE</p>
     </div>
-    
+
   </div>
 </div>
