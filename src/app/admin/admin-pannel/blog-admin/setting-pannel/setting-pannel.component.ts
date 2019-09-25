@@ -169,6 +169,17 @@ export class SettingPannelComponent implements OnInit {
       this.dataSourceAutor = new MatTableDataSource<Auteur>(listAutorToDisplay);
     }
 
+    else if (this.entryToEdit === 'offerCarr') {
+      var listOfferToDisplay: Offre[] = [];
+      for (var k = 0; k < this.listOffers.length; k++) {
+        if (this.listOffers[k].title.toLowerCase().startsWith(this.filterText.toLowerCase())) {
+          listOfferToDisplay.push(this.listOffers[k])
+        }
+      }
+
+      this.dataSourceOffers = new MatTableDataSource<Offre>(listOfferToDisplay);
+    }
+
   }
 
   openPopup() {
@@ -184,6 +195,7 @@ export class SettingPannelComponent implements OnInit {
     this.isAddOrEditPopup = false;
     this.newKeyword = new Keyword();
     this.newAutor = new Auteur();
+    this.newOffre = new Offre();
   }
 
   addItem() {
@@ -228,6 +240,12 @@ export class SettingPannelComponent implements OnInit {
       for (var k = 0; k < this.listAutor.length; k++) {
         if (this.listAutor[k].id === idItem) {
           this.newAutor = this.listAutor[k].copy()
+        }
+      }
+    } else if (this.entryToEdit === 'offerCarr') {
+      for (var k = 0; k < this.listOffers.length; k++) {
+        if (this.listOffers[k].id === idItem) {
+          this.newOffre = this.listOffers[k].copy()
         }
       }
     }
@@ -344,10 +362,11 @@ export class SettingPannelComponent implements OnInit {
 
         this.listOffers.push(this.newOffre)
 
-        this.newOffre.linkPDF = this.basePdfLink + this.newOffre.linkPDF
+        var nouvelleOffre = this.newOffre.copy();
+        nouvelleOffre.linkPDF = this.basePdfLink + nouvelleOffre.linkPDF
 
         //AJOUT BASE
-        this.httpClient.post('https://bminddev.firebaseio.com/offers.json', this.newOffre).subscribe(
+        this.httpClient.post('https://bminddev.firebaseio.com/offers.json', nouvelleOffre).subscribe(
           () => {
             console.log('Enregistrement de l\'offre terminé !');
             this.newOffre = new Offre()

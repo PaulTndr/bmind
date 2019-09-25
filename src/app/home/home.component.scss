@@ -78,15 +78,14 @@
   }
 
   #listCarriereOffer {
-    width: fit-content;
+    width: 80vw;
     margin: auto;
+    justify-content: space-between;
 
     .oneOffer {
       width: 22.5vw;
-      margin-right: 3vw;
-
-      &:last-of-type {
-        margin-right: 0px;
+      &:first-of-type {
+        margin-left:2vw;
       }
 
       .oneOfferBox {

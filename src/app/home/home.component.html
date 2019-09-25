@@ -215,17 +215,19 @@
   <h1>{{ 'home.menuCarr' | translate }}</h1>
   <p *ngIf="listOffers.length==0">{{ 'home.noJobOffer' | translate }}</p>
   <div id="listCarriereOffer" class="flexRow">
-    <div class="oneOffer" *ngFor="let offer of listOffers">
-      <div class="oneOfferBox">
-        <img src="https://image.flaticon.com/icons/svg/942/942799.svg" />
-        <a [href]="offer.linkPDF" target="_blank">
-          <div class="divImage button">
-            <img class="orangeArrow" src="../../../assets/images/arrow.svg" />
-            <img class="whiteArrow" src="https://image.flaticon.com/icons/svg/109/109609.svg" />
-          </div>
-        </a>
+    <div *ngFor="let offer of listOffers; let i=index;">
+      <div class="oneOffer" *ngIf="i<3">
+        <div class="oneOfferBox">
+          <img src="https://image.flaticon.com/icons/svg/942/942799.svg" />
+          <a [href]="offer.linkPDF" target="_blank">
+            <div class="divImage button">
+              <img class="orangeArrow" src="../../../assets/images/arrow.svg" />
+              <img class="whiteArrow" src="https://image.flaticon.com/icons/svg/109/109609.svg" />
+            </div>
+          </a>
+        </div>
+        <p>{{offer.title}}</p>
       </div>
-      <p>{{offer.title}}</p>
     </div>
   </div>
 </div>

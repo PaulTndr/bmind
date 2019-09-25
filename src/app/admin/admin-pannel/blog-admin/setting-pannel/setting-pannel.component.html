@@ -231,9 +231,9 @@
       <mat-form-field class="example-full-width">
         <input matInput placeholder="Titre" [(ngModel)]="newOffre.title">
       </mat-form-field>
-      <mat-form-field style="display:flex" class="example-full-width">
+      <mat-form-field class="example-full-width">
         <input matInput placeholder="Nom du pdf" [(ngModel)]="newOffre.linkPDF">
-        <p>.pdf</p>
+        <span matSuffix>.pdf</span>
       </mat-form-field>
       <p *ngIf="mode==='Ajout'">(!) Le PDF de l'offre doit être uploadé conformément au manuel sinon le téléchargement
         de l'offre n'aboutira
