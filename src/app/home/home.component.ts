@@ -18,7 +18,7 @@ import { Offre } from '../classes/offre';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss', './home.component.responsive.scss']
 })
 export class HomeComponent implements OnInit {
 

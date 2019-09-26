@@ -18,7 +18,7 @@ export class AdminGateComponent implements OnInit {
   }
 
   logIn(){
-    if (this.login === "janeB" && this.mdp ==="testThomas"){
+    if (this.login === "janeB" && this.mdp ==="testJane"){
       this.globalService.isAuth=true;
       this.router.navigate(['/admin/pannel/blogModeration']);
     } else{

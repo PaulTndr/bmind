@@ -55,6 +55,36 @@
     margin-bottom: 3vh;
     justify-content: space-between;
   }
+
+  #rowPart1{
+    width:40%;
+    .part1{
+      width:238px;
+      height:122px;
+    }
+    .part2{
+      width:112px;
+      height:118px;
+    }
+    .part3{
+      width:271px;
+      height:94px;
+    }
+  }
+
+  #rowPart2{
+    width:20%;
+
+    .part4{
+      width:130px;
+      height:120px;
+    }
+    .part5{
+      width:168px;
+      height:168px;
+    }
+  }
+
 }
 
 #carriere {
@@ -157,6 +187,11 @@
   h1,
   p {
     margin: 0px;
+  }
+
+  h1{
+    text-align:center;
+    margin-bottom:7vh;
   }
 
   #carteContact {
@@ -268,6 +303,13 @@
         margin: 0px;
       }
 
+      .listLogoContact{
+        width:5vw;
+        justify-content:space-between;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
       .divImage {
         width: 1.2vw;
         height: 1.2vw;
@@ -303,26 +345,31 @@
 #topPannel {
   background-color: #171817;
   color: #F7F7F7;
-  padding-top: 3vh;
   padding-bottom: 7vh;
+  position:relative;
 
-  .fond {
+  .divFond{
+    overflow: hidden;
+    height: -webkit-fill-available;
+    width: 100vw;
     position: absolute;
-    width: 140vw;
-    margin-top: -45vh;
-    margin-left: -20vw;
-    margin-right: -20vw;
-    margin-bottom: -20vh;
-    z-index: 1;
+    .fond{
+      width: 140vw;
+      margin-top: -45vh;
+      margin-left: -20vw;
+      margin-right: -20vw;
+      margin-bottom: -20vh;
+      z-index: 1;
+    }
   }
 
   :not(.fond) {
     z-index: 2;
-    position: relative;
   }
 
   #header {
     position: relative;
+    padding-top: 3vh;
 
     .logoTitre {
       width: 20vw;
@@ -345,7 +392,7 @@
       justify-content: space-between;
       align-items: center;
       position: absolute;
-      top: 20px;
+      top: 50px;
       right: 50px;
 
       .divImage {
@@ -386,6 +433,7 @@
     padding-top: 20vh;
     padding-bottom: 25vh;
     text-align: center;
+    position: relative;
 
     .subTitle {
       font-weight: normal;
@@ -453,6 +501,13 @@
       position: relative;
       height: 50vh;
 
+      #text0{
+        text-align:center;
+        left: 41vw;
+        top: 6vh;
+        width:17vw; 
+      }
+
       #segment0 {
         top: 26vh;
         left: 49.5vw;
@@ -460,12 +515,25 @@
         transition-duration: 1s;
       }
 
+      #text1{
+        text-align:center;
+        right: 10vw;
+        top: 16vh;
+        width:17vw; 
+      }
       #segment1 {
         transform: rotate(-20deg);
         top: 37vh;
         right: 39vw;
         transition-property: right top;
         transition-duration: 1s;
+      }
+
+      #text2{
+        text-align:center;
+        right: 13vw;
+        bottom: 13vh;
+        width:17vw; 
       }
 
       #segment2 {
@@ -476,6 +544,12 @@
         transition-duration: 1s;
       }
 
+      #text3{
+        text-align:center;
+        left: 13vw;
+        bottom: 13vh;
+        width:17vw; 
+      }
       #segment3 {
         transform: rotate(-40deg);
         bottom: 34vh;
@@ -484,6 +558,12 @@
         transition-duration: 1s;
       }
 
+      #text4{
+        text-align:center;
+        left: 10vw;
+        top: 16vh;
+        width:17vw; 
+      }
       #segment4 {
         transform: rotate(15deg);
         top: 37vh;
@@ -540,6 +620,11 @@
   }
 
   #offres {
+    .title{
+      text-align:center;
+      margin-bottom: 10vh;
+      margin-top: 17vh;
+    }
 
     .fond {
       position: absolute;
@@ -609,7 +694,7 @@
   }
 
   .title {
-    margin-bottom: 5vh;
+    margin-bottom: 15vh;
   }
 
   #listValeurs {
@@ -673,6 +758,10 @@
     text-align: center;
   }
 
+  .discoverText{
+    margin-bottom:10vh;
+  }
+
   .contactButton {
     background-color: #D17B53;
     width: fit-content;
@@ -700,7 +789,7 @@
   height: 40px;
   position: absolute;
   left: 80px;
-  top: 40px;
+  top: 50px;
 }
 
 #toggle span:after,
@@ -836,24 +925,6 @@
       }
     }
 
-    /*.points:hover{
-
-      .pointOnTimeline{
-        cursor:pointer;
-        background-color: #D17B53;
-        &:hover{
-          width:15px;
-          height:15px;
-          margin-left:-7px;
-          margin-top:-4px;
-          margin-bottom:-4px;
-        }
-        &:hover ~ .pointOnTimeline{
-          background-color: white;
-        }
-      }
-    }*/
-
     .anchors {
       cursor: default;
     }
@@ -866,30 +937,4 @@
   .solidLine {
     border-color: #D17B53;
   }
-}
-
-//SPECIFIC FOR RESPONSIVITE
-
-@media screen and (max-width: 640px) {
-  #toggle {
-    position: fixed;
-    left: 50px;
-    top: 75px;
-    transform: scale(2);
-    z-index: 2;
-  }
-
-  #boxMenu {
-    background-color: #171817;
-    position: fixed;
-    height: 100vh;
-    width: 100vw;
-    top: 0px;
-    left: 0px;
-  }
-
-  #timeline {
-    display: none;
-  }
-
 }

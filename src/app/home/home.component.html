@@ -1,5 +1,8 @@
+<div style="position: relative; overflow-x: hidden;">
 <div id="topPannel">
-  <img class="fond" src="../../assets/images/fond.svg" />
+  <div class="divFond">
+    <img class="fond" src="../../assets/images/fond.svg" />
+  </div>
   <div class="flexRow" id="header">
     <a id="toggle" [ngClass]="{'on': isMenuOpen}" (click)="openOrCloseMenu()"><span></span></a>
     <div class="logoTitre">
@@ -60,35 +63,35 @@
     <h1 style="text-align:center;">{{ 'home.titleDyn' | translate }}</h1>
     <div id="imageDyn">
       <div class="oneText">
-        <p style="text-align:center; left: 41vw; top: 6vh; width:17vw; ">{{ 'home.textDyn1' | translate }}</p>
+        <p id='text0'>{{ 'home.textDyn1' | translate }}</p>
         <div class="oneSegmentV" id="segment0" [style]="styleSegment0">
           <div class="rond" [style]="styleRondSmallR"></div>
         </div>
       </div>
 
       <div class="oneText">
-        <p style="text-align:center; right: 10vw; top: 16vh; width:17vw; ">{{ 'home.textDyn2' | translate }}</p>
+        <p id="text1">{{ 'home.textDyn2' | translate }}</p>
         <div class="oneSegment rondEnd" id="segment1" [style]="styleSegment1">
           <div class="rond" [style]="styleRondLargeL"></div>
         </div>
       </div>
 
       <div class="oneText">
-        <p style="text-align:center; right: 13vw; bottom: 13vh; width:17vw; ">{{ 'home.textDyn3' | translate }}</p>
+        <p id="text2">{{ 'home.textDyn3' | translate }}</p>
         <div class="oneSegment" id="segment2" [style]="styleSegment2">
           <div class="rond" [style]="styleRondLargeR"></div>
         </div>
       </div>
 
       <div class="oneText">
-        <p style="text-align:center; left: 13vw; bottom: 13vh; width:17vw; ">{{ 'home.textDyn4' | translate }}</p>
+        <p id="text3">{{ 'home.textDyn4' | translate }}</p>
         <div class="oneSegment" id="segment3" [style]="styleSegment3">
           <div class="rond" [style]="styleRondLargeR"></div>
         </div>
       </div>
 
       <div class="oneText">
-        <p style="text-align:center; left: 10vw; top: 16vh; width:17vw; ">{{ 'home.textDyn5' | translate }}</p>
+        <p id="text4">{{ 'home.textDyn5' | translate }}</p>
         <div class="oneSegment" id="segment4" [style]="styleSegment4">
           <div class="rond" [style]="styleRondLargeR"></div>
         </div>
@@ -106,7 +109,7 @@
 
   <div id="offres">
     <img class="fond" src="../../assets/images/fond.svg" style="pointer-events:none;" />
-    <h1 style="text-align:center; margin-bottom: 10vh;margin-top: 17vh;">{{ 'home.menuOffres' | translate }}</h1>
+    <h1 class="title">{{ 'home.menuOffres' | translate }}</h1>
     <div class="flexRow" id="listOffer">
       <div class="oneOffer">
         <img class="logoOffer" src="../../assets/images/conseil.svg" />
@@ -134,7 +137,7 @@
 </div>
 
 <div id="thirdPannel">
-  <h1 class="title" style="padding-bottom:15vh;">{{ 'home.menuCharte' | translate }}</h1>
+  <h1 class="title">{{ 'home.menuCharte' | translate }}</h1>
   <div class="flexRow" id="listValeurs">
     <div class="oneValeur">
       <p class="valeur">{{ 'home.valeurTitle1' | translate }}</p>
@@ -174,7 +177,7 @@
 
 <div id="pannelBlog">
   <p class="mainText">{{ 'home.titleBlog' | translate }}</p>
-  <p style="margin-bottom:10vh;" class="mainText">{{ 'home.blogRedirect' | translate }}</p>
+  <p class="mainText discoverText">{{ 'home.blogRedirect' | translate }}</p>
   <div id="articlesUnes" class="flexRow">
     <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticles[0].id)"
       *ngIf="favoriteArticles.length>0">
@@ -198,14 +201,14 @@
   </div>
   <h1>{{ 'home.menuParts' | translate }}</h1>
   <p class="text">{{ 'home.descPart' | translate }}</p>
-  <div class="flexRow listPart" style="width:40%;">
-    <img class="brandImage" style="width:238px; height:122px" src="https://zupimages.net/up/19/38/s657.png" />
-    <img class="brandImage" style="width:112px; height:118px" src="https://zupimages.net/up/19/38/cw39.jpg" />
-    <img class="brandImage" style="width:271px; height:94px" src="https://zupimages.net/up/19/38/r7ho.png" />
+  <div class="flexRow listPart" id="rowPart1">
+    <img class="brandImage part1" src="https://zupimages.net/up/19/38/s657.png" />
+    <img class="brandImage part2" src="https://zupimages.net/up/19/38/cw39.jpg" />
+    <img class="brandImage part3" src="https://zupimages.net/up/19/38/r7ho.png" />
   </div>
-  <div class="flexRow listPart" style="width:20%;">
-    <img class="brandImage" style="width:130px; height:120px" src="https://zupimages.net/up/19/38/wg1j.png" />
-    <img class="brandImage" src="https://zupimages.net/up/19/38/ff06.png" />
+  <div class="flexRow listPart" id="rowPart2">
+    <img class="brandImage part4" src="https://zupimages.net/up/19/38/wg1j.png" />
+    <img class="brandImage part5" src="https://zupimages.net/up/19/38/ff06.png" />
   </div>
 </div>
 
@@ -231,7 +234,7 @@
 </div>
 
 <div id="contact">
-  <h1 style="text-align:center; margin-bottom:7vh;">{{ 'home.menuContact' | translate }}</h1>
+  <h1>{{ 'home.menuContact' | translate }}</h1>
   <div class="flexRow" id="carteContact" style="">
     <img id="photoJane" src="https://zupimages.net/up/19/37/f4yl.png" />
     <div id="fondPhoto"></div>
@@ -260,7 +263,7 @@
     <div class="verticalSeparator"></div>
     <div class="contact flexCol">
       <p>{{ 'home.reseauxFollow' | translate }}</p>
-      <div class="flexRow" style="width:5vw; justify-content:space-between; margin:auto;">
+      <div class="flexRow listLogoContact">
         <a href="https://www.linkedin.com/in/jane-bourgninaud" target="_blank">
           <div class="divImage button">
             <img src="https://image.flaticon.com/icons/svg/733/733635.svg">
@@ -354,4 +357,6 @@
       <p>{{ 'home.menuContact' | translate }}</p>
     </div>
   </div>
+</div>
+
 </div>

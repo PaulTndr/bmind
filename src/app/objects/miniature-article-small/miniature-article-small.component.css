@@ -5,3 +5,9 @@
   margin:5px 0px 0px 0px;
   font: Bold 25px/30px Montserrat;
 }
+
+@media screen and (max-width: 640px) {
+  #titre{
+    font: Bold 10px/15px Montserrat !important;
+  }
+}
