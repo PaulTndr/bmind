@@ -329,7 +329,7 @@ export class WritingPannelComponent implements OnInit {
     var index=0
     var rowArticle : Article[] = []
     for (var k=0; k<this.fullListArticle.length; k++){
-      if(this.newArticle.listIdArticlesLies.indexOf(this.fullListArticle[k].id)==-1 && this.fullListArticle[k].title.toLowerCase().startsWith(this.filterTextNav.toLowerCase())){
+      if(this.newArticle.listIdArticlesLies.indexOf(this.fullListArticle[k].id)==-1 && this.fullListArticle[k].title.toLowerCase().includes(this.filterTextNav.toLowerCase())){
         if (index==3){
           this.displayedListArticle.push(rowArticle)
           rowArticle = []

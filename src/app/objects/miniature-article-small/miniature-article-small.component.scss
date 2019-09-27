@@ -1,0 +1,49 @@
+.wrap {
+  .image {
+    position: relative;
+    background-size: 100% auto;
+    background-position: center;
+    height: inherit;
+    align-items: center;
+    display:flex;
+    &:before{
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+    }
+    .text {
+      color: #FFF;
+      position: relative;
+      display: none;
+      margin:0px;
+      width:90%;
+      margin:auto;
+      text-align: center;
+    }
+  }
+  &:hover{
+    .image {
+      &:before{
+        background: rgba(0, 0, 0, 0.5);
+      }
+      .text {
+        display:flex;
+      }
+    }
+  }
+}
+
+
+#titre{
+  margin:5px 0px 0px 0px;
+  font: Bold 25px/30px Montserrat;
+}
+
+@media screen and (max-width: 640px) {
+  #titre{
+    font: Bold 10px/15px Montserrat !important;
+  }
+}

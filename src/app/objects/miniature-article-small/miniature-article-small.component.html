@@ -1,3 +1,8 @@
-<div id="miniature" [style]="styleForMiniature">
+<div class="wrap" [style]="sizingWrap">
+    <div class="image" [style]="styleForBk">
+        <div class="text">
+            <p id="textResume" [innerHTML]="article.resume"></p>
+        </div>
+    </div>
 </div>
 <p id="titre" [style]="styleForSizingTitle">{{article.title}}</p>
