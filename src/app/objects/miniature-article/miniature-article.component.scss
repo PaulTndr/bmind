@@ -26,6 +26,10 @@
   height: 22vh;
   padding-top: 2vh;
 
+  .type{
+    padding-bottom: 1vh;
+  }
+
   #separatorH,
   #separatorV {
     background-color: white;
@@ -81,4 +85,39 @@
 
   }
 
+}
+
+@media screen and (max-width: 640px){
+  .wrap {
+    width: 100%;
+    height: 30vw;
+  }
+  .text{
+    p{
+      font-size: 2vw;
+      line-height: inherit;
+    }
+    .type{
+      font-size: 8px;
+      font-weight: bold;
+      padding-bottom:0.3vh;
+      line-height: inherit;
+    }
+    .title{
+      height: 14vw;
+      font-size: 3vw;
+      line-height: inherit;
+      margin-bottom: 0.5vh;
+      margin-top: 0.5vh;
+    }
+    #rowData{
+      .oneDivData{
+        .oneData{
+          .data{
+            font: Bold 3vw Montserrat;
+          }
+        }
+      }
+    }
+  }
 }

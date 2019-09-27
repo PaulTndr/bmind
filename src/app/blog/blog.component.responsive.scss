@@ -1,0 +1,119 @@
+//SPECIFIC FOR RESPONSIVITE
+
+@media screen and (max-width: 640px){
+    #topPannel{
+        padding-bottom: 3vh;
+        .fond{
+            margin-top: 0vh;
+        }
+        #header{
+            .logoTitre{
+                width:100%;
+                h1{
+                    font-size:30px !important;
+                }
+            }
+            .logos{
+                top:35px !important;
+                width: 25vw !important;
+                right: 10px !important;
+                .divImage {
+                  width: 15px !important;
+                  height: 15px !important;
+                  padding: 3px !important;
+                  img{
+                    width: 15px !important;
+                    height: 15px !important;
+                  }
+                }
+                .buttonLangue{
+                  font-size: 10px !important;
+                }
+            }
+        }
+        .title{
+            font-size: 35px;
+            padding-top: 2vh;
+            padding-bottom: 0vh;
+            margin: 0px;
+        }
+        .orangeCircle{
+            width: 10px;
+            height: 10px;
+            margin-bottom: 3vh;
+        }
+        #listInput{
+            width: 90%;
+            padding-top: 0vh;
+            .oneInputDiv{
+                width: 45%;
+                padding: 3px 5px 3px 10px;
+                input{
+                    font-size: 10px;
+                }
+                .divImage{
+                    width: 10px;
+                    height: 10px;
+                    padding: 3px;
+                    border:1px solid black;
+                    img{
+                        width:10px;
+                    }
+                }
+            }
+        }
+        #filtersList{
+            width: 90%;
+            margin-left: 5vw;
+            .oneEntete{
+                margin-right: 5px;
+                p{
+                    margin-right: 5px;
+                    font-size:7px;
+                }
+            }
+        }
+    }
+
+    #listArticle{
+        .oneArticle{
+            width:90%;
+        }
+    }
+
+    #footer{
+        height:9vh;
+        padding : 5px 10px 5px 10px;
+        p{
+            font-size: 7px;
+            line-height: inherit;
+        }
+        #info{
+            height: 8vh;
+            width:100%;
+            #logoSignature{
+                height: 5vh;
+                margin-top:1.5vh;
+                display:block;
+            }
+            .contact{
+                width:20%;
+                p{
+                    font-size: 8px;
+                }
+                .listLogoContact{
+                    width: 9vw;
+                }
+            }
+        }  
+    }
+
+    #bottomContact{
+        padding-bottom: 3vh;
+        padding-top: 3vh;
+        .contactText{
+            font: Bold 3vw Montserrat;
+            width: 80%;
+        }
+    }
+}

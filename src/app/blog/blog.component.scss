@@ -269,73 +269,100 @@
     }
   }
 }
-#footer{
-  background:#B7B7B7;
-  height:12vh;
-  padding :10px 20px 10px 20px;
-  p{
+#footer {
+  background: #7E7E7E;
+  height: 12vh;
+  padding: 10px 20px 10px 20px;
+
+  a{
+    color: #171817;
+    text-decoration: none;
+  }
+  p {
     font-size: 2vh;
   }
-  #info{
+
+  #info {
     height: 12vh;
     width: 70%;
-    margin:auto;
-    bottom:0px;
-    color:#171817;
-    padding:5px;
+    margin: auto;
+    bottom: 0px;
+    color: #171817;
+    padding: 5px;
     justify-content: space-between;
 
-    .verticalSeparator{
-      height:auto;
-      width:1px;
-      background-color:#171817;
+    .verticalSeparator {
+      height: auto;
+      width: 1px;
+      background-color: #171817;
     }
 
-    #logoSignature{
+    #logoSignature {
       height: 10vh;
+    }
+
+    .img {
+      padding-right: 2.5vw;
       filter: brightness(0);
     }
-    .img{
-      padding-right:2.5vw;
-    }
-    .redirect{
-      width:10vw;
+
+    .redirect {
+      width: 10vw;
       justify-content: space-around;
-      padding-left:2.5vw;
-      padding-right:2.5vw;
-      p{
-        margin:0px;
+      padding-left: 2.5vw;
+      padding-right: 2.5vw;
+
+      p {
+        margin: 0px;
       }
     }
-    .contact{
-      width:14vw;
-      padding-left:1vw;
-      padding-right:1vw;
-      text-align:center;
+
+    .contact {
+      width: 14vw;
+      padding-left: 1vw;
+      padding-right: 1vw;
+      text-align: center;
       justify-content: space-around;
-      p{
+
+      p {
         font-size: 2.2vh;
-        margin:0px;
+        margin: 0px;
       }
-      .divImage{
-        width:1.2vw;
-        height:1.2vw;
-        background-color:#D17B53;
-        padding:5px;
+
+      .listLogoContact{
+        width:5vw;
+        justify-content:space-between;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .divImage {
+        width: 1.2vw;
+        height: 1.2vw;
+        background-color: #D17B53;
+        padding: 5px;
         border-radius: 4px;
         align-items: center;
-        img{
-          display:block;
-          width:1.2vw;
-          margin:auto;
+
+        img {
+          display: block;
+          width: 1.2vw;
+          margin: auto;
           filter: invert(1);
         }
       }
     }
-    .legal{
-      padding-left:2.5vw;
+
+    .legal {
+      padding-left: 2.5vw;
+      justify-content: space-around;
+
+      p {
+        margin: 0px;
+      }
     }
-    p{
+
+    p {
       font-weight: 600;
     }
   }
