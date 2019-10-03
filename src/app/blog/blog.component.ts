@@ -335,13 +335,14 @@ export class BlogComponent implements OnInit {
     $("html, body").animate({
       scrollTop: 0
     }, 0);
+    setTimeout(() => { $(".divFond").css("height", $("#topPannel")[0].clientHeight + "px") }, 0)
   }
 
   backToNav() {
     console.log("close article")
     this.isDirectlyOpen = false;
     this.isFilterOpen = false;
-    this.styleForSizeingArticle = this.sanitizer.bypassSecurityTrustStyle("width:60%; margin-top:3vh;")
+    this.styleForSizeingArticle = this.sanitizer.bypassSecurityTrustStyle("margin-top:3vh;")
     //$("#fondBlock").css("height", "54.3vh")
     this.isArticleReading = false
     this.articleOnReader = new Article()
@@ -349,6 +350,7 @@ export class BlogComponent implements OnInit {
     $("html, body").animate({
       scrollTop: 0
     }, 0);
+    setTimeout(() => { $(".divFond").css("height", $("#topPannel")[0].clientHeight + "px") }, 0)
   }
 
   openArticleDirectly(idArticle: Number) {
