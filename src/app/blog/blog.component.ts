@@ -122,6 +122,10 @@ export class BlogComponent implements OnInit {
       }
     );
     this.blogService.emitListArticlesSubject();
+
+    setTimeout(() => { $(".divFond").css("height", $("#topPannel")[0].clientHeight + "px") }, 0)
+
+
   }
 
   openPopup(keyOrigin: String) {
@@ -138,6 +142,8 @@ export class BlogComponent implements OnInit {
       $("#imgFiltrageMenu").css("transform", "rotate(0deg)")
       //$("#fondBlock").css("height", "54.3vh")
     }
+
+    setTimeout(() => { $(".divFond").css("height", $("#topPannel")[0].clientHeight + "px") }, 0)
   }
 
   openOneFilter(keyFilter: String) {
