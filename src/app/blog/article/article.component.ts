@@ -23,7 +23,7 @@ export class SafeHtmlPipe implements PipeTransform  {
 @Component({
   selector: 'app-article',
   templateUrl: './article.component.html',
-  styleUrls: ['./article.component.scss']
+  styleUrls: ['./article.component.scss', './article.component.responsive.scss']
 })
 export class ArticleComponent implements OnInit {
 

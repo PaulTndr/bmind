@@ -5,6 +5,7 @@
         padding-bottom: 3vh;
         .fond{
             margin-top: 0vh;
+            //transform: scale(1.6);
         }
         #header{
             .logoTitre{
@@ -114,6 +115,32 @@
         .contactText{
             font: Bold 3vw Montserrat;
             width: 80%;
+        }
+    }
+
+    #retourNav{
+        top: 3px;
+        left: 10px;
+        .divImage{
+            width: 10px;
+            height: 10px;
+            padding: 3px;
+            img{
+                width: 10px;
+                height: 10px;
+            }
+        }
+        p{
+            font-size: 9px;
+        }
+    }
+
+    #articlesLies{
+        h1{
+            font-size: 15px;
+        }
+        p{
+            font-size: 13px;
         }
     }
 }

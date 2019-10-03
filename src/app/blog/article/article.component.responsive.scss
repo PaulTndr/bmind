@@ -1,0 +1,28 @@
+@media screen and (max-width: 640px){
+    #mainArticle{
+        width:90%;
+        #resume{
+            font: Bold 3.5vw Montserrat;
+        }
+        #corps{
+            font-size: 13px;
+        }
+        #listAuteurs{
+            .oneAuteur{
+                font-size: 13px;
+            }
+        }
+    }
+    #sources{
+        padding-top: 3vh;
+        padding-bottom: 3vh;
+        h1{
+            font-size: 15px;
+        }
+        p{
+            font-size: 13px;
+        }
+    }
+    
+}
+

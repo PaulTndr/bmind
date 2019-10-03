@@ -18,7 +18,9 @@
   .divFond{
     position: absolute;
     overflow: hidden;
+    height: -moz-available;
     height: -webkit-fill-available;
+    height: fill-available;
   }
   .fond{
     width: 140vw;
