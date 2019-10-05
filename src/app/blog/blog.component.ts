@@ -90,6 +90,9 @@ export class BlogComponent implements OnInit {
 
 
   ngOnInit() {
+    $("html, body").animate({
+      scrollTop: 0
+    }, 0);
     if (window.location.href.includes("idArticle")) {
       console.log("On accède directement à un article")
       var idArticleToOpen = window.location.href.split("?")[1].split("=")[1]

@@ -19,11 +19,11 @@
   padding-top: 10vh;
   padding-bottom: 10vh;
   text-align: center;
-  height: 70vh;
+  height: 55vh;
 
   .blockFond {
     position: absolute;
-    margin-top: 21vh;
+    margin-top: 6vh;
     margin-left: -21vw;
     margin-right: -20vw;
     margin-bottom: -20vh;
@@ -58,6 +58,7 @@
 
   #rowPart1{
     width:40%;
+    padding-top: 10vh;
     .part1{
       width:238px;
       height:122px;
@@ -111,6 +112,7 @@
     width: 80vw;
     margin: auto;
     justify-content: space-between;
+    margin-top: 7vh;
 
     .oneOffer {
       width: 22.5vw;
@@ -173,6 +175,7 @@
         margin: 0px;
         text-align: initial;
         font: Bold 18px Montserrat;
+        margin-top: 10px;
       }
     }
   }
@@ -733,6 +736,7 @@
 
     .oneValeur {
       width: 20vw;
+      padding: 10px;
 
       .descValeur {
         margin-top: 1vh;

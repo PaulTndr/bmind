@@ -112,6 +112,10 @@ export class HomeComponent implements OnInit {
   constructor(private globalService: GlobalService, private blogService: BlogService, private sanitizer: DomSanitizer, private router: Router, private translate: TranslateService, private httpClient: HttpClient) { }
 
   ngOnInit() {
+    $("html, body").animate({
+      scrollTop: 0
+    }, 0);
+    
     this.isFrSelected = this.globalService.isFrSelected
     this.isEnSelected = this.globalService.isEnSelected
     //Si on arrive directement ici
