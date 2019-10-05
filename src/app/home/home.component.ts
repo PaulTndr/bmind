@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 import { InViewportMetadata } from 'ng-in-viewport';
 import { HttpClient } from '@angular/common/http';
+import $ from 'jquery';
 
 import { GlobalService } from '../global.service';
 import { BlogService } from '../blog/blog.service';
@@ -122,6 +123,15 @@ export class HomeComponent implements OnInit {
 
       }
     );
+    window.addEventListener('scroll', function(e){
+      if(this.window.scrollY>=100){
+        console.log($("#header"))
+        $("#header").addClass("fixedTop")
+      } else{
+        $("#header").removeClass("fixedTop")
+      }
+      
+    })
 
     if (this.favoriteArticles.length == 0) {
       this.favoriteArticles = this.blogService.listFavoriteArticles

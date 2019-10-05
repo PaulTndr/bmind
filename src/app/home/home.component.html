@@ -1,50 +1,51 @@
 <div style="position: relative; overflow-x: hidden;">
 <div id="topPannel">
-  <div class="divFond">
-    <img class="fond" src="../../assets/images/fond.svg" />
-  </div>
-  <div class="flexRow" id="header">
-    <a id="toggle" [ngClass]="{'on': isMenuOpen}" (click)="openOrCloseMenu()"><span></span></a>
-    <div class="logoTitre">
-      <h1>B.mind</h1>
-      <p>cognitive innovation</p>
+  <div id="fixPannelTop">
+    <div class="divFond">
+      <img class="fond" src="../../assets/images/fond.svg" />
     </div>
-    <div class="logos flexRow">
-      <a href="https://www.linkedin.com/in/jane-bourgninaud" target="_blank">
-        <div class="divImage button">
-          <img src="https://image.flaticon.com/icons/svg/733/733635.svg">
-        </div>
-      </a>
-      <a href="https://www.linkedin.com/in/jane-bourgninaud" target="_blank">
-        <div class="divImage button">
-          <img src="https://image.flaticon.com/icons/svg/34/34227.svg">
-        </div>
-      </a>
-      <div class="verticalSeparator"></div>
-      <p class="button buttonLangue" [ngClass]="{'isSelected': isFrSelected}" (click)="switchLangue('fr')">FR</p>
-      <p class="button buttonLangue" [ngClass]="{'isSelected': isEnSelected}" (click)="switchLangue('en')">EN</p>
+    <div class="flexRow" id="header">
+      <a id="toggle" [ngClass]="{'on': isMenuOpen}" (click)="openOrCloseMenu()"><span></span></a>
+      <div class="logoTitre">
+        <h1>B.mind</h1>
+        <p>cognitive innovation</p>
+      </div>
+      <div class="logos flexRow">
+        <a href="https://www.linkedin.com/in/jane-bourgninaud" target="_blank">
+          <div class="divImage button">
+            <img src="https://image.flaticon.com/icons/svg/733/733635.svg">
+          </div>
+        </a>
+        <a href="https://www.linkedin.com/in/jane-bourgninaud" target="_blank">
+          <div class="divImage button">
+            <img src="https://image.flaticon.com/icons/svg/34/34227.svg">
+          </div>
+        </a>
+        <div class="verticalSeparator"></div>
+        <p class="button buttonLangue" [ngClass]="{'isSelected': isFrSelected}" (click)="switchLangue('fr')">FR</p>
+        <p class="button buttonLangue" [ngClass]="{'isSelected': isEnSelected}" (click)="switchLangue('en')">EN</p>
+      </div>
     </div>
-  </div>
-  <div *ngIf="!isMenuOpen" id="textTitle">
-    <h1 class="title">{{ 'home.title' | translate }}</h1>
-    <h2 class="subTitle">{{ 'home.subtitle' | translate }}</h2>
-    <div class="orangeCircle"></div>
-  </div>
-
-  <div *ngIf="isMenuOpen" id="boxMenu">
-    <div id="menu" class="flexCol">
-      <a class="button" href="#projets" (click)="resetMenu()">{{ 'home.menuProjets' | translate }}</a>
-      <a class="button" href="#savoirFaire" (click)="resetMenu()">{{ 'home.menuSavoirs' | translate }}</a>
-      <a class="button" href="#offres" (click)="resetMenu()">{{ 'home.menuOffres' | translate }}</a>
-      <a class="button" href="#thirdPannel" (click)="resetMenu()">{{ 'home.menuCharte' | translate }}</a>
-      <a class="button" href="#partenaires" (click)="resetMenu()">{{ 'home.menuParts' | translate }}</a>
-      <a class="button" href="#carriere" (click)="resetMenu()">{{ 'home.menuCarr' | translate }}</a>
-      <a class="button" href="#contact" (click)="resetMenu()">{{ 'home.menuContact' | translate }}</a>
+    <div *ngIf="!isMenuOpen" id="textTitle">
+      <h1 class="title">{{ 'home.title' | translate }}</h1>
+      <h2 class="subTitle">{{ 'home.subtitle' | translate }}</h2>
       <div class="orangeCircle"></div>
-      <a class="button" routerLink="/blog">{{ 'home.menuBlog' | translate }}</a>
+    </div>
+
+    <div *ngIf="isMenuOpen" id="boxMenu">
+      <div id="menu" class="flexCol">
+        <a class="button" href="#projets" (click)="resetMenu()">{{ 'home.menuProjets' | translate }}</a>
+        <a class="button" href="#savoirFaire" (click)="resetMenu()">{{ 'home.menuSavoirs' | translate }}</a>
+        <a class="button" href="#offres" (click)="resetMenu()">{{ 'home.menuOffres' | translate }}</a>
+        <a class="button" href="#thirdPannel" (click)="resetMenu()">{{ 'home.menuCharte' | translate }}</a>
+        <a class="button" href="#partenaires" (click)="resetMenu()">{{ 'home.menuParts' | translate }}</a>
+        <a class="button" href="#carriere" (click)="resetMenu()">{{ 'home.menuCarr' | translate }}</a>
+        <a class="button" href="#contact" (click)="resetMenu()">{{ 'home.menuContact' | translate }}</a>
+        <div class="orangeCircle"></div>
+        <a class="button" routerLink="/blog">{{ 'home.menuBlog' | translate }}</a>
+      </div>
     </div>
   </div>
-
   <div class="flexRow" style="margin:auto; justify-content:space-between; width: 70%;" id="projets">
     <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticles[0].id)"
       *ngIf="favoriteArticles.length>0">

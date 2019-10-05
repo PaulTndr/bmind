@@ -348,6 +348,19 @@
   padding-bottom: 7vh;
   position:relative;
 
+  #fixPannelTop{
+    height:100vh;
+    .fixedTop{
+      background-color: black;
+      position: fixed;
+      width: 100%;
+      z-index: 100;
+      #toggle{
+        display: none;
+      }
+    }
+  }
+
   .divFond{
     overflow: hidden;
     height: -webkit-fill-available;
@@ -369,7 +382,8 @@
 
   #header {
     position: relative;
-    padding-top: 3vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
 
     .logoTitre {
       width: 20vw;
@@ -392,7 +406,7 @@
       justify-content: space-between;
       align-items: center;
       position: absolute;
-      top: 50px;
+      top: 35px;
       right: 50px;
 
       .divImage {
@@ -701,8 +715,8 @@
     width: 60%;
     margin: auto;
     justify-content: space-between;
-    height: 15vh;
     align-items: center;
+    height: 25vh;
 
     .verticalSeparator {
       height: 15vh;
