@@ -443,6 +443,13 @@
     }
   }
 
+  #logoTop{
+    width:8vw;
+    margin:auto;
+    display: block;
+    padding-top:3vh;
+  }
+
   #textTitle {
     padding-top: 20vh;
     padding-bottom: 25vh;
@@ -860,12 +867,12 @@
   position: fixed;
   left: 20px;
   padding-left: 10px;
-  top: 30vh;
-  height: 42vh;
   z-index: 2;
+  top: 20vh;
+  height: 70vh;
 
   .points {
-    height: 42vh;
+    height: 70vh;
     width: 0px;
     border-right: 1px dashed #848484;
     justify-content: space-between;
@@ -894,7 +901,7 @@
 
   .anchors {
     margin-left: 15px;
-    height: 48vh;
+    height: 76vh;
     justify-content: space-between;
     margin-top: -3vh;
     color: #848484;
@@ -907,8 +914,8 @@
 
       p {
         margin: 0px;
-        width: 3vw;
-        font-size: 10px;
+        width: 5vw;
+        font-size: 13px;
       }
     }
 

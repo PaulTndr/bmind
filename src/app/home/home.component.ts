@@ -185,7 +185,7 @@ export class HomeComponent implements OnInit {
     this.indexMaxDotActived = index;
 
     if (!this.isPointHovered) {
-      this.sizeSolidLineForTimeLine = this.sanitizer.bypassSecurityTrustStyle("height:" + (['#projets', '#savoirFaire', '#offres', '#thirdPannel', '#partenaires', '#carriere', '#contact'].indexOf("" + keyInViewport) * 7) + "vh;");
+      this.sizeSolidLineForTimeLine = this.sanitizer.bypassSecurityTrustStyle("height:" + (['#projets', '#savoirFaire', '#offres', '#thirdPannel', '#partenaires', '#carriere', '#contact'].indexOf("" + keyInViewport) * 11.5) + "vh;");
     }
   }
 
@@ -212,7 +212,7 @@ export class HomeComponent implements OnInit {
         'carriere': index == 5 ? true : false,
         'contact': index == 6 ? true : false,
       }
-      this.sizeSolidLineForTimeLine = this.sanitizer.bypassSecurityTrustStyle("height:" + (index * 7) + "vh;");
+      this.sizeSolidLineForTimeLine = this.sanitizer.bypassSecurityTrustStyle("height:" + (index * 11.5) + "vh;");
       console.log(this.sizeSolidLineForTimeLine)
     } else {
       this.isPointHovered = false;

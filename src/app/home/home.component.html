@@ -26,6 +26,9 @@
         <p class="button buttonLangue" [ngClass]="{'isSelected': isEnSelected}" (click)="switchLangue('en')">EN</p>
       </div>
     </div>
+    <div *ngIf="!isMenuOpen">
+        <img id="logoTop" src="../../assets/images/logoBl.svg" />
+    </div>
     <div *ngIf="!isMenuOpen" id="textTitle">
       <h1 class="title">{{ 'home.title' | translate }}</h1>
       <h2 class="subTitle">{{ 'home.subtitle' | translate }}</h2>
