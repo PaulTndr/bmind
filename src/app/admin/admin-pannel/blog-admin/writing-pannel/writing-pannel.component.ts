@@ -333,7 +333,7 @@ export class WritingPannelComponent implements OnInit {
     var index = 0
     var rowArticle: Article[] = []
     for (var k = 0; k < this.fullListArticle.length; k++) {
-      if (this.newArticle.listIdArticlesLies.indexOf(this.fullListArticle[k].id) == -1 && this.fullListArticle[k].title.toLowerCase().includes(this.filterTextNav.toLowerCase())) {
+      if (this.newArticle.langue === this.fullListArticle[k].langue && this.newArticle.listIdArticlesLies.indexOf(this.fullListArticle[k].id) == -1 && this.fullListArticle[k].title.toLowerCase().includes(this.filterTextNav.toLowerCase())) {
         if (index == 3) {
           this.displayedListArticle.push(rowArticle)
           rowArticle = []
@@ -413,21 +413,7 @@ export class WritingPannelComponent implements OnInit {
           for (var k = 0; k < this.fullListArticle.length; k++) {
             this.lastIdArticle = +Math.max(Number(this.lastIdArticle), Number(this.fullListArticle[k].id))
           }
-          var index = 0
-          var rowArticle: Article[] = []
-          for (var k = 0; k < this.fullListArticle.length; k++) {
-            if (index == 3) {
-              this.displayedListArticle.push(rowArticle)
-              rowArticle = []
-              rowArticle.push(this.fullListArticle[k])
-            } else {
-              rowArticle.push(this.fullListArticle[k])
-            }
-            index++;
-          }
-          if (index != 0) {
-            this.displayedListArticle.push(rowArticle)
-          }
+          this.refreshDisplayedArticle();
           //Si on est en edit on va aller chercher les articles liés
           if (this.isEdit)
             this.articlesSelected = [];
@@ -450,6 +436,7 @@ export class WritingPannelComponent implements OnInit {
 
   switchLangueArticle(langue: String) {
     this.newArticle.langue = langue;
+    this.refreshDisplayedArticle()
     if (langue === 'EN') {
       this.translate.use('en');
     } else {
