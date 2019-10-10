@@ -1,99 +1,103 @@
 
 
-import {Source} from './source';
-import {Keyword} from './keyword';
-import {Auteur} from './auteur';
+import { Source } from './source';
+import { Keyword } from './keyword';
+import { Auteur } from './auteur';
 
 interface KeywordData {
-  id : Number
-  title : String
-  type : String
-  srcImg : String
-  resume : String
-  fullText : String
-  listSources : Source[]
-  listAuteurs : Auteur[]
-  listSectors : String[]
-  listIdArticlesLies : Number[]
-  time : String
-  difficulte : Number
-  vues : Number
-  timestamp : Number
+  id: Number
+  title: String
+  langue: String
+  type: String
+  srcImg: String
+  resume: String
+  fullText: String
+  listSources: Source[]
+  listAuteurs: Auteur[]
+  listSectors: String[]
+  listIdArticlesLies: Number[]
+  time: String
+  difficulte: Number
+  vues: Number
+  timestamp: Number
 }
 
 export class Article {
-  id : Number;
-  title : String = new String();
-  type : String = new String();
-  srcImg : String = new String();
-  resume : String = new String();
-  fullText : String = new String();
-  listSources : Source[] = [];
-  listAuteurs : Auteur[] = [];
-  listSectors : String[] = [];
-  listIdArticlesLies : Number[] = [];
-  time : String = new String();
-  difficulte : Number = new Number();
-  vues : Number = 0;
-  timestamp : Number = new Date().getTime();
+  id: Number;
+  title: String = new String();
+  langue: String = new String();
+  type: String = new String();
+  srcImg: String = new String();
+  resume: String = new String();
+  fullText: String = new String();
+  listSources: Source[] = [];
+  listAuteurs: Auteur[] = [];
+  listSectors: String[] = [];
+  listIdArticlesLies: Number[] = [];
+  time: String = new String();
+  difficulte: Number = new Number();
+  vues: Number = 0;
+  timestamp: Number = new Date().getTime();
 
-  print(){
-    console.log("id: "+this.id)
-    console.log("title: "+this.title)
-    console.log("type: "+this.type)
-    console.log("srcImg: "+this.srcImg)
-    console.log("resume: "+this.resume)
-    console.log("fullText: "+this.fullText)
-    console.log("time: "+this.time)
-    console.log("timestamp: "+this.timestamp)
-    console.log("difficulte: "+this.difficulte)
-    console.log("vues: "+this.vues)
+  print() {
+    console.log("id: " + this.id)
+    console.log("title: " + this.title)
+    console.log("langue: " + this.langue)
+    console.log("type: " + this.type)
+    console.log("srcImg: " + this.srcImg)
+    console.log("resume: " + this.resume)
+    console.log("fullText: " + this.fullText)
+    console.log("time: " + this.time)
+    console.log("timestamp: " + this.timestamp)
+    console.log("difficulte: " + this.difficulte)
+    console.log("vues: " + this.vues)
     console.log("listSources: ")
     console.log(this.listSources)
-    this.listSources.forEach(function(source){
-      console.log("- "+source.name +" ("+source.link+")")
+    this.listSources.forEach(function (source) {
+      console.log("- " + source.name + " (" + source.link + ")")
     })
     console.log("listAuteurs: ")
     console.log(this.listAuteurs)
-    this.listAuteurs.forEach(function(autor){
-      console.log("- "+autor.prenom+" "+autor.nom)
+    this.listAuteurs.forEach(function (autor) {
+      console.log("- " + autor.prenom + " " + autor.nom)
     })
     console.log("listSectors: ")
-    this.listSectors.forEach(function(sector){
-      console.log("- "+sector)
+    this.listSectors.forEach(function (sector) {
+      console.log("- " + sector)
     })
     console.log("listIdArticlesLies: ")
-    this.listIdArticlesLies.forEach(function(id){
-      console.log("- "+id)
+    this.listIdArticlesLies.forEach(function (id) {
+      console.log("- " + id)
     })
   }
 
-  fromHashMap(data : KeywordData){
-    this.id=Number(data.id);
-    this.title=String(data.title);
-    this.type=String(data.type);
-    this.srcImg=String(data.srcImg);
-    this.resume=String(data.resume);
-    this.fullText=String(data.fullText);
-    this.difficulte=Number(data.difficulte);
-    this.vues=Number(data.vues);
-    this.time=String(data.time);
-    this.timestamp=Number(data.timestamp);
-    this.listSources=data.listSources;
-    this.listAuteurs=data.listAuteurs;
-    this.listSectors=data.listSectors;
-    this.listIdArticlesLies=data.listIdArticlesLies;
-    if(!this.listAuteurs){
-      this.listAuteurs=[]
+  fromHashMap(data: KeywordData) {
+    this.id = Number(data.id);
+    this.title = String(data.title);
+    this.langue = String(data.langue);
+    this.type = String(data.type);
+    this.srcImg = String(data.srcImg);
+    this.resume = String(data.resume);
+    this.fullText = String(data.fullText);
+    this.difficulte = Number(data.difficulte);
+    this.vues = Number(data.vues);
+    this.time = String(data.time);
+    this.timestamp = Number(data.timestamp);
+    this.listSources = data.listSources;
+    this.listAuteurs = data.listAuteurs;
+    this.listSectors = data.listSectors;
+    this.listIdArticlesLies = data.listIdArticlesLies;
+    if (!this.listAuteurs) {
+      this.listAuteurs = []
     }
-    if(!this.listSources){
-      this.listSources=[]
+    if (!this.listSources) {
+      this.listSources = []
     }
-    if(!this.listSectors){
-      this.listSectors=[]
+    if (!this.listSectors) {
+      this.listSectors = []
     }
-    if(!this.listIdArticlesLies){
-      this.listIdArticlesLies=[]
+    if (!this.listIdArticlesLies) {
+      this.listIdArticlesLies = []
     }
 
     /*this.listSources=[]
