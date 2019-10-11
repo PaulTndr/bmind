@@ -3,9 +3,12 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { HttpClient } from '@angular/common/http';
 import { AdminService } from '../../../admin.service';
 
-import {Article} from '../../../../classes/articles/article'
-import {Source} from '../../../../classes/articles/source'
-import {Auteur} from '../../../../classes/articles/auteur'
+import { TranslateService } from '@ngx-translate/core';
+
+import { Article } from '../../../../classes/articles/article'
+import { Source } from '../../../../classes/articles/source'
+import { Auteur } from '../../../../classes/articles/auteur'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-writing-pannel',
@@ -14,74 +17,75 @@ import {Auteur} from '../../../../classes/articles/auteur'
 })
 export class WritingPannelComponent implements OnInit {
 
-  @Input() isEdit : Boolean;
-  @Input() articleToEdit : Article;
+  @Input() isEdit: Boolean;
+  @Input() articleToEdit: Article;
 
-  newArticle : Article = new Article();
+  newArticle: Article = new Article();
   editor = ClassicEditor;
 
-  listTime = ["5 min","10 min","30 min", "1 heure"]
-  listDifficulte = [1,2,3,4,5]
+  listTime = ["5 min", "10 min", "30 min", "1 heure"]
+  listDifficulte = [1, 2, 3, 4, 5]
 
-  newSource : Source = new Source();
-  newAutor : Auteur = new Auteur();
-  newSector : String = new String();
-  newType : String = new String();
+  newSource: Source = new Source();
+  newAutor: Auteur = new Auteur();
+  newSector: String = new String();
+  newType: String = new String();
 
-  isAddSource : Boolean = false;
-  isAddAuteur : Boolean = false;
-  isAddSector : Boolean = false;
-  isAddType : Boolean = false;
+  isAddSource: Boolean = false;
+  isAddAuteur: Boolean = false;
+  isAddSector: Boolean = false;
+  isAddType: Boolean = false;
 
-  fullListAutor : Auteur[];
-  fullListArticle : Article[];
-  displayedListArticle : Article[][] = [];
-  lastIdAutor : Number;
-  lastIdArticle : Number;
-  mapCheckBox : any = {};
+  fullListAutor: Auteur[];
+  fullListArticle: Article[];
+  displayedListArticle: Article[][] = [];
+  lastIdAutor: Number;
+  lastIdArticle: Number;
+  mapCheckBox: any = {};
 
-  articlesSelected : Article[] = [];
-  isAddingArticle : Boolean = false;
-  filterTextNav : String = new String();
+  articlesSelected: Article[] = [];
+  isAddingArticle: Boolean = false;
+  filterTextNav: String = new String();
 
-  isPosted : Boolean = false;
+  isPosted: Boolean = false;
 
-  fullListSectors=[]
+  fullListSectors = []
   originalListSectors = [];
-  listTypes=[];
+  listTypes = [];
   originalListTypes = [];
 
   mapSectorSelected = {
-    "Entreprise":false,
-    "Formation":false,
-    "Enfance":false,
+    "Entreprise": false,
+    "Formation": false,
+    "Enfance": false,
   }
-  nouveauxSecteurs : String[] = []
+  nouveauxSecteurs: String[] = []
 
-  constructor(private httpClient: HttpClient, private adminService : AdminService) { }
+  constructor(private httpClient: HttpClient, private router: Router, private adminService: AdminService, private translate: TranslateService) { }
 
   ngOnInit() {
     this.fillData(['autors', 'articles', 'sectors', 'types'])
 
-    if (!this.isEdit){
-      this.newArticle.type=""
-      this.newArticle.time=this.listTime[0]
-      this.newArticle.difficulte=this.listDifficulte[0]
+    if (!this.isEdit) {
+      this.newArticle.type = ""
+      this.newArticle.langue = "FR"
+      this.newArticle.time = this.listTime[0]
+      this.newArticle.difficulte = this.listDifficulte[0]
       this.newArticle.listAuteurs = [];
       this.newArticle.listSectors = [];
       this.newArticle.listSectors = [];
     } else {
-      this.newArticle=this.articleToEdit
+      this.newArticle = this.articleToEdit
     }
   }
 
-  write(){
-    this.newArticle.id=(+this.lastIdArticle)+1
-    this.lastIdArticle = (+this.lastIdArticle)+1
-    this.newArticle.vues=0;
+  write() {
+    this.newArticle.id = (+this.lastIdArticle) + 1
+    this.lastIdArticle = (+this.lastIdArticle) + 1
+    this.newArticle.vues = 0;
 
     //Ajout du nouveau type ??
-    if(this.originalListTypes.indexOf(this.newArticle.type)==-1){
+    if (this.originalListTypes.indexOf(this.newArticle.type) == -1) {
       this.originalListTypes.push(this.newArticle.type)
       this.httpClient.put('https://bminddev.firebaseio.com/types.json', this.originalListTypes).subscribe(
         () => {
@@ -98,25 +102,25 @@ export class WritingPannelComponent implements OnInit {
       () => {
         console.log('Enregistrement de l\'article terminé !');
         this.isPosted = true
-        this.newArticle=new Article();
+        this.newArticle = new Article();
         this.fillData(['autors'])
-        setTimeout( ()=>{this.isPosted=false},3000)
+        setTimeout(() => { this.isPosted = false; this.router.navigate(['/admin/pannel/blogModeration']); }, 3000)
       },
       (error) => {
         console.log('Erreur lors de l\'enregistrment de l\'article! : ' + error);
       }
     );
-    
+
     //Ajout des nouveaux secteurs
-    for (var k=0; k<this.nouveauxSecteurs.length; k++){
-      if (this.newArticle.listSectors.indexOf(""+this.nouveauxSecteurs[k])>-1){
-        this.originalListSectors.push(""+this.nouveauxSecteurs[k])
+    for (var k = 0; k < this.nouveauxSecteurs.length; k++) {
+      if (this.newArticle.listSectors.indexOf("" + this.nouveauxSecteurs[k]) > -1) {
+        this.originalListSectors.push("" + this.nouveauxSecteurs[k])
       }
     }
     this.httpClient.put('https://bminddev.firebaseio.com/secteurs.json', this.originalListSectors).subscribe(
       () => {
         console.log('Enregistrement du secteur terminé !');
-        this.nouveauxSecteurs=[]
+        this.nouveauxSecteurs = []
       },
       (error) => {
         console.log('Erreur lors de l\'enregistrment du secteur! : ' + error);
@@ -124,20 +128,20 @@ export class WritingPannelComponent implements OnInit {
     );
   }
 
-  edit(){
+  edit() {
 
     //Modif BASE
     var newListArticle = []
-    for (var k=0; k<this.fullListArticle.length;k++){
-      if (!(this.fullListArticle[k].id==this.articleToEdit.id)){
+    for (var k = 0; k < this.fullListArticle.length; k++) {
+      if (!(this.fullListArticle[k].id == this.articleToEdit.id)) {
         newListArticle.push(this.fullListArticle[k])
-      } else{
+      } else {
         newListArticle.push(this.newArticle)
       }
     }
-    
+
     //Ajout du nouveau type ??
-    if(this.originalListTypes.indexOf(this.articleToEdit.type)==-1){
+    if (this.originalListTypes.indexOf(this.articleToEdit.type) == -1) {
       this.originalListTypes.push(this.articleToEdit.type)
       this.httpClient.put('https://bminddev.firebaseio.com/types.json', this.originalListTypes).subscribe(
         () => {
@@ -150,15 +154,15 @@ export class WritingPannelComponent implements OnInit {
     }
 
     //Ajout des nouveaux secteurs
-    for (var k=0; k<this.nouveauxSecteurs.length; k++){
-      if (this.newArticle.listSectors.indexOf(""+this.nouveauxSecteurs[k])>-1){
-        this.originalListSectors.push(""+this.nouveauxSecteurs[k])
+    for (var k = 0; k < this.nouveauxSecteurs.length; k++) {
+      if (this.newArticle.listSectors.indexOf("" + this.nouveauxSecteurs[k]) > -1) {
+        this.originalListSectors.push("" + this.nouveauxSecteurs[k])
       }
     }
     this.httpClient.put('https://bminddev.firebaseio.com/secteurs.json', this.originalListSectors).subscribe(
       () => {
         console.log('Enregistrement du secteur terminé !');
-        this.nouveauxSecteurs=[]
+        this.nouveauxSecteurs = []
       },
       (error) => {
         console.log('Erreur lors de l\'enregistrment du secteur! : ' + error);
@@ -177,79 +181,79 @@ export class WritingPannelComponent implements OnInit {
     );
   }
 
-  openAdd(keyList : String){
-    if (keyList==='source'){
-      this.isAddSource=true;
-    } else if (keyList==='auteur'){
-      this.isAddAuteur=true;
-    } else if (keyList==='sector'){
-      this.isAddSector=true;
-    } else if (keyList==='type'){
-      this.isAddType=true;
+  openAdd(keyList: String) {
+    if (keyList === 'source') {
+      this.isAddSource = true;
+    } else if (keyList === 'auteur') {
+      this.isAddAuteur = true;
+    } else if (keyList === 'sector') {
+      this.isAddSector = true;
+    } else if (keyList === 'type') {
+      this.isAddType = true;
     }
   }
-  closeAdd(keyList : String){
-    if (keyList==='source'){
-      this.isAddSource=false;
-    } else if (keyList==='auteur'){
-      this.isAddAuteur=false;
-    } else if (keyList==='sector'){
-      this.isAddSector=false;
-    } else if (keyList==='type'){
-      this.isAddType=false;
+  closeAdd(keyList: String) {
+    if (keyList === 'source') {
+      this.isAddSource = false;
+    } else if (keyList === 'auteur') {
+      this.isAddAuteur = false;
+    } else if (keyList === 'sector') {
+      this.isAddSector = false;
+    } else if (keyList === 'type') {
+      this.isAddType = false;
     }
   }
 
-  addItemToLists(keyList : String){
-    if (keyList==='source'){
+  addItemToLists(keyList: String) {
+    if (keyList === 'source') {
       this.newArticle.listSources.push(this.newSource)
       this.newSource = new Source()
-      this.isAddSource=false;
-    } else if (keyList==='type'){
+      this.isAddSource = false;
+    } else if (keyList === 'type') {
       this.listTypes.push(this.newType)
-      this.newArticle.type=this.newType
-      this.newType=''
-      this.isAddType=false;
-      
-    } else if (keyList==='auteur'){
+      this.newArticle.type = this.newType
+      this.newType = ''
+      this.isAddType = false;
+
+    } else if (keyList === 'auteur') {
       //On doit ajouter à la liste plus haut, le mettre dans la map et le cocher
-      this.newAutor.id = (+this.lastIdAutor)+1
-      this.lastIdAutor = (+this.lastIdAutor)+1
-      
-      this.mapCheckBox[""+this.newAutor.id]=true
+      this.newAutor.id = (+this.lastIdAutor) + 1
+      this.lastIdAutor = (+this.lastIdAutor) + 1
+
+      this.mapCheckBox["" + this.newAutor.id] = true
       this.fullListAutor.push(this.newAutor)
 
       this.newAutor = new Auteur()
-    } else if (keyList==='secteur'){
-      this.mapSectorSelected[""+this.newSector]=true;
-      this.fullListSectors.push(""+this.newSector);
-      this.nouveauxSecteurs.push(""+this.newSector)
-      this.newSector="";
+    } else if (keyList === 'secteur') {
+      this.mapSectorSelected["" + this.newSector] = true;
+      this.fullListSectors.push("" + this.newSector);
+      this.nouveauxSecteurs.push("" + this.newSector)
+      this.newSector = "";
     }
   }
 
-  removeItem(keyList : String, entry : any){
-    if (keyList==='source'){
+  removeItem(keyList: String, entry: any) {
+    if (keyList === 'source') {
       var newListSources = []
-      for (var k=0; k<this.newArticle.listSources.length;k++){
-        if (this.newArticle.listSources[k]!=entry){
+      for (var k = 0; k < this.newArticle.listSources.length; k++) {
+        if (this.newArticle.listSources[k] != entry) {
           newListSources.push(this.newArticle.listSources[k])
         }
       }
       this.newArticle.listSources = newListSources.slice()
-    } else if (keyList==='auteur'){
+    } else if (keyList === 'auteur') {
       var newListAuteurs = []
-      for (var k=0; k<this.newArticle.listAuteurs.length;k++){
-        if (this.newArticle.listAuteurs[k]!=entry){
+      for (var k = 0; k < this.newArticle.listAuteurs.length; k++) {
+        if (this.newArticle.listAuteurs[k] != entry) {
           newListAuteurs.push(this.newArticle.listAuteurs[k])
         }
       }
       this.newArticle.listAuteurs = newListAuteurs.slice()
 
-    } else if (keyList==='secteur'){
+    } else if (keyList === 'secteur') {
       var newListSectors = []
-      for (var k=0; k<this.newArticle.listSectors.length;k++){
-        if (this.newArticle.listSectors[k]!=entry){
+      for (var k = 0; k < this.newArticle.listSectors.length; k++) {
+        if (this.newArticle.listSectors[k] != entry) {
           newListSectors.push(this.newArticle.listSectors[k])
         }
       }
@@ -258,30 +262,30 @@ export class WritingPannelComponent implements OnInit {
     }
   }
 
-  validateCheckbox(keyList : String){
-    if (keyList==='auteur'){
-      for (var k=0; k<this.fullListAutor.length; k++){
-        if(this.mapCheckBox[""+this.fullListAutor[k].id]==true){
-          var alreadyIn=false;
-          for (var i=0; i<this.newArticle.listAuteurs.length; i++){
-            if(this.newArticle.listAuteurs[i].id==this.fullListAutor[k].id){
-              alreadyIn=true; 
+  validateCheckbox(keyList: String) {
+    if (keyList === 'auteur') {
+      for (var k = 0; k < this.fullListAutor.length; k++) {
+        if (this.mapCheckBox["" + this.fullListAutor[k].id] == true) {
+          var alreadyIn = false;
+          for (var i = 0; i < this.newArticle.listAuteurs.length; i++) {
+            if (this.newArticle.listAuteurs[i].id == this.fullListAutor[k].id) {
+              alreadyIn = true;
             }
           }
-          if (!alreadyIn){
+          if (!alreadyIn) {
             this.newArticle.listAuteurs.push(this.fullListAutor[k])
           }
         }
       }
-      this.isAddAuteur=false;
-      for (var k=0; k<this.fullListAutor.length; k++){
-        this.mapCheckBox[""+this.fullListAutor[k].id]=false
+      this.isAddAuteur = false;
+      for (var k = 0; k < this.fullListAutor.length; k++) {
+        this.mapCheckBox["" + this.fullListAutor[k].id] = false
       }
-    } else if (keyList==='secteur'){
+    } else if (keyList === 'secteur') {
       var keysSector = Object.keys(this.mapSectorSelected)
       this.newArticle.listSectors = []
-      for (var k=0; k<keysSector.length; k++){
-        if(this.mapSectorSelected[keysSector[k]]){
+      for (var k = 0; k < keysSector.length; k++) {
+        if (this.mapSectorSelected[keysSector[k]]) {
           this.newArticle.listSectors.push(keysSector[k])
         }
       }
@@ -289,32 +293,32 @@ export class WritingPannelComponent implements OnInit {
     }
   }
 
-  openPopupAddArticle(){
-    this.isAddingArticle=true;
+  openPopupAddArticle() {
+    this.isAddingArticle = true;
   }
 
-  closeAddArticle(){
-    this.isAddingArticle=false;
+  closeAddArticle() {
+    this.isAddingArticle = false;
   }
 
-  selectArticle(article : Article){
+  selectArticle(article: Article) {
     this.articlesSelected.push(article)
     this.newArticle.listIdArticlesLies.push(article.id)
-    this.isAddingArticle=false;
+    this.isAddingArticle = false;
     this.filterTextNav = new String();
     this.refreshDisplayedArticle()
   }
 
-  deleteArticle(article : Article){
+  deleteArticle(article: Article) {
     var newListId = []
     var newListSelectedArticle = []
-    for(var k=0; k<this.newArticle.listIdArticlesLies.length;k++){
-      if(this.newArticle.listIdArticlesLies[k]!=article.id){
+    for (var k = 0; k < this.newArticle.listIdArticlesLies.length; k++) {
+      if (this.newArticle.listIdArticlesLies[k] != article.id) {
         newListId.push(this.newArticle.listIdArticlesLies[k])
       }
     }
-    for(var k=0; k<this.articlesSelected.length;k++){
-      if(this.articlesSelected[k].id!=article.id){
+    for (var k = 0; k < this.articlesSelected.length; k++) {
+      if (this.articlesSelected[k].id != article.id) {
         newListSelectedArticle.push(this.articlesSelected[k])
       }
     }
@@ -324,13 +328,13 @@ export class WritingPannelComponent implements OnInit {
     this.refreshDisplayedArticle()
   }
 
-  refreshDisplayedArticle(){
+  refreshDisplayedArticle() {
     this.displayedListArticle = []
-    var index=0
-    var rowArticle : Article[] = []
-    for (var k=0; k<this.fullListArticle.length; k++){
-      if(this.newArticle.listIdArticlesLies.indexOf(this.fullListArticle[k].id)==-1 && this.fullListArticle[k].title.toLowerCase().includes(this.filterTextNav.toLowerCase())){
-        if (index==3){
+    var index = 0
+    var rowArticle: Article[] = []
+    for (var k = 0; k < this.fullListArticle.length; k++) {
+      if (this.newArticle.langue === this.fullListArticle[k].langue && this.newArticle.listIdArticlesLies.indexOf(this.fullListArticle[k].id) == -1 && this.fullListArticle[k].title.toLowerCase().includes(this.filterTextNav.toLowerCase())) {
+        if (index == 3) {
           this.displayedListArticle.push(rowArticle)
           rowArticle = []
           rowArticle.push(this.fullListArticle[k])
@@ -340,28 +344,28 @@ export class WritingPannelComponent implements OnInit {
         index++;
       }
     }
-    if (index!=0){
+    if (index != 0) {
       this.displayedListArticle.push(rowArticle)
     }
   }
 
 
-  fillData(toBeRereshed : String[]){
-    if (toBeRereshed.indexOf('autors')>-1){
+  fillData(toBeRereshed: String[]) {
+    if (toBeRereshed.indexOf('autors') > -1) {
       this.httpClient.get<any[]>('https://bminddev.firebaseio.com/autors.json').subscribe(
         (response) => {
           var lKeys = Object.keys(response)
-          var listObject : Auteur[] = [];
-          lKeys.forEach(function(kw){
+          var listObject: Auteur[] = [];
+          lKeys.forEach(function (kw) {
             var oneAutor = new Auteur()
             oneAutor.fromHashMap(response[kw])
             listObject.push(oneAutor)
           })
           this.fullListAutor = listObject.slice();
           this.lastIdAutor = 0;
-          for (var k=0; k<this.fullListAutor.length; k++){
-            this.lastIdAutor=+Math.max(Number(this.lastIdAutor),Number(this.fullListAutor[k].id))
-            this.mapCheckBox[""+this.fullListAutor[k].id]=false
+          for (var k = 0; k < this.fullListAutor.length; k++) {
+            this.lastIdAutor = +Math.max(Number(this.lastIdAutor), Number(this.fullListAutor[k].id))
+            this.mapCheckBox["" + this.fullListAutor[k].id] = false
           }
         },
         (error) => {
@@ -370,11 +374,11 @@ export class WritingPannelComponent implements OnInit {
       );
     }
 
-    if (toBeRereshed.indexOf('sectors')>-1){
+    if (toBeRereshed.indexOf('sectors') > -1) {
       this.httpClient.get<any[]>('https://bminddev.firebaseio.com/secteurs.json').subscribe(
         (response) => {
-          this.fullListSectors=response.slice();
-          this.originalListSectors=response.slice();
+          this.fullListSectors = response.slice();
+          this.originalListSectors = response.slice();
         },
         (error) => {
           console.log('Erreur ! : ' + error);
@@ -382,7 +386,7 @@ export class WritingPannelComponent implements OnInit {
       );
     }
 
-    if (toBeRereshed.indexOf('types')>-1){
+    if (toBeRereshed.indexOf('types') > -1) {
       this.httpClient.get<any[]>('https://bminddev.firebaseio.com/types.json').subscribe(
         (response) => {
           this.listTypes = response.slice();
@@ -392,43 +396,29 @@ export class WritingPannelComponent implements OnInit {
           console.log('Erreur ! : ' + error);
         }
       );
-      }
+    }
 
-    if (toBeRereshed.indexOf('articles')>-1){
+    if (toBeRereshed.indexOf('articles') > -1) {
       this.httpClient.get<any[]>('https://bminddev.firebaseio.com/articles.json').subscribe(
         (response) => {
           var lKeys = Object.keys(response)
-          var listObject : Article[] = [];
-          lKeys.forEach(function(kw){
+          var listObject: Article[] = [];
+          lKeys.forEach(function (kw) {
             var oneArticle = new Article()
             oneArticle.fromHashMap(response[kw])
             listObject.push(oneArticle)
           })
           this.fullListArticle = listObject.slice();
           this.lastIdArticle = 0;
-          for (var k=0; k<this.fullListArticle.length; k++){
-            this.lastIdArticle=+Math.max(Number(this.lastIdArticle),Number(this.fullListArticle[k].id))
+          for (var k = 0; k < this.fullListArticle.length; k++) {
+            this.lastIdArticle = +Math.max(Number(this.lastIdArticle), Number(this.fullListArticle[k].id))
           }
-          var index=0
-          var rowArticle : Article[] = []
-          for (var k=0; k<this.fullListArticle.length; k++){
-            if (index==3){
-              this.displayedListArticle.push(rowArticle)
-              rowArticle = []
-              rowArticle.push(this.fullListArticle[k])
-            } else {
-              rowArticle.push(this.fullListArticle[k])
-            }
-            index++;
-          }
-          if (index!=0){
-            this.displayedListArticle.push(rowArticle)
-          }
+          this.refreshDisplayedArticle();
           //Si on est en edit on va aller chercher les articles liés
-          if(this.isEdit)
-          this.articlesSelected = [];
-          for (var k=0; k<this.fullListArticle.length; k++){
-            if (this.newArticle.listIdArticlesLies.indexOf(this.fullListArticle[k].id)>-1){
+          if (this.isEdit)
+            this.articlesSelected = [];
+          for (var k = 0; k < this.fullListArticle.length; k++) {
+            if (this.newArticle.listIdArticlesLies.indexOf(this.fullListArticle[k].id) > -1) {
               this.articlesSelected.push(this.fullListArticle[k])
             }
           }
@@ -440,7 +430,17 @@ export class WritingPannelComponent implements OnInit {
     }
   }
 
-  changeSelect(secteur : String){
-    this.mapSectorSelected[""+secteur]=!this.mapSectorSelected[""+secteur];
+  changeSelect(secteur: String) {
+    this.mapSectorSelected["" + secteur] = !this.mapSectorSelected["" + secteur];
+  }
+
+  switchLangueArticle(langue: String) {
+    this.newArticle.langue = langue;
+    this.refreshDisplayedArticle()
+    if (langue === 'EN') {
+      this.translate.use('en');
+    } else {
+      this.translate.use('fr');
+    }
   }
 }

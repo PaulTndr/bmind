@@ -1,23 +1,30 @@
-<h1 style="text-align:center" *ngIf="!isEdit">Ajouter un article</h1>
+<h1 style="text-align:center" *ngIf="!isEdit">{{ 'admin.title' | translate }}</h1>
 <h1 style="text-align:center" *ngIf="isEdit">Editer un article</h1>
+
+<div id="langSelect" class="flexRow" *ngIf="!isEdit">
+  <p class="buttonLang button" [ngClass]="{'selected': newArticle.langue=='FR'}" (click)="switchLangueArticle('FR')">FR
+  </p>
+  <p class="buttonLang button" [ngClass]="{'selected': newArticle.langue=='EN'}" (click)="switchLangueArticle('EN')">EN
+  </p>
+</div>
 
 <div id="formulaire">
   <div id="general" class="flexCol">
-    <h2>Général</h2>
+    <h2>{{ 'admin.general' | translate }}</h2>
     <mat-form-field class="example-full-width mediumInput">
-        <input matInput placeholder="Titre" [(ngModel)]="newArticle.title">
+      <input matInput placeholder="{{ 'admin.titrePlH' | translate }}" [(ngModel)]="newArticle.title">
     </mat-form-field>
-    <h3>Résumé de l'article</h3>
+    <h3>{{ 'admin.resume' | translate }}</h3>
     <ckeditor [editor]="editor" [(ngModel)]="newArticle.resume"></ckeditor>
-    <h3>Corps de l'article</h3>
-    <ckeditor [editor]="editor" [(ngModel)]="newArticle.fullText" ></ckeditor>
+    <h3>{{ 'admin.corps' | translate }}</h3>
+    <ckeditor [editor]="editor" [(ngModel)]="newArticle.fullText"></ckeditor>
   </div>
 
   <div id="informationsSup" class="flexCol">
-    <h2>Informations supplémentaires</h2>
+    <h2>{{ 'admin.suppInfo' | translate }}</h2>
     <div id="listSelectInput" class="flexRow">
       <div class="flexRow oneInputSelect">
-        <p>Temps de lecture</p>
+        <p>{{ 'admin.temps' | translate }}</p>
         <mat-form-field class="smallInput">
           <mat-select [(value)]="newArticle.time">
             <mat-option *ngFor="let time of listTime" [value]="time">{{time}}</mat-option>
@@ -26,7 +33,7 @@
       </div>
 
       <div class="flexRow oneInputSelect">
-        <p>Difficulté</p>
+        <p>{{ 'admin.diff' | translate }}</p>
         <mat-form-field class="smallInput">
           <mat-select [(value)]="newArticle.difficulte">
             <mat-option *ngFor="let difficulte of listDifficulte" [value]="difficulte">{{difficulte}}</mat-option>
@@ -38,10 +45,10 @@
 
   <div id="imageSelect" class="flexRow">
     <mat-form-field class="example-full-width mediumInput">
-      <input matInput placeholder="Lien illustration" [(ngModel)]="newArticle.srcImg">
+      <input matInput placeholder="{{ 'admin.illustrationPlH' | translate }}" [(ngModel)]="newArticle.srcImg">
     </mat-form-field>
     <div style="border:1px solid black; height: 100px; width: 200px; margin-left:2vw;">
-      <img *ngIf="newArticle.srcImg.length!=0" [src]="newArticle.srcImg"/>
+      <img *ngIf="newArticle.srcImg.length!=0" [src]="newArticle.srcImg" />
     </div>
   </div>
 
@@ -53,137 +60,153 @@
           <mat-option *ngFor="let type of listTypes" [value]="type">{{type}}</mat-option>
         </mat-select>
       </mat-form-field>
-      <img *ngIf="!isAddType" class="button logoAdd" (click)="openAdd('type')" src="https://image.flaticon.com/icons/svg/148/148764.svg"/>
-      <img *ngIf="isAddType" class="button logoAdd" (click)="closeAdd('type')" src="https://image.flaticon.com/icons/svg/118/118743.svg"/>
+      <img *ngIf="!isAddType" class="button logoAdd" (click)="openAdd('type')"
+        src="https://image.flaticon.com/icons/svg/148/148764.svg" />
+      <img *ngIf="isAddType" class="button logoAdd" (click)="closeAdd('type')"
+        src="https://image.flaticon.com/icons/svg/118/118743.svg" />
     </div>
 
     <div class="flexRow" *ngIf="isAddType">
-      <p style="margin-right:3vw;">Ajouter un nouveau type</p>
+      <p style="margin-right:3vw;">{{ 'admin.addType' | translate }}</p>
       <div class="flexRow inputAdd">
         <mat-form-field class="example-full-width smallInput">
-            <input matInput placeholder="Type" [(ngModel)]="newType">
+          <input matInput placeholder="Type" [(ngModel)]="newType">
         </mat-form-field>
-        <p style="margin-left:3vw;" class="button buttonAdd" (click)="addItemToLists('type')">Ajouter</p>
+        <p style="margin-left:3vw;" class="button buttonAdd" (click)="addItemToLists('type')">
+          {{ 'admin.ajouter' | translate }}</p>
       </div>
     </div>
 
     <div class="flexRow" *ngIf="newArticle.type===''">
-      <img style="width:10px; margin-right:10px;" src="https://image.flaticon.com/icons/svg/196/196760.svg"/>
-      <p>Aucun type n'a été sélectionné</p>
+      <img style="width:10px; margin-right:10px;" src="https://image.flaticon.com/icons/svg/196/196760.svg" />
+      <p>{{ 'admin.aucunType' | translate }}</p>
     </div>
 
   </div>
 
   <div id="sources">
     <div class="flexRow">
-      <h2>Source(s)</h2>
-      <img *ngIf="!isAddSource" class="button logoAdd" (click)="openAdd('source')" src="https://image.flaticon.com/icons/svg/148/148764.svg"/>
-      <img *ngIf="isAddSource" class="button logoAdd" (click)="closeAdd('source')" src="https://image.flaticon.com/icons/svg/118/118743.svg"/>
+      <h2>{{ 'admin.sources' | translate }}</h2>
+      <img *ngIf="!isAddSource" class="button logoAdd" (click)="openAdd('source')"
+        src="https://image.flaticon.com/icons/svg/148/148764.svg" />
+      <img *ngIf="isAddSource" class="button logoAdd" (click)="closeAdd('source')"
+        src="https://image.flaticon.com/icons/svg/118/118743.svg" />
     </div>
     <div class="flexRow inputAdd" *ngIf="isAddSource">
       <mat-form-field class="example-full-width smallInput" style="margin-right: 30px;">
-          <input matInput placeholder="Nom" [(ngModel)]="newSource.name">
+        <input matInput placeholder="{{ 'admin.nomPlH' | translate }}" [(ngModel)]="newSource.name">
       </mat-form-field>
       <mat-form-field class="example-full-width mediumInput">
-          <input matInput placeholder="Lien" [(ngModel)]="newSource.link">
+        <input matInput placeholder="{{ 'admin.lienPlH' | translate }}" [(ngModel)]="newSource.link">
       </mat-form-field>
-      <p class="button buttonAdd" (click)="addItemToLists('source')">Ajouter</p>
+      <p class="button buttonAdd" (click)="addItemToLists('source')">{{ 'admin.ajouter' | translate }}</p>
     </div>
     <div class="flexRow" *ngIf="newArticle.listSources.length==0">
-      <img style="width:10px; margin-right:10px;" src="https://image.flaticon.com/icons/svg/196/196760.svg"/>
-      <p>Aucune source n'a été référencée</p>
+      <img style="width:10px; margin-right:10px;" src="https://image.flaticon.com/icons/svg/196/196760.svg" />
+      <p>{{ 'admin.aucuneSource' | translate }}</p>
     </div>
     <div class="flexRow oneSource" *ngFor="let source of newArticle.listSources">
       <p>{{source.name}} [{{source.link}}]</p>
-      <img class="button" style="margin-left:2vw;" src="https://image.flaticon.com/icons/svg/149/149158.svg" (click)="removeItem('source', source)"/>
+      <img class="button" style="margin-left:2vw;" src="https://image.flaticon.com/icons/svg/149/149158.svg"
+        (click)="removeItem('source', source)" />
     </div>
   </div>
 
   <div id="auteurs">
     <div class="flexRow">
-      <h2>Auteur(s)</h2>
-      <img *ngIf="!isAddAuteur" class="button logoAdd" (click)="openAdd('auteur')" src="https://image.flaticon.com/icons/svg/148/148764.svg"/>
-      <img *ngIf="isAddAuteur" class="button logoAdd" (click)="closeAdd('auteur')" src="https://image.flaticon.com/icons/svg/118/118743.svg"/>
+      <h2>{{ 'admin.auteurs' | translate }}</h2>
+      <img *ngIf="!isAddAuteur" class="button logoAdd" (click)="openAdd('auteur')"
+        src="https://image.flaticon.com/icons/svg/148/148764.svg" />
+      <img *ngIf="isAddAuteur" class="button logoAdd" (click)="closeAdd('auteur')"
+        src="https://image.flaticon.com/icons/svg/118/118743.svg" />
     </div>
     <div *ngIf="isAddAuteur">
-      <p>Sélectionner parmi les auteurs connus</p>
+      <p>{{ 'admin.selectAuteurs' | translate }}</p>
       <div class="flexRow listCheckAndValidate">
         <div class="flexCol">
-          <mat-checkbox *ngFor="let autor of fullListAutor" [(ngModel)]="mapCheckBox[autor.id]" >{{autor.prenom}} {{autor.nom}} ({{autor.fonction}})</mat-checkbox>
+          <mat-checkbox *ngFor="let autor of fullListAutor" [(ngModel)]="mapCheckBox[autor.id]">{{autor.prenom}}
+            {{autor.nom}} ({{autor.fonction}})</mat-checkbox>
         </div>
-        <p class="button buttonAdd" (click)="validateCheckbox('auteur')">Valider</p>
+        <p class="button buttonAdd" (click)="validateCheckbox('auteur')">{{ 'admin.valider' | translate }}</p>
       </div>
-      <p>Ajouter un nouvel auteur</p>
+      <p>{{ 'admin.addAuteur' | translate }}</p>
       <div class="flexRow inputAdd">
         <mat-form-field class="example-full-width smallInput" style="margin-right: 30px;">
-            <input matInput placeholder="Prénom" [(ngModel)]="newAutor.prenom">
+          <input matInput placeholder="{{ 'admin.prenomPlH' | translate }}" [(ngModel)]="newAutor.prenom">
         </mat-form-field>
         <mat-form-field class="example-full-width smallInput" style="margin-right: 30px;">
-            <input matInput placeholder="Nom" [(ngModel)]="newAutor.nom">
+          <input matInput placeholder="{{ 'admin.nomPersonnePlH' | translate }}" [(ngModel)]="newAutor.nom">
         </mat-form-field>
         <mat-form-field class="example-full-width mediumInput" style="margin-right: 30px;">
-            <input matInput placeholder="Fonction" [(ngModel)]="newAutor.fonction">
+          <input matInput placeholder="{{ 'admin.fonctionPlH' | translate }}" [(ngModel)]="newAutor.fonction">
         </mat-form-field>
         <p class="button buttonAdd" (click)="addItemToLists('auteur')">Ajouter</p>
       </div>
     </div>
     <div class="flexRow" *ngIf="newArticle.listAuteurs.length==0">
-      <img style="width:10px; margin-right:10px;"src="https://image.flaticon.com/icons/svg/196/196760.svg"/>
-      <p>Aucun auteur n'a été ajouté</p>
+      <img style="width:10px; margin-right:10px;" src="https://image.flaticon.com/icons/svg/196/196760.svg" />
+      <p>{{ 'admin.aucunAuteur' | translate }}</p>
     </div>
     <div class="flexRow oneAutor" *ngFor="let autor of newArticle.listAuteurs">
       <p>{{autor.prenom}} {{autor.nom}} ({{autor.fonction}})</p>
-      <img class="button" style="margin-left:2vw;" src="https://image.flaticon.com/icons/svg/149/149158.svg" (click)="removeItem('auteur', autor)"/>
+      <img class="button" style="margin-left:2vw;" src="https://image.flaticon.com/icons/svg/149/149158.svg"
+        (click)="removeItem('auteur', autor)" />
     </div>
   </div>
-  
+
   <div id="secteurs">
     <div class="flexRow">
-      <h2>Secteur(s)</h2>
-      <img *ngIf="!isAddSector" class="button logoAdd" (click)="openAdd('sector')" src="https://image.flaticon.com/icons/svg/148/148764.svg"/>
-      <img *ngIf="isAddSector" class="button logoAdd" (click)="closeAdd('sector')" src="https://image.flaticon.com/icons/svg/118/118743.svg"/>
+      <h2>{{ 'admin.secteurs' | translate }}</h2>
+      <img *ngIf="!isAddSector" class="button logoAdd" (click)="openAdd('sector')"
+        src="https://image.flaticon.com/icons/svg/148/148764.svg" />
+      <img *ngIf="isAddSector" class="button logoAdd" (click)="closeAdd('sector')"
+        src="https://image.flaticon.com/icons/svg/118/118743.svg" />
     </div>
     <div class="flexCol" *ngIf="isAddSector">
-      <p style="margin: 0px;">Sélectionner parmi les secteurs connus</p>
+      <p style="margin: 0px;">{{ 'admin.selectSecteurs' | translate }}</p>
       <div class="flexRow">
         <div class="flexRow" style="max-width:80%;">
           <div class="oneSectorSelected" *ngFor="let sector of fullListSectors; let i=index">
             <div *ngIf="mapSectorSelected[sector]">
-              <img class="button" src="https://image.flaticon.com/icons/svg/149/149158.svg" (click)="changeSelect(sector)"/>
+              <img class="button" src="https://image.flaticon.com/icons/svg/149/149158.svg"
+                (click)="changeSelect(sector)" />
               <p class="oneChoiceToPick selected">{{sector}}</p>
             </div>
           </div>
           <div class="oneSectorSelected" *ngFor="let sector of fullListSectors; let i=index">
             <div *ngIf="!mapSectorSelected[sector]">
-              <img class="button" src="https://image.flaticon.com/icons/svg/149/149156.svg" (click)="changeSelect(sector)"/>
+              <img class="button" src="https://image.flaticon.com/icons/svg/149/149156.svg"
+                (click)="changeSelect(sector)" />
               <p class="oneChoiceToPick">{{sector}}</p>
             </div>
           </div>
         </div>
-        <p class="button buttonAdd" style="margin-left:3vw;" (click)="validateCheckbox('secteur')">Valider</p>
+        <p class="button buttonAdd" style="margin-left:3vw;" (click)="validateCheckbox('secteur')">
+          {{ 'admin.valider' | translate }}</p>
       </div>
       <div class="flexRow inputAdd">
         <mat-form-field class="example-full-width smallInput">
-            <input matInput placeholder="Nom" [(ngModel)]="newSector">
+          <input matInput placeholder="{{ 'admin.nomPlH' | translate }}" [(ngModel)]="newSector">
         </mat-form-field>
-        <p class="button buttonAdd" (click)="addItemToLists('secteur')">Ajouter</p>
+        <p class="button buttonAdd" (click)="addItemToLists('secteur')">{{ 'admin.ajouter' | translate }}</p>
       </div>
     </div>
 
     <div class="flexRow" *ngIf="newArticle.listSectors.length==0">
-      <img style="width:10px; margin-right:10px;"src="https://image.flaticon.com/icons/svg/196/196760.svg"/>
-      <p>Aucun secteur n'a été ajouté</p>
+      <img style="width:10px; margin-right:10px;" src="https://image.flaticon.com/icons/svg/196/196760.svg" />
+      <p>{{ 'admin.aucunSecteur' | translate }}</p>
     </div>
     <div class="flexRow" *ngIf="!isAddSector">
       <div class="oneSectorSelected" *ngFor="let sector of newArticle.listSectors">
-        <img class="button" src="https://image.flaticon.com/icons/svg/149/149158.svg" (click)="removeItem('secteur', sector)"/>
+        <img class="button" src="https://image.flaticon.com/icons/svg/149/149158.svg"
+          (click)="removeItem('secteur', sector)" />
         <p class="oneChoiceToPick">{{sector}}</p>
       </div>
     </div>
   </div>
 
   <div id="articlesLies" class="flexCol">
-    <h2>Articles liés</h2>
+    <h2>{{ 'admin.articles' | translate }}</h2>
     <div class="flexRow" id="choixArticle">
       <div class="oneChoixArticle">
         <div class="emptyChoix" *ngIf="articlesSelected.length<1">
@@ -191,8 +214,10 @@
         <div *ngIf="articlesSelected.length>0" class="oneArticleToSelect">
           <app-miniature-article-small [article]="articlesSelected[0]" [size]="'medium'"></app-miniature-article-small>
         </div>
-        <img class="button buttonRightTop" (click)="openPopupAddArticle()" *ngIf="articlesSelected.length<1" src="https://image.flaticon.com/icons/svg/149/149705.svg">
-        <img class="button buttonRightTop" (click)="deleteArticle(articlesSelected[0])" *ngIf="articlesSelected.length>0" src="https://image.flaticon.com/icons/svg/32/32178.svg">
+        <img class="button buttonRightTop" (click)="openPopupAddArticle()" *ngIf="articlesSelected.length<1"
+          src="https://image.flaticon.com/icons/svg/149/149705.svg">
+        <img class="button buttonRightTop" (click)="deleteArticle(articlesSelected[0])"
+          *ngIf="articlesSelected.length>0" src="https://image.flaticon.com/icons/svg/32/32178.svg">
       </div>
       <div class="oneChoixArticle">
         <div class="emptyChoix" *ngIf="articlesSelected.length<2">
@@ -200,8 +225,10 @@
         <div *ngIf="articlesSelected.length>1" class="oneArticleToSelect">
           <app-miniature-article-small [article]="articlesSelected[1]" [size]="'medium'"></app-miniature-article-small>
         </div>
-        <img class="button buttonRightTop" (click)="openPopupAddArticle()" *ngIf="articlesSelected.length<2" src="https://image.flaticon.com/icons/svg/149/149705.svg">
-        <img class="button buttonRightTop" (click)="deleteArticle(articlesSelected[1])" *ngIf="articlesSelected.length>1" src="https://image.flaticon.com/icons/svg/32/32178.svg">
+        <img class="button buttonRightTop" (click)="openPopupAddArticle()" *ngIf="articlesSelected.length<2"
+          src="https://image.flaticon.com/icons/svg/149/149705.svg">
+        <img class="button buttonRightTop" (click)="deleteArticle(articlesSelected[1])"
+          *ngIf="articlesSelected.length>1" src="https://image.flaticon.com/icons/svg/32/32178.svg">
       </div>
       <div class="oneChoixArticle">
         <div class="emptyChoix" *ngIf="articlesSelected.length<3">
@@ -209,41 +236,46 @@
         <div *ngIf="articlesSelected.length>2" class="oneArticleToSelect">
           <app-miniature-article-small [article]="articlesSelected[2]" [size]="'medium'"></app-miniature-article-small>
         </div>
-        <img class="button buttonRightTop" (click)="openPopupAddArticle()" *ngIf="articlesSelected.length<3" src="https://image.flaticon.com/icons/svg/149/149705.svg">
-        <img class="button buttonRightTop" (click)="deleteArticle(articlesSelected[2])" *ngIf="articlesSelected.length>2" src="https://image.flaticon.com/icons/svg/32/32178.svg">
-      </div>
-  </div>
-</div>
-
-<div id="listButtons" class="flexRow">
-  <div *ngIf="!isEdit" class="button" (click)="write()">
-    <p>Poster</p>
-  </div>
-
-  <div *ngIf="isEdit" class="button" (click)="edit()">
-    <p>Editer</p>
-  </div>
-
-  <div *ngIf="!isEdit" class="button">
-    <p>Annuler</p>
-  </div>
-</div>
-
-<div *ngIf="isPosted" id="popupPost">
-  <h2>Votre article a été posté !</h2>
-</div>
-
-<div *ngIf="isAddingArticle" id="popupArticle">
-  <h2>Sélectionner un article</h2>
-  <img style="width: 30px;position: absolute;right: 20px;top: 20px;" class="button" (click)="closeAddArticle()" src="https://image.flaticon.com/icons/svg/151/151882.svg">
-  <div class="search__container">
-    <input class="search__input" type="text" placeholder="Rechercher..." [(ngModel)]="filterTextNav" (keyup)="refreshDisplayedArticle()">
-  </div>
-  <div id="miniatures">
-    <div *ngFor="let rowArticle of displayedListArticle">
-      <div class="flexRow rowInNavArticle">
-        <app-miniature-article-small class="button oneMinia" (click)="selectArticle(article)" *ngFor="let article of rowArticle" [article]="article" [size]="'small'"></app-miniature-article-small>
+        <img class="button buttonRightTop" (click)="openPopupAddArticle()" *ngIf="articlesSelected.length<3"
+          src="https://image.flaticon.com/icons/svg/149/149705.svg">
+        <img class="button buttonRightTop" (click)="deleteArticle(articlesSelected[2])"
+          *ngIf="articlesSelected.length>2" src="https://image.flaticon.com/icons/svg/32/32178.svg">
       </div>
     </div>
   </div>
-</div>
+
+  <div id="listButtons" class="flexRow">
+    <div *ngIf="!isEdit" class="button" (click)="write()">
+      <p>{{ 'admin.poster' | translate }}</p>
+    </div>
+
+    <div *ngIf="isEdit" class="button" (click)="edit()">
+      <p>Editer</p>
+    </div>
+
+    <div *ngIf="!isEdit" class="button">
+      <p>{{ 'admin.annuler' | translate }}</p>
+    </div>
+  </div>
+
+  <div *ngIf="isPosted" id="popupPost">
+    <h2>{{ 'admin.success' | translate }}</h2>
+  </div>
+
+  <div *ngIf="isAddingArticle" id="popupArticle">
+    <h2>{{ 'admin.selectArticles' | translate }}</h2>
+    <img style="width: 30px;position: absolute;right: 20px;top: 20px;" class="button" (click)="closeAddArticle()"
+      src="https://image.flaticon.com/icons/svg/151/151882.svg">
+    <div class="search__container">
+      <input class="search__input" type="text" placeholder="{{ 'admin.rechercher' | translate }}"
+        [(ngModel)]="filterTextNav" (keyup)="refreshDisplayedArticle()">
+    </div>
+    <div id="miniatures">
+      <div *ngFor="let rowArticle of displayedListArticle">
+        <div class="flexRow rowInNavArticle">
+          <app-miniature-article-small class="button oneMinia" (click)="selectArticle(article)"
+            *ngFor="let article of rowArticle" [article]="article" [size]="'small'"></app-miniature-article-small>
+        </div>
+      </div>
+    </div>
+  </div>
