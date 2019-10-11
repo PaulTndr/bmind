@@ -57,7 +57,7 @@
       <h2 style="margin-right:3vw;">Type</h2>
       <mat-form-field class="smallInput">
         <mat-select [(value)]="newArticle.type">
-          <mat-option *ngFor="let type of listTypes" [value]="type">{{type}}</mat-option>
+          <mat-option *ngFor="let type of displayedLangTypes" [value]="type">{{type.key}}</mat-option>
         </mat-select>
       </mat-form-field>
       <img *ngIf="!isAddType" class="button logoAdd" (click)="openAdd('type')"
@@ -70,7 +70,7 @@
       <p style="margin-right:3vw;">{{ 'admin.addType' | translate }}</p>
       <div class="flexRow inputAdd">
         <mat-form-field class="example-full-width smallInput">
-          <input matInput placeholder="Type" [(ngModel)]="newType">
+          <input matInput placeholder="Type" [(ngModel)]="newType.key">
         </mat-form-field>
         <p style="margin-left:3vw;" class="button buttonAdd" (click)="addItemToLists('type')">
           {{ 'admin.ajouter' | translate }}</p>
@@ -167,17 +167,17 @@
       <div class="flexRow">
         <div class="flexRow" style="max-width:80%;">
           <div class="oneSectorSelected" *ngFor="let sector of fullListSectors; let i=index">
-            <div *ngIf="mapSectorSelected[sector]">
+            <div *ngIf="mapSectorSelected[sector.key]">
               <img class="button" src="https://image.flaticon.com/icons/svg/149/149158.svg"
                 (click)="changeSelect(sector)" />
-              <p class="oneChoiceToPick selected">{{sector}}</p>
+              <p class="oneChoiceToPick selected">{{sector.key}}</p>
             </div>
           </div>
           <div class="oneSectorSelected" *ngFor="let sector of fullListSectors; let i=index">
-            <div *ngIf="!mapSectorSelected[sector]">
+            <div *ngIf="!mapSectorSelected[sector.key]">
               <img class="button" src="https://image.flaticon.com/icons/svg/149/149156.svg"
                 (click)="changeSelect(sector)" />
-              <p class="oneChoiceToPick">{{sector}}</p>
+              <p class="oneChoiceToPick">{{sector.key}}</p>
             </div>
           </div>
         </div>
@@ -186,7 +186,7 @@
       </div>
       <div class="flexRow inputAdd">
         <mat-form-field class="example-full-width smallInput">
-          <input matInput placeholder="{{ 'admin.nomPlH' | translate }}" [(ngModel)]="newSector">
+          <input matInput placeholder="{{ 'admin.nomPlH' | translate }}" [(ngModel)]="newSector.key">
         </mat-form-field>
         <p class="button buttonAdd" (click)="addItemToLists('secteur')">{{ 'admin.ajouter' | translate }}</p>
       </div>
@@ -200,7 +200,7 @@
       <div class="oneSectorSelected" *ngFor="let sector of newArticle.listSectors">
         <img class="button" src="https://image.flaticon.com/icons/svg/149/149158.svg"
           (click)="removeItem('secteur', sector)" />
-        <p class="oneChoiceToPick">{{sector}}</p>
+        <p class="oneChoiceToPick">{{sector.key}}</p>
       </div>
     </div>
   </div>
