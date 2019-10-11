@@ -3,18 +3,20 @@
 import { Source } from './source';
 import { Keyword } from './keyword';
 import { Auteur } from './auteur';
+import { Secteur } from './secteur';
+import { Type } from './type';
 
 interface KeywordData {
   id: Number
   title: String
   langue: String
-  type: String
+  type: Type
   srcImg: String
   resume: String
   fullText: String
   listSources: Source[]
   listAuteurs: Auteur[]
-  listSectors: String[]
+  listSectors: Secteur[]
   listIdArticlesLies: Number[]
   time: String
   difficulte: Number
@@ -26,13 +28,13 @@ export class Article {
   id: Number;
   title: String = new String();
   langue: String = new String();
-  type: String = new String();
+  type: Type = new Type();
   srcImg: String = new String();
   resume: String = new String();
   fullText: String = new String();
   listSources: Source[] = [];
   listAuteurs: Auteur[] = [];
-  listSectors: String[] = [];
+  listSectors: Secteur[] = [];
   listIdArticlesLies: Number[] = [];
   time: String = new String();
   difficulte: Number = new Number();
@@ -63,7 +65,7 @@ export class Article {
     })
     console.log("listSectors: ")
     this.listSectors.forEach(function (sector) {
-      console.log("- " + sector)
+      console.log("- " + sector.key)
     })
     console.log("listIdArticlesLies: ")
     this.listIdArticlesLies.forEach(function (id) {
@@ -75,7 +77,7 @@ export class Article {
     this.id = Number(data.id);
     this.title = String(data.title);
     this.langue = String(data.langue);
-    this.type = String(data.type);
+    this.type = data.type;
     this.srcImg = String(data.srcImg);
     this.resume = String(data.resume);
     this.fullText = String(data.fullText);

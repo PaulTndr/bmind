@@ -6,6 +6,8 @@ import { Auteur } from '../../../../classes/articles/auteur'
 
 import { HttpClient } from '@angular/common/http';
 import { Offre } from 'src/app/classes/offre';
+import { Secteur } from 'src/app/classes/articles/secteur';
+import { Type } from 'src/app/classes/articles/type';
 
 @Component({
   selector: 'app-setting-pannel',
@@ -26,11 +28,11 @@ export class SettingPannelComponent implements OnInit {
   listAutor: Auteur[] = [];
   dataSourceAutor = new MatTableDataSource<Auteur>();
 
-  displayedColumnsSecteurs: String[] = ['key', 'actions'];
+  displayedColumnsSecteurs: String[] = ['key', 'langue', 'actions'];
   listSecteurs: String[] = [];
   dataSourceSecteurs = new MatTableDataSource<String>();
 
-  displayedColumnsTypes: String[] = ['key', 'actions'];
+  displayedColumnsTypes: String[] = ['key', 'langue', 'actions'];
   listTypes: String[] = [];
   dataSourceTypes = new MatTableDataSource<String>();
 
@@ -451,7 +453,7 @@ export class SettingPannelComponent implements OnInit {
     }
   }
 
-  deleteItemDirect(keyType: String, element: String) {
+  deleteItemDirect(keyType: String, element: any) {
     if (keyType === 'sector') {
       var newListSecteurs = []
       for (var k = 0; k < this.listSecteurs.length; k++) {

@@ -168,7 +168,23 @@ table {
       word-wrap: break-word !important;
       white-space: unset !important;
       flex: 0 0 28% !important;
-      width: 90vw !important;
+      width: 85vw !important;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      word-break: break-word;
+      -ms-hyphens: auto;
+      -moz-hyphens: auto;
+      -webkit-hyphens: auto;
+      hyphens: auto;
+      text-align: center !important;
+      border-right: 1px solid #545454;
+    }
+
+    .mat-column-langue {
+      word-wrap: break-word !important;
+      white-space: unset !important;
+      flex: 0 0 28% !important;
+      width: 5vw !important;
       overflow-wrap: break-word;
       word-wrap: break-word;
       word-break: break-word;

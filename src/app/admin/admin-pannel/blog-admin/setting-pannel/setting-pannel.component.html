@@ -101,7 +101,13 @@
       <!-- Key Column -->
       <ng-container matColumnDef="key">
         <th mat-header-cell *matHeaderCellDef> Clé </th>
-        <td mat-cell *matCellDef="let element"> {{element}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.key}} </td>
+      </ng-container>
+
+      <!-- Langue Column -->
+      <ng-container matColumnDef="langue">
+        <th mat-header-cell *matHeaderCellDef> Langue </th>
+        <td mat-cell *matCellDef="let element"> {{element.langue}} </td>
       </ng-container>
 
       <!-- Action Column -->
@@ -128,7 +134,13 @@
       <!-- Key Column -->
       <ng-container matColumnDef="key">
         <th mat-header-cell *matHeaderCellDef> Clé </th>
-        <td mat-cell *matCellDef="let element"> {{element}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.key}} </td>
+      </ng-container>
+
+      <!-- Langue Column -->
+      <ng-container matColumnDef="langue">
+        <th mat-header-cell *matHeaderCellDef> Langue </th>
+        <td mat-cell *matCellDef="let element"> {{element.langue}} </td>
       </ng-container>
 
       <!-- Action Column -->
