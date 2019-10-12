@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 import $ from 'jquery';
+import { TranslateService } from '@ngx-translate/core';
 
 import { BlogService } from '../blog.service';
 import { GlobalService } from '../../global.service';
@@ -39,11 +40,22 @@ export class ArticleComponent implements OnInit {
   listKeywords : Keyword[] = [];
   listKeywordsSubscription: Subscription;
 
-  constructor(private blogService: BlogService, private globalService : GlobalService, private route: ActivatedRoute,private sanitizer : DomSanitizer, private httpClient: HttpClient) { }
+  isFrSelected : Boolean;
+  isEnSelected : Boolean;
+
+  constructor(private blogService: BlogService, private globalService : GlobalService, private route: ActivatedRoute,private sanitizer : DomSanitizer, private httpClient: HttpClient, , private translate: TranslateService) { }
 
   ngOnInit() {
     //On incrémente le nombre de vues
     this.blogService.incrementVues(this.article.id)
+
+    this.isFrSelected = this.globalService.isFrSelected;
+    this.isEnSelected = this.globalService.isEnSelected;
+    if (this.isFrSelected){
+      this.translate.use('fr');
+    } else{
+      this.translate.use('en');
+    }
 
     document.body.addEventListener('mouseover', (e) => {
       this.printDescWord((e.target as HTMLTextAreaElement).id);

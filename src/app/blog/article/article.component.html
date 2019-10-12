@@ -15,7 +15,7 @@
   </div>
 
   <div id="listAuteurs">
-    <p *ngIf="article.listAuteurs.length==0">L'auteur de cet article n'est pas renseigné</p>
+    <p *ngIf="article.listAuteurs.length==0">{{ 'blog.auteurNonRenseigne' | translate }}</p>
     <div *ngFor="let auteur of article.listAuteurs; let i=index">
       <div class="oneAuteur">
         <p>{{auteur.prenom}} {{auteur.nom}}</p>
@@ -27,9 +27,9 @@
 </div>
 
 <div id="sources">
-  <h1>Sources</h1>
+  <h1>{{ 'blog.sources' | translate }}</h1>
   <div id="listSources">
-    <p *ngIf="article.listSources.length==0">Aucune source renseignée pour cet article</p>
+    <p *ngIf="article.listSources.length==0">{{ 'blog.noSource' | translate }}</p>
     <p *ngFor="let source of article.listSources"><b>{{source.name}}</b> : {{source.link}}</p>
   </div>
 </div>

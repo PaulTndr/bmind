@@ -67,7 +67,10 @@
         "noResult":"Aucun article ne semble correspondre à votre recherche",
         "interestArticles":"Ces articles pourraient également vous intéresser",
         "suggestionBlog":"Vous avez une question, une suggestion, une remarque, un commentaire, envie de nous dire bonjour et de nous féliciter pour notre travail,",
-        "contact":"Contactez-nous"
+        "contact":"Contactez-nous",
+        "auteurNonRenseigne":"L'auteur de cet article n'est pas renseigné",
+        "sources":"Sources",
+        "noSource":"Aucune source renseignée pour cet article"
     },
     "admin": {
         "title": "Ajouter un article",
