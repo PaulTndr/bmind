@@ -87,9 +87,12 @@ export class ArticleComponent implements OnInit {
     }
     if (this.listKeywords.length!=0){
       for (var k=0; k<this.listKeywords.length;k++){
-        var kw = this.listKeywords[k]
-        this.mapDefinition[""+kw.key.toLowerCase()]=kw.def
+        if (this.globalService.isFrSelected && this.listKeywords[k].langue==="FR" || this.globalService.isEnSelected && this.listKeywords[k].langue==="EN"){
+          var kw = this.listKeywords[k]
+          this.mapDefinition[""+kw.key.toLowerCase()]=kw.def
+        }
       }
+      console.log(this.mapDefinition)
     } else {
       setTimeout(()=>{this.fillMapDefinition()},100)
     }

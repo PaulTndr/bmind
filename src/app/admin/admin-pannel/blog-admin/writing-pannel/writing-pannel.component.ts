@@ -79,6 +79,13 @@ export class WritingPannelComponent implements OnInit {
       this.newArticle.listSectors = [];
     } else {
       this.newArticle = this.articleToEdit
+      //On va set tous les labels fonction de la langue de l'article
+      if (this.articleToEdit.langue==="FR"){
+        this.translate.use('fr');
+      } else{
+        this.translate.use('en');
+      }
+      
     }
   }
 
@@ -123,8 +130,6 @@ export class WritingPannelComponent implements OnInit {
     );
 
     //Ajout des nouveaux secteurs
-    console.log(this.originalListSectors)
-    console.log(this.nouveauxSecteurs)
     var isOneChangeInSector=false;
     for (var k = 0; k < this.nouveauxSecteurs.length; k++) {
       var isAlreadyInSector=false;
@@ -164,8 +169,14 @@ export class WritingPannelComponent implements OnInit {
     }
 
     //Ajout du nouveau type ??
-    if (this.originalListTypes.indexOf(this.articleToEdit.type) == -1) {
-      this.originalListTypes.push(this.articleToEdit.type)
+    var isAlreadyIn=false;
+    for (var k=0; k<this.originalListTypes.length; k++){
+      if (this.originalListTypes[k].key===this.newArticle.type.key  && this.originalListTypes[k].langue===this.newArticle.type.langue) {
+        isAlreadyIn=true;
+      }
+    }
+    if(!isAlreadyIn){
+      this.originalListTypes.push(this.newArticle.type)
       this.httpClient.put('https://bminddev.firebaseio.com/types.json', this.originalListTypes).subscribe(
         () => {
           console.log('Enregistrement du type terminé !');
@@ -177,21 +188,30 @@ export class WritingPannelComponent implements OnInit {
     }
 
     //Ajout des nouveaux secteurs
+    var isOneChangeInSector=false;
     for (var k = 0; k < this.nouveauxSecteurs.length; k++) {
-      
-      if (this.newArticle.listSectors.indexOf(this.nouveauxSecteurs[k]) > -1) {
+      var isAlreadyInSector=false;
+      for (var i=0; i<this.originalListSectors.length; i++){
+        if (this.originalListSectors[i].key===this.nouveauxSecteurs[k].key  && this.originalListSectors[i].langue===this.nouveauxSecteurs[k].langue) {
+          isAlreadyInSector=true;
+        }
+      }
+      if(!isAlreadyInSector){
         this.originalListSectors.push(this.nouveauxSecteurs[k])
+        isOneChangeInSector=true;
       }
     }
-    this.httpClient.put('https://bminddev.firebaseio.com/secteurs.json', this.originalListSectors).subscribe(
-      () => {
-        console.log('Enregistrement du secteur terminé !');
-        this.nouveauxSecteurs = []
-      },
-      (error) => {
-        console.log('Erreur lors de l\'enregistrment du secteur! : ' + error);
-      }
-    );
+    if (isOneChangeInSector){
+      this.httpClient.put('https://bminddev.firebaseio.com/secteurs.json', this.originalListSectors).subscribe(
+        () => {
+          console.log('Enregistrement du secteur terminé !');
+          this.nouveauxSecteurs = []
+        },
+        (error) => {
+          console.log('Erreur lors de l\'enregistrment du secteur! : ' + error);
+        }
+      );
+    }
 
     //EDIT DE L'ARTICLE
     this.httpClient.put('https://bminddev.firebaseio.com/articles.json', newListArticle).subscribe(

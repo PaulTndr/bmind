@@ -20,7 +20,7 @@ export class SettingPannelComponent implements OnInit {
 
   filterText: String;
 
-  displayedColumnsKeyword: String[] = ['key', 'def', 'actions'];
+  displayedColumnsKeyword: String[] = ['key', 'def','langue', 'actions'];
   listKeyword: Keyword[] = [];
   dataSourceKeyword = new MatTableDataSource<Keyword>();
 
