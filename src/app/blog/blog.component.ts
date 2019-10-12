@@ -255,7 +255,7 @@ export class BlogComponent implements OnInit {
         isInFilterRules = false;
       }
 
-      if (!this.mapFilter.type["" + article.type.key.toLowerCase()]) {
+      if (!this.mapFilter.type["" + article.type.key]) {
         isInFilterRules = false;
       }
 
