@@ -181,32 +181,35 @@
 
     #choixArticle {
       justify-content: space-between;
+    }
+  }
 
-      .oneChoixArticle {
-        height: 200px;
-        position: relative;
+  #articlesLies, #selectArticleTraduit{
+    .oneChoixArticle {
+      height: 200px;
+      width: 25vw;
+      position: relative;
 
-        .emptyChoix {
-          width: 25vw;
-          height: 12.5vw;
-          background-color: white;
-          border: 3px solid black;
-        }
+      .emptyChoix {
+        width: 25vw;
+        height: 12.5vw;
+        background-color: white;
+        border: 3px solid black;
+      }
 
-        .oneArticleToSelect {
-          width: 25vw;
-        }
+      .oneArticleToSelect {
+        width: 25vw;
+      }
 
-        .buttonRightTop {
-          width: 30px;
-          height: 30px;
-          border-radius: 100%;
-          background-color: orange;
-          padding: 5px;
-          position: absolute;
-          right: 10px;
-          top: 10px;
-        }
+      .buttonRightTop {
+        width: 30px;
+        height: 30px;
+        border-radius: 100%;
+        background-color: orange;
+        padding: 5px;
+        position: absolute;
+        right: 10px;
+        top: 10px;
       }
     }
   }

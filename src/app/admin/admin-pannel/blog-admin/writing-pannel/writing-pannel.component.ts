@@ -41,13 +41,17 @@ export class WritingPannelComponent implements OnInit {
 
   fullListAutor: Auteur[];
   fullListArticle: Article[];
-  displayedListArticle: Article[][] = [];
+  displayedListArticleInNav : Article[][] = [];
+  displayedListArticleLinked: Article[][] = [];
+  displayedListArticleTraduit : Article[][] = [];
   lastIdAutor: Number;
   lastIdArticle: Number;
   mapCheckBox: any = {};
 
   articlesSelected: Article[] = [];
-  isAddingArticle: Boolean = false;
+  articleTraduit: Article;
+  isAddingArticleLinked: Boolean = false;
+  isAddingArticleTraduit: Boolean = false;
   filterTextNav: String = new String();
 
   isPosted: Boolean = false;
@@ -343,59 +347,112 @@ export class WritingPannelComponent implements OnInit {
     }
   }
 
+  //Selon le type d'ouverture de la popup de navigateur article on ne display pas la même liste
+
   openPopupAddArticle() {
-    this.isAddingArticle = true;
+    this.displayedListArticleInNav = this.displayedListArticleLinked.slice();
+    this.isAddingArticleLinked = true;
+  }
+
+  openPopupAddArticleTraduit(){
+    this.displayedListArticleInNav = this.displayedListArticleTraduit.slice();
+    this.isAddingArticleTraduit = true;
   }
 
   closeAddArticle() {
-    this.isAddingArticle = false;
+    this.isAddingArticleTraduit = false;
+    this.isAddingArticleLinked = false;
+    this.filterTextNav="";
+    this.refreshDisplayedArticle();
   }
 
   selectArticle(article: Article) {
-    this.articlesSelected.push(article)
-    this.newArticle.listIdArticlesLies.push(article.id)
-    this.isAddingArticle = false;
+
+    if (this.isAddingArticleLinked){
+      this.articlesSelected.push(article)
+      this.newArticle.listIdArticlesLies.push(article.id)
+    } else {
+      this.articleTraduit=article;
+      this.newArticle.idArticleTraduit=article.id;
+    }
+
+    this.closeAddArticle();
     this.filterTextNav = new String();
     this.refreshDisplayedArticle()
+    
   }
 
-  deleteArticle(article: Article) {
-    var newListId = []
-    var newListSelectedArticle = []
-    for (var k = 0; k < this.newArticle.listIdArticlesLies.length; k++) {
-      if (this.newArticle.listIdArticlesLies[k] != article.id) {
-        newListId.push(this.newArticle.listIdArticlesLies[k])
+  deleteArticle(article: Article, keyString : String) {
+    if (keyString==='linked'){
+      var newListId = []
+      var newListSelectedArticle = []
+      for (var k = 0; k < this.newArticle.listIdArticlesLies.length; k++) {
+        if (this.newArticle.listIdArticlesLies[k] != article.id) {
+          newListId.push(this.newArticle.listIdArticlesLies[k])
+        }
       }
-    }
-    for (var k = 0; k < this.articlesSelected.length; k++) {
-      if (this.articlesSelected[k].id != article.id) {
-        newListSelectedArticle.push(this.articlesSelected[k])
+      for (var k = 0; k < this.articlesSelected.length; k++) {
+        if (this.articlesSelected[k].id != article.id) {
+          newListSelectedArticle.push(this.articlesSelected[k])
+        }
       }
+      this.newArticle.listIdArticlesLies = newListId.slice()
+      this.articlesSelected = newListSelectedArticle.slice()
+    } else {
+      this.newArticle.idArticleTraduit=0;
+      this.articleTraduit = null;
     }
-    this.newArticle.listIdArticlesLies = newListId.slice()
-    this.articlesSelected = newListSelectedArticle.slice()
 
     this.refreshDisplayedArticle()
   }
 
   refreshDisplayedArticle() {
-    this.displayedListArticle = []
-    var index = 0
-    var rowArticle: Article[] = []
+    this.displayedListArticleLinked = []
+    this.displayedListArticleTraduit = []
+    var indexLinked = 0
+    var indexTraduit = 0
+    var rowArticleLinked: Article[] = []
+    var rowArticleTraduit: Article[] = []
     for (var k = 0; k < this.fullListArticle.length; k++) {
+
+      //On fait le traitement pour les articles liés
       if (this.newArticle.langue === this.fullListArticle[k].langue && this.newArticle.listIdArticlesLies.indexOf(this.fullListArticle[k].id) == -1 && this.fullListArticle[k].title.toLowerCase().includes(this.filterTextNav.toLowerCase())) {
-        if (index == 3) {
-          this.displayedListArticle.push(rowArticle)
-          rowArticle = []
-          rowArticle.push(this.fullListArticle[k])
+        if (indexLinked == 3) {
+          this.displayedListArticleLinked.push(rowArticleLinked)
+          rowArticleLinked = []
+          rowArticleLinked.push(this.fullListArticle[k])
         } else {
-          rowArticle.push(this.fullListArticle[k])
+          rowArticleLinked.push(this.fullListArticle[k])
         }
-        index++;
+        indexLinked++;
       }
+
+      //On fait le traitement pour les articles traduits
+      //Si l'article est de la langue opposée et n'est pas encore lié (sauf edition auquel cas on délie fictivement l'article lié si il y en a un)
+      if (this.newArticle.langue !== this.fullListArticle[k].langue && (this.fullListArticle[k].idArticleTraduit===0 || this.fullListArticle[k].idArticleTraduit===this.newArticle.idArticleTraduit) && this.fullListArticle[k].title.toLowerCase().includes(this.filterTextNav.toLowerCase())) {
+        if (indexTraduit == 3) {
+          this.displayedListArticleTraduit.push(rowArticleTraduit)
+          rowArticleTraduit = []
+          rowArticleTraduit.push(this.fullListArticle[k])
+        } else {
+          rowArticleTraduit.push(this.fullListArticle[k])
+        }
+        indexTraduit++;
+      }
+
+
     }
-    if (index != 0) {
-      this.displayedListArticle.push(rowArticle)
+    if (indexLinked != 0) {
+      this.displayedListArticleLinked.push(rowArticleLinked)
+    }
+    if (indexTraduit != 0) {
+      this.displayedListArticleTraduit.push(rowArticleTraduit)
+    }
+
+    if(this.isAddingArticleLinked){
+      this.displayedListArticleInNav = this.displayedListArticleLinked.slice();
+    } else {
+      this.displayedListArticleInNav = this.displayedListArticleTraduit.slice();
     }
   }
 
@@ -486,11 +543,15 @@ export class WritingPannelComponent implements OnInit {
           }
           this.refreshDisplayedArticle();
           //Si on est en edit on va aller chercher les articles liés
-          if (this.isEdit)
+          if (this.isEdit){
             this.articlesSelected = [];
-          for (var k = 0; k < this.fullListArticle.length; k++) {
-            if (this.newArticle.listIdArticlesLies.indexOf(this.fullListArticle[k].id) > -1) {
-              this.articlesSelected.push(this.fullListArticle[k])
+            for (var k = 0; k < this.fullListArticle.length; k++) {
+              if (this.newArticle.listIdArticlesLies.indexOf(this.fullListArticle[k].id) > -1) {
+                this.articlesSelected.push(this.fullListArticle[k])
+              }
+              if(this.fullListArticle[k].id===this.newArticle.idArticleTraduit){
+                this.articleTraduit=this.fullListArticle[k]
+              }
             }
           }
         },

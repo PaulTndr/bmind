@@ -216,7 +216,7 @@
         </div>
         <img class="button buttonRightTop" (click)="openPopupAddArticle()" *ngIf="articlesSelected.length<1"
           src="https://image.flaticon.com/icons/svg/149/149705.svg">
-        <img class="button buttonRightTop" (click)="deleteArticle(articlesSelected[0])"
+        <img class="button buttonRightTop" (click)="deleteArticle(articlesSelected[0], 'linked')"
           *ngIf="articlesSelected.length>0" src="https://image.flaticon.com/icons/svg/32/32178.svg">
       </div>
       <div class="oneChoixArticle">
@@ -227,7 +227,7 @@
         </div>
         <img class="button buttonRightTop" (click)="openPopupAddArticle()" *ngIf="articlesSelected.length<2"
           src="https://image.flaticon.com/icons/svg/149/149705.svg">
-        <img class="button buttonRightTop" (click)="deleteArticle(articlesSelected[1])"
+        <img class="button buttonRightTop" (click)="deleteArticle(articlesSelected[1], 'linked')"
           *ngIf="articlesSelected.length>1" src="https://image.flaticon.com/icons/svg/32/32178.svg">
       </div>
       <div class="oneChoixArticle">
@@ -238,9 +238,24 @@
         </div>
         <img class="button buttonRightTop" (click)="openPopupAddArticle()" *ngIf="articlesSelected.length<3"
           src="https://image.flaticon.com/icons/svg/149/149705.svg">
-        <img class="button buttonRightTop" (click)="deleteArticle(articlesSelected[2])"
+        <img class="button buttonRightTop" (click)="deleteArticle(articlesSelected[2],'linked')"
           *ngIf="articlesSelected.length>2" src="https://image.flaticon.com/icons/svg/32/32178.svg">
       </div>
+    </div>
+  </div>
+
+  <div id="selectArticleTraduit"> <!-- Même system que les articles liés-->
+    <h2>Sélection de l'article traduit</h2>
+    <div class="oneChoixArticle">
+      <div class="emptyChoix" *ngIf="!articleTraduit">
+      </div>
+      <div *ngIf="articleTraduit" class="oneArticleToSelect">
+        <app-miniature-article-small [article]="articleTraduit" [size]="'medium'"></app-miniature-article-small>
+      </div>
+      <img class="button buttonRightTop" (click)="openPopupAddArticleTraduit()" *ngIf="!articleTraduit"
+        src="https://image.flaticon.com/icons/svg/149/149705.svg">
+      <img class="button buttonRightTop" (click)="deleteArticle(articlesSelected[0], 'traduit')"
+        *ngIf="articleTraduit" src="https://image.flaticon.com/icons/svg/32/32178.svg">
     </div>
   </div>
 
@@ -262,7 +277,7 @@
     <h2>{{ 'admin.success' | translate }}</h2>
   </div>
 
-  <div *ngIf="isAddingArticle" id="popupArticle">
+  <div *ngIf="isAddingArticleLinked || isAddingArticleTraduit" id="popupArticle">
     <h2>{{ 'admin.selectArticles' | translate }}</h2>
     <img style="width: 30px;position: absolute;right: 20px;top: 20px;" class="button" (click)="closeAddArticle()"
       src="https://image.flaticon.com/icons/svg/151/151882.svg">
@@ -271,7 +286,7 @@
         [(ngModel)]="filterTextNav" (keyup)="refreshDisplayedArticle()">
     </div>
     <div id="miniatures">
-      <div *ngFor="let rowArticle of displayedListArticle">
+      <div *ngFor="let rowArticle of displayedListArticleInNav">
         <div class="flexRow rowInNavArticle">
           <app-miniature-article-small class="button oneMinia" (click)="selectArticle(article)"
             *ngFor="let article of rowArticle" [article]="article" [size]="'small'"></app-miniature-article-small>

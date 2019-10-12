@@ -18,6 +18,7 @@ interface KeywordData {
   listAuteurs: Auteur[]
   listSectors: Secteur[]
   listIdArticlesLies: Number[]
+  idArticleTraduit : Number;
   time: String
   difficulte: Number
   vues: Number
@@ -36,6 +37,7 @@ export class Article {
   listAuteurs: Auteur[] = [];
   listSectors: Secteur[] = [];
   listIdArticlesLies: Number[] = [];
+  idArticleTraduit : Number =0;
   time: String = new String();
   difficulte: Number = new Number();
   vues: Number = 0;
@@ -53,6 +55,7 @@ export class Article {
     console.log("timestamp: " + this.timestamp)
     console.log("difficulte: " + this.difficulte)
     console.log("vues: " + this.vues)
+    console.log("idArticleTraduit: " + this.idArticleTraduit)
     console.log("listSources: ")
     console.log(this.listSources)
     this.listSources.forEach(function (source) {
@@ -83,6 +86,7 @@ export class Article {
     this.fullText = String(data.fullText);
     this.difficulte = Number(data.difficulte);
     this.vues = Number(data.vues);
+    this.idArticleTraduit = Number(data.idArticleTraduit);
     this.time = String(data.time);
     this.timestamp = Number(data.timestamp);
     this.listSources = data.listSources;
