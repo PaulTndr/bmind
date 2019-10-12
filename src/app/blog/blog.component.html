@@ -94,9 +94,7 @@
           <p>|</p>
           <p class="button" (click)="checkUncheckAll('type', false)">Aucun</p>
         </div>
-        <mat-checkbox [(ngModel)]="mapFilter.type['projet']" (click)="checkboxChecked('type')">Projet</mat-checkbox>
-        <mat-checkbox [(ngModel)]="mapFilter.type['actu']" (click)="checkboxChecked('type')">Actualité</mat-checkbox>
-        <mat-checkbox [(ngModel)]="mapFilter.type['review']" (click)="checkboxChecked('type')">Revue</mat-checkbox>
+        <mat-checkbox *ngFor="let type of listTypes" [(ngModel)]="mapFilter.type[type.key]" (click)="checkboxChecked('type')">{{type.key}}</mat-checkbox>
       </div>
     </div>
 
@@ -111,12 +109,7 @@
           <p>|</p>
           <p class="button" (click)="checkUncheckAll('secteur', false)">Aucun</p>
         </div>
-        <mat-checkbox [(ngModel)]="mapFilter.secteur['entreprise']" (click)="checkboxChecked('secteur')">Entreprise
-        </mat-checkbox>
-        <mat-checkbox [(ngModel)]="mapFilter.secteur['formation']" (click)="checkboxChecked('secteur')">Formation
-        </mat-checkbox>
-        <mat-checkbox [(ngModel)]="mapFilter.secteur['management']" (click)="checkboxChecked('secteur')">Management
-        </mat-checkbox>
+        <mat-checkbox *ngFor="let secteur of listSecteurs" [(ngModel)]="mapFilter.secteur[secteur.key]" (click)="checkboxChecked('secteur')">{{secteur.key}}</mat-checkbox>
       </div>
     </div>
 

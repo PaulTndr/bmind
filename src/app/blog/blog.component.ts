@@ -3,10 +3,13 @@ import { Subscription } from 'rxjs/Subscription';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 import $ from 'jquery';
 import { TranslateService } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
 
 import { GlobalService } from '../global.service';
 import { BlogService } from './blog.service';
 import { Article } from '../classes/articles/article'
+import { Secteur } from '../classes/articles/secteur';
+import { Type } from '../classes/articles/type';
 
 @Component({
   selector: 'app-blog',
@@ -28,33 +31,17 @@ export class BlogComponent implements OnInit {
   listPagesArticles: any = []
   indicePage: Number = 0;
 
+  fullListSecteurs : Secteur[] = [];
+  fullListTypes : Type[] = [];
+
+  listArticlesFr : Article[] = [];
+  listArticlesEn : Article[] = [];
+
   isFilterOpen: Boolean = false;
 
-  mapFilter: any = {
-    "difficulte": {
-      "1": true,
-      "2": true,
-      "3": true,
-      "4": true,
-      "5": true,
-    },
-    "temps": {
-      "5 min": true,
-      "10 min": true,
-      "30 min": true,
-      "1 heure": true,
-    },
-    "type": {
-      "projet": true,
-      "actu": true,
-      "review": true,
-    },
-    "secteur": {
-      "entreprise": true,
-      "formation": true,
-      "management": true,
-    }
-  }
+  mapFilter : any = {}
+  listTypes : Type[] = [];
+  listSecteurs : Secteur[] = [];
 
   mapOneFilter: any = {
     "difficulte": false,
@@ -86,7 +73,7 @@ export class BlogComponent implements OnInit {
   isDirectlyOpen = false;
   articleToOpen: Article = new Article()
 
-  constructor(private globalService: GlobalService, private blogService: BlogService, private sanitizer: DomSanitizer, private translate: TranslateService) { }
+  constructor(private globalService: GlobalService, private blogService: BlogService, private sanitizer: DomSanitizer, private translate: TranslateService, private httpClient : HttpClient) { }
 
 
   ngOnInit() {
@@ -94,7 +81,7 @@ export class BlogComponent implements OnInit {
       scrollTop: 0
     }, 0);
     if (window.location.href.includes("idArticle")) {
-      console.log("On accède directement à un article")
+      //console.log("On accède directement à un article")
       var idArticleToOpen = window.location.href.split("?")[1].split("=")[1]
       this.openArticleDirectly(+idArticleToOpen)
     }
@@ -116,11 +103,27 @@ export class BlogComponent implements OnInit {
     //Si on arrive directement ici
     this.blogService.fillListArticle();
     this.blogService.fillListDefinition();
+    this.fillData();
+    this.generateFilter();
 
     this.listArticlesSubscription = this.blogService.listArticlesSubject.subscribe(
       (listArticles: any[]) => {
         this.listArticles = listArticles;
-        this.listArticleDisplay = this.listArticles.slice();
+        this.listArticlesFr=[]
+        this.listArticlesEn=[]
+        for (var k=0; k<this.listArticles.length; k++){
+          if (this.listArticles[k].langue==="FR" && this.listArticles[k].idArticleTraduit!=0){
+            this.listArticlesFr.push(this.listArticles[k])
+          } else if(this.listArticles[k].langue==="EN" && this.listArticles[k].idArticleTraduit!=0){
+            this.listArticlesEn.push(this.listArticles[k])
+          }
+        }
+        if (this.isFrSelected){
+          this.listArticleDisplay = this.listArticlesFr.slice();
+        } else{
+          this.listArticleDisplay = this.listArticlesEn.slice();
+        }
+        
         this.generatePages();
       }
     );
@@ -229,17 +232,22 @@ export class BlogComponent implements OnInit {
 
   filter() {
     //On va test les différents filtres
+    if (this.isFrSelected){
+      var listArticlesCorrectLang = this.listArticlesFr.slice()
+    } else {
+      var listArticlesCorrectLang = this.listArticlesEn.slice()
+    }
+    console.log(listArticlesCorrectLang)
     this.listArticleDisplay = [];
-    for (var k = 0; k < this.listArticles.length; k++) {
+    for (var k = 0; k < listArticlesCorrectLang.length; k++) {
       var isInFilterRules = true;
-      var article = this.listArticles[k]
+      var article = listArticlesCorrectLang[k]
       //Test du filtre texte du champ recherche
       if (!article.title.toLowerCase().includes(this.rechercheTxt.toLowerCase())) {
         isInFilterRules = false;
       }
 
       if (!this.mapFilter.difficulte["" + article.difficulte]) {
-        console.log(article.difficulte)
         isInFilterRules = false;
       }
 
@@ -266,7 +274,7 @@ export class BlogComponent implements OnInit {
 
       //Si toutes les règles sont OK on display
       if (isInFilterRules) {
-        this.listArticleDisplay.push(this.listArticles[k])
+        this.listArticleDisplay.push(listArticlesCorrectLang[k])
       }
     }
 
@@ -318,11 +326,48 @@ export class BlogComponent implements OnInit {
       this.isEnSelected = true;
       this.translate.use('en');
     }
+    
+    this.generateFilter()
+
+    this.mapOneFilter = {
+      "difficulte": false,
+      "temps": false,
+      "type": false,
+      "secteur": false,
+    }
+  
+    this.mapOpenFilter= {
+      "difficulte": false,
+      "temps": false,
+      "type": false,
+      "secteur": false,
+    }
+
+    if (this.isFrSelected){
+      //console.log//console.log("Switch to fr blog")
+      this.listArticleDisplay = this.listArticlesFr.slice();
+    } else{
+      //console.log("Switch to en blog")
+      this.listArticleDisplay = this.listArticlesEn.slice();
+    }
+
+    if(this.isArticleReading){
+      //On ouvre directement l'article traduit
+      var idTraduit = this.articleOnReader.idArticleTraduit
+      this.backToNav();
+      for (var k = 0; k < this.listArticles.length; k++) {
+        if (this.listArticles[k].id == idTraduit) {
+          this.articleToOpen = this.listArticles[k]
+        }
+      }
+      this.openArticle(this.articleToOpen)
+    }
+    this.generatePages()
   }
 
   openArticle(article: Article) {
     //window.location.href = window.location.href+"?idArticle="+article.id
-    console.log("open article")
+    //console.log("open article")
     //on va chercher les articles liés
     this.listArticlesLies = []
     for (var k = 0; k < this.listArticles.length; k++) {
@@ -342,7 +387,7 @@ export class BlogComponent implements OnInit {
   }
 
   backToNav() {
-    console.log("close article")
+    //console.log("close article")
     this.isDirectlyOpen = false;
     this.isFilterOpen = false;
     this.styleForSizeingArticle = this.sanitizer.bypassSecurityTrustStyle("margin-top:3vh;")
@@ -369,5 +414,98 @@ export class BlogComponent implements OnInit {
     this.isDirectlyOpen = true;
     this.openArticle(this.articleToOpen)
 
+  }
+
+  generateFilter(){
+    if(this.isFrSelected){
+      this.mapFilter = {
+        "difficulte": {
+          "1": true,
+          "2": true,
+          "3": true,
+          "4": true,
+          "5": true,
+        },
+        "temps": {
+          "5 min": true,
+          "10 min": true,
+          "30 min": true,
+          "1 heure": true,
+        },
+      }
+      this.mapFilter["secteur"]={}
+      this.listSecteurs=[]
+      for (var k=0; k<this.fullListSecteurs.length; k++){
+        if (this.fullListSecteurs[k].langue==="FR"){
+          this.mapFilter["secteur"][""+this.fullListSecteurs[k].key]=true
+          this.listSecteurs.push(this.fullListSecteurs[k])
+        }
+      }
+      this.mapFilter["type"]={}
+      this.listTypes=[]
+      for (var k=0; k<this.fullListTypes.length; k++){
+        if (this.fullListTypes[k].langue==="FR"){
+          this.mapFilter["type"][""+this.fullListTypes[k].key]=true
+          this.listTypes.push(this.fullListTypes[k])
+        }
+      }
+    } else {
+      this.mapFilter = {
+        "difficulte": {
+          "1": true,
+          "2": true,
+          "3": true,
+          "4": true,
+          "5": true,
+        },
+        "temps": {
+          "5 min": true,
+          "10 min": true,
+          "30 min": true,
+          "1 heure": true,
+        },
+      }
+      this.mapFilter["secteur"]={}
+      this.listSecteurs=[]
+      for (var k=0; k<this.fullListSecteurs.length; k++){
+        if (this.fullListSecteurs[k].langue==="EN"){
+          this.mapFilter["secteur"][""+this.fullListSecteurs[k].key]=true
+          this.listSecteurs.push(this.fullListSecteurs[k])
+        }
+      }
+      this.mapFilter["type"]={}
+      this.listTypes=[]
+      for (var k=0; k<this.fullListTypes.length; k++){
+        if (this.fullListTypes[k].langue==="EN"){
+          this.mapFilter["type"][""+this.fullListTypes[k].key]=true
+          this.listTypes.push(this.fullListTypes[k])
+        }
+      }
+    }
+
+    console.log(this.mapFilter)
+  }
+
+  fillData(){
+
+    this.httpClient.get<any[]>('https://bminddev.firebaseio.com/secteurs.json').subscribe(
+      (response) => {
+        this.fullListSecteurs = response.slice();
+        this.generateFilter()
+      },
+      (error) => {
+        console.log('Erreur ! : ' + error);
+      }
+    );
+
+    this.httpClient.get<any[]>('https://bminddev.firebaseio.com/types.json').subscribe(
+      (response) => {
+        this.fullListTypes = response.slice();
+        this.generateFilter()
+      },
+      (error) => {
+        console.log('Erreur ! : ' + error);
+      }
+    );
   }
 }
