@@ -28,14 +28,14 @@
   <div class="orangeCircle"></div>
   <div class="flexRow" id="listInput" *ngIf="!isArticleReading">
     <div class="flexRow oneInputDiv" id="filtrageInput">
-      <input style="pointer-events:none; width: 100%;" type="text" placeholder="Filtrer" [(ngModel)]="filtrageTxt"
+      <input style="pointer-events:none; width: 100%;" type="text" placeholder="{{ 'blog.filtrerPlH' | translate }}" [(ngModel)]="filtrageTxt"
         id="inputFilterText">
       <div class="divImage" (click)="invertFilter()">
         <img class="button" src="https://image.flaticon.com/icons/svg/109/109609.svg" id="imgFiltrageMenu" />
       </div>
     </div>
     <div class="flexRow oneInputDiv" id="rechercheInput">
-      <input style="width: 100%;" type="text" placeholder="RECHERCHER" [(ngModel)]="rechercheTxt"
+      <input style="width: 100%;" type="text" placeholder="{{ 'blog.rechercherPlH' | translate }}" [(ngModel)]="rechercheTxt"
         (keyup.enter)="filter()">
       <div class="divImage" (click)="filter()">
         <img class="button" style="transform:rotate(-90deg)"
@@ -51,9 +51,9 @@
       </div>
       <div *ngIf="mapOpenFilter.difficulte" class="flexCol oneAbsChoice">
         <div class="flexRow checkUncheckAll">
-          <p class="button" (click)="checkUncheckAll('difficulte', true)">Toutes</p>
+          <p class="button" (click)="checkUncheckAll('difficulte', true)">{{ 'blog.tousF' | translate }}</p>
           <p>|</p>
-          <p class="button" (click)="checkUncheckAll('difficulte', false)">Aucune</p>
+          <p class="button" (click)="checkUncheckAll('difficulte', false)">{{ 'blog.aucunF' | translate }}</p>
         </div>
         <mat-checkbox [(ngModel)]="mapFilter.difficulte['1']" (click)="checkboxChecked('difficulte')">+</mat-checkbox>
         <mat-checkbox [(ngModel)]="mapFilter.difficulte['2']" (click)="checkboxChecked('difficulte')">++</mat-checkbox>
@@ -72,14 +72,14 @@
       </div>
       <div *ngIf="mapOpenFilter.temps" class="flexCol oneAbsChoice">
         <div class="flexRow checkUncheckAll">
-          <p class="button" (click)="checkUncheckAll('temps', true)">Tous</p>
+          <p class="button" (click)="checkUncheckAll('temps', true)">{{ 'blog.tousM' | translate }}</p>
           <p>|</p>
-          <p class="button" (click)="checkUncheckAll('temps', false)">Aucun</p>
+          <p class="button" (click)="checkUncheckAll('temps', false)">{{ 'blog.aucunM' | translate }}</p>
         </div>
         <mat-checkbox [(ngModel)]="mapFilter.temps['5 min']" (click)="checkboxChecked('temps')">5 min</mat-checkbox>
         <mat-checkbox [(ngModel)]="mapFilter.temps['10 min']" (click)="checkboxChecked('temps')">10 min</mat-checkbox>
         <mat-checkbox [(ngModel)]="mapFilter.temps['30 min']" (click)="checkboxChecked('temps')">30 min</mat-checkbox>
-        <mat-checkbox [(ngModel)]="mapFilter.temps['1 heure']" (click)="checkboxChecked('temps')">1 heure</mat-checkbox>
+        <mat-checkbox [(ngModel)]="mapFilter.temps['1 heure']" (click)="checkboxChecked('temps')">{{ 'blog.oneHour' | translate }}</mat-checkbox>
       </div>
     </div>
 
@@ -90,9 +90,9 @@
       </div>
       <div *ngIf="mapOpenFilter.type" class="flexCol oneAbsChoice">
         <div class="flexRow checkUncheckAll">
-          <p class="button" (click)="checkUncheckAll('type', true)">Tous</p>
+          <p class="button" (click)="checkUncheckAll('type', true)">{{ 'blog.tousM' | translate }}</p>
           <p>|</p>
-          <p class="button" (click)="checkUncheckAll('type', false)">Aucun</p>
+          <p class="button" (click)="checkUncheckAll('type', false)">{{ 'blog.aucunM' | translate }}</p>
         </div>
         <mat-checkbox *ngFor="let type of listTypes" [(ngModel)]="mapFilter.type[type.key]" (click)="checkboxChecked('type')">{{type.key}}</mat-checkbox>
       </div>
@@ -105,9 +105,9 @@
       </div>
       <div *ngIf="mapOpenFilter.secteur" class="flexCol oneAbsChoice">
         <div class="flexRow checkUncheckAll">
-          <p class="button" (click)="checkUncheckAll('secteur', true)">Tous</p>
+          <p class="button" (click)="checkUncheckAll('secteur', true)">{{ 'blog.tousM' | translate }}</p>
           <p>|</p>
-          <p class="button" (click)="checkUncheckAll('secteur', false)">Aucun</p>
+          <p class="button" (click)="checkUncheckAll('secteur', false)">{{ 'blog.aucunM' | translate }}</p>
         </div>
         <mat-checkbox *ngFor="let secteur of listSecteurs" [(ngModel)]="mapFilter.secteur[secteur.key]" (click)="checkboxChecked('secteur')">{{secteur.key}}</mat-checkbox>
       </div>
@@ -115,24 +115,6 @@
 
   </div>
 </div>
-
-<!--<div id="findAndFilter">
-  <div class="flexRow">
-    <input id="rechercheInput" type="text" placeholder="Rechercher" [(ngModel)]="rechercheTxt">
-    <p class="button">Filtrer</p>
-  </div>
-  <mat-form-field style="margin-top:8px">
-    <mat-select [(value)]="templateSelected">
-      <mat-option *ngFor="let template of listTemplateForSelected" [value]="template">{{template['name']}}</mat-option>
-    </mat-select>
-  </mat-form-field>
-  <div id="listFilters" class="flexRow">
-    <p>Tous les types</p>
-    <p>Toutes les difficultés</p>
-    <p>Temps de lecture</p>
-    <p>Secteur</p>
-  </div>
-</div>-->
 
 <div id="listArticle" *ngIf="listArticleDisplay.length>0">
   <div class="oneArticle" [style]="styleForSizeingArticle" *ngFor="let article of listPagesArticles[indicePage]">
@@ -143,7 +125,7 @@
       <div class="divImage">
         <img style="transform:rotate(90deg)" src="https://image.flaticon.com/icons/svg/109/109609.svg" />
       </div>
-      <p>Retour aux articles</p>
+      <p>{{ 'blog.back' | translate }}</p>
     </div>
   </div>
 
@@ -153,7 +135,7 @@
       <div class="divImage">
         <img style="transform:rotate(90deg)" src="https://image.flaticon.com/icons/svg/109/109609.svg" />
       </div>
-      <p>Retour aux articles</p>
+      <p>{{ 'blog.back' | translate }}</p>
     </div>
   </div>
 
@@ -172,7 +154,7 @@
 </div>
 
 <div id="messageNoArticle" *ngIf="listArticleDisplay.length==0 && !isArticleReading">
-  <h1>Aucun article ne semble correspondre à votre recherche</h1>
+  <h1>{{ 'blog.noResult' | translate }}</h1>
 </div>
 
 <div id="contenuArticle" *ngIf="isArticleReading">
@@ -180,7 +162,7 @@
 </div>
 
 <div id="articlesLies" *ngIf="isArticleReading && listArticlesLies.length>=1">
-  <h1>Ces articles pourraient également vous intéresser</h1>
+  <h1>{{ 'blog.interestArticles' | translate }}</h1>
   <div id="articlesUnes" class="flexRow">
     <div class="oneArticle button" *ngIf="listArticlesLies.length>=1">
       <app-miniature-article-small [article]="listArticlesLies[0]" [size]="'small'"
@@ -198,9 +180,8 @@
 </div>
 
 <div id="bottomContact">
-  <p class="contactText">Vous avez une question, une suggestion, une remarque, un commentaire, envie de nous dire
-    bonjour et de nous féliciter pour notre travail,</p>
-  <p class="button contactButton" (click)="openPopup('blog')">Contactez-nous</p>
+  <p class="contactText">{{ 'blog.suggestionBlog' | translate }}</p>
+  <p class="button contactButton" (click)="openPopup('blog')">{{ 'blog.contact' | translate }}</p>
 </div>
 
 <div id="footer">

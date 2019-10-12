@@ -55,6 +55,20 @@
         "bmindCapital": "capital social 10 000€",
         "bmindAdresse": "27 impasse des Aurengues 13013 MARSEILLE"
     },
+    "blog": {
+        "filtrerPlH" : "Filtrer",
+        "rechercherPlH" : "RECHERCHER",
+        "tousF":"Toutes",
+        "tousM":"Tous",
+        "aucunM":"Aucun",
+        "aucunF":"Aucune",
+        "oneHour":"1 heure",
+        "back":"Retour aux articles",
+        "noResult":"Aucun article ne semble correspondre à votre recherche",
+        "interestArticles":"Ces articles pourraient également vous intéresser",
+        "suggestionBlog":"Vous avez une question, une suggestion, une remarque, un commentaire, envie de nous dire bonjour et de nous féliciter pour notre travail,",
+        "contact":"Contactez-nous"
+    },
     "admin": {
         "title": "Ajouter un article",
         "general": "Général",

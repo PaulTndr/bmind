@@ -99,6 +99,11 @@ export class BlogComponent implements OnInit {
 
     this.isFrSelected = this.globalService.isFrSelected
     this.isEnSelected = this.globalService.isEnSelected
+    if (this.isFrSelected){
+      this.switchLangue("fr")
+    } else {
+      this.switchLangue("en")
+    }
 
     //Si on arrive directement ici
     this.blogService.fillListArticle();
@@ -187,19 +192,46 @@ export class BlogComponent implements OnInit {
         isOneFilterActive = isOneFilterActive || this.mapOneFilter[key];
       }
       if (isOneFilterActive) {
-        this.filtrageTxt = "Filtré ("
+        if (this.isFrSelected){
+          this.filtrageTxt = "Filtré ("
+        } else{
+          this.filtrageTxt = "Filtered ("
+        }
+        
         for (var k = 0; k < Object.keys(this.mapOneFilter).length; k++) {
           var key = Object.keys(this.mapOneFilter)[k]
           if (this.mapOneFilter[key]) {
-            this.filterLabel[key] = key + " (filtré)"
-            this.filtrageTxt += key + ", ";
-          } else {
-            var keyStringLabel = {
-              "difficulte": "Toutes les difficultés",
-              "temps": "Tous les temps",
-              "type": "Tous les types",
-              "secteur": "Tous les secteurs",
+            if(this.isFrSelected){
+              this.filterLabel[key] = key + " (filtré)"
+              this.filtrageTxt += key + ", ";
+            } else{
+              var correspondanceKey={
+                "difficulte":"difficulty",
+                "temps":"time",
+                "type":"type",
+                "secteur":"sector"
+              }
+              this.filterLabel[key] = correspondanceKey[key] + " (filtered)"
+              this.filtrageTxt += correspondanceKey[key] + ", ";
             }
+            
+          } else {
+            if(this.isFrSelected){
+              var keyStringLabel = {
+                "difficulte": "Toutes les difficultés",
+                "temps": "Tous les temps",
+                "type": "Tous les types",
+                "secteur": "Tous les secteurs",
+              }
+            } else{
+              var keyStringLabel = {
+                "difficulte": "All the difficulties",
+                "temps": "All the reading times",
+                "type": "All the types",
+                "secteur": "All the sectors",
+              }
+            }
+            
             this.filterLabel[key] = keyStringLabel[key]
           }
         }
@@ -207,13 +239,26 @@ export class BlogComponent implements OnInit {
         this.filtrageTxt += ")"
         $("#inputFilterText").css("color", "#D17B53")
       } else {
-        this.filtrageTxt = "Filtrer"
+        if(this.isFrSelected){
+          this.filtrageTxt = "Filtrer"
+        } else{
+          this.filtrageTxt = "Filter"
+        }
         $("#inputFilterText").css("color", "#757575")
-        this.filterLabel = {
-          "difficulte": "Toutes les difficultés",
-          "temps": "Tous les temps",
-          "type": "Tous les types",
-          "secteur": "Tous les secteurs",
+        if(this.isFrSelected){
+          this.filterLabel = {
+            "difficulte": "Toutes les difficultés",
+            "temps": "Tous les temps",
+            "type": "Tous les types",
+            "secteur": "Tous les secteurs",
+          }
+        } else{
+          this.filterLabel = {
+            "difficulte": "All the difficulties",
+            "temps": "All the reading times",
+            "type": "All the types",
+            "secteur": "All the sectors",
+          }
         }
       }
 
@@ -344,11 +389,21 @@ export class BlogComponent implements OnInit {
     }
 
     if (this.isFrSelected){
-      //console.log//console.log("Switch to fr blog")
       this.listArticleDisplay = this.listArticlesFr.slice();
+      this.filterLabel = {
+        "difficulte": "Toutes les difficultés",
+        "temps": "Tous les temps",
+        "type": "Tous les types",
+        "secteur": "Tous les secteurs",
+      }
     } else{
-      //console.log("Switch to en blog")
       this.listArticleDisplay = this.listArticlesEn.slice();
+      this.filterLabel = {
+        "difficulte": "All the difficulties",
+        "temps": "All the reading times",
+        "type": "All the types",
+        "secteur": "All the sectors",
+      }
     }
 
     if(this.isArticleReading){
