@@ -55,9 +55,9 @@
           <img class="button" src="https://image.flaticon.com/icons/svg/395/395848.svg"
             (click)="openDeletePopup(element)" />
           <img class="button" *ngIf="mapFavorite[element.id]" src="https://image.flaticon.com/icons/svg/148/148841.svg"
-            (click)="removeFavorite(element.id)" /> <!-- Favorite -->
+            (click)="removeFavorite(element)" /> <!-- Favorite -->
           <img class="button" *ngIf="!mapFavorite[element.id]" src="https://image.flaticon.com/icons/svg/118/118669.svg"
-            (click)="addToFavorite(element.id)" /> <!-- Not Favorite -->
+            (click)="addToFavorite(element)" /> <!-- Not Favorite -->
         </div>
       </td>
     </ng-container>

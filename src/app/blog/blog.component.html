@@ -117,15 +117,17 @@
 </div>
 
 <div id="listArticle" *ngIf="listArticleDisplay.length>0">
-  <div class="oneArticle" [style]="styleForSizeingArticle" *ngFor="let article of listPagesArticles[indicePage]">
-    <app-miniature-article *ngIf="!isArticleReading || (isArticleReading && article==articleOnReader)"
-      [article]="article" (click)="openArticle(article)"></app-miniature-article>
-    <div id="retourNav" class="flexRow button" *ngIf="isArticleReading && article==articleOnReader"
-      (click)="backToNav()">
-      <div class="divImage">
-        <img style="transform:rotate(90deg)" src="https://image.flaticon.com/icons/svg/109/109609.svg" />
+  <div *ngIf="!isDirectlyOpen">
+    <div class="oneArticle" [style]="styleForSizeingArticle" *ngFor="let article of listPagesArticles[indicePage]"> 
+      <app-miniature-article *ngIf="!isArticleReading || (isArticleReading && article==articleOnReader)"
+        [article]="article" (click)="openArticle(article)"></app-miniature-article>
+      <div id="retourNav" class="flexRow button" *ngIf="isArticleReading && article==articleOnReader"
+        (click)="backToNav()">
+        <div class="divImage">
+          <img style="transform:rotate(90deg)" src="https://image.flaticon.com/icons/svg/109/109609.svg" />
+        </div>
+        <p>{{ 'blog.back' | translate }}</p>
       </div>
-      <p>{{ 'blog.back' | translate }}</p>
     </div>
   </div>
 

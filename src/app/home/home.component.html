@@ -50,13 +50,13 @@
     </div>
   </div>
   <div class="flexRow" style="margin:auto; justify-content:space-between; width: 70%;" id="projets">
-    <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticles[0].id)"
-      *ngIf="favoriteArticles.length>0">
-      <app-miniature-article-small [article]="favoriteArticles[0]" [size]="'medium'"></app-miniature-article-small>
+    <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticlesLangSelected[0].id)"
+      *ngIf="favoriteArticlesLangSelected.length>0">
+      <app-miniature-article-small [article]="favoriteArticlesLangSelected[0]" [size]="'medium'"></app-miniature-article-small>
     </div>
-    <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticles[1].id)"
-      *ngIf="favoriteArticles.length>1">
-      <app-miniature-article-small [article]="favoriteArticles[1]" [size]="'medium'"></app-miniature-article-small>
+    <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticlesLangSelected[1].id)"
+      *ngIf="favoriteArticlesLangSelected.length>1">
+      <app-miniature-article-small [article]="favoriteArticlesLangSelected[1]" [size]="'medium'"></app-miniature-article-small>
     </div>
   </div>
 </div>
@@ -183,17 +183,17 @@
   <p class="mainText">{{ 'home.titleBlog' | translate }}</p>
   <p class="mainText discoverText">{{ 'home.blogRedirect' | translate }}</p>
   <div id="articlesUnes" class="flexRow">
-    <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticles[0].id)"
-      *ngIf="favoriteArticles.length>0">
-      <app-miniature-article-small [article]="favoriteArticles[0]" [size]="'small'"></app-miniature-article-small>
+    <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticlesLangSelected[0].id)"
+      *ngIf="favoriteArticlesLangSelected.length>0">
+      <app-miniature-article-small [article]="favoriteArticlesLangSelected[0]" [size]="'small'"></app-miniature-article-small>
     </div>
-    <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticles[1].id)"
-      *ngIf="favoriteArticles.length>1">
-      <app-miniature-article-small [article]="favoriteArticles[1]" [size]="'small'"></app-miniature-article-small>
+    <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticlesLangSelected[1].id)"
+      *ngIf="favoriteArticlesLangSelected.length>1">
+      <app-miniature-article-small [article]="favoriteArticlesLangSelected[1]" [size]="'small'"></app-miniature-article-small>
     </div>
-    <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticles[2].id)"
-      *ngIf="favoriteArticles.length>2">
-      <app-miniature-article-small [article]="favoriteArticles[2]" [size]="'small'"></app-miniature-article-small>
+    <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticlesLangSelected[2].id)"
+      *ngIf="favoriteArticlesLangSelected.length>2">
+      <app-miniature-article-small [article]="favoriteArticlesLangSelected[2]" [size]="'small'"></app-miniature-article-small>
     </div>
   </div>
   <p class="button contactButton" routerLink="/blog">{{ 'home.moreBlog' | translate }}</p>

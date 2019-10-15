@@ -88,10 +88,18 @@ export class EditingPannelComponent implements OnInit {
     this.dataSourceArticle = new MatTableDataSource<Article>(displayedArticlesList);
   }
 
-  addToFavorite(idArticle: Number) {
+  addToFavorite(article: Article) {
+    var idArticle = article.id
+    var idArticleTraduit = article.idArticleTraduit
+    if (idArticleTraduit===0){
+      alert("Impossible, l'article n'est pas lié à une version traduite")
+      return;
+    }
     this.mapFavorite["" + idArticle] = true
+    this.mapFavorite["" + idArticleTraduit] = true
     if (this.listIdFavorite.length < 3) {
       this.listIdFavorite.push(+idArticle)
+      this.listIdFavorite.push(+idArticleTraduit)
       //AJOUT BASE
       this.httpClient.put('https://bminddev.firebaseio.com/favorites.json', this.listIdFavorite).subscribe(
         () => {
@@ -101,14 +109,20 @@ export class EditingPannelComponent implements OnInit {
           console.log('Erreur lors de l\'enregistrment des favoris! : ' + error);
         }
       );
+    } else {
+      alert("Impossible, déjà 3 articles en favoris")
+      return;
     }
   }
 
-  removeFavorite(idArticle: Number) {
+  removeFavorite(article: Article) {
+    var idArticle = article.id
+    var idArticleTraduit = article.idArticleTraduit
     this.mapFavorite["" + idArticle] = false
+    this.mapFavorite["" + idArticleTraduit] = false
     var newFavorites = []
     for (var k = 0; k < this.listIdFavorite.length; k++) {
-      if (this.listIdFavorite[k] != idArticle) {
+      if (this.listIdFavorite[k] != idArticle && this.listIdFavorite[k] != idArticleTraduit) {
         newFavorites.push(this.listIdFavorite[k])
       }
     }

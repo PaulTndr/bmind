@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, AfterViewChecked } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit {
 
   isMenuOpen: Boolean = false;
   favoriteArticles: Article[] = []
+  favoriteArticlesLangSelected: Article[] = []
   listOffers: Offre[] = [];
 
   isFrSelected: Boolean;
@@ -124,12 +125,18 @@ export class HomeComponent implements OnInit {
       (listFavoriteArticles: Article[]) => {
         this.favoriteArticles = listFavoriteArticles.slice();
         this.blogService.emitListFavoriteArticlesSubject();
-
+        this.favoriteArticlesLangSelected = []
+        for (var k=0; k<this.favoriteArticles.length; k++){
+          if (this.favoriteArticles[k].langue==="FR" && this.isFrSelected){
+            this.favoriteArticlesLangSelected.push(this.favoriteArticles[k])
+          } else if(this.favoriteArticles[k].langue==="EN" && this.isEnSelected){
+            this.favoriteArticlesLangSelected.push(this.favoriteArticles[k])
+          }
+        }
       }
     );
     window.addEventListener('scroll', function(e){
       if(this.window.scrollY>=100){
-        console.log($("#header"))
         $("#header").addClass("fixedTop")
       } else{
         $("#header").removeClass("fixedTop")
@@ -217,7 +224,6 @@ export class HomeComponent implements OnInit {
         'contact': index == 6 ? true : false,
       }
       this.sizeSolidLineForTimeLine = this.sanitizer.bypassSecurityTrustStyle("height:" + (index * 11.5) + "vh;");
-      console.log(this.sizeSolidLineForTimeLine)
     } else {
       this.isPointHovered = false;
       this.mapHover = {
@@ -259,13 +265,23 @@ export class HomeComponent implements OnInit {
       this.isEnSelected = true;
       this.translate.use('en');
     }
+
+    //Switch des articles
+    this.favoriteArticlesLangSelected=[]
+    for (var k=0; k<this.favoriteArticles.length; k++){
+      if (this.favoriteArticles[k].langue==="FR" && this.isFrSelected){
+        this.favoriteArticlesLangSelected.push(this.favoriteArticles[k])
+      } else if(this.favoriteArticles[k].langue==="EN" && this.isEnSelected){
+        this.favoriteArticlesLangSelected.push(this.favoriteArticles[k])
+      }
+    }
   }
 
   openArticleInBlog(idArticle: Number) {
     if (("" + window.location.href).includes(".com")) {
-      window.location.href = "https://bmind-v3.stackblitz.io/blog" + "?idArticle=" + idArticle
+      window.location.href = "http://localhost:4200//blog" + "?idArticle=" + idArticle
     } else {
-      window.location.href = "https://bmind-v3.stackblitz.io/blog" + "?idArticle=" + idArticle
+      window.location.href = "http://localhost:4200//blog" + "?idArticle=" + idArticle
     }
   }
 

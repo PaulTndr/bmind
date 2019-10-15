@@ -466,8 +466,11 @@ export class BlogComponent implements OnInit {
         this.articleToOpen = this.listArticles[k]
       }
     }
+    //On set la langue fonction de la langue de l'article
+    this.switchLangue(this.articleToOpen.langue === "FR" ? "fr" : "en")
     this.isDirectlyOpen = true;
     this.openArticle(this.articleToOpen)
+    
 
   }
 
