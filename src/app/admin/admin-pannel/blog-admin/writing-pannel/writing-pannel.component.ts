@@ -67,6 +67,7 @@ export class WritingPannelComponent implements OnInit {
 
   nouveauxSecteurs: Secteur[] = []
 
+
   constructor(private httpClient: HttpClient, private router: Router, private adminService: AdminService, private translate: TranslateService) { }
 
   ngOnInit() {
@@ -118,20 +119,62 @@ export class WritingPannelComponent implements OnInit {
       );
     }
     
+    //Edit de l'idTraduit de l'article traduit lié si il y'en a un et ajout
+    if(this.newArticle.idArticleTraduit!==0){
+      var listArticle = []
+      this.httpClient.get<any[]>('https://bminddev.firebaseio.com/articles.json').subscribe(
+        (response) => {
+          var lKeys = Object.keys(response)
+          var listObject: Article[] = [];
+          lKeys.forEach(function (kw) {
+            var oneArticle = new Article()
+            oneArticle.fromHashMap(response[kw])
+            listObject.push(oneArticle)
+          })
+          listArticle = listObject.slice();
+          for (var k=0; k<listArticle.length; k++){
+            if (listArticle[k].id===this.newArticle.idArticleTraduit){
+              listArticle[k].idArticleTraduit=this.newArticle.id
+            }
+          }
+          listArticle.push(this.newArticle)
+          if(listArticle.length===0){
+            alert("L'article n'a pas été posté, erreur interne")
+            return;
+          } else {
+            this.httpClient.put('https://bminddev.firebaseio.com/articles.json', listArticle).subscribe(
+              () => {
+                console.log('Enregistrement des articles terminé !');
+                this.isPosted = true
+                this.newArticle = new Article();
+                this.fillData(['autors'])
+                setTimeout(() => { this.isPosted = false; this.router.navigate(['/admin/pannel/blogModeration']); }, 3000)
+              },
+              (error) => {
+                console.log('Erreur lors de l\'enregistrment de l\'article! : ' + error);
+              }
+            );
+          }
+        });
+    }
 
     //AJOUT BASE
-    this.httpClient.post('https://bminddev.firebaseio.com/articles.json', this.newArticle).subscribe(
-      () => {
-        console.log('Enregistrement de l\'article terminé !');
-        this.isPosted = true
-        this.newArticle = new Article();
-        this.fillData(['autors'])
-        setTimeout(() => { this.isPosted = false; this.router.navigate(['/admin/pannel/blogModeration']); }, 3000)
-      },
-      (error) => {
-        console.log('Erreur lors de l\'enregistrment de l\'article! : ' + error);
-      }
-    );
+    else{
+      console.log("Pas d'article traduit")
+      this.httpClient.post('https://bminddev.firebaseio.com/articles.json', this.newArticle).subscribe(
+        () => {
+          console.log('Enregistrement de l\'article terminé !');
+          this.isPosted = true
+          this.newArticle = new Article();
+          this.fillData(['autors'])
+          setTimeout(() => { this.isPosted = false; this.router.navigate(['/admin/pannel/blogModeration']); }, 3000)
+        },
+        (error) => {
+          console.log('Erreur lors de l\'enregistrment de l\'article! : ' + error);
+        }
+      );
+    }
+    
 
     //Ajout des nouveaux secteurs
     var isOneChangeInSector=false;
@@ -215,6 +258,59 @@ export class WritingPannelComponent implements OnInit {
           console.log('Erreur lors de l\'enregistrment du secteur! : ' + error);
         }
       );
+    }
+
+    //Edit de l'idTraduit de l'article traduit lié si il y a un changement et ajout
+
+    //On retire des favoris si certains sont concernés
+    var listIdFavorite;
+    var ancienArticleLie;
+    var nouvelArticleLie;
+
+    for (var k = 0; k < newListArticle.length; k++) {
+      //Si il y avait un article traduit avant on l'enlève
+      if (newListArticle[k].idArticleTraduit===this.newArticle.id){
+        newListArticle[k].idArticleTraduit=0
+        ancienArticleLie = newListArticle[k].id
+      }
+
+      //Si un article est lié
+      if (newListArticle[k].id === this.newArticle.idArticleTraduit) {
+        newListArticle[k].idArticleTraduit=this.newArticle.id
+        nouvelArticleLie=newListArticle[k].id
+      }
+    }
+
+    if (ancienArticleLie!=nouvelArticleLie){
+      this.httpClient.get<any[]>('https://bminddev.firebaseio.com/favorites.json').subscribe(
+      (response) => {
+        if (response != null) {
+          listIdFavorite = response
+          if (listIdFavorite.indexOf(this.newArticle.id)===-1){
+            //Pas de modif
+            return;
+          }
+          var newLstIdFavorite=[]
+          for(var k=0; k<listIdFavorite.length;k++){
+            if(listIdFavorite[k]!==ancienArticleLie && (nouvelArticleLie || listIdFavorite[k]!==this.newArticle.id)){
+              newLstIdFavorite.push(listIdFavorite[k])
+            }
+          }
+          newLstIdFavorite.push(nouvelArticleLie)
+          this.httpClient.put('https://bminddev.firebaseio.com/favorites.json', newLstIdFavorite).subscribe(
+            () => {
+              console.log('Enregistrement des favoris réussi !');
+            },
+            (error) => {
+              console.log('Erreur lors de l\'enregistrment des favoris! : ' + error);
+            }
+          );
+        }
+      },
+      (error) => {
+        console.log('Erreur ! : ' + error);
+      }
+    );
     }
 
     //EDIT DE L'ARTICLE

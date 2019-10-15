@@ -30,6 +30,8 @@ export class EditingPannelComponent implements OnInit {
 
   isDeletePopup: Boolean = false;
 
+  needRefresh = true;
+
   constructor(private httpClient: HttpClient, private adminService: AdminService) { }
 
   ngOnInit() {
@@ -89,6 +91,7 @@ export class EditingPannelComponent implements OnInit {
   }
 
   addToFavorite(article: Article) {
+    this.needRefresh=false;
     var idArticle = article.id
     var idArticleTraduit = article.idArticleTraduit
     if (idArticleTraduit===0){
@@ -97,7 +100,7 @@ export class EditingPannelComponent implements OnInit {
     }
     this.mapFavorite["" + idArticle] = true
     this.mapFavorite["" + idArticleTraduit] = true
-    if (this.listIdFavorite.length < 3) {
+    if (this.listIdFavorite.length < 6) {
       this.listIdFavorite.push(+idArticle)
       this.listIdFavorite.push(+idArticleTraduit)
       //AJOUT BASE
@@ -116,6 +119,7 @@ export class EditingPannelComponent implements OnInit {
   }
 
   removeFavorite(article: Article) {
+    this.needRefresh=false;
     var idArticle = article.id
     var idArticleTraduit = article.idArticleTraduit
     this.mapFavorite["" + idArticle] = false
@@ -140,6 +144,7 @@ export class EditingPannelComponent implements OnInit {
 
   editArticle(article: Article) {
     this.articleToEdit = article;
+    setInterval(()=>{this.refreshMapFavorite();this.needRefresh=true;}, 1000);
     this.adminService.switchEditingMode()
   }
 
@@ -174,6 +179,31 @@ export class EditingPannelComponent implements OnInit {
       },
       (error) => {
         console.log('Erreur lors de la suppression de l\'article! : ' + error);
+      }
+    );
+  }
+
+  refreshMapFavorite(){
+    if(!this.needRefresh){
+      return;
+    }
+    this.httpClient.get<any[]>('https://bminddev.firebaseio.com/favorites.json').subscribe(
+      (response) => {
+        if (response != null) {
+          this.listIdFavorite = response
+          var keysFavorite = Object.keys(this.mapFavorite)
+          for( var i =0; i<keysFavorite.length; i++){
+            this.mapFavorite[keysFavorite[i]]=false;
+          }
+
+          for (var k=0;k<this.listIdFavorite.length; k++){
+            this.mapFavorite["" + this.listIdFavorite[k]] = true
+          }
+          
+        }
+      },
+      (error) => {
+        console.log('Erreur ! : ' + error);
       }
     );
   }

@@ -54,7 +54,9 @@
           <img class="button" src="https://image.flaticon.com/icons/svg/61/61456.svg" (click)="editArticle(element)" />
           <img class="button" src="https://image.flaticon.com/icons/svg/395/395848.svg"
             (click)="openDeletePopup(element)" />
-          <img class="button" *ngIf="mapFavorite[element.id]" src="https://image.flaticon.com/icons/svg/148/148841.svg"
+          <img class="button" *ngIf="mapFavorite[element.id] && element.langue==='FR'" src="https://image.flaticon.com/icons/svg/148/148841.svg"
+            (click)="removeFavorite(element)" /> <!-- Favorite -->
+            <img class="button" *ngIf="mapFavorite[element.id] && element.langue==='EN'" src="https://image.flaticon.com/icons/svg/1280/1280161.svg"
             (click)="removeFavorite(element)" /> <!-- Favorite -->
           <img class="button" *ngIf="!mapFavorite[element.id]" src="https://image.flaticon.com/icons/svg/118/118669.svg"
             (click)="addToFavorite(element)" /> <!-- Not Favorite -->
