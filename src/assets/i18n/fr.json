@@ -70,7 +70,9 @@
         "contact":"Contactez-nous",
         "auteurNonRenseigne":"L'auteur de cet article n'est pas renseigné",
         "sources":"Sources",
-        "noSource":"Aucune source renseignée pour cet article"
+        "noSource":"Aucune source renseignée pour cet article",
+        "articleReadingTime":"Temps de lecture",
+        "articleDiff":"Difficulté"
     },
     "admin": {
         "title": "Ajouter un article",

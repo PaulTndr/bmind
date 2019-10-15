@@ -7,14 +7,14 @@
       <div class="flexRow" id="rowData">
         <div class="oneDivData" style="justify-content:flex-end">
           <div class="oneData" style="margin-right:50px">
-            <p>Temps de lecture</p>
+            <p>{{ 'blog.articleReadingTime' | translate }}</p>
             <p class="data">{{article.time}}</p>
           </div>
         </div>
         <div id="separatorV"></div>
         <div class="oneDivData" style="justify-content:flex-start">
           <div class="oneData" style="margin-left:50px">
-            <p>Difficulté</p>
+            <p>{{ 'blog.articleDiff' | translate }}</p>
             <p class="data" *ngIf="article.difficulte==1">+</p>
             <p class="data" *ngIf="article.difficulte==2">++</p>
             <p class="data" *ngIf="article.difficulte==3">+++</p>
