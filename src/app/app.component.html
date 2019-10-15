@@ -3,7 +3,7 @@
 <!--Popup de contact-->
 <div id="popupContact" *ngIf="isPopupContactActive">
   <div *ngIf="!hasBeenSent">
-    <img style="width: 30px;position: absolute;right: 20px;top: 20px; filter:invert(1)" class="button" (click)="closePopup()" src="https://image.flaticon.com/icons/svg/151/151882.svg">
+    <img style="width: 30px;position: absolute;right: 20px;top: 20px; filter:invert(1)" class="button" (click)="closePopup()" src="../assets/images/blackCross.svg">
     <h1>{{ 'demo.title' | translate }}</h1>
     <div class="flexCol">
       <input id="mailContact" type="text" placeholder="E-MAIL" [(ngModel)]="mailContact">

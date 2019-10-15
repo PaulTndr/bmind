@@ -16,7 +16,7 @@
   </div>
 
   <img class="button" *ngIf="entryToEdit!='secteurAndType'" style="width:40px"
-    src="https://image.flaticon.com/icons/svg/148/148764.svg" (click)="addItem()" />
+    src="../../../../../assets/images/addButton.svg" (click)="addItem()" />
 </div>
 
 <!-- Table Mots clés -->
@@ -46,8 +46,8 @@
       <th mat-header-cell *matHeaderCellDef> Actions </th>
       <td mat-cell *matCellDef="let element">
         <div class="actions flexRow">
-          <img class="button" src="https://image.flaticon.com/icons/svg/61/61456.svg" (click)="editItem(element.id)" />
-          <img class="button" src="https://image.flaticon.com/icons/svg/395/395848.svg"
+          <img class="button" src="../../../../../assets/images/crayonEdit.svg" (click)="editItem(element.id)" />
+          <img class="button" src="../../../../../assets/images/deleteCross.svg"
             (click)="deleteItem(element.id)" />
         </div>
       </td>
@@ -85,8 +85,8 @@
       <th mat-header-cell *matHeaderCellDef> Actions </th>
       <td mat-cell *matCellDef="let element">
         <div class="actions flexRow">
-          <img class="button" src="https://image.flaticon.com/icons/svg/61/61456.svg" (click)="editItem(element.id)" />
-          <img class="button" src="https://image.flaticon.com/icons/svg/395/395848.svg"
+          <img class="button" src="../../../../../assets/images/crayonEdit.svg" (click)="editItem(element.id)" />
+          <img class="button" src="../../../../../assets/images/deleteCross.svg"
             (click)="deleteItem(element.id)" />
         </div>
       </td>
@@ -121,7 +121,7 @@
         <th mat-header-cell *matHeaderCellDef> Actions </th>
         <td mat-cell *matCellDef="let element">
           <div class="actions flexRow">
-            <img class="button" src="https://image.flaticon.com/icons/svg/395/395848.svg"
+            <img class="button" src="../../../../../assets/images/deleteCross.svg"
               (click)="deleteItemDirect('sector', element)" />
           </div>
         </td>
@@ -154,7 +154,7 @@
         <th mat-header-cell *matHeaderCellDef> Actions </th>
         <td mat-cell *matCellDef="let element">
           <div class="actions flexRow">
-            <img class="button" src="https://image.flaticon.com/icons/svg/395/395848.svg"
+            <img class="button" src="../../../../../assets/images/deleteCross.svg"
               (click)="deleteItemDirect('type', element)" />
           </div>
         </td>
@@ -189,8 +189,8 @@
       <th mat-header-cell *matHeaderCellDef> Actions </th>
       <td mat-cell *matCellDef="let element">
         <div class="actions flexRow">
-          <img class="button" src="https://image.flaticon.com/icons/svg/61/61456.svg" (click)="editItem(element.id)" />
-          <img class="button" src="https://image.flaticon.com/icons/svg/395/395848.svg"
+          <img class="button" src="../../../../../assets/images/crayonEdit.svg" (click)="editItem(element.id)" />
+          <img class="button" src="../../../../../assets/images/deleteCross.svg"
             (click)="deleteItem(element.id)" />
         </div>
       </td>

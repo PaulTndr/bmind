@@ -61,9 +61,9 @@
         </mat-select>
       </mat-form-field>
       <img *ngIf="!isAddType" class="button logoAdd" (click)="openAdd('type')"
-        src="https://image.flaticon.com/icons/svg/148/148764.svg" />
+        src="../../../../../assets/images/addButton.svg" />
       <img *ngIf="isAddType" class="button logoAdd" (click)="closeAdd('type')"
-        src="https://image.flaticon.com/icons/svg/118/118743.svg" />
+        src="../../../../../assets/images/sortirButton.svg" />
     </div>
 
     <div class="flexRow" *ngIf="isAddType">
@@ -78,7 +78,7 @@
     </div>
 
     <div class="flexRow" *ngIf="newArticle.type===''">
-      <img style="width:10px; margin-right:10px;" src="https://image.flaticon.com/icons/svg/196/196760.svg" />
+      <img style="width:10px; margin-right:10px;" src="../../../../../assets/images/alertOrange.svg" />
       <p>{{ 'admin.aucunType' | translate }}</p>
     </div>
 
@@ -88,9 +88,9 @@
     <div class="flexRow">
       <h2>{{ 'admin.sources' | translate }}</h2>
       <img *ngIf="!isAddSource" class="button logoAdd" (click)="openAdd('source')"
-        src="https://image.flaticon.com/icons/svg/148/148764.svg" />
+        src="../../../../../assets/images/addButton.svg" />
       <img *ngIf="isAddSource" class="button logoAdd" (click)="closeAdd('source')"
-        src="https://image.flaticon.com/icons/svg/118/118743.svg" />
+        src="../../../../../assets/images/sortirButton.svg" />
     </div>
     <div class="flexRow inputAdd" *ngIf="isAddSource">
       <mat-form-field class="example-full-width smallInput" style="margin-right: 30px;">
@@ -102,12 +102,12 @@
       <p class="button buttonAdd" (click)="addItemToLists('source')">{{ 'admin.ajouter' | translate }}</p>
     </div>
     <div class="flexRow" *ngIf="newArticle.listSources.length==0">
-      <img style="width:10px; margin-right:10px;" src="https://image.flaticon.com/icons/svg/196/196760.svg" />
+      <img style="width:10px; margin-right:10px;" src="../../../../../assets/images/alertOrange.svg" />
       <p>{{ 'admin.aucuneSource' | translate }}</p>
     </div>
     <div class="flexRow oneSource" *ngFor="let source of newArticle.listSources">
       <p>{{source.name}} [{{source.link}}]</p>
-      <img class="button" style="margin-left:2vw;" src="https://image.flaticon.com/icons/svg/149/149158.svg"
+      <img class="button" style="margin-left:2vw;" src="../../../../../assets/images/straightBlackCross.svg"
         (click)="removeItem('source', source)" />
     </div>
   </div>
@@ -116,9 +116,9 @@
     <div class="flexRow">
       <h2>{{ 'admin.auteurs' | translate }}</h2>
       <img *ngIf="!isAddAuteur" class="button logoAdd" (click)="openAdd('auteur')"
-        src="https://image.flaticon.com/icons/svg/148/148764.svg" />
+        src="../../../../../assets/images/addButton.svg" />
       <img *ngIf="isAddAuteur" class="button logoAdd" (click)="closeAdd('auteur')"
-        src="https://image.flaticon.com/icons/svg/118/118743.svg" />
+        src="../../../../../assets/images/sortirButton.svg" />
     </div>
     <div *ngIf="isAddAuteur">
       <p>{{ 'admin.selectAuteurs' | translate }}</p>
@@ -144,12 +144,12 @@
       </div>
     </div>
     <div class="flexRow" *ngIf="newArticle.listAuteurs.length==0">
-      <img style="width:10px; margin-right:10px;" src="https://image.flaticon.com/icons/svg/196/196760.svg" />
+      <img style="width:10px; margin-right:10px;" src="../../../../../assets/images/alertOrange.svg" />
       <p>{{ 'admin.aucunAuteur' | translate }}</p>
     </div>
     <div class="flexRow oneAutor" *ngFor="let autor of newArticle.listAuteurs">
       <p>{{autor.prenom}} {{autor.nom}} ({{autor.fonction}})</p>
-      <img class="button" style="margin-left:2vw;" src="https://image.flaticon.com/icons/svg/149/149158.svg"
+      <img class="button" style="margin-left:2vw;" src="../../../../../assets/images/straightBlackCross.svg"
         (click)="removeItem('auteur', autor)" />
     </div>
   </div>
@@ -158,9 +158,9 @@
     <div class="flexRow">
       <h2>{{ 'admin.secteurs' | translate }}</h2>
       <img *ngIf="!isAddSector" class="button logoAdd" (click)="openAdd('sector')"
-        src="https://image.flaticon.com/icons/svg/148/148764.svg" />
+        src="../../../../../assets/images/addButton.svg" />
       <img *ngIf="isAddSector" class="button logoAdd" (click)="closeAdd('sector')"
-        src="https://image.flaticon.com/icons/svg/118/118743.svg" />
+        src="../../../../../assets/images/sortirButton.svg" />
     </div>
     <div class="flexCol" *ngIf="isAddSector">
       <p style="margin: 0px;">{{ 'admin.selectSecteurs' | translate }}</p>
@@ -168,14 +168,14 @@
         <div class="flexRow" style="max-width:80%;">
           <div class="oneSectorSelected" *ngFor="let sector of fullListSectors; let i=index">
             <div *ngIf="mapSectorSelected[sector.key]">
-              <img class="button" src="https://image.flaticon.com/icons/svg/149/149158.svg"
+              <img class="button" src="../../../../../assets/images/straightBlackCross.svg"
                 (click)="changeSelect(sector)" />
               <p class="oneChoiceToPick selected">{{sector.key}}</p>
             </div>
           </div>
           <div class="oneSectorSelected" *ngFor="let sector of fullListSectors; let i=index">
             <div *ngIf="!mapSectorSelected[sector.key]">
-              <img class="button" src="https://image.flaticon.com/icons/svg/149/149156.svg"
+              <img class="button" src="../../../../../assets/images/addCross.svg"
                 (click)="changeSelect(sector)" />
               <p class="oneChoiceToPick">{{sector.key}}</p>
             </div>
@@ -193,12 +193,12 @@
     </div>
 
     <div class="flexRow" *ngIf="newArticle.listSectors.length==0">
-      <img style="width:10px; margin-right:10px;" src="https://image.flaticon.com/icons/svg/196/196760.svg" />
+      <img style="width:10px; margin-right:10px;" src="../../../../../assets/images/alertOrange.svg" />
       <p>{{ 'admin.aucunSecteur' | translate }}</p>
     </div>
     <div class="flexRow" *ngIf="!isAddSector">
       <div class="oneSectorSelected" *ngFor="let sector of newArticle.listSectors">
-        <img class="button" src="https://image.flaticon.com/icons/svg/149/149158.svg"
+        <img class="button" src="../../../../../assets/images/straightBlackCross.svg"
           (click)="removeItem('secteur', sector)" />
         <p class="oneChoiceToPick">{{sector.key}}</p>
       </div>
@@ -215,9 +215,9 @@
           <app-miniature-article-small [article]="articlesSelected[0]" [size]="'medium'"></app-miniature-article-small>
         </div>
         <img class="button buttonRightTop" (click)="openPopupAddArticle()" *ngIf="articlesSelected.length<1"
-          src="https://image.flaticon.com/icons/svg/149/149705.svg">
+          src="../../../../../assets/images/grassAddCross.svg">
         <img class="button buttonRightTop" (click)="deleteArticle(articlesSelected[0], 'linked')"
-          *ngIf="articlesSelected.length>0" src="https://image.flaticon.com/icons/svg/32/32178.svg">
+          *ngIf="articlesSelected.length>0" src="../../../../../assets/images/grassCross.svg">
       </div>
       <div class="oneChoixArticle">
         <div class="emptyChoix" *ngIf="articlesSelected.length<2">
@@ -226,9 +226,9 @@
           <app-miniature-article-small [article]="articlesSelected[1]" [size]="'medium'"></app-miniature-article-small>
         </div>
         <img class="button buttonRightTop" (click)="openPopupAddArticle()" *ngIf="articlesSelected.length<2"
-          src="https://image.flaticon.com/icons/svg/149/149705.svg">
+          src="../../../../../assets/images/grassAddCross.svg">
         <img class="button buttonRightTop" (click)="deleteArticle(articlesSelected[1], 'linked')"
-          *ngIf="articlesSelected.length>1" src="https://image.flaticon.com/icons/svg/32/32178.svg">
+          *ngIf="articlesSelected.length>1" src="../../../../../assets/images/grassCross.svg">
       </div>
       <div class="oneChoixArticle">
         <div class="emptyChoix" *ngIf="articlesSelected.length<3">
@@ -237,9 +237,9 @@
           <app-miniature-article-small [article]="articlesSelected[2]" [size]="'medium'"></app-miniature-article-small>
         </div>
         <img class="button buttonRightTop" (click)="openPopupAddArticle()" *ngIf="articlesSelected.length<3"
-          src="https://image.flaticon.com/icons/svg/149/149705.svg">
+          src="../../../../../assets/images/grassAddCross.svg">
         <img class="button buttonRightTop" (click)="deleteArticle(articlesSelected[2],'linked')"
-          *ngIf="articlesSelected.length>2" src="https://image.flaticon.com/icons/svg/32/32178.svg">
+          *ngIf="articlesSelected.length>2" src="../../../../../assets/images/grassCross.svg">
       </div>
     </div>
   </div>
@@ -253,9 +253,9 @@
         <app-miniature-article-small [article]="articleTraduit" [size]="'medium'"></app-miniature-article-small>
       </div>
       <img class="button buttonRightTop" (click)="openPopupAddArticleTraduit()" *ngIf="!articleTraduit"
-        src="https://image.flaticon.com/icons/svg/149/149705.svg">
+        src="../../../../../assets/images/grassAddCross.svg">
       <img class="button buttonRightTop" (click)="deleteArticle(articlesSelected[0], 'traduit')"
-        *ngIf="articleTraduit" src="https://image.flaticon.com/icons/svg/32/32178.svg">
+        *ngIf="articleTraduit" src="../../../../../assets/images/grassCross.svg">
     </div>
   </div>
 
@@ -280,7 +280,7 @@
   <div *ngIf="isAddingArticleLinked || isAddingArticleTraduit" id="popupArticle">
     <h2>{{ 'admin.selectArticles' | translate }}</h2>
     <img style="width: 30px;position: absolute;right: 20px;top: 20px;" class="button" (click)="closeAddArticle()"
-      src="https://image.flaticon.com/icons/svg/151/151882.svg">
+      src="../../../../../assets/images/blackCross.svg">
     <div class="search__container">
       <input class="search__input" type="text" placeholder="{{ 'admin.rechercher' | translate }}"
         [(ngModel)]="filterTextNav" (keyup)="refreshDisplayedArticle()">

@@ -11,12 +11,12 @@
     <div class="logos flexRow">
       <a href="https://www.linkedin.com/in/jane-bourgninaud" target="_blank">
         <div class="divImage button">
-          <img src="https://image.flaticon.com/icons/svg/733/733635.svg">
+          <img src="../../assets/images/twitterBlack.svg">
         </div>
       </a>
       <a href="https://www.linkedin.com/in/jane-bourgninaud" target="_blank">
         <div class="divImage button">
-          <img src="https://image.flaticon.com/icons/svg/34/34227.svg">
+          <img src="../../assets/images/inBlack.svg">
         </div>
       </a>
       <div class="verticalSeparator"></div>
@@ -31,7 +31,7 @@
       <input style="pointer-events:none; width: 100%;" type="text" placeholder="{{ 'blog.filtrerPlH' | translate }}" [(ngModel)]="filtrageTxt"
         id="inputFilterText">
       <div class="divImage" (click)="invertFilter()">
-        <img class="button" src="https://image.flaticon.com/icons/svg/109/109609.svg" id="imgFiltrageMenu" />
+        <img class="button" src="../../assets/images/arrowBlack.svg" id="imgFiltrageMenu" />
       </div>
     </div>
     <div class="flexRow oneInputDiv" id="rechercheInput">
@@ -39,7 +39,7 @@
         (keyup.enter)="filter()">
       <div class="divImage" (click)="filter()">
         <img class="button" style="transform:rotate(-90deg)"
-          src="https://image.flaticon.com/icons/svg/109/109609.svg" />
+          src="../../assets/images/arrowBlack.svg" />
       </div>
     </div>
   </div>
@@ -47,7 +47,7 @@
     <div class="oneFilter">
       <div class="flexRow oneEntete button" (click)="openOneFilter('difficulte')">
         <p>{{filterLabel.difficulte}}</p>
-        <img style="width:5px;" src="https://image.flaticon.com/icons/svg/25/25243.svg">
+        <img style="width:5px;" src="../../assets/images/filterArrowBlack.svg">
       </div>
       <div *ngIf="mapOpenFilter.difficulte" class="flexCol oneAbsChoice">
         <div class="flexRow checkUncheckAll">
@@ -68,7 +68,7 @@
     <div class="oneFilter">
       <div class="flexRow oneEntete button" (click)="openOneFilter('temps')">
         <p>{{filterLabel.temps}}</p>
-        <img style="width:5px;" src="https://image.flaticon.com/icons/svg/25/25243.svg">
+        <img style="width:5px;" src="../../assets/images/filterArrowBlack.svg">
       </div>
       <div *ngIf="mapOpenFilter.temps" class="flexCol oneAbsChoice">
         <div class="flexRow checkUncheckAll">
@@ -86,7 +86,7 @@
     <div class="oneFilter">
       <div class="flexRow oneEntete button" (click)="openOneFilter('type')">
         <p>{{filterLabel.type}}</p>
-        <img style="width:5px;" src="https://image.flaticon.com/icons/svg/25/25243.svg">
+        <img style="width:5px;" src="../../assets/images/filterArrowBlack.svg">
       </div>
       <div *ngIf="mapOpenFilter.type" class="flexCol oneAbsChoice">
         <div class="flexRow checkUncheckAll">
@@ -101,7 +101,7 @@
     <div class="oneFilter">
       <div class="flexRow oneEntete button" (click)="openOneFilter('secteur')">
         <p>{{filterLabel.secteur}}</p>
-        <img style="width:5px;" src="https://image.flaticon.com/icons/svg/25/25243.svg">
+        <img style="width:5px;" src="../../assets/images/filterArrowBlack.svg">
       </div>
       <div *ngIf="mapOpenFilter.secteur" class="flexCol oneAbsChoice">
         <div class="flexRow checkUncheckAll">
@@ -124,7 +124,7 @@
       <div id="retourNav" class="flexRow button" *ngIf="isArticleReading && article==articleOnReader"
         (click)="backToNav()">
         <div class="divImage">
-          <img style="transform:rotate(90deg)" src="https://image.flaticon.com/icons/svg/109/109609.svg" />
+          <img style="transform:rotate(90deg)" src="../../assets/images/arrowBlack.svg" />
         </div>
         <p>{{ 'blog.back' | translate }}</p>
       </div>
@@ -135,7 +135,7 @@
     <app-miniature-article [article]="articleToOpen" (click)="openArticle(articleToOpen)"></app-miniature-article>
     <div id="retourNav" class="flexRow button" *ngIf="isArticleReading" (click)="backToNav()">
       <div class="divImage">
-        <img style="transform:rotate(90deg)" src="https://image.flaticon.com/icons/svg/109/109609.svg" />
+        <img style="transform:rotate(90deg)" src="../../assets/images/arrowBlack.svg" />
       </div>
       <p>{{ 'blog.back' | translate }}</p>
     </div>
@@ -203,12 +203,12 @@
       <div class="flexRow listLogoContact">
         <a href="https://www.linkedin.com/in/jane-bourgninaud" target="_blank">
           <div class="divImage button">
-            <img src="https://image.flaticon.com/icons/svg/733/733635.svg">
+            <img src="../../assets/images/twitterBlack.svg">
           </div>
         </a>
         <a href="https://www.linkedin.com/in/jane-bourgninaud" target="_blank">
           <div class="divImage button">
-            <img src="https://image.flaticon.com/icons/svg/34/34227.svg">
+            <img src="../../assets/images/inBlack.svg">
           </div>
         </a>
       </div>
