@@ -282,7 +282,6 @@ export class BlogComponent implements OnInit {
     } else {
       var listArticlesCorrectLang = this.listArticlesEn.slice()
     }
-    console.log(listArticlesCorrectLang)
     this.listArticleDisplay = [];
     for (var k = 0; k < listArticlesCorrectLang.length; k++) {
       var isInFilterRules = true;
@@ -304,17 +303,21 @@ export class BlogComponent implements OnInit {
         isInFilterRules = false;
       }
 
-      /*var isSectordReferenced = false;
-      for (var k=0; k<article.listSectors.length;k++){
-        var sector = article.listSectors[k]
-        if(Object.keys(this.mapFilter.secteur).indexOf(""+sector)>1 && this.mapFilter.secteur[""+sector]){
-          isSectordReferenced = true;
+      /*Si tous les secteurs sont cochés on filtre pas, si plusieurs secteurs sont cochés alors on renvoie les articles qui contiennent au moins 1 secteur*/
+      if(this.mapOneFilter["secteur"]){
+        var isSectordReferenced = false;
+        for (var i=0; i<article.listSectors.length;i++){
+          var sector = article.listSectors[i].key
+          if(this.mapFilter.secteur[""+sector]){
+            isSectordReferenced = true;
+          }
+        }
+
+        if(!isSectordReferenced){
+          isInFilterRules = false;
         }
       }
-
-      if(!isSectordReferenced){
-        isInFilterRules = false;
-      }*/
+      
 
 
       //Si toutes les règles sont OK on display
