@@ -546,7 +546,7 @@ export class BlogComponent implements OnInit {
 
   fillData(){
 
-    this.httpClient.get<any[]>('https://bminddev.firebaseio.com/secteurs.json').subscribe(
+    this.httpClient.get<any[]>(this.globalService.baseLink+'/secteurs.json').subscribe(
       (response) => {
         this.fullListSecteurs = response.slice();
         this.generateFilter()
@@ -556,7 +556,7 @@ export class BlogComponent implements OnInit {
       }
     );
 
-    this.httpClient.get<any[]>('https://bminddev.firebaseio.com/types.json').subscribe(
+    this.httpClient.get<any[]>(this.globalService.baseLink+'/types.json').subscribe(
       (response) => {
         this.fullListTypes = response.slice();
         this.generateFilter()

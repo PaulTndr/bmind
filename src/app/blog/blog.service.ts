@@ -14,9 +14,12 @@ export class BlogService {
   listFavoriteArticlesSubject = new Subject<Article[]>();
   listKeywordsSubject = new Subject<Keyword[]>();
 
+  baseLink : String;
+
   constructor(private httpClient: HttpClient) { }
 
   fillListArticle(){
+    this.baseLink = window.location.href.includes("localhost") ? "https://bminddev.firebaseio.com" : "https://test.com";
     if (this.listArticles.length!=0 && this.listFavoriteArticles.length!=0){
       console.log("Liste articles déjà chargée")
       console.log(this.listArticles.length+" articles dont "+this.listFavoriteArticles.length+" en favori")
@@ -24,7 +27,7 @@ export class BlogService {
       this.emitListArticlesSubject();
       return;
     }
-    this.httpClient.get<any[]>('https://bminddev.firebaseio.com/articles.json').subscribe(
+    this.httpClient.get<any[]>(this.baseLink+'/articles.json').subscribe(
       (response) => {
         var lKeys = Object.keys(response)
         var listObject : Article[] = [];
@@ -44,7 +47,7 @@ export class BlogService {
   }
 
   fillFavoriteArticles(){
-    this.httpClient.get<any[]>('https://bminddev.firebaseio.com/favorites.json').subscribe(
+    this.httpClient.get<any[]>(this.baseLink+'/favorites.json').subscribe(
       (response) => {
         if (response!=null){
           var listIdFavorite = response
@@ -64,7 +67,7 @@ export class BlogService {
   }
 
   fillListDefinition(){
-    this.httpClient.get<any[]>('https://bminddev.firebaseio.com/keywords.json').subscribe(
+    this.httpClient.get<any[]>(this.baseLink+'/keywords.json').subscribe(
       (response) => {
         var lKeys = Object.keys(response)
         var listObject : Keyword[] = [];
@@ -95,7 +98,7 @@ export class BlogService {
 
   incrementVues(idArticle : Number){
 
-    this.httpClient.get<any[]>('https://bminddev.firebaseio.com/articles.json').subscribe(
+    this.httpClient.get<any[]>(this.baseLink+'/articles.json').subscribe(
       (response) => {
         var lKeys = Object.keys(response)
         var listObject : Article[] = [];
@@ -111,7 +114,7 @@ export class BlogService {
           }
         }
 
-        this.httpClient.put('https://bminddev.firebaseio.com/articles.json', listArticlesTempo).subscribe(
+        this.httpClient.put(this.baseLink+'/articles.json', listArticlesTempo).subscribe(
           () => {
             console.log("La liste d'article a été update pour les vues")
           },

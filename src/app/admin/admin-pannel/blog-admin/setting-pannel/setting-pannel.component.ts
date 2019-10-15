@@ -9,6 +9,8 @@ import { Offre } from 'src/app/classes/offre';
 import { Secteur } from 'src/app/classes/articles/secteur';
 import { Type } from 'src/app/classes/articles/type';
 
+import { GlobalService } from '../../../../global.service';
+
 @Component({
   selector: 'app-setting-pannel',
   templateUrl: './setting-pannel.component.html',
@@ -52,7 +54,7 @@ export class SettingPannelComponent implements OnInit {
   mode: String;
 
   basePdfLink = "http://ptondereau.perso.centrale-marseille.fr/assets/pdfOffres/";
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private globalService : GlobalService) { }
 
   ngOnInit() {
 
@@ -64,7 +66,7 @@ export class SettingPannelComponent implements OnInit {
   }
 
   fillDataFromBase() {
-    this.httpClient.get<any[]>('https://bminddev.firebaseio.com/keywords.json').subscribe(
+    this.httpClient.get<any[]>(this.globalService.baseLink+'/keywords.json').subscribe(
       (response) => {
         var lKeys = Object.keys(response)
         var listObject: Keyword[] = [];
@@ -85,7 +87,7 @@ export class SettingPannelComponent implements OnInit {
       }
     );
 
-    this.httpClient.get<any[]>('https://bminddev.firebaseio.com/autors.json').subscribe(
+    this.httpClient.get<any[]>(this.globalService.baseLink+'/autors.json').subscribe(
       (response) => {
         var lKeys = Object.keys(response)
         var listObject: Auteur[] = [];
@@ -105,7 +107,7 @@ export class SettingPannelComponent implements OnInit {
       }
     );
 
-    this.httpClient.get<any[]>('https://bminddev.firebaseio.com/secteurs.json').subscribe(
+    this.httpClient.get<any[]>(this.globalService.baseLink+'/secteurs.json').subscribe(
       (response) => {
         this.listSecteurs = response.slice();
       },
@@ -114,7 +116,7 @@ export class SettingPannelComponent implements OnInit {
       }
     );
 
-    this.httpClient.get<any[]>('https://bminddev.firebaseio.com/types.json').subscribe(
+    this.httpClient.get<any[]>(this.globalService.baseLink+'/types.json').subscribe(
       (response) => {
         this.listTypes = response.slice();
       },
@@ -124,7 +126,7 @@ export class SettingPannelComponent implements OnInit {
     );
 
     var basePdfLink = this.basePdfLink
-    this.httpClient.get<any[]>('https://bminddev.firebaseio.com/offers.json').subscribe(
+    this.httpClient.get<any[]>(this.globalService.baseLink+'/offers.json').subscribe(
       (response) => {
         var lKeys = Object.keys(response)
         var listObject: Offre[] = [];
@@ -263,7 +265,7 @@ export class SettingPannelComponent implements OnInit {
         this.listKeyword.push(this.newKeyword)
 
         //AJOUT BASE
-        this.httpClient.post('https://bminddev.firebaseio.com/keywords.json', this.newKeyword).subscribe(
+        this.httpClient.post(this.globalService.baseLink+'/keywords.json', this.newKeyword).subscribe(
           () => {
             console.log('Enregistrement du mot clé terminé !');
           },
@@ -279,7 +281,7 @@ export class SettingPannelComponent implements OnInit {
             this.listKeyword[k].def = this.newKeyword.def;
           }
         }
-        this.httpClient.put('https://bminddev.firebaseio.com/keywords.json', this.listKeyword).subscribe(
+        this.httpClient.put(this.globalService.baseLink+'/keywords.json', this.listKeyword).subscribe(
           () => {
             console.log('Edition du mot clé terminée !');
           },
@@ -295,7 +297,7 @@ export class SettingPannelComponent implements OnInit {
           }
         }
         this.listKeyword = newListKw.slice();
-        this.httpClient.put('https://bminddev.firebaseio.com/keywords.json', this.listKeyword).subscribe(
+        this.httpClient.put(this.globalService.baseLink+'/keywords.json', this.listKeyword).subscribe(
           () => {
             console.log('Suppression du mot clé terminée !');
           },
@@ -313,7 +315,7 @@ export class SettingPannelComponent implements OnInit {
         this.listAutor.push(this.newAutor)
 
         //AJOUT BASE
-        this.httpClient.post('https://bminddev.firebaseio.com/autors.json', this.newAutor).subscribe(
+        this.httpClient.post(this.globalService.baseLink+'/autors.json', this.newAutor).subscribe(
           () => {
             console.log('Enregistrement de l\'auteur terminé !');
           },
@@ -331,7 +333,7 @@ export class SettingPannelComponent implements OnInit {
             this.listAutor[k].fonction = this.newAutor.fonction;
           }
         }
-        this.httpClient.put('https://bminddev.firebaseio.com/autors.json', this.listAutor).subscribe(
+        this.httpClient.put(this.globalService.baseLink+'/autors.json', this.listAutor).subscribe(
           () => {
             console.log('Edition de l\'auteur terminée !');
           },
@@ -347,7 +349,7 @@ export class SettingPannelComponent implements OnInit {
           }
         }
         this.listAutor = newListAutor.slice();
-        this.httpClient.put('https://bminddev.firebaseio.com/autors.json', this.listAutor).subscribe(
+        this.httpClient.put(this.globalService.baseLink+'/autors.json', this.listAutor).subscribe(
           () => {
             console.log('Suppression de l\'auteur terminée !');
           },
@@ -368,7 +370,7 @@ export class SettingPannelComponent implements OnInit {
         nouvelleOffre.linkPDF = this.basePdfLink + nouvelleOffre.linkPDF
 
         //AJOUT BASE
-        this.httpClient.post('https://bminddev.firebaseio.com/offers.json', nouvelleOffre).subscribe(
+        this.httpClient.post(this.globalService.baseLink+'/offers.json', nouvelleOffre).subscribe(
           () => {
             console.log('Enregistrement de l\'offre terminé !');
             this.newOffre = new Offre()
@@ -396,7 +398,7 @@ export class SettingPannelComponent implements OnInit {
           listOffreWithBaseLink.push(offreToPush)
         }
 
-        this.httpClient.put('https://bminddev.firebaseio.com/offers.json', listOffreWithBaseLink).subscribe(
+        this.httpClient.put(this.globalService.baseLink+'/offers.json', listOffreWithBaseLink).subscribe(
           () => {
             console.log('Edition de l\'offre terminée !');
           },
@@ -423,7 +425,7 @@ export class SettingPannelComponent implements OnInit {
           listOffreWithBaseLink.push(offreToPush)
         }
 
-        this.httpClient.put('https://bminddev.firebaseio.com/offers.json', listOffreWithBaseLink).subscribe(
+        this.httpClient.put(this.globalService.baseLink+'/offers.json', listOffreWithBaseLink).subscribe(
           () => {
             console.log('Suppression de l\'offre terminée !');
           },
@@ -463,7 +465,7 @@ export class SettingPannelComponent implements OnInit {
       }
       this.listSecteurs = newListSecteurs.slice();
       //Changement base
-      this.httpClient.put('https://bminddev.firebaseio.com/secteurs.json', this.listSecteurs).subscribe(
+      this.httpClient.put(this.globalService.baseLink+'/secteurs.json', this.listSecteurs).subscribe(
         () => {
           console.log('Suppression du secteur terminée !');
         },
@@ -480,7 +482,7 @@ export class SettingPannelComponent implements OnInit {
       }
       this.listTypes = newListTypes.slice();
       //Changement base
-      this.httpClient.put('https://bminddev.firebaseio.com/types.json', this.listTypes).subscribe(
+      this.httpClient.put(this.globalService.baseLink+'/types.json', this.listTypes).subscribe(
         () => {
           console.log('Suppression du type terminée !');
         },

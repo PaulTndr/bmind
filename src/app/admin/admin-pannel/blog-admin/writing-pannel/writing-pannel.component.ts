@@ -12,6 +12,8 @@ import { Type } from 'src/app/classes/articles/type';
 import { Secteur } from 'src/app/classes/articles/secteur';
 import { Router } from '@angular/router';
 
+import { GlobalService } from '../../../../global.service';
+
 
 @Component({
   selector: 'app-writing-pannel',
@@ -68,7 +70,7 @@ export class WritingPannelComponent implements OnInit {
   nouveauxSecteurs: Secteur[] = []
 
 
-  constructor(private httpClient: HttpClient, private router: Router, private adminService: AdminService, private translate: TranslateService) { }
+  constructor(private httpClient: HttpClient, private router: Router, private adminService: AdminService, private translate: TranslateService, private globalService : GlobalService) { }
 
   ngOnInit() {
     this.translate.use('fr');
@@ -109,7 +111,7 @@ export class WritingPannelComponent implements OnInit {
     }
     if(!isAlreadyIn){
       this.originalListTypes.push(this.newArticle.type)
-      this.httpClient.put('https://bminddev.firebaseio.com/types.json', this.originalListTypes).subscribe(
+      this.httpClient.put(this.globalService.baseLink+'/types.json', this.originalListTypes).subscribe(
         () => {
           console.log('Enregistrement du type terminé !');
         },
@@ -122,7 +124,7 @@ export class WritingPannelComponent implements OnInit {
     //Edit de l'idTraduit de l'article traduit lié si il y'en a un et ajout
     if(this.newArticle.idArticleTraduit!==0){
       var listArticle = []
-      this.httpClient.get<any[]>('https://bminddev.firebaseio.com/articles.json').subscribe(
+      this.httpClient.get<any[]>(this.globalService.baseLink+'/articles.json').subscribe(
         (response) => {
           var lKeys = Object.keys(response)
           var listObject: Article[] = [];
@@ -142,7 +144,7 @@ export class WritingPannelComponent implements OnInit {
             alert("L'article n'a pas été posté, erreur interne")
             return;
           } else {
-            this.httpClient.put('https://bminddev.firebaseio.com/articles.json', listArticle).subscribe(
+            this.httpClient.put(this.globalService.baseLink+'/articles.json', listArticle).subscribe(
               () => {
                 console.log('Enregistrement des articles terminé !');
                 this.isPosted = true
@@ -161,7 +163,7 @@ export class WritingPannelComponent implements OnInit {
     //AJOUT BASE
     else{
       console.log("Pas d'article traduit")
-      this.httpClient.post('https://bminddev.firebaseio.com/articles.json', this.newArticle).subscribe(
+      this.httpClient.post(this.globalService.baseLink+'/articles.json', this.newArticle).subscribe(
         () => {
           console.log('Enregistrement de l\'article terminé !');
           this.isPosted = true
@@ -191,7 +193,7 @@ export class WritingPannelComponent implements OnInit {
       }
     }
     if (isOneChangeInSector){
-      this.httpClient.put('https://bminddev.firebaseio.com/secteurs.json', this.originalListSectors).subscribe(
+      this.httpClient.put(this.globalService.baseLink+'/secteurs.json', this.originalListSectors).subscribe(
         () => {
           console.log('Enregistrement du secteur terminé !');
           this.nouveauxSecteurs = []
@@ -224,7 +226,7 @@ export class WritingPannelComponent implements OnInit {
     }
     if(!isAlreadyIn){
       this.originalListTypes.push(this.newArticle.type)
-      this.httpClient.put('https://bminddev.firebaseio.com/types.json', this.originalListTypes).subscribe(
+      this.httpClient.put(this.globalService.baseLink+'/types.json', this.originalListTypes).subscribe(
         () => {
           console.log('Enregistrement du type terminé !');
         },
@@ -249,7 +251,7 @@ export class WritingPannelComponent implements OnInit {
       }
     }
     if (isOneChangeInSector){
-      this.httpClient.put('https://bminddev.firebaseio.com/secteurs.json', this.originalListSectors).subscribe(
+      this.httpClient.put(this.globalService.baseLink+'/secteurs.json', this.originalListSectors).subscribe(
         () => {
           console.log('Enregistrement du secteur terminé !');
           this.nouveauxSecteurs = []
@@ -282,7 +284,7 @@ export class WritingPannelComponent implements OnInit {
     }
 
     if (ancienArticleLie!=nouvelArticleLie){
-      this.httpClient.get<any[]>('https://bminddev.firebaseio.com/favorites.json').subscribe(
+      this.httpClient.get<any[]>(this.globalService.baseLink+'/favorites.json').subscribe(
       (response) => {
         if (response != null) {
           listIdFavorite = response
@@ -297,7 +299,7 @@ export class WritingPannelComponent implements OnInit {
             }
           }
           newLstIdFavorite.push(nouvelArticleLie)
-          this.httpClient.put('https://bminddev.firebaseio.com/favorites.json', newLstIdFavorite).subscribe(
+          this.httpClient.put(this.globalService.baseLink+'/favorites.json', newLstIdFavorite).subscribe(
             () => {
               console.log('Enregistrement des favoris réussi !');
             },
@@ -314,7 +316,7 @@ export class WritingPannelComponent implements OnInit {
     }
 
     //EDIT DE L'ARTICLE
-    this.httpClient.put('https://bminddev.firebaseio.com/articles.json', newListArticle).subscribe(
+    this.httpClient.put(this.globalService.baseLink+'/articles.json', newListArticle).subscribe(
       () => {
         console.log('Edition de l\'article terminée !');
         this.adminService.switchEditingMode()
@@ -575,7 +577,7 @@ export class WritingPannelComponent implements OnInit {
 
   fillData(toBeRereshed: String[]) {
     if (toBeRereshed.indexOf('autors') > -1) {
-      this.httpClient.get<any[]>('https://bminddev.firebaseio.com/autors.json').subscribe(
+      this.httpClient.get<any[]>(this.globalService.baseLink+'/autors.json').subscribe(
         (response) => {
           var lKeys = Object.keys(response)
           var listObject: Auteur[] = [];
@@ -598,7 +600,7 @@ export class WritingPannelComponent implements OnInit {
     }
 
     if (toBeRereshed.indexOf('sectors') > -1) {
-      this.httpClient.get<any[]>('https://bminddev.firebaseio.com/secteurs.json').subscribe(
+      this.httpClient.get<any[]>(this.globalService.baseLink+'/secteurs.json').subscribe(
         (response) => {
           this.originalListSectors = response.slice();
           this.refreshLists();
@@ -610,7 +612,7 @@ export class WritingPannelComponent implements OnInit {
     }
 
     if (toBeRereshed.indexOf('types') > -1) {
-      this.httpClient.get<any[]>('https://bminddev.firebaseio.com/types.json').subscribe(
+      this.httpClient.get<any[]>(this.globalService.baseLink+'/types.json').subscribe(
         (response) => {
           this.listTypes = response.slice();
           this.originalListTypes = response.slice();
@@ -623,7 +625,7 @@ export class WritingPannelComponent implements OnInit {
     }
 
     if (toBeRereshed.indexOf('articles') > -1) {
-      this.httpClient.get<any[]>('https://bminddev.firebaseio.com/articles.json').subscribe(
+      this.httpClient.get<any[]>(this.globalService.baseLink+'/articles.json').subscribe(
         (response) => {
           var lKeys = Object.keys(response)
           var listObject: Article[] = [];

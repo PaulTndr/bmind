@@ -150,7 +150,7 @@ export class HomeComponent implements OnInit {
     // Usage.
     this.handler()
 
-    this.httpClient.get<any[]>('https://bminddev.firebaseio.com/offers.json').subscribe(
+    this.httpClient.get<any[]>(this.globalService.baseLink+'/offers.json').subscribe(
       (response) => {
         var lKeys = Object.keys(response)
         var listObject: Offre[] = [];

@@ -5,6 +5,7 @@ import { Article } from '../../../../classes/articles/article'
 import { Subscription } from 'rxjs/Subscription';
 
 import { AdminService } from '../../../admin.service';
+import { GlobalService } from '../../../../global.service';
 
 @Component({
   selector: 'app-editing-pannel',
@@ -32,7 +33,7 @@ export class EditingPannelComponent implements OnInit {
 
   needRefresh = true;
 
-  constructor(private httpClient: HttpClient, private adminService: AdminService) { }
+  constructor(private httpClient: HttpClient, private adminService: AdminService, private globalService : GlobalService) { }
 
   ngOnInit() {
     this.subscriptionPopupBool = this.adminService.isPopupEditActiveS.subscribe(
@@ -41,7 +42,7 @@ export class EditingPannelComponent implements OnInit {
       }
     );
 
-    this.httpClient.get<any[]>('https://bminddev.firebaseio.com/favorites.json').subscribe(
+    this.httpClient.get<any[]>(this.globalService.baseLink+'/favorites.json').subscribe(
       (response) => {
         if (response != null) {
           this.listIdFavorite = response
@@ -55,7 +56,7 @@ export class EditingPannelComponent implements OnInit {
   }
 
   fillListArticle() {
-    this.httpClient.get<any[]>('https://bminddev.firebaseio.com/articles.json').subscribe(
+    this.httpClient.get<any[]>(this.globalService.baseLink+'/articles.json').subscribe(
       (response) => {
         var lKeys = Object.keys(response)
         var listObject: Article[] = [];
@@ -104,7 +105,7 @@ export class EditingPannelComponent implements OnInit {
       this.listIdFavorite.push(+idArticle)
       this.listIdFavorite.push(+idArticleTraduit)
       //AJOUT BASE
-      this.httpClient.put('https://bminddev.firebaseio.com/favorites.json', this.listIdFavorite).subscribe(
+      this.httpClient.put(this.globalService.baseLink+'/favorites.json', this.listIdFavorite).subscribe(
         () => {
           console.log('Enregistrement des favoris réussi !');
         },
@@ -132,7 +133,7 @@ export class EditingPannelComponent implements OnInit {
     }
     this.listIdFavorite = newFavorites
     //EDIT BASE
-    this.httpClient.put('https://bminddev.firebaseio.com/favorites.json', this.listIdFavorite).subscribe(
+    this.httpClient.put(this.globalService.baseLink+'/favorites.json', this.listIdFavorite).subscribe(
       () => {
         console.log('Enregistrement des favoris réussi !');
       },
@@ -173,7 +174,7 @@ export class EditingPannelComponent implements OnInit {
     this.listArticle = newListArticle.slice()
     this.refreshDisplayedArticles()
     this.closePopup()
-    this.httpClient.put('https://bminddev.firebaseio.com/articles.json', newListArticle).subscribe(
+    this.httpClient.put(this.globalService.baseLink+'/articles.json', newListArticle).subscribe(
       () => {
         console.log('Suppresion de l\'article terminée !');
       },
@@ -187,7 +188,7 @@ export class EditingPannelComponent implements OnInit {
     if(!this.needRefresh){
       return;
     }
-    this.httpClient.get<any[]>('https://bminddev.firebaseio.com/favorites.json').subscribe(
+    this.httpClient.get<any[]>(this.globalService.baseLink+'/favorites.json').subscribe(
       (response) => {
         if (response != null) {
           this.listIdFavorite = response
