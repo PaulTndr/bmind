@@ -22,7 +22,7 @@
         "activitieTitle1": "Conseil",
         "activitieDesc1": "Boostez vos solutions en anticipant la réaction de vos utilisateurs. B.mind met à votre disposition toutes les connaissances actuelles en cognition adaptées à votre projet.",
         "activitieTitle2": "Étude",
-        "activitieDesc2": "Entrez dans le cerveau de vos utilisateurs et consommateurs. B.mind vous propose des études ad hoc en partenariat avec de prestigieux laboratoires français.",
+        "activitieDesc2": "Entrez dans le cerveau de vos utilisateurs et consommateurs. B.mind vous propose des études ad hoc en partenariat avec des laboratoires.",
         "activitieTitle3": "Formation",
         "activitieDesc3": "Formez vos équipes aux concepts de la cognition qui impactent leurs activités au quotidien.",
         "accrocheOffer": "Voyons ensemble ce que la cognition peut faire pour vous.",
@@ -31,21 +31,21 @@
         "valeurTitle1": "Transparence",
         "valeurDesc1": "Chez B.mind nous expliquons et publions l’ensemble de nos recherches réalisées avec nos laboratoires partenaires.",
         "valeurTitle2": "Pertinence Scientifique",
-        "valeurDesc2": "Nos études sont réalisées en partenariat avec des laboratoires scientifiques français prestigieux et leurs chercheurs pour assurer la pertinence scientifique de nos résultats.",
+        "valeurDesc2": "Nos études sont réalisées en partenariat avec des laboratoires scientifiques français et leurs chercheurs pour assurer la pertinence scientifique de nos résultats.",
         "valeurTitle3": "Nudge for good",
         "valeurDesc3": "Le Nudge, littéralement \"un coup de pouce\" en anglais, est une technique qui utilise des leviers simples pour inciter, plutôt que contraindre, les personnes à adopter un comportement plus civil.",
         "valeurTitle4": "Libre arbitre",
         "valeurDesc4": "Chaque individu reste libre et maitre de ses décisions quelque soit le contexte.",
 
         "titleBlog": "Vous souhaitez en apprendre davantage sur la cognition, nos projets et nos engagements ?",
-        "blogRedirect": "Découvrez notre B.Blog.",
+        "blogRedirect": "Découvrez notre blog.",
         "moreBlog": "Voir plus",
 
         "noJobOffer": "Nous n'avons malheureusement pas d'ouverture de poste actuellement.",
 
         "janeJob": "Ingénieur en sciences cognitives",
         "janeMba": "MBA en entrepreneuriat",
-        "janeDesc": "Passionnées de sciences cognitives et d’innovation, j’ai hâte de voir toutes les applications innovantes et concrètes qui verront le jour grâce à la prise en compte des cette discipline et de ses concepts.",
+        "janeDesc": "Passionnée de sciences cognitives et d’innovation, j’ai hâte de voir toutes les applications innovantes et concrètes qui verront le jour grâce à la prise en compte des cette discipline et de ses concepts.",
         "contactButtonLabel": "Contactez-nous",
 
         "legalMention": "Mentions légales",

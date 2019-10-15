@@ -43,7 +43,7 @@ export class ArticleComponent implements OnInit {
   isFrSelected : Boolean;
   isEnSelected : Boolean;
 
-  constructor(private blogService: BlogService, private globalService : GlobalService, private route: ActivatedRoute,private sanitizer : DomSanitizer, private httpClient: HttpClient, , private translate: TranslateService) { }
+  constructor(private blogService: BlogService, private globalService : GlobalService, private route: ActivatedRoute,private sanitizer : DomSanitizer, private httpClient: HttpClient, private translate: TranslateService) { }
 
   ngOnInit() {
     //On incrémente le nombre de vues
