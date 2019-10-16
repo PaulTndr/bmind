@@ -375,6 +375,14 @@ export class BlogComponent implements OnInit {
       this.translate.use('en');
     }
     
+
+    if(this.isFrSelected){
+      this.filtrageTxt = "Filtrer"
+    } else{
+      this.filtrageTxt = "Filter"
+    }
+    $("#inputFilterText").css("color", "#757575")
+
     this.generateFilter()
 
     this.mapOneFilter = {

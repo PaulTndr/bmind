@@ -68,19 +68,27 @@ export class SettingPannelComponent implements OnInit {
   fillDataFromBase() {
     this.httpClient.get<any[]>(this.globalService.baseLink+'/keywords.json').subscribe(
       (response) => {
-        var lKeys = Object.keys(response)
-        var listObject: Keyword[] = [];
-        lKeys.forEach(function (kw) {
-          var oneKw = new Keyword()
-          oneKw.fromHashMap(response[kw])
-          listObject.push(oneKw)
-        })
-        this.listKeyword = listObject.slice();
-        this.lastIdKw = 0;
-        for (var k = 0; k < this.listKeyword.length; k++) {
-          this.lastIdKw = +Math.max(Number(this.lastIdKw), Number(this.listKeyword[k].id))
+        if (!response){
+          this.listKeyword = [];
+          this.lastIdKw = 0;
+        } else {
+          var lKeys = Object.keys(response)
+          var listObject: Keyword[] = [];
+          lKeys.forEach(function (kw) {
+            var oneKw = new Keyword()
+            oneKw.fromHashMap(response[kw])
+            listObject.push(oneKw)
+          })
+          this.listKeyword = listObject.slice();
+          this.lastIdKw = 0;
+          for (var k = 0; k < this.listKeyword.length; k++) {
+            this.lastIdKw = +Math.max(Number(this.lastIdKw), Number(this.listKeyword[k].id))
+          }
+          if(!this.lastIdKw){
+            this.lastIdKw=0
+          }
+          this.refreshData()
         }
-        this.refreshData()
       },
       (error) => {
         console.log('Erreur ! : ' + error);
@@ -89,17 +97,25 @@ export class SettingPannelComponent implements OnInit {
 
     this.httpClient.get<any[]>(this.globalService.baseLink+'/autors.json').subscribe(
       (response) => {
-        var lKeys = Object.keys(response)
-        var listObject: Auteur[] = [];
-        lKeys.forEach(function (kw) {
-          var oneAutor = new Auteur()
-          oneAutor.fromHashMap(response[kw])
-          listObject.push(oneAutor)
-        })
-        this.listAutor = listObject.slice();
-        this.lastIdAutor = 0;
-        for (var k = 0; k < this.listAutor.length; k++) {
-          this.lastIdAutor = +Math.max(Number(this.lastIdAutor), Number(this.listAutor[k].id))
+        if (!response){
+          this.listAutor = [];
+          this.lastIdAutor = 0;
+        } else {
+          var lKeys = Object.keys(response)
+          var listObject: Auteur[] = [];
+          lKeys.forEach(function (kw) {
+            var oneAutor = new Auteur()
+            oneAutor.fromHashMap(response[kw])
+            listObject.push(oneAutor)
+          })
+          this.listAutor = listObject.slice();
+          this.lastIdAutor = 0;
+          for (var k = 0; k < this.listAutor.length; k++) {
+            this.lastIdAutor = +Math.max(Number(this.lastIdAutor), Number(this.listAutor[k].id))
+          }
+          if(!this.lastIdAutor){
+            this.lastIdAutor=0
+          }
         }
       },
       (error) => {
@@ -109,7 +125,11 @@ export class SettingPannelComponent implements OnInit {
 
     this.httpClient.get<any[]>(this.globalService.baseLink+'/secteurs.json').subscribe(
       (response) => {
-        this.listSecteurs = response.slice();
+        if (!response){
+          this.listSecteurs = [];
+        } else {
+          this.listSecteurs = response.slice();
+        }
       },
       (error) => {
         console.log('Erreur ! : ' + error);
@@ -128,21 +148,28 @@ export class SettingPannelComponent implements OnInit {
     var basePdfLink = this.basePdfLink
     this.httpClient.get<any[]>(this.globalService.baseLink+'/offers.json').subscribe(
       (response) => {
-        var lKeys = Object.keys(response)
-        var listObject: Offre[] = [];
-        lKeys.forEach(function (kw) {
-          var oneOffre = new Offre()
-          oneOffre.fromHashMap(response[kw])
-          oneOffre.linkPDF = oneOffre.linkPDF.replace(basePdfLink, '')
-          listObject.push(oneOffre)
-        })
-        this.listOffers = listObject.slice();
-        this.lastIdOffre = 0;
-        for (var k = 0; k < this.listOffers.length; k++) {
-          this.lastIdOffre = +Math.max(Number(this.lastIdOffre), Number(this.listOffers[k].id))
+        if (!response){
+          this.listOffers = [];
+          this.lastIdOffre = 0;
+        } else {
+          var lKeys = Object.keys(response)
+          var listObject: Offre[] = [];
+          lKeys.forEach(function (kw) {
+            var oneOffre = new Offre()
+            oneOffre.fromHashMap(response[kw])
+            oneOffre.linkPDF = oneOffre.linkPDF.replace(basePdfLink, '')
+            listObject.push(oneOffre)
+          })
+          this.listOffers = listObject.slice();
+          this.lastIdOffre = 0;
+          for (var k = 0; k < this.listOffers.length; k++) {
+            this.lastIdOffre = +Math.max(Number(this.lastIdOffre), Number(this.listOffers[k].id))
+          }
+          if(!this.lastIdOffre){
+            this.lastIdOffre=0
+          }
+          this.refreshData()
         }
-        console.log(this.lastIdOffre)
-        this.refreshData()
       },
       (error) => {
         console.log('Erreur ! : ' + error);
@@ -212,6 +239,7 @@ export class SettingPannelComponent implements OnInit {
     if (this.entryToEdit === 'keyword') {
       for (var k = 0; k < this.listKeyword.length; k++) {
         if (this.listKeyword[k].id === idItem) {
+          alert("oui")
           this.newKeyword = this.listKeyword[k].copy()
         }
       }
