@@ -47,6 +47,9 @@ export class EditingPannelComponent implements OnInit {
         if (response != null) {
           this.listIdFavorite = response
           this.fillListArticle();
+        } else {
+          this.listIdFavorite = []
+          this.fillListArticle();
         }
       },
       (error) => {
