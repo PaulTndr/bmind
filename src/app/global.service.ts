@@ -16,12 +16,14 @@ export class GlobalService {
   isEnSelected=false;
 
   baseLink : String;
+  adresseLink : String;
 
   constructor(private blogService : BlogService) { }
 
   init(){
     //this.baseLink = window.location.href.includes("localhost") ? "https://bmindprodtest.firebaseio.com/" : "https://bminddev.firebaseio.com";
     this.baseLink = window.location.href.includes("localhost") ? "https://bminddev.firebaseio.com" : "https://bmindprodtest.firebaseio.com/";
+    this.adresseLink = (window.location.href.split(".com")[0]+".com").split(".fr")[0]+".fr"
     this.blogService.fillListArticle();
   }
 
