@@ -19,7 +19,8 @@ export class BlogService {
   constructor(private httpClient: HttpClient) { }
 
   fillListArticle(){
-    this.baseLink = window.location.href.includes("localhost") ? "https://bminddev.firebaseio.com" : "https://test.com";
+    //this.baseLink = window.location.href.includes("localhost") ? "https://bmindprodtest.firebaseio.com/" : "https://bminddev.firebaseio.com";
+    this.baseLink = window.location.href.includes("localhost") ? "https://bminddev.firebaseio.com" : "https://bmindprodtest.firebaseio.com/";
     if (this.listArticles.length!=0 && this.listFavoriteArticles.length!=0){
       console.log("Liste articles déjà chargée")
       console.log(this.listArticles.length+" articles dont "+this.listFavoriteArticles.length+" en favori")

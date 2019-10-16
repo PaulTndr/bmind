@@ -20,7 +20,8 @@ export class GlobalService {
   constructor(private blogService : BlogService) { }
 
   init(){
-    this.baseLink = window.location.href.includes("localhost") ? "https://bminddev.firebaseio.com" : "https://test.com";
+    //this.baseLink = window.location.href.includes("localhost") ? "https://bmindprodtest.firebaseio.com/" : "https://bminddev.firebaseio.com";
+    this.baseLink = window.location.href.includes("localhost") ? "https://bminddev.firebaseio.com" : "https://bmindprodtest.firebaseio.com/";
     this.blogService.fillListArticle();
   }
 
