@@ -23,8 +23,12 @@ export class GlobalService {
   init(){
     //this.baseLink = window.location.href.includes("localhost") ? "https://bmindprodtest.firebaseio.com/" : "https://bminddev.firebaseio.com";
     this.baseLink = window.location.href.includes("localhost") ? "https://bminddev.firebaseio.com" : "https://bmindprodtest.firebaseio.com/";
-    this.adresseLink = (window.location.href.split(".com")[0]+".com").split(".fr")[0]+".fr"
-    this.blogService.fillListArticle();
+    if (window.location.href.includes("localhost")){
+      this.adresseLink="http://localhost:4200"
+    } else {
+      this.adresseLink = window.location.href.includes(".com") ? window.location.href.split(".com")[0]+".com" : window.location.href.split(".fr")[0]+".fr";
+      this.blogService.fillListArticle();
+    }
   }
 
   //Gestion de la popup

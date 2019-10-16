@@ -136,7 +136,7 @@ export class HomeComponent implements OnInit {
       }
     );
     window.addEventListener('scroll', function(e){
-      if(this.window.scrollY>=100){
+      if(this.window.scrollY>=100 && this.window.innerWidth>=640){
         $("#header").addClass("fixedTop")
       } else{
         $("#header").removeClass("fixedTop")
