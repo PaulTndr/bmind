@@ -5,8 +5,9 @@
     background-position: center;
     height: inherit;
     align-items: center;
-    display:flex;
-    &:before{
+    display: flex;
+
+    &:before {
       content: '';
       position: absolute;
       top: 0;
@@ -14,36 +15,35 @@
       left: 0;
       bottom: 0;
     }
+
     .text {
       color: #FFF;
       position: relative;
       display: none;
-      margin:0px;
-      width:90%;
-      margin:auto;
+      margin: 0px;
+      width: 90%;
+      margin: auto;
       text-align: center;
+      font-size: 1vw;
     }
   }
-  &:hover{
+
+  &:hover {
     .image {
-      &:before{
+      &:before {
         background: rgba(0, 0, 0, 0.5);
       }
+
       .text {
-        display:flex;
+        display: flex;
       }
     }
   }
 }
 
 
-#titre{
-  margin:5px 0px 0px 0px;
-  font: Bold 25px/30px Montserrat;
-}
-
-@media screen and (max-width: 640px) {
-  #titre{
-    font: Bold 10px/15px Montserrat !important;
-  }
+#titre {
+  margin: 5px 0px 0px 0px;
+  font-weight: bold;
+  font-size: 1.2vw;
 }

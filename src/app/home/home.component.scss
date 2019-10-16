@@ -56,33 +56,37 @@
     justify-content: space-between;
   }
 
-  #rowPart1{
-    width:40%;
+  #rowPart1 {
+    width: 40%;
     padding-top: 10vh;
-    .part1{
-      width:238px;
-      height:122px;
+
+    .part1 {
+      width: 28vh;
+      height: 14vh;
     }
-    .part2{
-      width:112px;
-      height:118px;
+
+    .part2 {
+      width: 14vh;
+      height: 14vh;
     }
-    .part3{
-      width:271px;
-      height:94px;
+
+    .part3 {
+      width: 38vh;
+      height: 14vh;
     }
   }
 
-  #rowPart2{
-    width:20%;
+  #rowPart2 {
+    width: 20%;
 
-    .part4{
-      width:130px;
-      height:120px;
+    .part4 {
+      width: 15vh;
+      height: 14vh;
     }
-    .part5{
-      width:168px;
-      height:168px;
+
+    .part5 {
+      width: 14vh;
+      height: 14vh;
     }
   }
 
@@ -116,8 +120,9 @@
 
     .oneOffer {
       width: 22.5vw;
+
       &:first-of-type {
-        margin-left:2vw;
+        margin-left: 2vw;
       }
 
       .oneOfferBox {
@@ -192,9 +197,9 @@
     margin: 0px;
   }
 
-  h1{
-    text-align:center;
-    margin-bottom:7vh;
+  h1 {
+    text-align: center;
+    margin-bottom: 7vh;
   }
 
   #carteContact {
@@ -252,10 +257,11 @@
   height: 12vh;
   padding: 10px 20px 10px 20px;
 
-  a{
+  a {
     color: #7E7E7E;
     text-decoration: none;
   }
+
   p {
     font-size: 2vh;
   }
@@ -306,9 +312,9 @@
         margin: 0px;
       }
 
-      .listLogoContact{
-        width:5vw;
-        justify-content:space-between;
+      .listLogoContact {
+        width: 5vw;
+        justify-content: space-between;
         margin-left: auto;
         margin-right: auto;
       }
@@ -349,27 +355,30 @@
   background-color: #171817;
   color: #F7F7F7;
   padding-bottom: 7vh;
-  position:relative;
+  position: relative;
 
-  #fixPannelTop{
-    height:100vh;
-    .fixedTop{
+  #fixPannelTop {
+    height: 100vh;
+
+    .fixedTop {
       background-color: black;
       position: fixed;
       width: 100%;
       z-index: 100;
-      #toggle{
+
+      #toggle {
         display: none;
       }
     }
   }
 
-  .divFond{
+  .divFond {
     overflow: hidden;
     height: -webkit-fill-available;
     width: 100vw;
     position: absolute;
-    .fond{
+
+    .fond {
       width: 140vw;
       margin-top: -45vh;
       margin-left: -20vw;
@@ -446,11 +455,11 @@
     }
   }
 
-  #logoTop{
-    width:8vw;
-    margin:auto;
+  #logoTop {
+    width: 8vw;
+    margin: auto;
     display: block;
-    padding-top:3vh;
+    padding-top: 3vh;
   }
 
   #textTitle {
@@ -525,11 +534,11 @@
       position: relative;
       height: 50vh;
 
-      #text0{
-        text-align:center;
+      #text0 {
+        text-align: center;
         left: 41vw;
         top: 6vh;
-        width:17vw; 
+        width: 17vw;
       }
 
       #segment0 {
@@ -539,12 +548,13 @@
         transition-duration: 1s;
       }
 
-      #text1{
-        text-align:center;
+      #text1 {
+        text-align: center;
         right: 10vw;
         top: 16vh;
-        width:17vw; 
+        width: 17vw;
       }
+
       #segment1 {
         transform: rotate(-20deg);
         top: 37vh;
@@ -553,11 +563,11 @@
         transition-duration: 1s;
       }
 
-      #text2{
-        text-align:center;
+      #text2 {
+        text-align: center;
         right: 13vw;
         bottom: 13vh;
-        width:17vw; 
+        width: 17vw;
       }
 
       #segment2 {
@@ -568,12 +578,13 @@
         transition-duration: 1s;
       }
 
-      #text3{
-        text-align:center;
+      #text3 {
+        text-align: center;
         left: 13vw;
         bottom: 13vh;
-        width:17vw; 
+        width: 17vw;
       }
+
       #segment3 {
         transform: rotate(-40deg);
         bottom: 34vh;
@@ -582,12 +593,13 @@
         transition-duration: 1s;
       }
 
-      #text4{
-        text-align:center;
+      #text4 {
+        text-align: center;
         left: 10vw;
         top: 16vh;
-        width:17vw; 
+        width: 17vw;
       }
+
       #segment4 {
         transform: rotate(15deg);
         top: 37vh;
@@ -644,8 +656,8 @@
   }
 
   #offres {
-    .title{
-      text-align:center;
+    .title {
+      text-align: center;
       margin-bottom: 10vh;
       margin-top: 17vh;
     }
@@ -783,8 +795,8 @@
     text-align: center;
   }
 
-  .discoverText{
-    margin-bottom:10vh;
+  .discoverText {
+    margin-bottom: 10vh;
   }
 
   .contactButton {
