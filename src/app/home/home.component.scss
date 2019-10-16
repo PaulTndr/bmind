@@ -369,6 +369,14 @@
         display: none;
       }
     }
+    #blackCrossMobil{
+      display:none;
+      filter: invert(1);
+      position: absolute;
+      width: 5vh;
+      right: 3vh;
+      top: 3vh;
+    }
   }
 
   .divFond {

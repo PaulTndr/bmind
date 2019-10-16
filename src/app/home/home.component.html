@@ -36,6 +36,7 @@
     </div>
 
     <div *ngIf="isMenuOpen" id="boxMenu">
+      <img class="button" (click)="openOrCloseMenu()" id="blackCrossMobil" src="../../assets/images/grassCross.svg"/>
       <div id="menu" class="flexCol">
         <a class="button" href="#projets" (click)="resetMenu()">{{ 'home.menuProjets' | translate }}</a>
         <a class="button" href="#savoirFaire" (click)="resetMenu()">{{ 'home.menuSavoirs' | translate }}</a>
