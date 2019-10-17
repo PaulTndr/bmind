@@ -116,7 +116,7 @@ export class HomeComponent implements OnInit {
     $("html, body").animate({
       scrollTop: 0
     }, 0);
-    
+
     this.isFrSelected = this.globalService.isFrSelected
     this.isEnSelected = this.globalService.isEnSelected
     //Si on arrive directement ici
@@ -126,22 +126,22 @@ export class HomeComponent implements OnInit {
         this.favoriteArticles = listFavoriteArticles.slice();
         this.blogService.emitListFavoriteArticlesSubject();
         this.favoriteArticlesLangSelected = []
-        for (var k=0; k<this.favoriteArticles.length; k++){
-          if (this.favoriteArticles[k].langue==="FR" && this.isFrSelected){
+        for (var k = 0; k < this.favoriteArticles.length; k++) {
+          if (this.favoriteArticles[k].langue === "FR" && this.isFrSelected) {
             this.favoriteArticlesLangSelected.push(this.favoriteArticles[k])
-          } else if(this.favoriteArticles[k].langue==="EN" && this.isEnSelected){
+          } else if (this.favoriteArticles[k].langue === "EN" && this.isEnSelected) {
             this.favoriteArticlesLangSelected.push(this.favoriteArticles[k])
           }
         }
       }
     );
-    window.addEventListener('scroll', function(e){
-      if(this.window.scrollY>=100 && this.window.innerWidth>=640){
+    window.addEventListener('scroll', function (e) {
+      if (this.window.scrollY >= 100 && this.window.innerWidth >= 640) {
         $("#header").addClass("fixedTop")
-      } else{
+      } else {
         $("#header").removeClass("fixedTop")
       }
-      
+
     })
 
     if (this.favoriteArticles.length == 0) {
@@ -150,7 +150,7 @@ export class HomeComponent implements OnInit {
     // Usage.
     this.handler()
 
-    this.httpClient.get<any[]>(this.globalService.baseLink+'/offers.json').subscribe(
+    this.httpClient.get<any[]>(this.globalService.baseLink + '/offers.json').subscribe(
       (response) => {
         var lKeys = Object.keys(response)
         var listObject: Offre[] = [];
@@ -255,6 +255,9 @@ export class HomeComponent implements OnInit {
   }
 
   switchLangue(langue: String) {
+    if ((langue == "fr" && this.isFrSelected) || (langue == "en" && this.isEnSelected)) {
+      return;
+    }
     this.globalService.switchLangue(langue)
     this.isEnSelected = false;
     this.isFrSelected = false;
@@ -267,11 +270,11 @@ export class HomeComponent implements OnInit {
     }
 
     //Switch des articles
-    this.favoriteArticlesLangSelected=[]
-    for (var k=0; k<this.favoriteArticles.length; k++){
-      if (this.favoriteArticles[k].langue==="FR" && this.isFrSelected){
+    this.favoriteArticlesLangSelected = []
+    for (var k = 0; k < this.favoriteArticles.length; k++) {
+      if (this.favoriteArticles[k].langue === "FR" && this.isFrSelected) {
         this.favoriteArticlesLangSelected.push(this.favoriteArticles[k])
-      } else if(this.favoriteArticles[k].langue==="EN" && this.isEnSelected){
+      } else if (this.favoriteArticles[k].langue === "EN" && this.isEnSelected) {
         this.favoriteArticlesLangSelected.push(this.favoriteArticles[k])
       }
     }
@@ -279,9 +282,9 @@ export class HomeComponent implements OnInit {
 
   openArticleInBlog(idArticle: Number) {
     if (("" + window.location.href).includes(".com")) {
-      window.location.href = this.globalService.adresseLink.replace("\/", "\\")+"//blog" + "?idArticle=" + idArticle
+      window.location.href = this.globalService.adresseLink.replace("\/", "\\") + "//blog" + "?idArticle=" + idArticle
     } else {
-      window.location.href = this.globalService.adresseLink.replace("\/", "\\")+"//blog" + "?idArticle=" + idArticle
+      window.location.href = this.globalService.adresseLink.replace("\/", "\\") + "//blog" + "?idArticle=" + idArticle
     }
   }
 

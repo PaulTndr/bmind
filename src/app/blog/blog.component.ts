@@ -31,17 +31,17 @@ export class BlogComponent implements OnInit {
   listPagesArticles: any = []
   indicePage: Number = 0;
 
-  fullListSecteurs : Secteur[] = [];
-  fullListTypes : Type[] = [];
+  fullListSecteurs: Secteur[] = [];
+  fullListTypes: Type[] = [];
 
-  listArticlesFr : Article[] = [];
-  listArticlesEn : Article[] = [];
+  listArticlesFr: Article[] = [];
+  listArticlesEn: Article[] = [];
 
   isFilterOpen: Boolean = false;
 
-  mapFilter : any = {}
-  listTypes : Type[] = [];
-  listSecteurs : Secteur[] = [];
+  mapFilter: any = {}
+  listTypes: Type[] = [];
+  listSecteurs: Secteur[] = [];
 
   mapOneFilter: any = {
     "difficulte": false,
@@ -73,7 +73,7 @@ export class BlogComponent implements OnInit {
   isDirectlyOpen = false;
   articleToOpen: Article = new Article()
 
-  constructor(private globalService: GlobalService, private blogService: BlogService, private sanitizer: DomSanitizer, private translate: TranslateService, private httpClient : HttpClient) { }
+  constructor(private globalService: GlobalService, private blogService: BlogService, private sanitizer: DomSanitizer, private translate: TranslateService, private httpClient: HttpClient) { }
 
 
   ngOnInit() {
@@ -99,7 +99,7 @@ export class BlogComponent implements OnInit {
 
     this.isFrSelected = this.globalService.isFrSelected
     this.isEnSelected = this.globalService.isEnSelected
-    if (this.isFrSelected){
+    if (this.isFrSelected) {
       this.switchLangue("fr")
     } else {
       this.switchLangue("en")
@@ -114,21 +114,21 @@ export class BlogComponent implements OnInit {
     this.listArticlesSubscription = this.blogService.listArticlesSubject.subscribe(
       (listArticles: any[]) => {
         this.listArticles = listArticles;
-        this.listArticlesFr=[]
-        this.listArticlesEn=[]
-        for (var k=0; k<this.listArticles.length; k++){
-          if (this.listArticles[k].langue==="FR" && this.listArticles[k].idArticleTraduit!=0){
+        this.listArticlesFr = []
+        this.listArticlesEn = []
+        for (var k = 0; k < this.listArticles.length; k++) {
+          if (this.listArticles[k].langue === "FR" && this.listArticles[k].idArticleTraduit != 0) {
             this.listArticlesFr.push(this.listArticles[k])
-          } else if(this.listArticles[k].langue==="EN" && this.listArticles[k].idArticleTraduit!=0){
+          } else if (this.listArticles[k].langue === "EN" && this.listArticles[k].idArticleTraduit != 0) {
             this.listArticlesEn.push(this.listArticles[k])
           }
         }
-        if (this.isFrSelected){
+        if (this.isFrSelected) {
           this.listArticleDisplay = this.listArticlesFr.slice();
-        } else{
+        } else {
           this.listArticleDisplay = this.listArticlesEn.slice();
         }
-        
+
         this.generatePages();
       }
     );
@@ -192,38 +192,38 @@ export class BlogComponent implements OnInit {
         isOneFilterActive = isOneFilterActive || this.mapOneFilter[key];
       }
       if (isOneFilterActive) {
-        if (this.isFrSelected){
+        if (this.isFrSelected) {
           this.filtrageTxt = "Filtré ("
-        } else{
+        } else {
           this.filtrageTxt = "Filtered ("
         }
-        
+
         for (var k = 0; k < Object.keys(this.mapOneFilter).length; k++) {
           var key = Object.keys(this.mapOneFilter)[k]
           if (this.mapOneFilter[key]) {
-            if(this.isFrSelected){
+            if (this.isFrSelected) {
               this.filterLabel[key] = key + " (filtré)"
               this.filtrageTxt += key + ", ";
-            } else{
-              var correspondanceKey={
-                "difficulte":"difficulty",
-                "temps":"time",
-                "type":"type",
-                "secteur":"sector"
+            } else {
+              var correspondanceKey = {
+                "difficulte": "difficulty",
+                "temps": "time",
+                "type": "type",
+                "secteur": "sector"
               }
               this.filterLabel[key] = correspondanceKey[key] + " (filtered)"
               this.filtrageTxt += correspondanceKey[key] + ", ";
             }
-            
+
           } else {
-            if(this.isFrSelected){
+            if (this.isFrSelected) {
               var keyStringLabel = {
                 "difficulte": "Toutes les difficultés",
                 "temps": "Tous les temps",
                 "type": "Tous les types",
                 "secteur": "Tous les secteurs",
               }
-            } else{
+            } else {
               var keyStringLabel = {
                 "difficulte": "All the difficulties",
                 "temps": "All the reading times",
@@ -231,7 +231,7 @@ export class BlogComponent implements OnInit {
                 "secteur": "All the sectors",
               }
             }
-            
+
             this.filterLabel[key] = keyStringLabel[key]
           }
         }
@@ -239,20 +239,20 @@ export class BlogComponent implements OnInit {
         this.filtrageTxt += ")"
         $("#inputFilterText").css("color", "#D17B53")
       } else {
-        if(this.isFrSelected){
+        if (this.isFrSelected) {
           this.filtrageTxt = "Filtrer"
-        } else{
+        } else {
           this.filtrageTxt = "Filter"
         }
         $("#inputFilterText").css("color", "#757575")
-        if(this.isFrSelected){
+        if (this.isFrSelected) {
           this.filterLabel = {
             "difficulte": "Toutes les difficultés",
             "temps": "Tous les temps",
             "type": "Tous les types",
             "secteur": "Tous les secteurs",
           }
-        } else{
+        } else {
           this.filterLabel = {
             "difficulte": "All the difficulties",
             "temps": "All the reading times",
@@ -277,7 +277,7 @@ export class BlogComponent implements OnInit {
 
   filter() {
     //On va test les différents filtres
-    if (this.isFrSelected){
+    if (this.isFrSelected) {
       var listArticlesCorrectLang = this.listArticlesFr.slice()
     } else {
       var listArticlesCorrectLang = this.listArticlesEn.slice()
@@ -304,20 +304,20 @@ export class BlogComponent implements OnInit {
       }
 
       /*Si tous les secteurs sont cochés on filtre pas, si plusieurs secteurs sont cochés alors on renvoie les articles qui contiennent au moins 1 secteur*/
-      if(this.mapOneFilter["secteur"]){
+      if (this.mapOneFilter["secteur"]) {
         var isSectordReferenced = false;
-        for (var i=0; i<article.listSectors.length;i++){
+        for (var i = 0; i < article.listSectors.length; i++) {
           var sector = article.listSectors[i].key
-          if(this.mapFilter.secteur[""+sector]){
+          if (this.mapFilter.secteur["" + sector]) {
             isSectordReferenced = true;
           }
         }
 
-        if(!isSectordReferenced){
+        if (!isSectordReferenced) {
           isInFilterRules = false;
         }
       }
-      
+
 
 
       //Si toutes les règles sont OK on display
@@ -364,6 +364,9 @@ export class BlogComponent implements OnInit {
   }
 
   switchLangue(langue: String) {
+    if ((langue == "fr" && this.isFrSelected) || (langue == "en" && this.isEnSelected)) {
+      return;
+    }
     this.globalService.switchLangue(langue)
     this.isEnSelected = false;
     this.isFrSelected = false;
@@ -374,11 +377,11 @@ export class BlogComponent implements OnInit {
       this.isEnSelected = true;
       this.translate.use('en');
     }
-    
 
-    if(this.isFrSelected){
+
+    if (this.isFrSelected) {
       this.filtrageTxt = "Filtrer"
-    } else{
+    } else {
       this.filtrageTxt = "Filter"
     }
     $("#inputFilterText").css("color", "#757575")
@@ -391,15 +394,15 @@ export class BlogComponent implements OnInit {
       "type": false,
       "secteur": false,
     }
-  
-    this.mapOpenFilter= {
+
+    this.mapOpenFilter = {
       "difficulte": false,
       "temps": false,
       "type": false,
       "secteur": false,
     }
 
-    if (this.isFrSelected){
+    if (this.isFrSelected) {
       this.listArticleDisplay = this.listArticlesFr.slice();
       this.filterLabel = {
         "difficulte": "Toutes les difficultés",
@@ -407,7 +410,7 @@ export class BlogComponent implements OnInit {
         "type": "Tous les types",
         "secteur": "Tous les secteurs",
       }
-    } else{
+    } else {
       this.listArticleDisplay = this.listArticlesEn.slice();
       this.filterLabel = {
         "difficulte": "All the difficulties",
@@ -417,7 +420,7 @@ export class BlogComponent implements OnInit {
       }
     }
 
-    if(this.isArticleReading){
+    if (this.isArticleReading) {
       //On ouvre directement l'article traduit
       var idTraduit = this.articleOnReader.idArticleTraduit
       this.backToNav();
@@ -481,12 +484,12 @@ export class BlogComponent implements OnInit {
     this.switchLangue(this.articleToOpen.langue === "FR" ? "fr" : "en")
     this.isDirectlyOpen = true;
     this.openArticle(this.articleToOpen)
-    
+
 
   }
 
-  generateFilter(){
-    if(this.isFrSelected){
+  generateFilter() {
+    if (this.isFrSelected) {
       this.mapFilter = {
         "difficulte": {
           "1": true,
@@ -502,19 +505,19 @@ export class BlogComponent implements OnInit {
           "1 heure": true,
         },
       }
-      this.mapFilter["secteur"]={}
-      this.listSecteurs=[]
-      for (var k=0; k<this.fullListSecteurs.length; k++){
-        if (this.fullListSecteurs[k].langue==="FR"){
-          this.mapFilter["secteur"][""+this.fullListSecteurs[k].key]=true
+      this.mapFilter["secteur"] = {}
+      this.listSecteurs = []
+      for (var k = 0; k < this.fullListSecteurs.length; k++) {
+        if (this.fullListSecteurs[k].langue === "FR") {
+          this.mapFilter["secteur"]["" + this.fullListSecteurs[k].key] = true
           this.listSecteurs.push(this.fullListSecteurs[k])
         }
       }
-      this.mapFilter["type"]={}
-      this.listTypes=[]
-      for (var k=0; k<this.fullListTypes.length; k++){
-        if (this.fullListTypes[k].langue==="FR"){
-          this.mapFilter["type"][""+this.fullListTypes[k].key]=true
+      this.mapFilter["type"] = {}
+      this.listTypes = []
+      for (var k = 0; k < this.fullListTypes.length; k++) {
+        if (this.fullListTypes[k].langue === "FR") {
+          this.mapFilter["type"]["" + this.fullListTypes[k].key] = true
           this.listTypes.push(this.fullListTypes[k])
         }
       }
@@ -534,19 +537,19 @@ export class BlogComponent implements OnInit {
           "1 heure": true,
         },
       }
-      this.mapFilter["secteur"]={}
-      this.listSecteurs=[]
-      for (var k=0; k<this.fullListSecteurs.length; k++){
-        if (this.fullListSecteurs[k].langue==="EN"){
-          this.mapFilter["secteur"][""+this.fullListSecteurs[k].key]=true
+      this.mapFilter["secteur"] = {}
+      this.listSecteurs = []
+      for (var k = 0; k < this.fullListSecteurs.length; k++) {
+        if (this.fullListSecteurs[k].langue === "EN") {
+          this.mapFilter["secteur"]["" + this.fullListSecteurs[k].key] = true
           this.listSecteurs.push(this.fullListSecteurs[k])
         }
       }
-      this.mapFilter["type"]={}
-      this.listTypes=[]
-      for (var k=0; k<this.fullListTypes.length; k++){
-        if (this.fullListTypes[k].langue==="EN"){
-          this.mapFilter["type"][""+this.fullListTypes[k].key]=true
+      this.mapFilter["type"] = {}
+      this.listTypes = []
+      for (var k = 0; k < this.fullListTypes.length; k++) {
+        if (this.fullListTypes[k].langue === "EN") {
+          this.mapFilter["type"]["" + this.fullListTypes[k].key] = true
           this.listTypes.push(this.fullListTypes[k])
         }
       }
@@ -555,9 +558,9 @@ export class BlogComponent implements OnInit {
     console.log(this.mapFilter)
   }
 
-  fillData(){
+  fillData() {
 
-    this.httpClient.get<any[]>(this.globalService.baseLink+'/secteurs.json').subscribe(
+    this.httpClient.get<any[]>(this.globalService.baseLink + '/secteurs.json').subscribe(
       (response) => {
         this.fullListSecteurs = response.slice();
         this.generateFilter()
@@ -567,7 +570,7 @@ export class BlogComponent implements OnInit {
       }
     );
 
-    this.httpClient.get<any[]>(this.globalService.baseLink+'/types.json').subscribe(
+    this.httpClient.get<any[]>(this.globalService.baseLink + '/types.json').subscribe(
       (response) => {
         this.fullListTypes = response.slice();
         this.generateFilter()

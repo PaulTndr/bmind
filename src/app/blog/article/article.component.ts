@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Pipe, PipeTransform } from '@angular/core';
+import { Component, OnInit, Input, Pipe, PipeTransform, OnChanges, SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
@@ -10,12 +10,12 @@ import { GlobalService } from '../../global.service';
 
 import { HttpClient } from '@angular/common/http';
 
-import {Article} from '../../classes/articles/article'
-import {Keyword} from '../../classes/articles/keyword'
+import { Article } from '../../classes/articles/article'
+import { Keyword } from '../../classes/articles/keyword'
 
-@Pipe({ name: 'safeHtml'})
-export class SafeHtmlPipe implements PipeTransform  {
-  constructor(private sanitized: DomSanitizer) {}
+@Pipe({ name: 'safeHtml' })
+export class SafeHtmlPipe implements PipeTransform {
+  constructor(private sanitized: DomSanitizer) { }
   transform(value) {
     return this.sanitized.bypassSecurityTrustHtml(value);
   }
@@ -26,24 +26,24 @@ export class SafeHtmlPipe implements PipeTransform  {
   templateUrl: './article.component.html',
   styleUrls: ['./article.component.scss', './article.component.responsive.scss']
 })
-export class ArticleComponent implements OnInit {
+export class ArticleComponent implements OnInit, OnChanges {
 
-  @Input() article : Article;
+  @Input() article: Article;
 
-  isOneWordHovered : Boolean = false;
-  styleTooltip : SafeStyle; 
-  keywordHovered="Aliquam"
-  descHovered="Mauris consequat eros elit, sit amet commodo dui ultricies id. Donec in dapibus ipsum. Phasellus imperdiet, arcu at feugiat consequat."
-  corpsArticleFilled : String;
-  mapDefinition : any = {};
+  isOneWordHovered: Boolean = false;
+  styleTooltip: SafeStyle;
+  keywordHovered = "Aliquam"
+  descHovered = "Mauris consequat eros elit, sit amet commodo dui ultricies id. Donec in dapibus ipsum. Phasellus imperdiet, arcu at feugiat consequat."
+  corpsArticleFilled: String;
+  mapDefinition: any = {};
 
-  listKeywords : Keyword[] = [];
+  listKeywords: Keyword[] = [];
   listKeywordsSubscription: Subscription;
 
-  isFrSelected : Boolean;
-  isEnSelected : Boolean;
+  isFrSelected: Boolean;
+  isEnSelected: Boolean;
 
-  constructor(private blogService: BlogService, private globalService : GlobalService, private route: ActivatedRoute,private sanitizer : DomSanitizer, private httpClient: HttpClient, private translate: TranslateService) { }
+  constructor(private blogService: BlogService, private globalService: GlobalService, private route: ActivatedRoute, private sanitizer: DomSanitizer, private httpClient: HttpClient, private translate: TranslateService) { }
 
   ngOnInit() {
     //On incrémente le nombre de vues
@@ -51,9 +51,9 @@ export class ArticleComponent implements OnInit {
 
     this.isFrSelected = this.globalService.isFrSelected;
     this.isEnSelected = this.globalService.isEnSelected;
-    if (this.isFrSelected){
+    if (this.isFrSelected) {
       this.translate.use('fr');
-    } else{
+    } else {
       this.translate.use('en');
     }
 
@@ -64,7 +64,7 @@ export class ArticleComponent implements OnInit {
     this.listKeywordsSubscription = this.blogService.listKeywordsSubject.subscribe(
       (listKeywords: any[]) => {
         this.listKeywords = listKeywords;
-        this.fillMapDefinition(); 
+        this.fillMapDefinition();
       }
     );
     this.blogService.emitListKeywordsSubject();
@@ -72,89 +72,104 @@ export class ArticleComponent implements OnInit {
     this.generateCorpsArticle()
   }
 
-  openPopup(keyOrigin : String){
+  ngOnChanges(changes: SimpleChanges) {
+    this.blogService.incrementVues(this.article.id)
+
+    this.isFrSelected = this.globalService.isFrSelected;
+    this.isEnSelected = this.globalService.isEnSelected;
+    if (this.isFrSelected) {
+      this.translate.use('fr');
+    } else {
+      this.translate.use('en');
+    }
+
+    document.body.addEventListener('mouseover', (e) => {
+      this.printDescWord((e.target as HTMLTextAreaElement).id);
+    });
+
+    this.listKeywordsSubscription = this.blogService.listKeywordsSubject.subscribe(
+      (listKeywords: any[]) => {
+        this.listKeywords = listKeywords;
+        this.fillMapDefinition();
+      }
+    );
+    this.blogService.emitListKeywordsSubject();
+    this.fillMapDefinition();
+    this.generateCorpsArticle()
+  }
+
+  openPopup(keyOrigin: String) {
     this.globalService.managePopup(keyOrigin);
   }
 
-  printDescWord(wordId : String){
-    if(wordId!="" && wordId.startsWith("word")){
+  printDescWord(wordId: String) {
+    if (wordId != "" && wordId.startsWith("word")) {
       //déplacement du tooltip
       var wordKey = wordId.split("-")[1]
-      var topValue = $("#"+wordId)[0].offsetTop+26
-      var leftValue = $("#"+wordId)[0].offsetLeft-153
-      this.styleTooltip=this.sanitizer.bypassSecurityTrustStyle("left:"+leftValue+"px; top:"+topValue+"px;")
+      var topValue = $("#" + wordId)[0].offsetTop + 26
+      var leftValue = $("#" + wordId)[0].offsetLeft - 153
+      this.styleTooltip = this.sanitizer.bypassSecurityTrustStyle("left:" + leftValue + "px; top:" + topValue + "px;")
       //maj mot et def
-      this.keywordHovered=wordKey.substring(0,1).toUpperCase()+wordKey.substring(1,wordKey.length)
-      this.descHovered=this.mapDefinition[""+wordKey]
-      this.isOneWordHovered=true 
-    } else{
-      this.isOneWordHovered=false;
+      this.keywordHovered = wordKey.substring(0, 1).toUpperCase() + wordKey.substring(1, wordKey.length)
+      this.descHovered = this.mapDefinition["" + wordKey]
+      this.isOneWordHovered = true
+    } else {
+      this.isOneWordHovered = false;
     }
-    
+
   }
 
-  fillMapDefinition(){
-    if (Object.keys(this.mapDefinition).length>0){
+  fillMapDefinition() {
+    if (Object.keys(this.mapDefinition).length > 0) {
       return;
     }
-    if (this.listKeywords.length!=0){
-      for (var k=0; k<this.listKeywords.length;k++){
-        if (this.globalService.isFrSelected && this.listKeywords[k].langue==="FR" || this.globalService.isEnSelected && this.listKeywords[k].langue==="EN"){
+    if (this.listKeywords.length != 0) {
+      for (var k = 0; k < this.listKeywords.length; k++) {
+        if (this.globalService.isFrSelected && this.listKeywords[k].langue === "FR" || this.globalService.isEnSelected && this.listKeywords[k].langue === "EN") {
           var kw = this.listKeywords[k]
-          this.mapDefinition[""+kw.key.toLowerCase()]=kw.def
+          this.mapDefinition["" + kw.key.toLowerCase()] = kw.def
         }
       }
       console.log(this.mapDefinition)
     } else {
-      setTimeout(()=>{this.fillMapDefinition()},100)
+      setTimeout(() => { this.fillMapDefinition() }, 100)
     }
   }
 
-  generateCorpsArticle(){
+  generateCorpsArticle() {
     var wordsToFind = []
-    for (var k=0; k<Object.keys(this.mapDefinition).length; k++){
+    for (var k = 0; k < Object.keys(this.mapDefinition).length; k++) {
       var word = Object.keys(this.mapDefinition)[k]
-      if (this.article.fullText.includes(" "+word+" ") || this.article.fullText.includes(" "+word+".") || this.article.fullText.includes(" "+word+".")){
+      if (this.article.fullText.includes(" " + word + " ") || this.article.fullText.includes(" " + word + ".") || this.article.fullText.includes(" " + word + ".")) {
         wordsToFind.push(word)
       }
     }
 
     var regex2 = /([A-z]|[a-z]){2,}/gi;
-    
+
     var stringCorps = "";
     var listWords = this.article.fullText.split(" ")
-    for (var k=0; k<listWords.length; k++){
+    for (var k = 0; k < listWords.length; k++) {
       var oneWord = ""
-      if(listWords[k].match(regex2)!=null){
-        oneWord =  listWords[k].match(regex2)[0]
+      if (listWords[k].match(regex2) != null) {
+        oneWord = listWords[k].match(regex2)[0]
       }
 
-      if (wordsToFind.indexOf(oneWord.toLowerCase())>-1){
-        wordsToFind=wordsToFind.splice(0,wordsToFind.indexOf(oneWord.toLowerCase())).concat(wordsToFind.splice(wordsToFind.indexOf(oneWord.toLowerCase())+1,wordsToFind.length));
+      if (wordsToFind.indexOf(oneWord.toLowerCase()) > -1) {
+        wordsToFind = wordsToFind.splice(0, wordsToFind.indexOf(oneWord.toLowerCase())).concat(wordsToFind.splice(wordsToFind.indexOf(oneWord.toLowerCase()) + 1, wordsToFind.length));
         var newWtf = []
-        for (var i=0; i<wordsToFind.length;i++){
-          if(wordsToFind[i]!=oneWord.toLowerCase()){
+        for (var i = 0; i < wordsToFind.length; i++) {
+          if (wordsToFind[i] != oneWord.toLowerCase()) {
             newWtf.push(wordsToFind[i])
           }
         }
         wordsToFind = newWtf.slice()
-        var stringReplacement = "<b class='descWord' id='word-"+oneWord.toLowerCase()+"'>"+oneWord+"</b>"
-        stringCorps+= listWords[k].replace(""+oneWord, stringReplacement)+" "
+        var stringReplacement = "<b class='descWord' id='word-" + oneWord.toLowerCase() + "'>" + oneWord + "</b>"
+        stringCorps += listWords[k].replace("" + oneWord, stringReplacement) + " "
       } else {
-        stringCorps+=listWords[k]+" "
+        stringCorps += listWords[k] + " "
       }
     }
     this.corpsArticleFilled = stringCorps;
-
-    /*var wordsToFind = Object.keys(this.mapDefinition)
-    var stringCorps = this.article.fullText;
-    for (var k=0; k<wordsToFind.length; k++){
-      if (this.article.fullText.includes(" "+wordsToFind[k]+" ")){
-        var stringReplacement = "<b class='descWord' id='word-"+wordsToFind[k]+"'>"+wordsToFind[k]+"</b>"
-        stringCorps =stringCorps.replace(""+wordsToFind[k], stringReplacement)
-      }
-    }
-
-    this.corpsArticleFilled = stringCorps;*/
   }
 }
