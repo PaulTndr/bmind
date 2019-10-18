@@ -77,7 +77,7 @@
       </div>
     </div>
 
-    <div class="flexRow" *ngIf="newArticle.type===''">
+    <div class="flexRow" *ngIf="newArticle.type.key===''">
       <img style="width:10px; margin-right:10px;" src="../../../../../assets/images/alertOrange.svg" />
       <p>{{ 'admin.aucunType' | translate }}</p>
     </div>
