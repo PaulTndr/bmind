@@ -73,29 +73,31 @@ export class ArticleComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.blogService.incrementVues(this.article.id)
+    setTimeout(()=>{
+      this.blogService.incrementVues(this.article.id)
 
-    this.isFrSelected = this.globalService.isFrSelected;
-    this.isEnSelected = this.globalService.isEnSelected;
-    if (this.isFrSelected) {
-      this.translate.use('fr');
-    } else {
-      this.translate.use('en');
-    }
-
-    document.body.addEventListener('mouseover', (e) => {
-      this.printDescWord((e.target as HTMLTextAreaElement).id);
-    });
-
-    this.listKeywordsSubscription = this.blogService.listKeywordsSubject.subscribe(
-      (listKeywords: any[]) => {
-        this.listKeywords = listKeywords;
-        this.fillMapDefinition();
+      this.isFrSelected = this.globalService.isFrSelected;
+      this.isEnSelected = this.globalService.isEnSelected;
+      if (this.isFrSelected) {
+        this.translate.use('fr');
+      } else {
+        this.translate.use('en');
       }
-    );
-    this.blogService.emitListKeywordsSubject();
-    this.fillMapDefinition();
-    this.generateCorpsArticle()
+
+      document.body.addEventListener('mouseover', (e) => {
+        this.printDescWord((e.target as HTMLTextAreaElement).id);
+      });
+
+      this.listKeywordsSubscription = this.blogService.listKeywordsSubject.subscribe(
+        (listKeywords: any[]) => {
+          this.listKeywords = listKeywords;
+          this.fillMapDefinition();
+        }
+      );
+      this.blogService.emitListKeywordsSubject();
+      this.fillMapDefinition();
+      this.generateCorpsArticle()
+    },100)
   }
 
   openPopup(keyOrigin: String) {
