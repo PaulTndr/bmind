@@ -41,11 +41,15 @@ app.get('/send/mail', (req, res) => {
             "<body>"+
                 "<div>"+
                     "<p><b>Contact</b> : <b style='color:orange;'>"+contact+"</b></p>"+
+                    "<p><b>Origine</b> : "+source+
                 "</div>"+
                 "<div>"+
                     "<p><b>Contenu du message :</b></p>"+
                     "<p>"+mail_data.msg+"</p>"+
                 "</div>"+
+                "<br />"+
+                "<br />"+
+                "<p>Ce mail a été généré automatiquement</p>"+
             "</body>"
     };   
 
