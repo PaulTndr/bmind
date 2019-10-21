@@ -475,3 +475,38 @@
 
   }
 }
+
+#shareButton {
+  color: white;
+  position: absolute;
+  top: 5px;
+  right: 20px;
+  z-index: 3;
+  align-items: center;
+
+  .divImage {
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+    border-radius: 100px;
+    border: 2px solid white;
+    margin-left: 10px;
+  }
+
+  img {
+    width: 20px;
+    height: 20px;
+    filter: invert(1);
+
+  }
+}
+
+.copyLink{
+  position: absolute;
+  top: 55px;
+  right: 40px;
+  color: white;
+  background-color: #D17B53;
+  padding: 7px;
+  border-radius: 4px;
+}

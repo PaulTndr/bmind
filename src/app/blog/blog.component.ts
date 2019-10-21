@@ -73,6 +73,8 @@ export class BlogComponent implements OnInit {
   isDirectlyOpen = false;
   articleToOpen: Article = new Article()
 
+  isLinkCopied=false;
+
   constructor(private globalService: GlobalService, private blogService: BlogService, private sanitizer: DomSanitizer, private translate: TranslateService, private httpClient: HttpClient) { }
 
 
@@ -579,5 +581,24 @@ export class BlogComponent implements OnInit {
         console.log('Erreur ! : ' + error);
       }
     );
+  }
+
+  share(){
+    var str = this.globalService.adresseLink+"/blog?idArticle="+this.articleOnReader.id;
+    var el = document.createElement('textarea');
+    // Set value (string to be copied)
+    el.value = str;
+    // Set non-editable to avoid focus and move outside of view
+    el.setAttribute('readonly', '');
+    document.body.appendChild(el);
+    // Select text inside element
+    el.select();
+    // Copy text to clipboard
+    document.execCommand('copy');
+    // Remove temporary element
+    document.body.removeChild(el);
+
+    this.isLinkCopied = true;
+    setTimeout(()=>{this.isLinkCopied=false;}, 1000)
   }
 }

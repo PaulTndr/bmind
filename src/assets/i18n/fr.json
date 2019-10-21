@@ -72,7 +72,9 @@
         "sources":"Sources",
         "noSource":"Aucune source renseignée pour cet article",
         "articleReadingTime":"Temps de lecture",
-        "articleDiff":"Difficulté"
+        "articleDiff":"Difficulté",
+        "share":"Partager",
+        "linkCopied":"Lien copié !"
     },
     "admin": {
         "title": "Ajouter un article",

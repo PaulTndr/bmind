@@ -135,6 +135,31 @@
         }
     }
 
+    #shareButton{
+        top: 3px;
+        right: 10px;
+        .divImage{
+            width: 10px;
+            height: 10px;
+            padding: 3px;
+            img{
+                width: 10px;
+                height: 10px;
+            }
+        }
+        p{
+            font-size: 9px;
+        }
+    }
+    .copyLink{
+        font-size: 9px;
+        top: 20px;
+        right: 15px;
+        color: white;
+        background-color: #D17B53;
+        padding: 3px;
+    }
+
     #articlesLies{
         h1{
             font-size: 15px;

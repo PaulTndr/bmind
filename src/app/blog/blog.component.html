@@ -127,6 +127,13 @@
         </div>
         <p>{{ 'blog.back' | translate }}</p>
       </div>
+      <div id="shareButton" class="flexRow button" *ngIf="isArticleReading" (click)="share()">
+        <p>{{ 'blog.share' | translate }}</p>
+        <div class="divImage">
+          <img src="https://image.flaticon.com/icons/svg/149/149722.svg"/>
+        </div>
+      </div>
+      <p class="copyLink" *ngIf="isArticleReading && isLinkCopied">{{ 'blog.linkCopied' | translate }}</p>
     </div>
   </div>
 
@@ -138,6 +145,13 @@
       </div>
       <p>{{ 'blog.back' | translate }}</p>
     </div>
+    <div id="shareButton" class="flexRow button" *ngIf="isArticleReading" (click)="share()">
+      <p>{{ 'blog.share' | translate }}</p>
+      <div class="divImage">
+        <img src="https://image.flaticon.com/icons/svg/149/149722.svg"/>
+      </div>
+    </div>
+    <p class="copyLink" *ngIf="isArticleReading && isLinkCopied">{{ 'blog.linkCopied' | translate }}</p>
   </div>
 
   <div id="pagination" class="flexRow" *ngIf="listPagesArticles.length>1 && !isArticleReading">

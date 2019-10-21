@@ -72,7 +72,9 @@
         "sources":"Sources",
         "noSource":"No sources provided for this article",
         "articleReadingTime":"Reading time",
-        "articleDiff":"Difficulty"
+        "articleDiff":"Difficulty",
+        "share":"Share",
+        "linkCopied":"Link copied !"
     },
     "admin": {
         "title": "Add an article",
