@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { BlogService } from './blog/blog.service';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class GlobalService {
@@ -18,7 +20,7 @@ export class GlobalService {
   baseLink : String;
   adresseLink : String;
 
-  constructor(private blogService : BlogService) { }
+  constructor(private blogService : BlogService, private httpClient : HttpClient) { }
 
   init(){
     //this.baseLink = window.location.href.includes("localhost") ? "https://bmindprodtest.firebaseio.com/" : "https://bminddev.firebaseio.com";
@@ -51,6 +53,19 @@ export class GlobalService {
     console.log('Origin: '+this.originPopup)
     console.log('Contact: '+mailContact)
     console.log('Message: '+messageText)
+    var source = this.originPopup
+    var contact = mailContact
+    var body = messageText
+
+
+    this.httpClient.get<any>("http://bmindinnovation.fr:3000/send/mail?contact="+contact+"&body="+body+"&source="+source).subscribe(
+      (response) => {
+        console.log(response)
+      },
+      (error) => {
+        console.log('Erreur ! : ' + error);
+      }
+    );
   }
 
   switchLangue(langue : String){
