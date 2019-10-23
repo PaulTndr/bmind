@@ -54,12 +54,20 @@
           <img class="button" src="../../../../../assets/images/crayonEdit.svg" (click)="editArticle(element)" />
           <img class="button" src="../../../../../assets/images/deleteCross.svg"
             (click)="openDeletePopup(element)" />
+
           <img class="button" *ngIf="mapFavorite[element.id] && element.langue==='FR'" src="../../../../../assets/images/yellowStar.svg"
             (click)="removeFavorite(element)" /> <!-- Favorite -->
-            <img class="button" *ngIf="mapFavorite[element.id] && element.langue==='EN'" src="../../../../../assets/images/blueStar.svg"
+          <img class="button" *ngIf="mapFavorite[element.id] && element.langue==='EN'" src="../../../../../assets/images/blueStar.svg"
             (click)="removeFavorite(element)" /> <!-- Favorite -->
           <img class="button" *ngIf="!mapFavorite[element.id]" src="../../../../../assets/images/blackStar.svg"
             (click)="addToFavorite(element)" /> <!-- Not Favorite -->
+
+          <img class="button" *ngIf="mapFavoriteProject[element.id] && element.langue==='FR'" src="../../../../../assets/images/yellowLight.svg"
+            (click)="removeFavoriteProject(element)" /> <!-- Favorite project-->
+          <img class="button" *ngIf="mapFavoriteProject[element.id] && element.langue==='EN'" src="../../../../../assets/images/blueLight.svg"
+            (click)="removeFavoriteProject(element)" /> <!-- Favorite project-->
+          <img class="button" *ngIf="!mapFavoriteProject[element.id]" src="../../../../../assets/images/blackLight.svg"
+            (click)="addToFavoriteProject(element)" /> <!-- Not Favorite project -->
         </div>
       </td>
     </ng-container>

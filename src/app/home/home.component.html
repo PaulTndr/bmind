@@ -51,13 +51,13 @@
     </div>
   </div>
   <div class="flexRow" style="margin:auto; justify-content:space-between; width: 70%;" id="projets">
-    <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticlesLangSelected[0].id)"
-      *ngIf="favoriteArticlesLangSelected.length>0">
-      <app-miniature-article-small [article]="favoriteArticlesLangSelected[0]" [size]="'medium'"></app-miniature-article-small>
+    <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticlesProjectLangSelected[0].id)"
+      *ngIf="favoriteArticlesProjectLangSelected.length>0">
+      <app-miniature-article-small [article]="favoriteArticlesProjectLangSelected[0]" [size]="'medium'"></app-miniature-article-small>
     </div>
-    <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticlesLangSelected[1].id)"
-      *ngIf="favoriteArticlesLangSelected.length>1">
-      <app-miniature-article-small [article]="favoriteArticlesLangSelected[1]" [size]="'medium'"></app-miniature-article-small>
+    <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticlesProjectLangSelected[1].id)"
+      *ngIf="favoriteArticlesProjectLangSelected.length>1">
+      <app-miniature-article-small [article]="favoriteArticlesProjectLangSelected[1]" [size]="'medium'"></app-miniature-article-small>
     </div>
   </div>
 </div>
