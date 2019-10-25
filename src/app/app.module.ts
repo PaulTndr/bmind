@@ -32,6 +32,7 @@ import { WritingPannelComponent } from './admin/admin-pannel/blog-admin/writing-
 import { EditingPannelComponent } from './admin/admin-pannel/blog-admin/editing-pannel/editing-pannel.component';
 import { SettingPannelComponent } from './admin/admin-pannel/blog-admin/setting-pannel/setting-pannel.component';
 import { LegalComponent } from './blank/legal/legal.component'
+import { CookieComponent } from './blank/cookie/cookie.component'
 
 import { APP_BASE_HREF } from '@angular/common';
 
@@ -40,6 +41,8 @@ const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'blog', component: BlogComponent },
   { path: 'admin', component: AdminGateComponent },
+  { path: 'legal', component: LegalComponent },
+  { path: 'cookie', component: CookieComponent },
   { path: 'admin/pannel', canActivate: [AdminService], component: AdminPannelComponent },
   { path: 'admin/pannel/statistics', canActivate: [AdminService], component: StatisticsPannelComponent },
   { path: 'admin/pannel/blogModeration', canActivate: [AdminService], component: BlogAdminComponent },
@@ -59,7 +62,7 @@ const appRoutes: Routes = [
     })
   ],
 
-  declarations: [AppComponent, MiniatureArticleSmallComponent, MiniatureArticleComponent, HomeComponent, BlogComponent, LegalComponent, ArticleComponent, AdminGateComponent, AdminPannelComponent, StatisticsPannelComponent, BlogAdminComponent, WritingPannelComponent, EditingPannelComponent, SettingPannelComponent, SafeHtmlPipe],
+  declarations: [AppComponent, MiniatureArticleSmallComponent, MiniatureArticleComponent, HomeComponent, BlogComponent, LegalComponent, CookieComponent, ArticleComponent, AdminGateComponent, AdminPannelComponent, StatisticsPannelComponent, BlogAdminComponent, WritingPannelComponent, EditingPannelComponent, SettingPannelComponent, SafeHtmlPipe],
   bootstrap: [AppComponent],
   providers: [GlobalService, BlogService, AdminService, { provide: APP_BASE_HREF, useValue: '' }]
 })

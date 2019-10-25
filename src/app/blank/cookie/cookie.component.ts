@@ -6,11 +6,11 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-    selector: 'app-legal',
-    templateUrl: './legal.component.html',
+    selector: 'app-cookie',
+    templateUrl: './cookie.component.html',
     styleUrls: ['../styleLegal.component.scss']
 })
-export class LegalComponent implements OnInit {
+export class CookieComponent implements OnInit {
 
     isFrSelected: Boolean;
     isEnSelected: Boolean;
