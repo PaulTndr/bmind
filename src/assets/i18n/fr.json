@@ -122,5 +122,12 @@
         "fonctionPlH": "Fonction",
         "prenomPlH": "Prénom",
         "nomPersonnePlH": "Nom"
+    },
+    "contact":{
+        "title":"Contactez-nous",
+        "contact":"E-MAIL",
+        "message":"VOTRE MESSAGE",
+        "send":"ENVOYER",
+        "after":"Votre message a été envoyé !"
     }
 }

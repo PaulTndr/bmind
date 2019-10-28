@@ -9,9 +9,11 @@ export class BlogService {
 
   listArticles : Article[] = [];
   listFavoriteArticles : Article[] = [];
+  listFavoriteArticlesProject : Article[] = [];
   listKeywords : Keyword[] = [];
   listArticlesSubject = new Subject<Article[]>();
   listFavoriteArticlesSubject = new Subject<Article[]>();
+  listFavoriteArticlesProjectSubject = new Subject<Article[]>();
   listKeywordsSubject = new Subject<Keyword[]>();
 
   baseLink : String;
@@ -25,6 +27,7 @@ export class BlogService {
       console.log("Liste articles déjà chargée")
       console.log(this.listArticles.length+" articles dont "+this.listFavoriteArticles.length+" en favori")
       this.emitListFavoriteArticlesSubject()
+      this.emitListFavoriteArticlesProjectSubject()
       this.emitListArticlesSubject();
       return;
     }
@@ -65,6 +68,23 @@ export class BlogService {
         console.log('Erreur ! : ' + error);
       }
     );
+    this.httpClient.get<any[]>(this.baseLink+'/favoritesProject.json').subscribe(
+      (response) => {
+        if (response!=null){
+          var listIdFavoriteProject = response
+          this.listFavoriteArticlesProject=[]
+          for (var k=0; k<this.listArticles.length; k++){
+            if(listIdFavoriteProject.indexOf(this.listArticles[k].id)>-1){
+              this.listFavoriteArticlesProject.push(this.listArticles[k])
+            }
+          }
+        }
+        this.emitListFavoriteArticlesProjectSubject()
+      },
+      (error) => {
+        console.log('Erreur ! : ' + error);
+      }
+    );
   }
 
   fillListDefinition(){
@@ -91,6 +111,10 @@ export class BlogService {
 
   emitListFavoriteArticlesSubject() {
     this.listFavoriteArticlesSubject.next(this.listFavoriteArticles.slice());
+  }
+
+  emitListFavoriteArticlesProjectSubject() {
+    this.listFavoriteArticlesProjectSubject.next(this.listFavoriteArticlesProject.slice());
   }
 
   emitListKeywordsSubject(){

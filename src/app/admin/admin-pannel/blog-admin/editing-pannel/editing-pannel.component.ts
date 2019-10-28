@@ -20,8 +20,10 @@ export class EditingPannelComponent implements OnInit {
 
   filterText: String = "";
 
-  listIdFavorite = [];
+  listIdFavorite : any;
+  listIdFavoriteProject :any;
   mapFavorite: any = {};
+  mapFavoriteProject: any = {};
 
   articleToEdit: Article;
   articleToDelete: Article;
@@ -56,9 +58,27 @@ export class EditingPannelComponent implements OnInit {
         console.log('Erreur ! : ' + error);
       }
     );
+
+    this.httpClient.get<any[]>(this.globalService.baseLink+'/favoritesProject.json').subscribe(
+      (response) => {
+        if (response != null) {
+          this.listIdFavoriteProject = response
+          this.fillListArticle();
+        } else {
+          this.listIdFavoriteProject = []
+          this.fillListArticle();
+        }
+      },
+      (error) => {
+        console.log('Erreur ! : ' + error);
+      }
+    );
   }
 
   fillListArticle() {
+    if(!this.listIdFavorite || !this.listIdFavoriteProject){
+      return;
+    }
     this.httpClient.get<any[]>(this.globalService.baseLink+'/articles.json').subscribe(
       (response) => {
         var lKeys = Object.keys(response)
@@ -75,6 +95,12 @@ export class EditingPannelComponent implements OnInit {
             this.mapFavorite["" + this.listArticle[k].id] = true
           } else {
             this.mapFavorite["" + this.listArticle[k].id] = false
+          }
+
+          if(this.listIdFavoriteProject.indexOf((+this.listArticle[k].id)) > -1){
+            this.mapFavoriteProject["" + this.listArticle[k].id] = true
+          } else {
+            this.mapFavoriteProject["" + this.listArticle[k].id] = false
           }
         }
       },
@@ -102,9 +128,10 @@ export class EditingPannelComponent implements OnInit {
       alert("Impossible, l'article n'est pas lié à une version traduite")
       return;
     }
-    this.mapFavorite["" + idArticle] = true
-    this.mapFavorite["" + idArticleTraduit] = true
+  
     if (this.listIdFavorite.length < 6) {
+      this.mapFavorite["" + idArticle] = true
+      this.mapFavorite["" + idArticleTraduit] = true
       this.listIdFavorite.push(+idArticle)
       this.listIdFavorite.push(+idArticleTraduit)
       //AJOUT BASE
@@ -118,6 +145,35 @@ export class EditingPannelComponent implements OnInit {
       );
     } else {
       alert("Impossible, déjà 3 articles en favoris")
+      return;
+    }
+  }
+
+  addToFavoriteProject(article: Article) {
+    this.needRefresh=false;
+    var idArticle = article.id
+    var idArticleTraduit = article.idArticleTraduit
+    if (idArticleTraduit===0){
+      alert("Impossible, l'article n'est pas lié à une version traduite")
+      return;
+    }
+  
+    if (this.listIdFavoriteProject.length < 4) {
+      this.mapFavoriteProject["" + idArticle] = true
+      this.mapFavoriteProject["" + idArticleTraduit] = true
+      this.listIdFavoriteProject.push(+idArticle) 
+      this.listIdFavoriteProject.push(+idArticleTraduit)
+      //AJOUT BASE
+      this.httpClient.put(this.globalService.baseLink+'/favoritesProject.json', this.listIdFavoriteProject).subscribe(
+        () => {
+          console.log('Enregistrement des favoris réussi !');
+        },
+        (error) => {
+          console.log('Erreur lors de l\'enregistrment des favoris! : ' + error);
+        }
+      );
+    } else {
+      alert("Impossible, déjà 2 articles en favoris projet")
       return;
     }
   }
@@ -137,6 +193,30 @@ export class EditingPannelComponent implements OnInit {
     this.listIdFavorite = newFavorites
     //EDIT BASE
     this.httpClient.put(this.globalService.baseLink+'/favorites.json', this.listIdFavorite).subscribe(
+      () => {
+        console.log('Enregistrement des favoris réussi !');
+      },
+      (error) => {
+        console.log('Erreur lors de l\'enregistrment des favoris! : ' + error);
+      }
+    );
+    }
+
+  removeFavoriteProject(article: Article) {
+    this.needRefresh=false;
+    var idArticle = article.id
+    var idArticleTraduit = article.idArticleTraduit
+    this.mapFavoriteProject["" + idArticle] = false
+    this.mapFavoriteProject["" + idArticleTraduit] = false
+    var newFavoritesProject = []
+    for (var k = 0; k < this.listIdFavoriteProject.length; k++) {
+      if (this.listIdFavoriteProject[k] != idArticle && this.listIdFavoriteProject[k] != idArticleTraduit) {
+        newFavoritesProject.push(this.listIdFavoriteProject[k])
+      }
+    }
+    this.listIdFavoriteProject = newFavoritesProject
+    //EDIT BASE
+    this.httpClient.put(this.globalService.baseLink+'/favoritesProject.json', this.listIdFavoriteProject).subscribe(
       () => {
         console.log('Enregistrement des favoris réussi !');
       },
@@ -171,6 +251,19 @@ export class EditingPannelComponent implements OnInit {
     var newListArticle = []
     for (var k = 0; k < this.listArticle.length; k++) {
       if (!(this.listArticle[k].id == this.articleToDelete.id)) {
+        //On doit délier la traduction si il y en a une
+        if (this.listArticle[k].idArticleTraduit == this.articleToDelete.id){
+          this.listArticle[k].idArticleTraduit=0;
+        }
+
+        //On doit délier l'article de tous ceux qui le référençait
+        var listIdArticlesLies=[];
+        for (var i=0; i<this.listArticle[k].listIdArticlesLies.length;i++){
+          if(this.listArticle[k].listIdArticlesLies[i]!=this.articleToDelete.id){
+            listIdArticlesLies.push(this.listArticle[k].listIdArticlesLies[i])
+          }
+        }
+        this.listArticle[k].listIdArticlesLies = listIdArticlesLies
         newListArticle.push(this.listArticle[k])
       }
     }
@@ -202,6 +295,25 @@ export class EditingPannelComponent implements OnInit {
 
           for (var k=0;k<this.listIdFavorite.length; k++){
             this.mapFavorite["" + this.listIdFavorite[k]] = true
+          }
+          
+        }
+      },
+      (error) => {
+        console.log('Erreur ! : ' + error);
+      }
+    );
+    this.httpClient.get<any[]>(this.globalService.baseLink+'/favoritesProject.json').subscribe(
+      (response) => {
+        if (response != null) {
+          this.listIdFavoriteProject = response
+          var keysFavoriteProject = Object.keys(this.mapFavoriteProject)
+          for( var i =0; i<keysFavoriteProject.length; i++){
+            this.mapFavoriteProject[keysFavoriteProject[i]]=false;
+          }
+
+          for (var k=0;k<this.listIdFavoriteProject.length; k++){
+            this.mapFavoriteProject["" + this.listIdFavoriteProject[k]] = true
           }
           
         }

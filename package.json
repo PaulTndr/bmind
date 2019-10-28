@@ -19,9 +19,11 @@
     "@ngx-translate/http-loader": "^4.0.0",
     "@thisissoon/angular-inviewport": "4.2.0",
     "core-js": "2.6.9",
+    "express": "^4.17.1",
     "intersection-observer": "0.7.0",
     "jquery": "^3.4.1",
     "ng-in-viewport": "6.0.3",
+    "nodemailer": "^6.3.1",
     "rxjs": "^6.5.2",
     "rxjs-compat": "6.5.3",
     "zone.js": "0.9.1"

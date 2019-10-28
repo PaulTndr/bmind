@@ -26,11 +26,14 @@ export class HomeComponent implements OnInit {
   isMenuOpen: Boolean = false;
   favoriteArticles: Article[] = []
   favoriteArticlesLangSelected: Article[] = []
+  favoriteArticlesProject: Article[] = []
+  favoriteArticlesProjectLangSelected: Article[] = []
   listOffers: Offre[] = [];
 
   isFrSelected: Boolean;
   isEnSelected: Boolean;
   listFavoriteArticlesSubscription: Subscription;
+  listFavoriteArticlesProjectSubscription: Subscription;
 
   styleRondLargeL: SafeStyle;
   styleRondLargeR: SafeStyle;
@@ -131,6 +134,20 @@ export class HomeComponent implements OnInit {
             this.favoriteArticlesLangSelected.push(this.favoriteArticles[k])
           } else if (this.favoriteArticles[k].langue === "EN" && this.isEnSelected) {
             this.favoriteArticlesLangSelected.push(this.favoriteArticles[k])
+          }
+        }
+      }
+    );
+    this.listFavoriteArticlesProjectSubscription = this.blogService.listFavoriteArticlesProjectSubject.subscribe(
+      (listFavoriteArticlesProject: Article[]) => {
+        this.favoriteArticlesProject = listFavoriteArticlesProject.slice();
+        this.blogService.emitListFavoriteArticlesSubject();
+        this.favoriteArticlesProjectLangSelected = []
+        for (var k = 0; k < this.favoriteArticlesProject.length; k++) {
+          if (this.favoriteArticlesProject[k].langue === "FR" && this.isFrSelected) {
+            this.favoriteArticlesProjectLangSelected.push(this.favoriteArticlesProject[k])
+          } else if (this.favoriteArticlesProject[k].langue === "EN" && this.isEnSelected) {
+            this.favoriteArticlesProjectLangSelected.push(this.favoriteArticlesProject[k])
           }
         }
       }
@@ -276,6 +293,15 @@ export class HomeComponent implements OnInit {
         this.favoriteArticlesLangSelected.push(this.favoriteArticles[k])
       } else if (this.favoriteArticles[k].langue === "EN" && this.isEnSelected) {
         this.favoriteArticlesLangSelected.push(this.favoriteArticles[k])
+      }
+    }
+    //Switch des articles
+    this.favoriteArticlesProjectLangSelected = []
+    for (var k = 0; k < this.favoriteArticlesProject.length; k++) {
+      if (this.favoriteArticlesProject[k].langue === "FR" && this.isFrSelected) {
+        this.favoriteArticlesProjectLangSelected.push(this.favoriteArticlesProject[k])
+      } else if (this.favoriteArticlesProject[k].langue === "EN" && this.isEnSelected) {
+        this.favoriteArticlesProjectLangSelected.push(this.favoriteArticlesProject[k])
       }
     }
   }

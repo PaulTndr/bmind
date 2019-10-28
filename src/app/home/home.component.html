@@ -48,17 +48,15 @@
         </div>
       </div>
     </div>
-    <div class="flexRow" style="margin:auto; justify-content:space-between; width: 70%;" id="projets">
-      <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticlesLangSelected[0].id)"
-        *ngIf="favoriteArticlesLangSelected.length>0">
-        <app-miniature-article-small [article]="favoriteArticlesLangSelected[0]" [size]="'medium'">
-        </app-miniature-article-small>
-      </div>
-      <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticlesLangSelected[1].id)"
-        *ngIf="favoriteArticlesLangSelected.length>1">
-        <app-miniature-article-small [article]="favoriteArticlesLangSelected[1]" [size]="'medium'">
-        </app-miniature-article-small>
-      </div>
+  </div>
+  <div class="flexRow" style="margin:auto; justify-content:space-between; width: 70%;" id="projets">
+    <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticlesProjectLangSelected[0].id)"
+      *ngIf="favoriteArticlesProjectLangSelected.length>0">
+      <app-miniature-article-small [article]="favoriteArticlesProjectLangSelected[0]" [size]="'medium'"></app-miniature-article-small>
+    </div>
+    <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticlesProjectLangSelected[1].id)"
+      *ngIf="favoriteArticlesProjectLangSelected.length>1">
+      <app-miniature-article-small [article]="favoriteArticlesProjectLangSelected[1]" [size]="'medium'"></app-miniature-article-small>
     </div>
   </div>
 
@@ -289,15 +287,30 @@
     </div>
   </div>
 
-  <div id="footer">
-    <div id="info" class="flexRow">
-      <div class="img">
-        <img id="logoSignature" src="../../assets/images/logo.svg" />
-      </div>
-      <div class="verticalSeparator"></div>
-      <div class="redirect flexCol">
-        <a class="button" routerLink="/blog">
-          <p>{{ 'home.menuBlog' | translate }}</p>
+<div id="footer">
+  <div id="info" class="flexRow">
+    <div class="img">
+      <img id="logoSignature" src="../../assets/images/logo.svg" />
+    </div>
+    <div class="verticalSeparator"></div>
+    <div class="redirect flexCol">
+      <a class="button" routerLink="/blog"><p>{{ 'home.menuBlog' | translate }}</p></a>
+      <p>{{ 'home.legalMention' | translate }}</p>
+      <p>{{ 'home.cookie' | translate }}</p>
+    </div>
+    <div class="verticalSeparator"></div>
+    <div class="contact flexCol">
+      <p>{{ 'home.reseauxFollow' | translate }}</p>
+      <div class="flexRow listLogoContact">
+        <a href="https://twitter.com/BourgninaudJ" target="_blank">
+          <div class="divImage button">
+            <img src="../../assets/images/twitterBlack.svg">
+          </div>
+        </a>
+        <a href="https://www.linkedin.com/company/b-mind-innovation" target="_blank">
+          <div class="divImage button">
+            <img src="../../assets/images/inBlack.svg">
+          </div>
         </a>
         <p class="button" routerLink="/legal">{{ 'home.legalMention' | translate }}</p>
         <p class="button" routerLink="/cookie">{{ 'home.cookie' | translate }}</p>

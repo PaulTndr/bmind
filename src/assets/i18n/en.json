@@ -122,5 +122,12 @@
         "fonctionPlH": "Job",
         "prenomPlH": "First name",
         "nomPersonnePlH": "Surname"
+    },
+    "contact":{
+        "title":"Contact us",
+        "contact":"MAIL",
+        "message":"YOUR TEXT",
+        "send":"SEND",
+        "after":"Your text has been sent !"
     }
 }
