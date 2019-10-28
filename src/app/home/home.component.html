@@ -251,7 +251,7 @@
   <div id="carriere">
     <h1>{{ 'home.menuCarr' | translate }}</h1>
     <p *ngIf="listOffers.length==0">{{ 'home.noJobOffer' | translate }}</p>
-    <p *ngIf="!listOffers.length==0">{{ 'home.jobOffer1' | translate }}<br>{{ 'home.jobOffer2' | translate }}</p>
+    <p *ngIf="!(listOffers.length==0)">{{ 'home.jobOffer1' | translate }}<br>{{ 'home.jobOffer2' | translate }}</p>
     <div id="listCarriereOffer" class="flexRow">
       <div *ngFor="let offer of listOffers; let i=index;">
         <div class="oneOffer" *ngIf="i<3">
