@@ -11,12 +11,12 @@
           <p>cognitive innovation</p>
         </div>
         <div class="logos flexRow">
-          <a href="https://www.linkedin.com/in/jane-bourgninaud" target="_blank">
+          <a href="https://twitter.com/BourgninaudJ" target="_blank">
             <div class="divImage button">
               <img src="../../assets/images/twitterBlack.svg">
             </div>
           </a>
-          <a href="https://www.linkedin.com/in/jane-bourgninaud" target="_blank">
+          <a href="https://www.linkedin.com/company/b-mind-innovation" target="_blank">
             <div class="divImage button">
               <img src="../../assets/images/inBlack.svg">
             </div>
@@ -26,9 +26,7 @@
           <p class="button buttonLangue" [ngClass]="{'isSelected': isEnSelected}" (click)="switchLangue('en')">EN</p>
         </div>
       </div>
-      <div *ngIf="!isMenuOpen">
-        <img id="logoTop" src="../../assets/images/logoBl.svg" />
-      </div>
+
       <div *ngIf="!isMenuOpen" id="textTitle">
         <h1 class="title">{{ 'home.title' | translate }}</h1>
         <h2 class="subTitle">{{ 'home.subtitle' | translate }}</h2>
@@ -255,6 +253,7 @@
   <div id="carriere">
     <h1>{{ 'home.menuCarr' | translate }}</h1>
     <p *ngIf="listOffers.length==0">{{ 'home.noJobOffer' | translate }}</p>
+    <p *ngIf="!listOffers.length==0">{{ 'home.jobOffer1' | translate }}<br>{{ 'home.jobOffer2' | translate }}</p>
     <div id="listCarriereOffer" class="flexRow">
       <div *ngFor="let offer of listOffers; let i=index;">
         <div class="oneOffer" *ngIf="i<3">
@@ -307,12 +306,12 @@
       <div class="contact flexCol">
         <p>{{ 'home.reseauxFollow' | translate }}</p>
         <div class="flexRow listLogoContact">
-          <a href="https://www.linkedin.com/in/jane-bourgninaud" target="_blank">
+          <a href="https://twitter.com/BourgninaudJ" target="_blank">
             <div class="divImage button">
               <img src="../../assets/images/twitterBlack.svg">
             </div>
           </a>
-          <a href="https://www.linkedin.com/in/jane-bourgninaud" target="_blank">
+          <a href="https://www.linkedin.com/company/b-mind-innovation" target="_blank">
             <div class="divImage button">
               <img src="../../assets/images/inBlack.svg">
             </div>

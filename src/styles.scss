@@ -3,6 +3,11 @@
 p, h1, h2, h3{
   font-family : Montserrat;
 }
+
+p{
+  font-weight: 500;
+}
+
 .flexRow{
   display:flex;
   flex-direction: row;

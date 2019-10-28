@@ -49,6 +49,8 @@
         "blogRedirect": "Please, visit our blog.",
         "moreBlog": "See more",
 
+        "jobOffer1": "Vacancies are currently available.", 
+        "jobOffer2": "Feel free to apply.",
         "noJobOffer": "Unfortunately we do not have any job offer currently",
 
         "janeJob": "Cognitive Sciences Engineer",
