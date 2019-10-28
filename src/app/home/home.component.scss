@@ -369,8 +369,9 @@
         display: none;
       }
     }
-    #blackCrossMobil{
-      display:none;
+
+    #blackCrossMobil {
+      display: none;
       filter: invert(1);
       position: absolute;
       width: 5vh;
@@ -672,7 +673,7 @@
     .fond {
       position: absolute;
       width: 140vw;
-      height: 70vw;
+      height: 100vw;
       margin-left: -20vw;
       margin-right: -29vw;
       margin-bottom: -16vh;
@@ -719,6 +720,32 @@
         color: #F7F7F7;
         text-transform: uppercase;
         margin: auto;
+      }
+    }
+
+    #plusOffer {
+      width: 70vw;
+      margin: auto;
+
+      .blockTextContainer {
+        justify-content: space-between;
+
+        .blockTextOffer {
+          width: 27vw;
+          justify-content: space-between;
+          align-items: center;
+
+          .pointSeparator {
+            width: 0.5vw;
+            height: 0.5vw;
+            background-color: #D17B53;
+            border-radius: 100%;
+          }
+
+          p {
+            width: 25vw;
+          }
+        }
       }
     }
   }

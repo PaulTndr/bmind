@@ -26,6 +26,14 @@
         "activitieTitle3": "Formation",
         "activitieDesc3": "Formez vos équipes aux concepts de la cognition qui impactent leurs activités au quotidien.",
         "accrocheOffer": "Voyons ensemble ce que la cognition peut faire pour vous.",
+
+        "offerPlusTitle1": "Nous vous accompagnons à travers des offres flexibles",
+        "offerPlusTitle2": "et adaptables et réalisons pour vous :",
+        "offerPlusBlock1": "Amélioration de la performance des interactions d’un logiciel avec son utilisateur. Remise d’un rapport et de recommandation.",
+        "offerPlusBlock2": "Journée de formation avec vos équipes pour les sensibiliser aux méthodes cognitives qui améliorent le résultat.",
+        "offerPlusBlock3": "Analyse du processus de vente via un site internet avec la vision cognitive - Remise d’un rapport et de recommandation.",
+        "offerPlusBlock4": "Séance de Design thinking pour développer des idées innovantes centrées sur l’utilisateur.",
+
         "diagnosticOffer": "Demandez votre diagnostic !",
 
         "valeurTitle1": "Transparence",
@@ -74,7 +82,7 @@
         "articleReadingTime":"Temps de lecture",
         "articleDiff":"Difficulté",
         "share":"Partager",
-        "linkCopied":"Lien copié !"
+        "linkCopied":"Lien copié !" 
     },
     "admin": {
         "title": "Ajouter un article",

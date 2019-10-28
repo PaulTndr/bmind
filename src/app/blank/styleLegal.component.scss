@@ -1,0 +1,19 @@
+#bodyTxt {
+    width: 80%;
+    margin: auto;
+    padding-top: 2vh;
+
+    padding-bottom: 2vh;
+
+    .decalageTxt {
+        margin-left: 5vw;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    #bodyTxt {
+        width: 95%;
+        padding-top: 1vh;
+        padding-bottom: 1vh
+    }
+}

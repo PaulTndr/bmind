@@ -1,373 +1,449 @@
 //SPECIFIC FOR RESPONSIVITE
 
-@media screen and (max-width: 640px){
-  #toggle{
-    position: fixed !important; 
-    left: 25px !important;
-    top: 40px !important;
-    z-index: 1001 !important;
-  }
-
-  #boxMenu {
-    background-color: #171817 !important;
-    position: fixed !important;
-    height: 100vh !important;
-    width: 100vw !important;
-    top: 0px !important;
-    left: 0px !important;
-    z-index: 1000 !important;
-  }
-
-  #timeline {
-    display: none !important;
-  }
-
-
-  #header {
-    .logoTitre {
-      width: 50vw !important;
-      h1{
-        font-size:30px !important;
-      }
+@media screen and (max-width: 640px) {
+    #toggle {
+        position: fixed !important;
+        left: 25px !important;
+        top: 40px !important;
+        z-index: 1001 !important;
     }
 
-    .logos{
-      top:25px !important;
-      width: 25vw !important;
-      right: 10px !important;
-      .divImage {
-        width: 15px !important;
-        height: 15px !important;
-        padding: 3px !important;
-        img{
-          width: 15px !important;
-          height: 15px !important;
+    #boxMenu {
+        background-color: #171817 !important;
+        position: fixed !important;
+        height: 100vh !important;
+        width: 100vw !important;
+        top: 0px !important;
+        left: 0px !important;
+        z-index: 1000 !important;
+    }
+
+    #timeline {
+        display: none !important;
+    }
+
+
+    #header {
+        .logoTitre {
+            width: 50vw !important;
+
+            h1 {
+                font-size: 30px !important;
+            }
         }
-      }
-      .buttonLangue{
-        font-size: 10px !important;
-      }
-    }
-  }
 
-  #topPannel{
-    padding-bottom: 3vh !important;
+        .logos {
+            top: 25px !important;
+            width: 25vw !important;
+            right: 10px !important;
 
-    #textTitle{
-      padding:0px !important;
-      .title{
-        font-size:20px !important;
-      }
-      .subTitle{
-        font-size:15px !important;
-      }
-    }
-    
-    .divFond{
-      overflow: hidden !important;
-      height: -webkit-fill-available !important;
-      width: 100vw !important;
-      position: absolute !important;
-      .fond{
-        width: 180vw !important;
-        margin-top: 0vh !important;
-        margin-left: -40vw !important;
-      }
-    }
+            .divImage {
+                width: 15px !important;
+                height: 15px !important;
+                padding: 3px !important;
 
-    .orangeCircle{
-        width: 10px !important;
-        height: 10px !important;
-        margin-bottom: 3vh !important;
-    }
+                img {
+                    width: 15px !important;
+                    height: 15px !important;
+                }
+            }
 
-    #menu{
-        padding-top: 20vh;
-    }
-
-    #fixPannelTop{
-        #blackCrossMobil{
-            display: block;
+            .buttonLangue {
+                font-size: 10px !important;
+            }
         }
     }
-  }
 
-  #mainPannel{
-      padding-bottom: 5vh !important;
-    #savoirFaire{
-        margin-bottom: 3vh !important;
-        h1{
-            font-size: 18px !important;
-            width: 70% !important;
-            margin: auto !important;
+    #topPannel {
+        padding-bottom: 3vh !important;
+
+        #textTitle {
+            padding: 0px !important;
+
+            .title {
+                font-size: 20px !important;
+            }
+
+            .subTitle {
+                font-size: 15px !important;
+            }
         }
-        #imageDyn{
-            height:13vh !important;
-            padding-top: 25vh !important;
-            padding-bottom: 0vh !important;
 
-            p{
+        .divFond {
+            overflow: hidden !important;
+            height: -webkit-fill-available !important;
+            width: 100vw !important;
+            position: absolute !important;
+
+            .fond {
+                width: 180vw !important;
+                margin-top: 0vh !important;
+                margin-left: -40vw !important;
+            }
+        }
+
+        .orangeCircle {
+            width: 10px !important;
+            height: 10px !important;
+            margin-bottom: 3vh !important;
+        }
+
+        #menu {
+            padding-top: 20vh;
+        }
+
+        #fixPannelTop {
+            #blackCrossMobil {
+                display: block;
+            }
+        }
+    }
+
+    #mainPannel {
+        padding-bottom: 5vh !important;
+
+        #savoirFaire {
+            margin-bottom: 3vh !important;
+
+            h1 {
+                font-size: 18px !important;
+                width: 70% !important;
+                margin: auto !important;
+            }
+
+            #imageDyn {
+                height: 13vh !important;
+                padding-top: 25vh !important;
+                padding-bottom: 0vh !important;
+
+                p {
+                    font-size: 10px !important;
+                }
+
+                .logoTitre {
+                    top: 22vh !important;
+                }
+
+                .oneSegment,
+                .oneSegmentV {
+                    display: none !important;
+                }
+
+                #text0 {
+                    left: 35vw !important;
+                    width: 30vw !important;
+                }
+
+                #text1 {
+                    right: 5vw !important;
+                    width: 30vw !important;
+                }
+
+                #text2 {
+                    right: 7vw !important;
+                    width: 30vw !important;
+                    bottom: 0vh !important;
+                }
+
+
+                #text3 {
+                    left: 7vw !important;
+                    width: 30vw !important;
+                    bottom: 0vh !important;
+                }
+
+                #text4 {
+                    left: 5vw !important;
+                    width: 30vw !important;
+                }
+            }
+        }
+
+        #videoYt {
+            width: 100% !important;
+            height: 30vh !important;
+        }
+
+        #offres {
+            padding-top: 3vh !important;
+
+            .fond {
+                width: auto !important;
+                height: 144vw !important;
+                margin-left: -70vw !important;
+                transform: scaleX(0.8) scaleY(0.9) !important;
+            }
+
+            .title {
+                font-size: 18px !important;
+                margin-top: 0px !important;
+                margin-bottom: 2vh !important;
+            }
+
+            h2 {
+                font-size: 14px !important;
+            }
+
+            p {
                 font-size: 10px !important;
             }
 
-            .logoTitre{
-                top:22vh !important;
+            #listOffer {
+                width: 90% !important;
+
+                .oneOffer {
+                    width: 28vw !important;
+
+                    .logoOffer {
+                        width: 50px !important;
+                        height: 50px !important;
+                    }
+                }
             }
 
-            .oneSegment, .oneSegmentV {
-                display:none !important;
+            .textOffer {
+                .text {
+                    font-size: 14px !important;
+                }
             }
 
-            #text0{
-                left: 35vw !important;
-                width: 30vw !important;
-            }
+            #plusOffer {
+                width: 95vw;
 
-            #text1{
-                right: 5vw !important;
-                width: 30vw !important;
-            }
+                .blockTextContainer {
 
-            #text2{
-                right: 7vw !important;
-                width: 30vw !important;
-                bottom: 0vh !important;
-            }
+                    .blockTextOffer {
+                        width: 45vw;
 
+                        .pointSeparator {
+                            width: 0.5vh;
+                            height: 0.5vh;
+                        }
 
-            #text3{
-                left: 7vw !important;
-                width: 30vw !important;
-                bottom: 0vh !important;
-            }
-
-            #text4{
-                left: 5vw !important;
-                width: 30vw !important;
-            }
-        }
-    }
-
-    #videoYt{
-        width:100% !important;
-        height:30vh !important;
-    }
-
-    #offres{
-        padding-top:3vh !important;
-
-        .fond{
-            width: auto !important;
-            height: 144vw !important;
-            margin-left: -70vw !important;
-            transform: scaleX(0.8) scaleY(0.9) !important;
-        }
-        .title{
-            font-size:18px !important;
-            margin-top: 0px !important;
-            margin-bottom: 2vh !important;
-        }
-        h2{
-            font-size:14px !important;
-        }
-        p{
-            font-size:10px !important;
-        }
-
-        #listOffer{
-            width:90% !important;
-            .oneOffer{
-                width: 28vw !important;
-                .logoOffer{
-                    width: 50px !important;
-                    height: 50px !important;
+                        p {
+                            width: 42vw;
+                        }
+                    }
                 }
             }
         }
-        .textOffer{
-            .text{
-                font-size:14px !important;
-            }
-        }
-        }
     }
-    #thirdPannel{
+
+    #thirdPannel {
         padding-top: 3vh !important;
         padding-bottom: 3vh !important;
-        .title{
-            font-size:18px !important;
+
+        .title {
+            font-size: 18px !important;
             margin-top: 0px !important;
             margin-bottom: 2vh !important;
         }
-        #listValeurs{
-            width:95% !important;
-            height:auto !important;
+
+        #listValeurs {
+            width: 95% !important;
+            height: auto !important;
             align-items: flex-start !important;
 
-            .verticalSeparator{
+            .verticalSeparator {
                 height: 24vh !important;
                 margin-top: -1vh !important;
             }
-            .oneValeur{
-                .divImage, .descValeur{
+
+            .oneValeur {
+
+                .divImage,
+                .descValeur {
                     display: block !important;
                 }
-                .descValeur{
-                    font-size:7px !important;
+
+                .descValeur {
+                    font-size: 7px !important;
                 }
-                .divImage{
+
+                .divImage {
                     width: 10px !important;
                     height: 10px !important;
                     padding: 3px !important;
                 }
-                .valeur{
-                    height:30px !important;
-                    font-size:11px !important;
+
+                .valeur {
+                    height: 30px !important;
+                    font-size: 11px !important;
                     line-height: 15px !important;
                 }
             }
         }
     }
-    #pannelBlog{
+
+    #pannelBlog {
         padding-top: 3vh !important;
         padding-bottom: 3vh !important;
-        .mainText{
-            width:90% !important;
-            font-size:14px !important;
+
+        .mainText {
+            width: 90% !important;
+            font-size: 14px !important;
             line-height: 15px !important;
         }
-        .discoverText{
+
+        .discoverText {
             margin-bottom: 3vh !important;
         }
-        #articlesUnes{
+
+        #articlesUnes {
             margin-bottom: 3vh !important;
         }
     }
 
-    #partenaires{
+    #partenaires {
         padding-top: 3vh !important;
         padding-bottom: 3vh !important;
         height: auto !important;
-        h1{
-            font-size:18px !important;
+
+        h1 {
+            font-size: 18px !important;
         }
-        .text{
+
+        .text {
             width: 80% !important;
             font-size: 12px !important;
             margin-bottom: 3vh !important;
         }
 
-        #rowPart1{
-            width:90% !important;
-            .part1{
-                width:119px;
-                height:61px;
-              }
-              .part2{
-                width:56px;
-                height:59px;
-              }
-              .part3{
-                width:135px;
-                height:47px;
-              }
+        #rowPart1 {
+            width: 90% !important;
+
+            .part1 {
+                width: 119px;
+                height: 61px;
+            }
+
+            .part2 {
+                width: 56px;
+                height: 59px;
+            }
+
+            .part3 {
+                width: 135px;
+                height: 47px;
+            }
         }
 
-        #rowPart2{
-            width:50% !important;
-            .part4{
-                width:65px;
-                height:60px;
+        #rowPart2 {
+            width: 50% !important;
+
+            .part4 {
+                width: 65px;
+                height: 60px;
             }
-            .part5{
-                width:84px;
-                height:84px;
+
+            .part5 {
+                width: 84px;
+                height: 84px;
             }
         }
-        .blockFond{
-            .fond{
+
+        .blockFond {
+            .fond {
                 width: 206vw;
                 margin-top: -20vh;
             }
         }
     }
-    #carriere{
+
+    #carriere {
         height: auto !important;
         padding-top: 3vh !important;
         padding-bottom: 3vh !important;
-        h1{
-            font-size:18px !important;
+
+        h1 {
+            font-size: 18px !important;
         }
-        #listCarriereOffer{
-            .oneOffer{
-                .oneOfferBox{
+
+        #listCarriereOffer {
+            .oneOffer {
+                .oneOfferBox {
                     .divImage {
                         width: 10px;
                         height: 10px;
                         padding: 3px;
                     }
                 }
-                p{
+
+                p {
                     font-size: 11px;
                 }
             }
         }
     }
-    #contact{
+
+    #contact {
         height: auto !important;
         padding-top: 3vh !important;
         padding-bottom: 3vh !important;
-        h1{
-            font-size:18px !important;
+
+        h1 {
+            font-size: 18px !important;
             margin-bottom: 2vh;
         }
-        #carteContact{
+
+        #carteContact {
             width: 80%;
-            #photoJane{
+
+            #photoJane {
                 height: 35vw;
                 margin-top: 3vh;
             }
-            #fondPhoto{
+
+            #fondPhoto {
                 width: 30vw;
                 height: 35vw;
                 left: -10px;
                 top: 13px;
             }
-            .infosJane{
-                .importantText{
-                    font-size:14px;
+
+            .infosJane {
+                .importantText {
+                    font-size: 14px;
                     line-height: inherit;
                 }
-                p{
-                    font-size:10px;
+
+                p {
+                    font-size: 10px;
                 }
             }
         }
     }
-    #footer{
-        height:9vh;
-        padding : 5px 10px 5px 10px;
-        p{
+
+    #footer {
+        height: 9vh;
+        padding: 5px 10px 5px 10px;
+
+        p {
             font-size: 7px;
             line-height: inherit;
         }
-        #info{
+
+        #info {
             height: 8vh;
-            width:100%;
-            #logoSignature{
+            width: 100%;
+
+            #logoSignature {
                 height: 5vh;
-                margin-top:1.5vh;
-                display:block;
+                margin-top: 1.5vh;
+                display: block;
             }
-            .contact{
-                width:20%;
-                p{
+
+            .contact {
+                width: 20%;
+
+                p {
                     font-size: 8px;
                 }
-                .listLogoContact{
+
+                .listLogoContact {
                     width: 9vw;
                 }
             }
-        }  
+        }
     }
 }

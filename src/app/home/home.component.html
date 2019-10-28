@@ -1,366 +1,405 @@
 <div style="position: relative; overflow-x: hidden;">
-<div id="topPannel">
-  <div id="fixPannelTop">
-    <div class="divFond">
+  <div id="topPannel">
+    <div id="fixPannelTop">
+      <div class="divFond">
+        <img class="fond" src="../../assets/images/fond.svg" />
+      </div>
+      <div class="flexRow" id="header">
+        <a id="toggle" [ngClass]="{'on': isMenuOpen}" (click)="openOrCloseMenu()"><span></span></a>
+        <div class="logoTitre">
+          <h1>B.mind</h1>
+          <p>cognitive innovation</p>
+        </div>
+        <div class="logos flexRow">
+          <a href="https://www.linkedin.com/in/jane-bourgninaud" target="_blank">
+            <div class="divImage button">
+              <img src="../../assets/images/twitterBlack.svg">
+            </div>
+          </a>
+          <a href="https://www.linkedin.com/in/jane-bourgninaud" target="_blank">
+            <div class="divImage button">
+              <img src="../../assets/images/inBlack.svg">
+            </div>
+          </a>
+          <div class="verticalSeparator"></div>
+          <p class="button buttonLangue" [ngClass]="{'isSelected': isFrSelected}" (click)="switchLangue('fr')">FR</p>
+          <p class="button buttonLangue" [ngClass]="{'isSelected': isEnSelected}" (click)="switchLangue('en')">EN</p>
+        </div>
+      </div>
+      <div *ngIf="!isMenuOpen">
+        <img id="logoTop" src="../../assets/images/logoBl.svg" />
+      </div>
+      <div *ngIf="!isMenuOpen" id="textTitle">
+        <h1 class="title">{{ 'home.title' | translate }}</h1>
+        <h2 class="subTitle">{{ 'home.subtitle' | translate }}</h2>
+        <div class="orangeCircle"></div>
+      </div>
+
+      <div *ngIf="isMenuOpen" id="boxMenu">
+        <img class="button" (click)="openOrCloseMenu()" id="blackCrossMobil" src="../../assets/images/grassCross.svg" />
+        <div id="menu" class="flexCol">
+          <a class="button" href="#projets" (click)="resetMenu()">{{ 'home.menuProjets' | translate }}</a>
+          <a class="button" href="#savoirFaire" (click)="resetMenu()">{{ 'home.menuSavoirs' | translate }}</a>
+          <a class="button" href="#offres" (click)="resetMenu()">{{ 'home.menuOffres' | translate }}</a>
+          <a class="button" href="#thirdPannel" (click)="resetMenu()">{{ 'home.menuCharte' | translate }}</a>
+          <a class="button" href="#partenaires" (click)="resetMenu()">{{ 'home.menuParts' | translate }}</a>
+          <a class="button" href="#carriere" (click)="resetMenu()">{{ 'home.menuCarr' | translate }}</a>
+          <a class="button" href="#contact" (click)="resetMenu()">{{ 'home.menuContact' | translate }}</a>
+          <div class="orangeCircle"></div>
+          <a class="button" routerLink="/blog">{{ 'home.menuBlog' | translate }}</a>
+        </div>
+      </div>
+    </div>
+    <div class="flexRow" style="margin:auto; justify-content:space-between; width: 70%;" id="projets">
+      <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticlesLangSelected[0].id)"
+        *ngIf="favoriteArticlesLangSelected.length>0">
+        <app-miniature-article-small [article]="favoriteArticlesLangSelected[0]" [size]="'medium'">
+        </app-miniature-article-small>
+      </div>
+      <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticlesLangSelected[1].id)"
+        *ngIf="favoriteArticlesLangSelected.length>1">
+        <app-miniature-article-small [article]="favoriteArticlesLangSelected[1]" [size]="'medium'">
+        </app-miniature-article-small>
+      </div>
+    </div>
+  </div>
+
+  <div id="mainPannel">
+    <div id="savoirFaire">
+
+      <h1 style="text-align:center;">{{ 'home.titleDyn' | translate }}</h1>
+      <div id="imageDyn">
+        <div class="oneText">
+          <p id='text0'>{{ 'home.textDyn1' | translate }}</p>
+          <div class="oneSegmentV" id="segment0" [style]="styleSegment0">
+            <div class="rond" [style]="styleRondSmallR"></div>
+          </div>
+        </div>
+
+        <div class="oneText">
+          <p id="text1">{{ 'home.textDyn2' | translate }}</p>
+          <div class="oneSegment rondEnd" id="segment1" [style]="styleSegment1">
+            <div class="rond" [style]="styleRondLargeL"></div>
+          </div>
+        </div>
+
+        <div class="oneText">
+          <p id="text2">{{ 'home.textDyn3' | translate }}</p>
+          <div class="oneSegment" id="segment2" [style]="styleSegment2">
+            <div class="rond" [style]="styleRondLargeR"></div>
+          </div>
+        </div>
+
+        <div class="oneText">
+          <p id="text3">{{ 'home.textDyn4' | translate }}</p>
+          <div class="oneSegment" id="segment3" [style]="styleSegment3">
+            <div class="rond" [style]="styleRondLargeR"></div>
+          </div>
+        </div>
+
+        <div class="oneText">
+          <p id="text4">{{ 'home.textDyn5' | translate }}</p>
+          <div class="oneSegment" id="segment4" [style]="styleSegment4">
+            <div class="rond" [style]="styleRondLargeR"></div>
+          </div>
+        </div>
+
+        <div class="logoTitre" snInViewport (inViewportChange)="onInViewportChange($event)">
+          <h1>B.mind</h1>
+          <p>cognitive innovation</p>
+        </div>
+      </div>
+    </div>
+
+    <iframe id="videoYt" width="560" height="315" src="https://www.youtube.com/embed/EynJFQObnqI" frameborder="0"
+      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
+
+    <div id="offres">
+      <img class="fond" src="../../assets/images/fond.svg" style="pointer-events:none;" />
+      <h1 class="title">{{ 'home.menuOffres' | translate }}</h1>
+      <div class="flexRow" id="listOffer">
+        <div class="oneOffer">
+          <img class="logoOffer" src="../../assets/images/conseil.svg" />
+          <h2>{{ 'home.activitieTitle1' | translate }}</h2>
+          <p>{{ 'home.activitieDesc1' | translate }}</p>
+        </div>
+        <div class="oneOffer">
+          <img class="logoOffer" src="../../assets/images/etude.svg" style="margin-left:20px;" />
+          <h2>{{ 'home.activitieTitle2' | translate }}</h2>
+          <p>{{ 'home.activitieDesc2' | translate }}</p>
+        </div>
+
+        <div class="oneOffer">
+          <img class="logoOffer" src="../../assets/images/formation.svg" />
+          <h2>{{ 'home.activitieTitle3' | translate }}</h2>
+          <p>{{ 'home.activitieDesc3' | translate }}</p>
+        </div>
+      </div>
+
+      <div style="width:14vw; margin :auto; height:1px; background-color:white; margin-top: 5vh;margin-bottom: 5vh;">
+      </div>
+
+      <div id="plusOffer">
+        <p style="text-align: center; margin-top:1vh; margin-bottom:3vh;">
+          {{ 'home.offerPlusTitle1' | translate }}<br>{{ 'home.offerPlusTitle2' | translate }}</p>
+        <div class="blockTextContainer flexRow">
+          <div class="blockTextOffer flexRow">
+            <div class="pointSeparator"></div>
+            <p>{{ 'home.offerPlusBlock1' | translate }}</p>
+          </div>
+
+          <div class="blockTextOffer flexRow">
+            <div class="pointSeparator"></div>
+            <p>{{ 'home.offerPlusBlock2' | translate }}</p>
+          </div>
+        </div>
+        <div class="blockTextContainer flexRow">
+          <div class="blockTextOffer flexRow">
+            <div class="pointSeparator"></div>
+            <p>{{ 'home.offerPlusBlock3' | translate }}</p>
+          </div>
+
+          <div class="blockTextOffer flexRow">
+            <div class="pointSeparator"></div>
+            <p>{{ 'home.offerPlusBlock4' | translate }}</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="textOffer">
+        <p class="text">{{ 'home.accrocheOffer' | translate }}</p>
+        <p class="button contactButton" (click)="openPopup('diagnostic')">{{ 'home.diagnosticOffer' | translate }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="thirdPannel">
+    <h1 class="title">{{ 'home.menuCharte' | translate }}</h1>
+    <div class="flexRow" id="listValeurs">
+      <div class="oneValeur">
+        <p class="valeur">{{ 'home.valeurTitle1' | translate }}</p>
+        <div class="divImage">
+          <img src="../../../assets/images/arrow.svg" />
+        </div>
+        <p class="descValeur">{{ 'home.valeurDesc1' | translate }}</p>
+      </div>
+      <div class="verticalSeparator"></div>
+      <div class="oneValeur">
+        <div>
+          <p class="valeur">{{ 'home.valeurTitle2' | translate }}</p>
+        </div>
+        <div class="divImage">
+          <img src="../../../assets/images/arrow.svg" />
+        </div>
+        <p class="descValeur">{{ 'home.valeurDesc2' | translate }}</p>
+      </div>
+      <div class="verticalSeparator"></div>
+      <div class="oneValeur">
+        <p class="valeur">{{ 'home.valeurTitle3' | translate }}</p>
+        <div class="divImage">
+          <img src="../../../assets/images/arrow.svg" />
+        </div>
+        <p class="descValeur">{{ 'home.valeurDesc3' | translate }}</p>
+      </div>
+      <div class="verticalSeparator"></div>
+      <div class="oneValeur">
+        <p class="valeur">{{ 'home.valeurTitle4' | translate }}</p>
+        <div class="divImage">
+          <img src="../../../assets/images/arrow.svg" />
+        </div>
+        <p class="descValeur">{{ 'home.valeurDesc4' | translate }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="pannelBlog">
+    <p class="mainText">{{ 'home.titleBlog' | translate }}</p>
+    <p class="mainText discoverText">{{ 'home.blogRedirect' | translate }}</p>
+    <div id="articlesUnes" class="flexRow">
+      <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticlesLangSelected[0].id)"
+        *ngIf="favoriteArticlesLangSelected.length>0">
+        <app-miniature-article-small [article]="favoriteArticlesLangSelected[0]" [size]="'small'">
+        </app-miniature-article-small>
+      </div>
+      <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticlesLangSelected[1].id)"
+        *ngIf="favoriteArticlesLangSelected.length>1">
+        <app-miniature-article-small [article]="favoriteArticlesLangSelected[1]" [size]="'small'">
+        </app-miniature-article-small>
+      </div>
+      <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticlesLangSelected[2].id)"
+        *ngIf="favoriteArticlesLangSelected.length>2">
+        <app-miniature-article-small [article]="favoriteArticlesLangSelected[2]" [size]="'small'">
+        </app-miniature-article-small>
+      </div>
+    </div>
+    <p class="button contactButton" routerLink="/blog">{{ 'home.moreBlog' | translate }}</p>
+  </div>
+
+  <div id="partenaires">
+    <div class="blockFond">
       <img class="fond" src="../../assets/images/fond.svg" />
     </div>
-    <div class="flexRow" id="header">
-      <a id="toggle" [ngClass]="{'on': isMenuOpen}" (click)="openOrCloseMenu()"><span></span></a>
-      <div class="logoTitre">
-        <h1>B.mind</h1>
-        <p>cognitive innovation</p>
-      </div>
-      <div class="logos flexRow">
-        <a href="https://www.linkedin.com/in/jane-bourgninaud" target="_blank">
-          <div class="divImage button">
-            <img src="../../assets/images/twitterBlack.svg">
+    <h1>{{ 'home.menuParts' | translate }}</h1>
+    <div class="flexRow listPart" id="rowPart1">
+      <img class="brandImage part1" src="../../assets/images/logoPart1.png" />
+      <img class="brandImage part2" src="../../assets/images/logoPart2.jpg" />
+      <img class="brandImage part3" src="../../assets/images/logoPart3.png" />
+    </div>
+    <div class="flexRow listPart" id="rowPart2">
+      <img class="brandImage part4" src="../../assets/images/logoPart4.png" />
+      <img class="brandImage part5" src="../../assets/images/logoPart5.png" />
+    </div>
+  </div>
+
+  <div id="carriere">
+    <h1>{{ 'home.menuCarr' | translate }}</h1>
+    <p *ngIf="listOffers.length==0">{{ 'home.noJobOffer' | translate }}</p>
+    <div id="listCarriereOffer" class="flexRow">
+      <div *ngFor="let offer of listOffers; let i=index;">
+        <div class="oneOffer" *ngIf="i<3">
+          <div class="oneOfferBox">
+            <img src="../../assets/images/offreEmploi.svg" />
+            <a [href]="offer.linkPDF" target="_blank">
+              <div class="divImage button">
+                <img class="orangeArrow" src="../../../assets/images/arrow.svg" />
+                <img class="whiteArrow" src="../../assets/images/arrowBlack.svg" />
+              </div>
+            </a>
           </div>
+          <p>{{offer.title}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="contact">
+    <h1>{{ 'home.menuContact' | translate }}</h1>
+    <div class="flexRow" id="carteContact">
+      <img id="photoJane" src="../../assets/images/janeBPicture.png" />
+      <div id="fondPhoto"></div>
+      <div class="infosJane">
+        <p class="importantText">Jane Bourgninaud</p>
+        <p class="importantText" style="margin-bottom:1vw;">CEO</p>
+        <p>{{ 'home.janeJob' | translate }}</p>
+        <p>{{ 'home.janeMba' | translate }}</p>
+        <p style="margin-bottom:4vh;">{{ 'home.janeDesc' | translate }}</p>
+        <p class="button contactButton" (click)="openPopup('bottomMain')">{{ 'home.contactButtonLabel' | translate }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div id="footer">
+    <div id="info" class="flexRow">
+      <div class="img">
+        <img id="logoSignature" src="../../assets/images/logo.svg" />
+      </div>
+      <div class="verticalSeparator"></div>
+      <div class="redirect flexCol">
+        <a class="button" routerLink="/blog">
+          <p>{{ 'home.menuBlog' | translate }}</p>
         </a>
-        <a href="https://www.linkedin.com/in/jane-bourgninaud" target="_blank">
-          <div class="divImage button">
-            <img src="../../assets/images/inBlack.svg">
-          </div>
-        </a>
-        <div class="verticalSeparator"></div>
-        <p class="button buttonLangue" [ngClass]="{'isSelected': isFrSelected}" (click)="switchLangue('fr')">FR</p>
-        <p class="button buttonLangue" [ngClass]="{'isSelected': isEnSelected}" (click)="switchLangue('en')">EN</p>
+        <p class="button" routerLink="/legal">{{ 'home.legalMention' | translate }}</p>
+        <p class="button" routerLink="/cookie">{{ 'home.cookie' | translate }}</p>
       </div>
-    </div>
-    <div *ngIf="!isMenuOpen">
-        <img id="logoTop" src="../../assets/images/logoBl.svg" />
-    </div>
-    <div *ngIf="!isMenuOpen" id="textTitle">
-      <h1 class="title">{{ 'home.title' | translate }}</h1>
-      <h2 class="subTitle">{{ 'home.subtitle' | translate }}</h2>
-      <div class="orangeCircle"></div>
-    </div>
-
-    <div *ngIf="isMenuOpen" id="boxMenu">
-      <img class="button" (click)="openOrCloseMenu()" id="blackCrossMobil" src="../../assets/images/grassCross.svg"/>
-      <div id="menu" class="flexCol">
-        <a class="button" href="#projets" (click)="resetMenu()">{{ 'home.menuProjets' | translate }}</a>
-        <a class="button" href="#savoirFaire" (click)="resetMenu()">{{ 'home.menuSavoirs' | translate }}</a>
-        <a class="button" href="#offres" (click)="resetMenu()">{{ 'home.menuOffres' | translate }}</a>
-        <a class="button" href="#thirdPannel" (click)="resetMenu()">{{ 'home.menuCharte' | translate }}</a>
-        <a class="button" href="#partenaires" (click)="resetMenu()">{{ 'home.menuParts' | translate }}</a>
-        <a class="button" href="#carriere" (click)="resetMenu()">{{ 'home.menuCarr' | translate }}</a>
-        <a class="button" href="#contact" (click)="resetMenu()">{{ 'home.menuContact' | translate }}</a>
-        <div class="orangeCircle"></div>
-        <a class="button" routerLink="/blog">{{ 'home.menuBlog' | translate }}</a>
-      </div>
-    </div>
-  </div>
-  <div class="flexRow" style="margin:auto; justify-content:space-between; width: 70%;" id="projets">
-    <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticlesLangSelected[0].id)"
-      *ngIf="favoriteArticlesLangSelected.length>0">
-      <app-miniature-article-small [article]="favoriteArticlesLangSelected[0]" [size]="'medium'"></app-miniature-article-small>
-    </div>
-    <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticlesLangSelected[1].id)"
-      *ngIf="favoriteArticlesLangSelected.length>1">
-      <app-miniature-article-small [article]="favoriteArticlesLangSelected[1]" [size]="'medium'"></app-miniature-article-small>
-    </div>
-  </div>
-</div>
-
-<div id="mainPannel">
-  <div id="savoirFaire">
-
-    <h1 style="text-align:center;">{{ 'home.titleDyn' | translate }}</h1>
-    <div id="imageDyn">
-      <div class="oneText">
-        <p id='text0'>{{ 'home.textDyn1' | translate }}</p>
-        <div class="oneSegmentV" id="segment0" [style]="styleSegment0">
-          <div class="rond" [style]="styleRondSmallR"></div>
-        </div>
-      </div>
-
-      <div class="oneText">
-        <p id="text1">{{ 'home.textDyn2' | translate }}</p>
-        <div class="oneSegment rondEnd" id="segment1" [style]="styleSegment1">
-          <div class="rond" [style]="styleRondLargeL"></div>
-        </div>
-      </div>
-
-      <div class="oneText">
-        <p id="text2">{{ 'home.textDyn3' | translate }}</p>
-        <div class="oneSegment" id="segment2" [style]="styleSegment2">
-          <div class="rond" [style]="styleRondLargeR"></div>
-        </div>
-      </div>
-
-      <div class="oneText">
-        <p id="text3">{{ 'home.textDyn4' | translate }}</p>
-        <div class="oneSegment" id="segment3" [style]="styleSegment3">
-          <div class="rond" [style]="styleRondLargeR"></div>
-        </div>
-      </div>
-
-      <div class="oneText">
-        <p id="text4">{{ 'home.textDyn5' | translate }}</p>
-        <div class="oneSegment" id="segment4" [style]="styleSegment4">
-          <div class="rond" [style]="styleRondLargeR"></div>
-        </div>
-      </div>
-
-      <div class="logoTitre" snInViewport (inViewportChange)="onInViewportChange($event)">
-        <h1>B.mind</h1>
-        <p>cognitive innovation</p>
-      </div>
-    </div>
-  </div>
-
-  <iframe id="videoYt" width="560" height="315" src="https://www.youtube.com/embed/EynJFQObnqI" frameborder="0"
-    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
-
-  <div id="offres">
-    <img class="fond" src="../../assets/images/fond.svg" style="pointer-events:none;" />
-    <h1 class="title">{{ 'home.menuOffres' | translate }}</h1>
-    <div class="flexRow" id="listOffer">
-      <div class="oneOffer">
-        <img class="logoOffer" src="../../assets/images/conseil.svg" />
-        <h2>{{ 'home.activitieTitle1' | translate }}</h2>
-        <p>{{ 'home.activitieDesc1' | translate }}</p>
-      </div>
-      <div class="oneOffer">
-        <img class="logoOffer" src="../../assets/images/etude.svg" style="margin-left:20px;" />
-        <h2>{{ 'home.activitieTitle2' | translate }}</h2>
-        <p>{{ 'home.activitieDesc2' | translate }}</p>
-      </div>
-
-      <div class="oneOffer">
-        <img class="logoOffer" src="../../assets/images/formation.svg" />
-        <h2>{{ 'home.activitieTitle3' | translate }}</h2>
-        <p>{{ 'home.activitieDesc3' | translate }}</p>
-      </div>
-    </div>
-
-    <div class="textOffer">
-      <p class="text">{{ 'home.accrocheOffer' | translate }}</p>
-      <p class="button contactButton" (click)="openPopup('diagnostic')">{{ 'home.diagnosticOffer' | translate }}</p>
-    </div>
-  </div>
-</div>
-
-<div id="thirdPannel">
-  <h1 class="title">{{ 'home.menuCharte' | translate }}</h1>
-  <div class="flexRow" id="listValeurs">
-    <div class="oneValeur">
-      <p class="valeur">{{ 'home.valeurTitle1' | translate }}</p>
-      <div class="divImage">
-        <img src="../../../assets/images/arrow.svg" />
-      </div>
-      <p class="descValeur">{{ 'home.valeurDesc1' | translate }}</p>
-    </div>
-    <div class="verticalSeparator"></div>
-    <div class="oneValeur">
-      <div>
-        <p class="valeur">{{ 'home.valeurTitle2' | translate }}</p>
-      </div>
-      <div class="divImage">
-        <img src="../../../assets/images/arrow.svg" />
-      </div>
-      <p class="descValeur">{{ 'home.valeurDesc2' | translate }}</p>
-    </div>
-    <div class="verticalSeparator"></div>
-    <div class="oneValeur">
-      <p class="valeur">{{ 'home.valeurTitle3' | translate }}</p>
-      <div class="divImage">
-        <img src="../../../assets/images/arrow.svg" />
-      </div>
-      <p class="descValeur">{{ 'home.valeurDesc3' | translate }}</p>
-    </div>
-    <div class="verticalSeparator"></div>
-    <div class="oneValeur">
-      <p class="valeur">{{ 'home.valeurTitle4' | translate }}</p>
-      <div class="divImage">
-        <img src="../../../assets/images/arrow.svg" />
-      </div>
-      <p class="descValeur">{{ 'home.valeurDesc4' | translate }}</p>
-    </div>
-  </div>
-</div>
-
-<div id="pannelBlog">
-  <p class="mainText">{{ 'home.titleBlog' | translate }}</p>
-  <p class="mainText discoverText">{{ 'home.blogRedirect' | translate }}</p>
-  <div id="articlesUnes" class="flexRow">
-    <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticlesLangSelected[0].id)"
-      *ngIf="favoriteArticlesLangSelected.length>0">
-      <app-miniature-article-small [article]="favoriteArticlesLangSelected[0]" [size]="'small'"></app-miniature-article-small>
-    </div>
-    <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticlesLangSelected[1].id)"
-      *ngIf="favoriteArticlesLangSelected.length>1">
-      <app-miniature-article-small [article]="favoriteArticlesLangSelected[1]" [size]="'small'"></app-miniature-article-small>
-    </div>
-    <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticlesLangSelected[2].id)"
-      *ngIf="favoriteArticlesLangSelected.length>2">
-      <app-miniature-article-small [article]="favoriteArticlesLangSelected[2]" [size]="'small'"></app-miniature-article-small>
-    </div>
-  </div>
-  <p class="button contactButton" routerLink="/blog">{{ 'home.moreBlog' | translate }}</p>
-</div>
-
-<div id="partenaires">
-  <div class="blockFond">
-    <img class="fond" src="../../assets/images/fond.svg" />
-  </div>
-  <h1>{{ 'home.menuParts' | translate }}</h1>
-  <div class="flexRow listPart" id="rowPart1">
-    <img class="brandImage part1" src="../../assets/images/logoPart1.png" />
-    <img class="brandImage part2" src="../../assets/images/logoPart2.jpg" />
-    <img class="brandImage part3" src="../../assets/images/logoPart3.png" />
-  </div>
-  <div class="flexRow listPart" id="rowPart2">
-    <img class="brandImage part4" src="../../assets/images/logoPart4.png" />
-    <img class="brandImage part5" src="../../assets/images/logoPart5.png" />
-  </div>
-</div>
-
-<div id="carriere">
-  <h1>{{ 'home.menuCarr' | translate }}</h1>
-  <p *ngIf="listOffers.length==0">{{ 'home.noJobOffer' | translate }}</p>
-  <div id="listCarriereOffer" class="flexRow">
-    <div *ngFor="let offer of listOffers; let i=index;">
-      <div class="oneOffer" *ngIf="i<3">
-        <div class="oneOfferBox">
-          <img src="../../assets/images/offreEmploi.svg" />
-          <a [href]="offer.linkPDF" target="_blank">
+      <div class="verticalSeparator"></div>
+      <div class="contact flexCol">
+        <p>{{ 'home.reseauxFollow' | translate }}</p>
+        <div class="flexRow listLogoContact">
+          <a href="https://www.linkedin.com/in/jane-bourgninaud" target="_blank">
             <div class="divImage button">
-              <img class="orangeArrow" src="../../../assets/images/arrow.svg" />
-              <img class="whiteArrow" src="../../assets/images/arrowBlack.svg" />
+              <img src="../../assets/images/twitterBlack.svg">
+            </div>
+          </a>
+          <a href="https://www.linkedin.com/in/jane-bourgninaud" target="_blank">
+            <div class="divImage button">
+              <img src="../../assets/images/inBlack.svg">
             </div>
           </a>
         </div>
-        <p>{{offer.title}}</p>
+      </div>
+      <div class="verticalSeparator"></div>
+      <div class="legal flexCol">
+        <p>{{ 'home.bmindLoc' | translate }}</p>
+        <p>{{ 'home.bmindCapital' | translate }}</p>
+        <p>{{ 'home.bmindAdresse' | translate }}</p>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="timeline" class="flexRow">
+    <div class="points flexCol">
+      <a href="#projets">
+        <div class="pointOnTimeline" id="pointProjet"
+          [ngClass]="{'isHovered': mapTimeline.projets, 'selectedForHovers' : (!mapHover.projets && (mapTimeline.projets||mapTimeline.savoirs||mapTimeline.offres||mapTimeline.charte||mapTimeline.parts||mapTimeline.carriere||mapTimeline.contact)) || mapHover.projets}"
+          (mouseover)="changeHoverPoints('projets', true)" (mouseout)="changeHoverPoints('projets', false)"></div>
+      </a>
+      <a href="#savoirFaire">
+        <div class="pointOnTimeline" id="pointSavoir"
+          [ngClass]="{'isHovered': mapTimeline.savoirs, 'selectedForHovers' : (!mapHover.projets && (mapTimeline.savoirs||mapTimeline.offres||mapTimeline.charte||mapTimeline.parts||mapTimeline.carriere||mapTimeline.contact)) || mapHover.savoirs}"
+          (mouseover)="changeHoverPoints('savoirs', true)" (mouseout)="changeHoverPoints('savoirs', false)"></div>
+      </a>
+      <a href="#offres">
+        <div class="pointOnTimeline" id="pointOffre"
+          [ngClass]="{'isHovered': mapTimeline.offres, 'selectedForHovers' : (!mapHover.projets && (mapTimeline.offres||mapTimeline.charte||mapTimeline.parts||mapTimeline.carriere||mapTimeline.contact)) || mapHover.offres}"
+          (mouseover)="changeHoverPoints('offres', true)" (mouseout)="changeHoverPoints('offres', false)"></div>
+      </a>
+      <a href="#thirdPannel">
+        <div class="pointOnTimeline" id="pointCharte"
+          [ngClass]="{'isHovered': mapTimeline.charte, 'selectedForHovers' : (!mapHover.projets && (mapTimeline.charte||mapTimeline.parts||mapTimeline.carriere||mapTimeline.contact)) || mapHover.charte}"
+          (mouseout)="changeHoverPoints('charte', false)" (mouseover)="changeHoverPoints('charte', true)"></div>
+      </a>
+      <a href="#partenaires">
+        <div class="pointOnTimeline" id="pointParts"
+          [ngClass]="{'isHovered': mapTimeline.parts, 'selectedForHovers' : (!mapHover.projets && (mapTimeline.parts||mapTimeline.carriere||mapTimeline.contact)) || mapHover.parts}"
+          (mouseover)="changeHoverPoints('parts', true)" (mouseout)="changeHoverPoints('parts', false)"></div>
+      </a>
+      <a href="#carriere">
+        <div class="pointOnTimeline" id="pointCarriere"
+          [ngClass]="{'isHovered': mapTimeline.carriere, 'selectedForHovers' : (!mapHover.projets && (mapTimeline.carriere||mapTimeline.contact)) || mapHover.carriere}"
+          (mouseover)="changeHoverPoints('carriere', true)" (mouseout)="changeHoverPoints('carriere', false)"></div>
+      </a>
+      <a href="#contact">
+        <div class="pointOnTimeline" id="pointContact"
+          [ngClass]="{'isHovered': mapTimeline.contact, 'selectedForHovers' : (!mapHover.projets && (mapTimeline.contact)) || mapHover.contact}"
+          (mouseover)="changeHoverPoints('contact', true)" (mouseout)="changeHoverPoints('contact', false)"></div>
+      </a>
+    </div>
+
+    <div class="solidLine" [style]="sizeSolidLineForTimeLine"></div>
+
+    <div class="anchors flexCol">
+      <div class="oneAnchor"
+        [ngClass]="{'isVisible': mapTimeline.projets || mapHoverPoint.projets, isHoveredByTimeline : mapHoverPoint.projets || (!mapHover.projets)}">
+        <p>{{ 'home.menuProjets' | translate }}</p>
+      </div>
+      <div class="oneAnchor"
+        [ngClass]="{'isVisible': mapTimeline.savoirs || mapHoverPoint.savoirs, isHoveredByTimeline : mapHoverPoint.savoirs || (!mapHover.projets)}">
+        <p>{{ 'home.menuSavoirs' | translate }}</p>
+      </div>
+      <div class="oneAnchor"
+        [ngClass]="{'isVisible': mapTimeline.offres || mapHoverPoint.offres, isHoveredByTimeline : mapHoverPoint.offres || (!mapHover.projets)}">
+        <p>{{ 'home.menuOffres' | translate }}</p>
+      </div>
+      <div class="oneAnchor"
+        [ngClass]="{'isVisible': mapTimeline.charte || mapHoverPoint.charte, isHoveredByTimeline : mapHoverPoint.charte || (!mapHover.projets)}">
+        <p>{{ 'home.menuCharte' | translate }}</p>
+      </div>
+      <div class="oneAnchor"
+        [ngClass]="{'isVisible': mapTimeline.parts || mapHoverPoint.parts, isHoveredByTimeline : mapHoverPoint.parts || (!mapHover.projets)}">
+        <p>{{ 'home.menuParts' | translate }}</p>
+      </div>
+      <div class="oneAnchor"
+        [ngClass]="{'isVisible': mapTimeline.carriere || mapHoverPoint.carriere, isHoveredByTimeline : mapHoverPoint.carriere || (!mapHover.projets)}">
+        <p>{{ 'home.menuCarr' | translate }}</p>
+      </div>
+      <div class="oneAnchor"
+        [ngClass]="{'isVisible': mapTimeline.contact || mapHoverPoint.contact, isHoveredByTimeline : mapHoverPoint.contact || (!mapHover.projets)}">
+        <p>{{ 'home.menuContact' | translate }}</p>
       </div>
     </div>
   </div>
-</div>
-
-<div id="contact">
-  <h1>{{ 'home.menuContact' | translate }}</h1>
-  <div class="flexRow" id="carteContact">
-    <img id="photoJane" src="../../assets/images/janeBPicture.png" />
-    <div id="fondPhoto"></div>
-    <div class="infosJane">
-      <p class="importantText">Jane Bourgninaud</p>
-      <p class="importantText" style="margin-bottom:1vw;">CEO</p>
-      <p>{{ 'home.janeJob' | translate }}</p>
-      <p>{{ 'home.janeMba' | translate }}</p>
-      <p style="margin-bottom:4vh;">{{ 'home.janeDesc' | translate }}</p>
-      <p class="button contactButton" (click)="openPopup('bottomMain')">{{ 'home.contactButtonLabel' | translate }}</p>
-    </div>
-  </div>
-</div>
-
-<div id="footer">
-  <div id="info" class="flexRow">
-    <div class="img">
-      <img id="logoSignature" src="../../assets/images/logo.svg" />
-    </div>
-    <div class="verticalSeparator"></div>
-    <div class="redirect flexCol">
-      <a class="button" routerLink="/blog"><p>{{ 'home.menuBlog' | translate }}</p></a>
-      <p>{{ 'home.legalMention' | translate }}</p>
-      <p>{{ 'home.cookie' | translate }}</p>
-    </div>
-    <div class="verticalSeparator"></div>
-    <div class="contact flexCol">
-      <p>{{ 'home.reseauxFollow' | translate }}</p>
-      <div class="flexRow listLogoContact">
-        <a href="https://www.linkedin.com/in/jane-bourgninaud" target="_blank">
-          <div class="divImage button">
-            <img src="../../assets/images/twitterBlack.svg">
-          </div>
-        </a>
-        <a href="https://www.linkedin.com/in/jane-bourgninaud" target="_blank">
-          <div class="divImage button">
-            <img src="../../assets/images/inBlack.svg">
-          </div>
-        </a>
-      </div>
-    </div>
-    <div class="verticalSeparator"></div>
-    <div class="legal flexCol">
-      <p>{{ 'home.bmindLoc' | translate }}</p>
-      <p>{{ 'home.bmindCapital' | translate }}</p>
-      <p>{{ 'home.bmindAdresse' | translate }}</p>
-    </div>
-
-  </div>
-</div>
-
-<div id="timeline" class="flexRow">
-  <div class="points flexCol">
-    <a href="#projets">
-      <div class="pointOnTimeline" id="pointProjet"
-        [ngClass]="{'isHovered': mapTimeline.projets, 'selectedForHovers' : (!mapHover.projets && (mapTimeline.projets||mapTimeline.savoirs||mapTimeline.offres||mapTimeline.charte||mapTimeline.parts||mapTimeline.carriere||mapTimeline.contact)) || mapHover.projets}"
-        (mouseover)="changeHoverPoints('projets', true)" (mouseout)="changeHoverPoints('projets', false)"></div>
-    </a>
-    <a href="#savoirFaire">
-      <div class="pointOnTimeline" id="pointSavoir"
-        [ngClass]="{'isHovered': mapTimeline.savoirs, 'selectedForHovers' : (!mapHover.projets && (mapTimeline.savoirs||mapTimeline.offres||mapTimeline.charte||mapTimeline.parts||mapTimeline.carriere||mapTimeline.contact)) || mapHover.savoirs}"
-        (mouseover)="changeHoverPoints('savoirs', true)" (mouseout)="changeHoverPoints('savoirs', false)"></div>
-    </a>
-    <a href="#offres">
-      <div class="pointOnTimeline" id="pointOffre"
-        [ngClass]="{'isHovered': mapTimeline.offres, 'selectedForHovers' : (!mapHover.projets && (mapTimeline.offres||mapTimeline.charte||mapTimeline.parts||mapTimeline.carriere||mapTimeline.contact)) || mapHover.offres}"
-        (mouseover)="changeHoverPoints('offres', true)" (mouseout)="changeHoverPoints('offres', false)"></div>
-    </a>
-    <a href="#thirdPannel">
-      <div class="pointOnTimeline" id="pointCharte"
-        [ngClass]="{'isHovered': mapTimeline.charte, 'selectedForHovers' : (!mapHover.projets && (mapTimeline.charte||mapTimeline.parts||mapTimeline.carriere||mapTimeline.contact)) || mapHover.charte}"
-        (mouseout)="changeHoverPoints('charte', false)" (mouseover)="changeHoverPoints('charte', true)"></div>
-    </a>
-    <a href="#partenaires">
-      <div class="pointOnTimeline" id="pointParts"
-        [ngClass]="{'isHovered': mapTimeline.parts, 'selectedForHovers' : (!mapHover.projets && (mapTimeline.parts||mapTimeline.carriere||mapTimeline.contact)) || mapHover.parts}"
-        (mouseover)="changeHoverPoints('parts', true)" (mouseout)="changeHoverPoints('parts', false)"></div>
-    </a>
-    <a href="#carriere">
-      <div class="pointOnTimeline" id="pointCarriere"
-        [ngClass]="{'isHovered': mapTimeline.carriere, 'selectedForHovers' : (!mapHover.projets && (mapTimeline.carriere||mapTimeline.contact)) || mapHover.carriere}"
-        (mouseover)="changeHoverPoints('carriere', true)" (mouseout)="changeHoverPoints('carriere', false)"></div>
-    </a>
-    <a href="#contact">
-      <div class="pointOnTimeline" id="pointContact"
-        [ngClass]="{'isHovered': mapTimeline.contact, 'selectedForHovers' : (!mapHover.projets && (mapTimeline.contact)) || mapHover.contact}"
-        (mouseover)="changeHoverPoints('contact', true)" (mouseout)="changeHoverPoints('contact', false)"></div>
-    </a>
-  </div>
-
-  <div class="solidLine" [style]="sizeSolidLineForTimeLine"></div>
-
-  <div class="anchors flexCol">
-    <div class="oneAnchor"
-      [ngClass]="{'isVisible': mapTimeline.projets || mapHoverPoint.projets, isHoveredByTimeline : mapHoverPoint.projets || (!mapHover.projets)}">
-      <p>{{ 'home.menuProjets' | translate }}</p>
-    </div>
-    <div class="oneAnchor"
-      [ngClass]="{'isVisible': mapTimeline.savoirs || mapHoverPoint.savoirs, isHoveredByTimeline : mapHoverPoint.savoirs || (!mapHover.projets)}">
-      <p>{{ 'home.menuSavoirs' | translate }}</p>
-    </div>
-    <div class="oneAnchor"
-      [ngClass]="{'isVisible': mapTimeline.offres || mapHoverPoint.offres, isHoveredByTimeline : mapHoverPoint.offres || (!mapHover.projets)}">
-      <p>{{ 'home.menuOffres' | translate }}</p>
-    </div>
-    <div class="oneAnchor"
-      [ngClass]="{'isVisible': mapTimeline.charte || mapHoverPoint.charte, isHoveredByTimeline : mapHoverPoint.charte || (!mapHover.projets)}">
-      <p>{{ 'home.menuCharte' | translate }}</p>
-    </div>
-    <div class="oneAnchor"
-      [ngClass]="{'isVisible': mapTimeline.parts || mapHoverPoint.parts, isHoveredByTimeline : mapHoverPoint.parts || (!mapHover.projets)}">
-      <p>{{ 'home.menuParts' | translate }}</p>
-    </div>
-    <div class="oneAnchor"
-      [ngClass]="{'isVisible': mapTimeline.carriere || mapHoverPoint.carriere, isHoveredByTimeline : mapHoverPoint.carriere || (!mapHover.projets)}">
-      <p>{{ 'home.menuCarr' | translate }}</p>
-    </div>
-    <div class="oneAnchor"
-      [ngClass]="{'isVisible': mapTimeline.contact || mapHoverPoint.contact, isHoveredByTimeline : mapHoverPoint.contact || (!mapHover.projets)}">
-      <p>{{ 'home.menuContact' | translate }}</p>
-    </div>
-  </div>
-</div>
 
 </div>
