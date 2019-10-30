@@ -24,7 +24,8 @@ export class GlobalService {
 
   init(){
     //this.baseLink = window.location.href.includes("localhost") ? "https://bmindprodtest.firebaseio.com/" : "https://bminddev.firebaseio.com";
-    this.baseLink = window.location.href.includes("localhost") ? "https://bminddev.firebaseio.com" : "https://bmindprodtest.firebaseio.com/";
+    //this.baseLink = window.location.href.includes("localhost") ? "https://bminddev.firebaseio.com" : "https://bmindprodtest.firebaseio.com/";
+    this.baseLink = window.location.href.includes("localhost") ? "https://bmindprodtest-33e57.firebaseio.com/" : "https://bmindprodtest.firebaseio.com/";
     if (window.location.href.includes("localhost")){
       this.adresseLink="http://localhost:4200"
     } else {

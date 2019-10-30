@@ -86,7 +86,8 @@
         "articleReadingTime":"Reading time",
         "articleDiff":"Difficulty",
         "share":"Share",
-        "linkCopied":"Link copied !"
+        "linkCopied":"Link copied !",
+        "home":"Home"
     },
     "admin": {
         "title": "Add an article",
