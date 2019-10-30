@@ -584,7 +584,7 @@ export class BlogComponent implements OnInit {
   }
 
   share(){
-    var str = this.globalService.adresseLink+"/blog?idArticle="+this.articleOnReader.id;
+    var str = this.globalService.adresseLink+"/#/blog?idArticle="+this.articleOnReader.id;
     var el = document.createElement('textarea');
     // Set value (string to be copied)
     el.value = str;

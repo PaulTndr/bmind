@@ -49,10 +49,11 @@ const appRoutes: Routes = [
   { path: 'admin/pannel/blogModeration/write', canActivate: [AdminService], component: WritingPannelComponent },
   { path: 'admin/pannel/blogModeration/edit', canActivate: [AdminService], component: EditingPannelComponent },
   { path: 'admin/pannel/blogModeration/settings', canActivate: [AdminService], component: SettingPannelComponent },
+  { path:'**', redirectTo:'home', pathMatch:'full'}
 ];
 
 @NgModule({
-  imports: [BrowserModule, FormsModule, RouterModule.forRoot(appRoutes), MatSelectModule, MatTableModule, MatInputModule, BrowserAnimationsModule, HttpClientModule, CKEditorModule, MatCheckboxModule, InViewportModule,
+  imports: [BrowserModule, FormsModule, RouterModule.forRoot(appRoutes, {useHash: true}), MatSelectModule, MatTableModule, MatInputModule, BrowserAnimationsModule, HttpClientModule, CKEditorModule, MatCheckboxModule, InViewportModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

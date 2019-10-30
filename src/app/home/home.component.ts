@@ -308,9 +308,9 @@ export class HomeComponent implements OnInit {
 
   openArticleInBlog(idArticle: Number) {
     if (("" + window.location.href).includes(".com")) {
-      window.location.href = this.globalService.adresseLink.replace("\/", "\\") + "//blog" + "?idArticle=" + idArticle
+      window.location.href = this.globalService.adresseLink.replace("\/", "\\") + "/#/blog" + "?idArticle=" + idArticle
     } else {
-      window.location.href = this.globalService.adresseLink.replace("\/", "\\") + "//blog" + "?idArticle=" + idArticle
+      window.location.href = this.globalService.adresseLink.replace("\/", "\\") + "/#/blog" + "?idArticle=" + idArticle
     }
   }
 
