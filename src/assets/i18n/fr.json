@@ -12,7 +12,8 @@
         "menuContact": "Contact",
         "menuBlog": "Blog",
 
-        "titleDyn": "La cognition au service de vos solutions digitales et IA",
+        "titleDyn1": "La cognition au service",
+        "titleDyn2": "de vos solutions digitales et IA",
         "textDyn1": "Développer des solutions en fonction des humains qui les utilisent",
         "textDyn2": "Optimiser le niveau de concentration, diminuer le nombre d’erreurs",
         "textDyn3": "Comprendre et parler le language du cerveau",
@@ -46,12 +47,13 @@
         "valeurDesc4": "Chaque individu reste libre et maitre de ses décisions quelque soit le contexte.",
 
         "titleBlog": "Vous souhaitez en apprendre davantage sur la cognition, nos projets et nos engagements ?",
-        "blogRedirect": "Découvrez notre blog.",
+        "blogRedirect": "Découvrez notre",
         "moreBlog": "Voir plus",
 
-        "jobOffer1": "Nous avons actuellement 2 postes à pourvoir.", 
+        "jobOffer1": "Nous avons actuellement 2 postes à pourvoir.",
         "jobOffer2": "N’hésitez pas à télécharger les fiches de poste.",
-        "noJobOffer": "Nous n'avons malheureusement pas d'ouverture de poste actuellement.",
+        "noJobOffer1": "Nous n'avons malheureusement pas",
+        "noJobOffer2": "d'ouverture de poste actuellement.",
 
         "janeJob": "Ingénieur en sciences cognitives",
         "janeMba": "MBA en entrepreneuriat",
@@ -68,26 +70,26 @@
         "bmindAdresse": "27 impasse des Aurengues 13013 MARSEILLE"
     },
     "blog": {
-        "filtrerPlH" : "Filtrer",
-        "rechercherPlH" : "RECHERCHER",
-        "tousF":"Toutes",
-        "tousM":"Tous",
-        "aucunM":"Aucun",
-        "aucunF":"Aucune",
-        "oneHour":"1 heure",
-        "back":"Retour aux articles",
-        "noResult":"Aucun article ne semble correspondre à votre recherche",
-        "interestArticles":"Ces articles pourraient également vous intéresser",
-        "suggestionBlog":"Vous avez une question, une suggestion, une remarque, un commentaire, envie de nous dire bonjour et de nous féliciter pour notre travail,",
-        "contact":"Contactez-nous",
-        "auteurNonRenseigne":"L'auteur de cet article n'est pas renseigné",
-        "sources":"Sources",
-        "noSource":"Aucune source renseignée pour cet article",
-        "articleReadingTime":"Temps de lecture",
-        "articleDiff":"Difficulté",
-        "share":"Partager",
-        "linkCopied":"Lien copié !",
-        "home":"Accueil"
+        "filtrerPlH": "Filtrer",
+        "rechercherPlH": "RECHERCHER",
+        "tousF": "Toutes",
+        "tousM": "Tous",
+        "aucunM": "Aucun",
+        "aucunF": "Aucune",
+        "oneHour": "1 heure",
+        "back": "Retour aux articles",
+        "noResult": "Aucun article ne semble correspondre à votre recherche",
+        "interestArticles": "Ces articles pourraient également vous intéresser",
+        "suggestionBlog": "Vous avez une question, une suggestion, une remarque, un commentaire, envie de nous dire bonjour et de nous féliciter pour notre travail,",
+        "contact": "Contactez-nous",
+        "auteurNonRenseigne": "L'auteur de cet article n'est pas renseigné",
+        "sources": "Sources",
+        "noSource": "Aucune source renseignée pour cet article",
+        "articleReadingTime": "Temps de lecture",
+        "articleDiff": "Difficulté",
+        "share": "Partager",
+        "linkCopied": "Lien copié !",
+        "home": "Accueil"
     },
     "admin": {
         "title": "Ajouter un article",
@@ -124,11 +126,11 @@
         "prenomPlH": "Prénom",
         "nomPersonnePlH": "Nom"
     },
-    "contact":{
-        "title":"Contactez-nous",
-        "contact":"E-MAIL",
-        "message":"VOTRE MESSAGE",
-        "send":"ENVOYER",
-        "after":"Votre message a été envoyé !"
+    "contact": {
+        "title": "Contactez-nous",
+        "contact": "E-MAIL",
+        "message": "VOTRE MESSAGE",
+        "send": "ENVOYER",
+        "after": "Votre message a été envoyé !"
     }
 }

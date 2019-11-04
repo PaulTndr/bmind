@@ -3,10 +3,12 @@
     <img class="fond" src="../../assets/images/fond.svg" />
   </div>
   <div class="flexRow" id="header">
-    <a class="button logoTitre" routerLink="/home"><div>
-      <h1>B.mind</h1>
-      <p>cognitive innovation</p>
-    </div></a>
+    <a class="button logoTitre" routerLink="/home">
+      <div>
+        <h1>B.mind</h1>
+        <p>cognitive innovation</p>
+      </div>
+    </a>
     <div class="logos flexRow">
       <a href="https://twitter.com/BourgninaudJ" target="_blank">
         <div class="divImage button">
@@ -27,18 +29,17 @@
   <div class="orangeCircle"></div>
   <div class="flexRow" id="listInput" *ngIf="!isArticleReading">
     <div class="flexRow oneInputDiv" id="filtrageInput">
-      <input style="pointer-events:none; width: 100%;" type="text" placeholder="{{ 'blog.filtrerPlH' | translate }}" [(ngModel)]="filtrageTxt"
-        id="inputFilterText">
+      <input style="pointer-events:none; width: 100%;" type="text" placeholder="{{ 'blog.filtrerPlH' | translate }}"
+        [(ngModel)]="filtrageTxt" id="inputFilterText">
       <div class="divImage" (click)="invertFilter()">
         <img class="button" src="../../assets/images/arrowBlack.svg" id="imgFiltrageMenu" />
       </div>
     </div>
     <div class="flexRow oneInputDiv" id="rechercheInput">
-      <input style="width: 100%;" type="text" placeholder="{{ 'blog.rechercherPlH' | translate }}" [(ngModel)]="rechercheTxt"
-        (keyup.enter)="filter()">
+      <input style="width: 100%;" type="text" placeholder="{{ 'blog.rechercherPlH' | translate }}"
+        [(ngModel)]="rechercheTxt" (keyup.enter)="filter()">
       <div class="divImage" (click)="filter()">
-        <img class="button" style="transform:rotate(-90deg)"
-          src="../../assets/images/arrowBlack.svg" />
+        <img class="button" style="transform:rotate(-90deg)" src="../../assets/images/arrowBlack.svg" />
       </div>
     </div>
   </div>
@@ -51,7 +52,6 @@
       <div *ngIf="mapOpenFilter.difficulte" class="flexCol oneAbsChoice">
         <div class="flexRow checkUncheckAll">
           <p class="button" (click)="checkUncheckAll('difficulte', true)">{{ 'blog.tousF' | translate }}</p>
-          <p>|</p>
           <p class="button" (click)="checkUncheckAll('difficulte', false)">{{ 'blog.aucunF' | translate }}</p>
         </div>
         <mat-checkbox [(ngModel)]="mapFilter.difficulte['1']" (click)="checkboxChecked('difficulte')">+</mat-checkbox>
@@ -72,13 +72,13 @@
       <div *ngIf="mapOpenFilter.temps" class="flexCol oneAbsChoice">
         <div class="flexRow checkUncheckAll">
           <p class="button" (click)="checkUncheckAll('temps', true)">{{ 'blog.tousM' | translate }}</p>
-          <p>|</p>
           <p class="button" (click)="checkUncheckAll('temps', false)">{{ 'blog.aucunM' | translate }}</p>
         </div>
         <mat-checkbox [(ngModel)]="mapFilter.temps['5 min']" (click)="checkboxChecked('temps')">5 min</mat-checkbox>
         <mat-checkbox [(ngModel)]="mapFilter.temps['10 min']" (click)="checkboxChecked('temps')">10 min</mat-checkbox>
         <mat-checkbox [(ngModel)]="mapFilter.temps['30 min']" (click)="checkboxChecked('temps')">30 min</mat-checkbox>
-        <mat-checkbox [(ngModel)]="mapFilter.temps['1 heure']" (click)="checkboxChecked('temps')">{{ 'blog.oneHour' | translate }}</mat-checkbox>
+        <mat-checkbox [(ngModel)]="mapFilter.temps['1 heure']" (click)="checkboxChecked('temps')">
+          {{ 'blog.oneHour' | translate }}</mat-checkbox>
       </div>
     </div>
 
@@ -90,10 +90,10 @@
       <div *ngIf="mapOpenFilter.type" class="flexCol oneAbsChoice">
         <div class="flexRow checkUncheckAll">
           <p class="button" (click)="checkUncheckAll('type', true)">{{ 'blog.tousM' | translate }}</p>
-          <p>|</p>
           <p class="button" (click)="checkUncheckAll('type', false)">{{ 'blog.aucunM' | translate }}</p>
         </div>
-        <mat-checkbox *ngFor="let type of listTypes" [(ngModel)]="mapFilter.type[type.key]" (click)="checkboxChecked('type')">{{type.key}}</mat-checkbox>
+        <mat-checkbox *ngFor="let type of listTypes" [(ngModel)]="mapFilter.type[type.key]"
+          (click)="checkboxChecked('type')">{{type.key}}</mat-checkbox>
       </div>
     </div>
 
@@ -105,10 +105,10 @@
       <div *ngIf="mapOpenFilter.secteur" class="flexCol oneAbsChoice">
         <div class="flexRow checkUncheckAll">
           <p class="button" (click)="checkUncheckAll('secteur', true)">{{ 'blog.tousM' | translate }}</p>
-          <p>|</p>
           <p class="button" (click)="checkUncheckAll('secteur', false)">{{ 'blog.aucunM' | translate }}</p>
         </div>
-        <mat-checkbox *ngFor="let secteur of listSecteurs" [(ngModel)]="mapFilter.secteur[secteur.key]" (click)="checkboxChecked('secteur')">{{secteur.key}}</mat-checkbox>
+        <mat-checkbox *ngFor="let secteur of listSecteurs" [(ngModel)]="mapFilter.secteur[secteur.key]"
+          (click)="checkboxChecked('secteur')">{{secteur.key}}</mat-checkbox>
       </div>
     </div>
 
@@ -117,7 +117,7 @@
 
 <div id="listArticle" *ngIf="listArticleDisplay.length>0">
   <div *ngIf="!isDirectlyOpen">
-    <div class="oneArticle" [style]="styleForSizeingArticle" *ngFor="let article of listPagesArticles[indicePage]"> 
+    <div class="oneArticle" [style]="styleForSizeingArticle" *ngFor="let article of listPagesArticles[indicePage]">
       <app-miniature-article *ngIf="!isArticleReading || (isArticleReading && article==articleOnReader)"
         [article]="article" (click)="openArticle(article)"></app-miniature-article>
       <div id="retourNav" class="flexRow button" *ngIf="isArticleReading && article==articleOnReader"
@@ -127,13 +127,15 @@
         </div>
         <p>{{ 'blog.back' | translate }}</p>
       </div>
-      <div id="shareButton" class="flexRow button" *ngIf="(isArticleReading && article==articleOnReader)" (click)="share()">
+      <div id="shareButton" class="flexRow button" *ngIf="(isArticleReading && article==articleOnReader)"
+        (click)="share()">
         <p>{{ 'blog.share' | translate }}</p>
         <div class="divImage">
-          <img src="https://image.flaticon.com/icons/svg/149/149722.svg"/>
+          <img src="https://image.flaticon.com/icons/svg/149/149722.svg" />
         </div>
       </div>
-      <p class="copyLink" *ngIf="(isArticleReading && article==articleOnReader) && isLinkCopied">{{ 'blog.linkCopied' | translate }}</p>
+      <p class="copyLink" *ngIf="(isArticleReading && article==articleOnReader) && isLinkCopied">
+        {{ 'blog.linkCopied' | translate }}</p>
     </div>
   </div>
 
@@ -148,10 +150,11 @@
     <div id="shareButton" class="flexRow button" *ngIf="isArticleReading" (click)="share()">
       <p>{{ 'blog.share' | translate }}</p>
       <div class="divImage">
-        <img src="https://image.flaticon.com/icons/svg/149/149722.svg"/>
+        <img src="https://image.flaticon.com/icons/svg/149/149722.svg" />
       </div>
     </div>
-    <p class="copyLink" *ngIf="isArticleReading && isLinkCopied && isDirectlyOpen">{{ 'blog.linkCopied' | translate }}</p>
+    <p class="copyLink" *ngIf="isArticleReading && isLinkCopied && isDirectlyOpen">{{ 'blog.linkCopied' | translate }}
+    </p>
   </div>
 
   <div id="pagination" class="flexRow" *ngIf="listPagesArticles.length>1 && !isArticleReading">
@@ -206,12 +209,16 @@
     </div>
     <div class="verticalSeparator"></div>
     <div class="redirect flexCol">
-      <a class="button" routerLink="/home"><p>{{ 'blog.home' | translate }}</p></a>
+      <a class="button" routerLink="/home">
+        <p>{{ 'blog.home' | translate }}</p>
+      </a>
       <p>{{ 'home.legalMention' | translate }}</p>
       <p>{{ 'home.cookie' | translate }}</p>
 
-      <p class="linkCreator">{{ 'home.creditPao' | translate }}<a href="https://www.linkedin.com/in/paola-allam-7a34565a/" target="_blank">Paola Allam</a></p>
-      <p class="linkCreator">{{ 'home.creditPau' | translate }}<a href="https://www.linkedin.com/in/paul-tondereau/" target="_blank">Paul Tondereau</a></p>
+      <p class="linkCreator">{{ 'home.creditPao' | translate }}<a
+          href="https://www.linkedin.com/in/paola-allam-7a34565a/" target="_blank">Paola Allam</a></p>
+      <p class="linkCreator">{{ 'home.creditPau' | translate }}<a href="https://www.linkedin.com/in/paul-tondereau/"
+          target="_blank">Paul Tondereau</a></p>
     </div>
     <div class="verticalSeparator"></div>
     <div class="contact flexCol">

@@ -110,7 +110,7 @@ export class HomeComponent implements OnInit {
         this.refreshTimeline(listId[k])
       }
     }
-    setTimeout(() => { this.handler() }, 100);
+    setTimeout(() => { this.handler() }, 10);
   });
 
   constructor(private globalService: GlobalService, private blogService: BlogService, private sanitizer: DomSanitizer, private router: Router, private translate: TranslateService, private httpClient: HttpClient) { }
@@ -152,8 +152,9 @@ export class HomeComponent implements OnInit {
         }
       }
     );
+    let self = this;
     window.addEventListener('scroll', function (e) {
-      if (this.window.scrollY >= 100 && this.window.innerWidth >= 640) {
+      if (this.window.scrollY >= 100 && this.window.innerWidth >= 640 && !self.isMenuOpen) {
         $("#header").addClass("fixedTop")
       } else {
         $("#header").removeClass("fixedTop")
@@ -169,14 +170,22 @@ export class HomeComponent implements OnInit {
 
     this.httpClient.get<any[]>(this.globalService.baseLink + '/offers.json').subscribe(
       (response) => {
-        var lKeys = Object.keys(response)
-        var listObject: Offre[] = [];
-        lKeys.forEach(function (kw) {
-          var oneOffre = new Offre()
-          oneOffre.fromHashMap(response[kw])
-          listObject.push(oneOffre)
-        })
-        this.listOffers = listObject.slice();
+        if (!response) {
+          this.listOffers = [];
+        } else {
+          var lKeys = Object.keys(response)
+          var listObject: Offre[] = [];
+          lKeys.forEach(function (kw) {
+            var oneOffre = new Offre()
+            oneOffre.fromHashMap(response[kw])
+            listObject.push(oneOffre)
+          })
+          this.listOffers = listObject.slice();
+        }
+        if (this.listOffers.length == 0) {
+          $("#carriere").addClass("noCarriere")
+          $("#blockFondCarriere").addClass("noCarriereFond")
+        }
       },
       (error) => {
         console.log('Erreur ! : ' + error);
@@ -199,22 +208,37 @@ export class HomeComponent implements OnInit {
   }
 
   refreshTimeline(keyInViewport: String) {
-    var index = ['#projets', '#savoirFaire', '#offres', '#thirdPannel', '#partenaires', '#carriere', '#contact'].indexOf("" + keyInViewport)
-    this.mapTimeline = {
-      'projets': keyInViewport === "#projets" ? true : false,
-      'savoirs': keyInViewport === "#savoirFaire" ? true : false,
-      'offres': keyInViewport === "#offres" ? true : false,
-      'charte': keyInViewport === "#thirdPannel" ? true : false,
-      'parts': keyInViewport === "#partenaires" ? true : false,
-      'carriere': keyInViewport === "#carriere" ? true : false,
-      'contact': keyInViewport === "#contact" ? true : false,
-    };
+    if (window.scrollY <= 100) {
+      this.mapTimeline = {
+        'projets': false,
+        'savoirs': false,
+        'offres': false,
+        'charte': false,
+        'parts': false,
+        'carriere': false,
+        'contact': false,
+      };
 
-    this.indexMaxDotActived = index;
+      this.indexMaxDotActived = 0;
+    } else {
+      var index = ['#projets', '#savoirFaire', '#offres', '#thirdPannel', '#partenaires', '#carriere', '#contact'].indexOf("" + keyInViewport)
+      this.mapTimeline = {
+        'projets': keyInViewport === "#projets" ? true : false,
+        'savoirs': keyInViewport === "#savoirFaire" ? true : false,
+        'offres': keyInViewport === "#offres" ? true : false,
+        'charte': keyInViewport === "#thirdPannel" ? true : false,
+        'parts': keyInViewport === "#partenaires" ? true : false,
+        'carriere': keyInViewport === "#carriere" ? true : false,
+        'contact': keyInViewport === "#contact" ? true : false,
+      };
 
-    if (!this.isPointHovered) {
-      this.sizeSolidLineForTimeLine = this.sanitizer.bypassSecurityTrustStyle("height:" + (['#projets', '#savoirFaire', '#offres', '#thirdPannel', '#partenaires', '#carriere', '#contact'].indexOf("" + keyInViewport) * 11.5) + "vh;");
+      this.indexMaxDotActived = index;
+
+      if (!this.isPointHovered) {
+        this.sizeSolidLineForTimeLine = this.sanitizer.bypassSecurityTrustStyle("height:" + (['#projets', '#savoirFaire', '#offres', '#thirdPannel', '#partenaires', '#carriere', '#contact'].indexOf("" + keyInViewport) * 11.5) + "vh;");
+      }
     }
+
   }
 
   changeHoverPoints(keyStr: String, isHoverOn: Boolean) {
@@ -268,6 +292,13 @@ export class HomeComponent implements OnInit {
   }
 
   openOrCloseMenu() {
+    if (!this.isMenuOpen) {
+      $("#projets")[0].style.marginTop = "100vh";
+      $("#header").addClass("headerOnBlack")
+    } else {
+      $("#projets")[0].style.marginTop = "auto";
+      $("#header").removeClass("headerOnBlack")
+    }
     this.isMenuOpen = !this.isMenuOpen;
   }
 

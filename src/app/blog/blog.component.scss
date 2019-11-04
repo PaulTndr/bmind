@@ -46,6 +46,12 @@
         font-size: 50px;
       }
 
+      h1,
+      p {
+        margin-block-start: 0px;
+        margin-block-end: 0px;
+      }
+
     }
 
 
@@ -501,7 +507,7 @@
   }
 }
 
-.copyLink{
+.copyLink {
   position: absolute;
   top: 55px;
   right: 40px;
@@ -511,10 +517,11 @@
   border-radius: 4px;
 }
 
-.linkCreator{
+.linkCreator {
   font-size: 12px !important;
   font-style: italic;
-  a:hover{
-    color:#D17B53 !important;
+
+  a:hover {
+    color: #D17B53 !important;
   }
 }

@@ -43,6 +43,8 @@ export class ArticleComponent implements OnInit, OnChanges {
   isFrSelected: Boolean;
   isEnSelected: Boolean;
 
+  isShowSource: Boolean = true;
+
   constructor(private blogService: BlogService, private globalService: GlobalService, private route: ActivatedRoute, private sanitizer: DomSanitizer, private httpClient: HttpClient, private translate: TranslateService) { }
 
   ngOnInit() {
@@ -73,7 +75,7 @@ export class ArticleComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    setTimeout(()=>{
+    setTimeout(() => {
       this.blogService.incrementVues(this.article.id)
 
       this.isFrSelected = this.globalService.isFrSelected;
@@ -97,7 +99,7 @@ export class ArticleComponent implements OnInit, OnChanges {
       this.blogService.emitListKeywordsSubject();
       this.fillMapDefinition();
       this.generateCorpsArticle()
-    },100)
+    }, 100)
   }
 
   openPopup(keyOrigin: String) {
@@ -171,5 +173,9 @@ export class ArticleComponent implements OnInit, OnChanges {
       }
     }
     this.corpsArticleFilled = stringCorps;
+  }
+
+  invertSource() {
+    this.isShowSource = !this.isShowSource
   }
 }

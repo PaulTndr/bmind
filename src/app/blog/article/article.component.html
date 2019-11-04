@@ -1,6 +1,6 @@
 <div id="mainArticle">
   <div id="resume" [innerHTML]="article.resume"></div>
-  
+
   <div style="position:relative">
     <div id="corps" [innerHTML]="corpsArticleFilled | safeHtml"></div>
     <div id="tooltipDescWord" *ngIf="isOneWordHovered" [style]="styleTooltip">
@@ -8,7 +8,7 @@
       <div id="textDesc">
         <p><b>{{keywordHovered}}</b> : {{descHovered}}</p>
       </div>
-  </div>
+    </div>
   </div>
 
   <div id="listAuteurs">
@@ -24,10 +24,17 @@
 </div>
 
 <div id="sources">
-  <h1>{{ 'blog.sources' | translate }}</h1>
-  <div id="listSources">
+  <div class="flexRow" style="align-items: center; justify-content: center;">
+    <h1>{{ 'blog.sources' | translate }}</h1>
+    <div class="divImage" (click)="invertSource()">
+      <img class="button" *ngIf="!isShowSource" src="../../assets/images/arrowBlack.svg" />
+      <img class="button" *ngIf="isShowSource" style="transform:rotate(-180deg)"
+        src="../../assets/images/arrowBlack.svg" />
+    </div>
+  </div>
+
+  <div id="listSources" *ngIf="isShowSource">
     <p *ngIf="article.sources.length==0">{{ 'blog.noSource' | translate }}</p>
     <p [innerHTML]="article.sources"></p>
   </div>
 </div>
-

@@ -1,33 +1,37 @@
-:host ::ng-deep .descWord { 
-  color:#D17B53;
-  border-bottom:1px solid #D17B53;
+:host ::ng-deep .descWord {
+  color: #D17B53;
+  border-bottom: 1px solid #D17B53;
 }
 
-#mainArticle{
-  width:60%;
-  margin:auto;
-  #resume{
+#mainArticle {
+  width: 60%;
+  margin: auto;
+
+  #resume {
     font: Bold 25px/30px Montserrat;
   }
-  #corps{
-    font-weight:500;
-    font-size:20px;
-    .descWord{
-      color:#D17B53;
+
+  #corps {
+    font-weight: 500;
+    font-size: 20px;
+
+    .descWord {
+      color: #D17B53;
     }
   }
-  #listAuteurs{
+
+  #listAuteurs {
     margin-left: auto;
     text-align: end;
-    align-items:flex-end;
+    align-items: flex-end;
 
-    .oneAuteur{
-      color:#D17B53;
-      font-weight:500;
-      font-size:20px;
+    .oneAuteur {
+      color: #D17B53;
+      font-weight: 500;
+      font-size: 20px;
     }
 
-    .horizontalSeparator{
+    .horizontalSeparator {
       height: 2px;
       width: 10px;
       background-color: #D17B53;
@@ -37,23 +41,49 @@
   }
 }
 
-#sources{
-  background-color:#E4E4E4;
-  padding-top:5vh;
-  padding-bottom:5vh;
-  h1{
-    text-align:center;
+#sources {
+  background-color: #E4E4E4;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+
+  .divImage {
+    width: 15px;
+    height: 15px;
+
+    padding: 5px;
+    border: 2px solid black;
+    border-radius: 100px;
+    margin-left: 10px;
+
+    img {
+      width: 15px;
+    }
+
+
+    &:hover {
+      background-color: #D17B53;
+
+      img {
+        filter: invert(1);
+      }
+    }
   }
-  #listSources{
-    width:80%;
-    margin:auto;
+
+  h1 {
+    text-align: center;
+  }
+
+  #listSources {
+    width: 80%;
+    margin: auto;
   }
 }
 
-#tooltipDescWord{
+#tooltipDescWord {
   position: absolute;
   width: 20vw;
-  #arrow{
+
+  #arrow {
     height: 0;
     width: 0px;
     margin: auto;
@@ -61,7 +91,8 @@
     border-bottom: 10px solid #D17B53;
     border-left: 15px solid transparent;
   }
-  #textDesc{
+
+  #textDesc {
     width: 100%;
     background-color: #D17B53;
     color: white;

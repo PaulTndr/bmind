@@ -1,4 +1,4 @@
-<div style="position: relative; overflow-x: hidden;">
+<div style="position: relative; overflow: hidden;">
   <div id="topPannel">
     <div id="fixPannelTop">
       <div class="divFond">
@@ -49,23 +49,25 @@
       </div>
     </div>
 
-    <div class="flexRow" style="margin:auto; justify-content:space-between; width: 70%;" id="projets">
+    <div class="flexRow" style="margin:auto; justify-content:space-between; width: 80%;" id="projets">
       <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticlesProjectLangSelected[0].id)"
         *ngIf="favoriteArticlesProjectLangSelected.length>0">
-        <app-miniature-article-small [article]="favoriteArticlesProjectLangSelected[0]" [size]="'medium'"></app-miniature-article-small>
+        <app-miniature-article-small [article]="favoriteArticlesProjectLangSelected[0]" [size]="'large'">
+        </app-miniature-article-small>
       </div>
       <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticlesProjectLangSelected[1].id)"
         *ngIf="favoriteArticlesProjectLangSelected.length>1">
-        <app-miniature-article-small [article]="favoriteArticlesProjectLangSelected[1]" [size]="'medium'"></app-miniature-article-small>
+        <app-miniature-article-small [article]="favoriteArticlesProjectLangSelected[1]" [size]="'large'">
+        </app-miniature-article-small>
       </div>
     </div>
   </div>
- 
+
 
   <div id="mainPannel">
     <div id="savoirFaire">
 
-      <h1 style="text-align:center;">{{ 'home.titleDyn' | translate }}</h1>
+      <h1 style="text-align:center;">{{ 'home.titleDyn1' | translate }}<br>{{ 'home.titleDyn2' | translate }}</h1>
       <div id="imageDyn">
         <div class="oneText">
           <p id='text0'>{{ 'home.textDyn1' | translate }}</p>
@@ -109,8 +111,10 @@
       </div>
     </div>
 
-    <iframe id="videoYt" width="560" height="315" src="https://www.youtube.com/embed/EynJFQObnqI" frameborder="0"
-      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
+    <div class="blockVideo">
+      <iframe id="videoYt" width="560" height="315" src="https://www.youtube.com/embed/EynJFQObnqI" frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
+    </div>
 
     <div id="offres">
       <img class="fond" src="../../assets/images/fond.svg" style="pointer-events:none;" />
@@ -213,21 +217,22 @@
 
   <div id="pannelBlog">
     <p class="mainText">{{ 'home.titleBlog' | translate }}</p>
-    <p class="mainText discoverText">{{ 'home.blogRedirect' | translate }}</p>
+    <p class="mainText discoverText">{{ 'home.blogRedirect' | translate }} <b class="redirectText"
+        routerLink="/blog">blog</b>.</p>
     <div id="articlesUnes" class="flexRow">
       <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticlesLangSelected[0].id)"
         *ngIf="favoriteArticlesLangSelected.length>0">
-        <app-miniature-article-small [article]="favoriteArticlesLangSelected[0]" [size]="'small'">
+        <app-miniature-article-small [article]="favoriteArticlesLangSelected[0]" [size]="'medium'">
         </app-miniature-article-small>
       </div>
       <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticlesLangSelected[1].id)"
         *ngIf="favoriteArticlesLangSelected.length>1">
-        <app-miniature-article-small [article]="favoriteArticlesLangSelected[1]" [size]="'small'">
+        <app-miniature-article-small [article]="favoriteArticlesLangSelected[1]" [size]="'medium'">
         </app-miniature-article-small>
       </div>
       <div class="oneArticle button" (click)="openArticleInBlog(favoriteArticlesLangSelected[2].id)"
         *ngIf="favoriteArticlesLangSelected.length>2">
-        <app-miniature-article-small [article]="favoriteArticlesLangSelected[2]" [size]="'small'">
+        <app-miniature-article-small [article]="favoriteArticlesLangSelected[2]" [size]="'medium'">
         </app-miniature-article-small>
       </div>
     </div>
@@ -235,16 +240,16 @@
   </div>
 
   <div id="partenaires">
-    <div class="blockFond">
+    <div class="blockFond" id="blockFondCarriere">
       <img class="fond" src="../../assets/images/fond.svg" />
     </div>
     <h1>{{ 'home.menuParts' | translate }}</h1>
     <div class="flexRow listPart" id="rowPart1">
       <img class="brandImage part1" src="../../assets/images/logoPart1.png" />
       <img class="brandImage part2" src="../../assets/images/logoPart2.jpg" />
-      <img class="brandImage part3" src="../../assets/images/logoPart3.png" />
     </div>
     <div class="flexRow listPart" id="rowPart2">
+      <img class="brandImage part3" src="../../assets/images/logoPart3.png" />
       <img class="brandImage part4" src="../../assets/images/logoPart4.png" />
       <img class="brandImage part5" src="../../assets/images/logoPart5.png" />
     </div>
@@ -252,7 +257,7 @@
 
   <div id="carriere">
     <h1>{{ 'home.menuCarr' | translate }}</h1>
-    <p *ngIf="listOffers.length==0">{{ 'home.noJobOffer' | translate }}</p>
+    <p *ngIf="listOffers.length==0">{{ 'home.noJobOffer1' | translate }}<br>{{ 'home.noJobOffer2' | translate }}</p>
     <p *ngIf="!(listOffers.length==0)">{{ 'home.jobOffer1' | translate }}<br>{{ 'home.jobOffer2' | translate }}</p>
     <div id="listCarriereOffer" class="flexRow">
       <div *ngFor="let offer of listOffers; let i=index;">
@@ -289,20 +294,24 @@
     </div>
   </div>
 
-<div id="footer">
-  <div id="info" class="flexRow">
-    <div class="img">
-      <img id="logoSignature" src="../../assets/images/logo.svg" />
-    </div>
-    <div class="verticalSeparator"></div>
-    <div class="redirect flexCol">
-      <a class="button" routerLink="/blog"><p>{{ 'home.menuBlog' | translate }}</p></a>
-      <p class="button" routerLink="/legal">{{ 'home.legalMention' | translate }}</p>
-      <p class="button" routerLink="/cookie">{{ 'home.cookie' | translate }}</p>
+  <div id="footer">
+    <div id="info" class="flexRow">
+      <div class="img">
+        <img id="logoSignature" src="../../assets/images/logo.svg" />
+      </div>
+      <div class="verticalSeparator"></div>
+      <div class="redirect flexCol">
+        <a class="button" routerLink="/blog">
+          <p>{{ 'home.menuBlog' | translate }}</p>
+        </a>
+        <p class="button" routerLink="/legal">{{ 'home.legalMention' | translate }}</p>
+        <p class="button" routerLink="/cookie">{{ 'home.cookie' | translate }}</p>
 
-      <p class="linkCreator">{{ 'home.creditPao' | translate }}<a href="https://www.linkedin.com/in/paola-allam-7a34565a/" target="_blank">Paola Allam</a></p>
-      <p class="linkCreator">{{ 'home.creditPau' | translate }}<a href="https://www.linkedin.com/in/paul-tondereau/" target="_blank">Paul Tondereau</a></p>
-    </div>
+        <p class="linkCreator">{{ 'home.creditPao' | translate }}<a
+            href="https://www.linkedin.com/in/paola-allam-7a34565a/" target="_blank">Paola Allam</a></p>
+        <p class="linkCreator">{{ 'home.creditPau' | translate }}<a href="https://www.linkedin.com/in/paul-tondereau/"
+            target="_blank">Paul Tondereau</a></p>
+      </div>
       <div class="verticalSeparator"></div>
       <div class="contact flexCol">
         <p>{{ 'home.reseauxFollow' | translate }}</p>
