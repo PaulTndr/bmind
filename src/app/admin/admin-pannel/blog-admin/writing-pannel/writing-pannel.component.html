@@ -85,7 +85,9 @@
   </div>
 
   <div id="sources">
-    <div class="flexRow">
+    <h2>{{ 'admin.sources' | translate }}</h2>
+    <ckeditor [editor]="editor" [(ngModel)]="newArticle.sources"></ckeditor>
+    <!--<div class="flexRow">
       <h2>{{ 'admin.sources' | translate }}</h2>
       <img *ngIf="!isAddSource" class="button logoAdd" (click)="openAdd('source')"
         src="../../../../../assets/images/addButton.svg" />
@@ -109,7 +111,7 @@
       <p>{{source.name}} [{{source.link}}]</p>
       <img class="button" style="margin-left:2vw;" src="../../../../../assets/images/straightBlackCross.svg"
         (click)="removeItem('source', source)" />
-    </div>
+    </div>-->
   </div>
 
   <div id="auteurs">

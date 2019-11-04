@@ -13,6 +13,7 @@ export class MiniatureArticleSmallComponent implements OnInit, OnChanges {
   @Input() size : String;
 
   sizingWrap : SafeStyle;
+  sizingText : SafeStyle;
   styleForSizingTitle : SafeStyle;
   styleForBk : SafeStyle;
   //articleInput : Article;
@@ -25,16 +26,19 @@ export class MiniatureArticleSmallComponent implements OnInit, OnChanges {
       this.sizingWrap = this.sanitizer.bypassSecurityTrustStyle(
         "width:20vw;"+
         "height:10vw;")
+      this.sizingText = this.sanitizer.bypassSecurityTrustStyle("height:8vw;")
       this.styleForSizingTitle = this.sanitizer.bypassSecurityTrustStyle("width:20vw;")
     } else if (this.size==='medium'){
       this.sizingWrap = this.sanitizer.bypassSecurityTrustStyle(
         "width:25vw;"+
         "height:12.5vw;")
+        this.sizingText = this.sanitizer.bypassSecurityTrustStyle("height:10vw;")
       this.styleForSizingTitle = this.sanitizer.bypassSecurityTrustStyle("width:25vw;")
     } else if (this.size==='large'){
       this.sizingWrap = this.sanitizer.bypassSecurityTrustStyle(
         "width:30vw;"+
         "height:15vw;")
+      this.sizingText = this.sanitizer.bypassSecurityTrustStyle("height:13vw;")
       this.styleForSizingTitle = this.sanitizer.bypassSecurityTrustStyle("width:30vw;")
     } 
     this.styleForBk = this.sanitizer.bypassSecurityTrustStyle("background-image: url("+this.article.srcImg+");");

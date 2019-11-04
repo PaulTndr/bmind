@@ -6,7 +6,6 @@ import { AdminService } from '../../../admin.service';
 import { TranslateService } from '@ngx-translate/core';
 
 import { Article } from '../../../../classes/articles/article'
-import { Source } from '../../../../classes/articles/source'
 import { Auteur } from '../../../../classes/articles/auteur'
 import { Type } from 'src/app/classes/articles/type';
 import { Secteur } from 'src/app/classes/articles/secteur';
@@ -31,7 +30,6 @@ export class WritingPannelComponent implements OnInit {
   listTime = ["5 min", "10 min", "30 min", "1 heure"]
   listDifficulte = [1, 2, 3, 4, 5]
 
-  newSource: Source = new Source();
   newAutor: Auteur = new Auteur();
   newSector: Secteur = new Secteur();
   newType: Type = new Type();
@@ -97,7 +95,6 @@ export class WritingPannelComponent implements OnInit {
   }
 
   write() {
-    console.log(this.newArticle.listSectors)
     this.newArticle.id = (+this.lastIdArticle) + 1
     this.lastIdArticle = (+this.lastIdArticle) + 1
     this.newArticle.vues = 0;
@@ -126,14 +123,19 @@ export class WritingPannelComponent implements OnInit {
       var listArticle = []
       this.httpClient.get<any[]>(this.globalService.baseLink+'/articles.json').subscribe(
         (response) => {
-          var lKeys = Object.keys(response)
-          var listObject: Article[] = [];
-          lKeys.forEach(function (kw) {
-            var oneArticle = new Article()
-            oneArticle.fromHashMap(response[kw])
-            listObject.push(oneArticle)
-          })
-          listArticle = listObject.slice();
+          if (!response){
+            listArticle = [];
+          } else {
+            var lKeys = Object.keys(response)
+            var listObject: Article[] = [];
+            lKeys.forEach(function (kw) {
+              var oneArticle = new Article()
+              oneArticle.fromHashMap(response[kw])
+              listObject.push(oneArticle)
+            })
+            listArticle = listObject.slice();
+          }
+          
           for (var k=0; k<listArticle.length; k++){
             if (listArticle[k].id===this.newArticle.idArticleTraduit){
               listArticle[k].idArticleTraduit=this.newArticle.id
@@ -351,11 +353,7 @@ export class WritingPannelComponent implements OnInit {
   }
 
   addItemToLists(keyList: String) {
-    if (keyList === 'source') {
-      this.newArticle.listSources.push(this.newSource)
-      this.newSource = new Source()
-      this.isAddSource = false;
-    } else if (keyList === 'type') {
+    if (keyList === 'type') {
       this.newType.langue=this.newArticle.langue
       this.displayedLangTypes.push(this.newType)
       this.newArticle.type = this.newType
@@ -381,15 +379,8 @@ export class WritingPannelComponent implements OnInit {
   }
 
   removeItem(keyList: String, entry: any) {
-    if (keyList === 'source') {
-      var newListSources = []
-      for (var k = 0; k < this.newArticle.listSources.length; k++) {
-        if (this.newArticle.listSources[k] != entry) {
-          newListSources.push(this.newArticle.listSources[k])
-        }
-      }
-      this.newArticle.listSources = newListSources.slice()
-    } else if (keyList === 'auteur') {
+    
+    if (keyList === 'auteur') {
       var newListAuteurs = []
       for (var k = 0; k < this.newArticle.listAuteurs.length; k++) {
         if (this.newArticle.listAuteurs[k] != entry) {
@@ -471,6 +462,7 @@ export class WritingPannelComponent implements OnInit {
       this.newArticle.listIdArticlesLies.push(article.id)
     } else {
       this.articleTraduit=article;
+      console.log("Selecting article "+article.id)
       this.newArticle.idArticleTraduit=article.id;
     }
 
@@ -514,7 +506,7 @@ export class WritingPannelComponent implements OnInit {
     for (var k = 0; k < this.fullListArticle.length; k++) {
 
       //On fait le traitement pour les articles liés
-      if (this.newArticle.langue === this.fullListArticle[k].langue && this.newArticle.listIdArticlesLies.indexOf(this.fullListArticle[k].id) == -1 && this.fullListArticle[k].title.toLowerCase().includes(this.filterTextNav.toLowerCase())) {
+      if (this.newArticle.langue === this.fullListArticle[k].langue && this.newArticle.listIdArticlesLies.indexOf(this.fullListArticle[k].id) == -1 && this.fullListArticle[k].title.toLowerCase().includes(this.filterTextNav.toLowerCase()) && (!this.isEdit || this.fullListArticle[k].id!=this.newArticle.id)) {
         if (indexLinked == 3) {
           this.displayedListArticleLinked.push(rowArticleLinked)
           rowArticleLinked = []
@@ -579,14 +571,18 @@ export class WritingPannelComponent implements OnInit {
     if (toBeRereshed.indexOf('autors') > -1) {
       this.httpClient.get<any[]>(this.globalService.baseLink+'/autors.json').subscribe(
         (response) => {
-          var lKeys = Object.keys(response)
-          var listObject: Auteur[] = [];
-          lKeys.forEach(function (kw) {
-            var oneAutor = new Auteur()
-            oneAutor.fromHashMap(response[kw])
-            listObject.push(oneAutor)
-          })
-          this.fullListAutor = listObject.slice();
+          if (!response){
+            this.fullListAutor=[]
+          } else{
+            var lKeys = Object.keys(response)
+            var listObject: Auteur[] = [];
+            lKeys.forEach(function (kw) {
+              var oneAutor = new Auteur()
+              oneAutor.fromHashMap(response[kw])
+              listObject.push(oneAutor)
+            })
+            this.fullListAutor = listObject.slice();
+          }
           this.lastIdAutor = 0;
           for (var k = 0; k < this.fullListAutor.length; k++) {
             this.lastIdAutor = +Math.max(Number(this.lastIdAutor), Number(this.fullListAutor[k].id))
@@ -602,7 +598,11 @@ export class WritingPannelComponent implements OnInit {
     if (toBeRereshed.indexOf('sectors') > -1) {
       this.httpClient.get<any[]>(this.globalService.baseLink+'/secteurs.json').subscribe(
         (response) => {
-          this.originalListSectors = response.slice();
+          if (!response){
+            this.originalListSectors=[]
+          } else{
+            this.originalListSectors = response.slice();
+          }
           this.refreshLists();
         },
         (error) => {
@@ -614,8 +614,15 @@ export class WritingPannelComponent implements OnInit {
     if (toBeRereshed.indexOf('types') > -1) {
       this.httpClient.get<any[]>(this.globalService.baseLink+'/types.json').subscribe(
         (response) => {
-          this.listTypes = response.slice();
-          this.originalListTypes = response.slice();
+          if (!response){
+            this.listTypes = [];
+            this.originalListTypes = [];
+
+          } else{
+            this.listTypes = response.slice();
+            this.originalListTypes = response.slice();
+          }
+          
           this.refreshLists();
         },
         (error) => {
@@ -627,14 +634,19 @@ export class WritingPannelComponent implements OnInit {
     if (toBeRereshed.indexOf('articles') > -1) {
       this.httpClient.get<any[]>(this.globalService.baseLink+'/articles.json').subscribe(
         (response) => {
-          var lKeys = Object.keys(response)
-          var listObject: Article[] = [];
-          lKeys.forEach(function (kw) {
-            var oneArticle = new Article()
-            oneArticle.fromHashMap(response[kw])
-            listObject.push(oneArticle)
-          })
-          this.fullListArticle = listObject.slice();
+          if(!response){
+            this.fullListArticle = []
+          }
+          else{
+            var lKeys = Object.keys(response)
+            var listObject: Article[] = [];
+            lKeys.forEach(function (kw) {
+              var oneArticle = new Article()
+              oneArticle.fromHashMap(response[kw])
+              listObject.push(oneArticle)
+            })
+            this.fullListArticle = listObject.slice();
+          }
           this.lastIdArticle = 0;
           for (var k = 0; k < this.fullListArticle.length; k++) {
             this.lastIdArticle = +Math.max(Number(this.lastIdArticle), Number(this.fullListArticle[k].id))

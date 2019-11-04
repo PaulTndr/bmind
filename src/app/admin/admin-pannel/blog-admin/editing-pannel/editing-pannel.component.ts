@@ -81,14 +81,18 @@ export class EditingPannelComponent implements OnInit {
     }
     this.httpClient.get<any[]>(this.globalService.baseLink+'/articles.json').subscribe(
       (response) => {
-        var lKeys = Object.keys(response)
-        var listObject: Article[] = [];
-        lKeys.forEach(function (kw) {
-          var oneArticle = new Article()
-          oneArticle.fromHashMap(response[kw])
-          listObject.push(oneArticle)
-        })
-        this.listArticle = listObject.slice();
+        if (!response){
+          this.listArticle = [];
+        } else{
+          var lKeys = Object.keys(response)
+          var listObject: Article[] = [];
+          lKeys.forEach(function (kw) {
+            var oneArticle = new Article()
+            oneArticle.fromHashMap(response[kw])
+            listObject.push(oneArticle)
+          })
+          this.listArticle = listObject.slice();
+        }
         this.dataSourceArticle = new MatTableDataSource<Article>(this.listArticle);
         for (var k = 0; k < this.listArticle.length; k++) {
           if (this.listIdFavorite.indexOf((+this.listArticle[k].id)) > -1) {

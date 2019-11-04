@@ -1,12 +1,11 @@
 
 
-import { Source } from './source';
 import { Keyword } from './keyword';
 import { Auteur } from './auteur';
 import { Secteur } from './secteur';
 import { Type } from './type';
 
-interface KeywordData {
+interface ArticleData {
   id: Number
   title: String
   langue: String
@@ -14,7 +13,7 @@ interface KeywordData {
   srcImg: String
   resume: String
   fullText: String
-  listSources: Source[]
+  sources: String
   listAuteurs: Auteur[]
   listSectors: Secteur[]
   listIdArticlesLies: Number[]
@@ -33,7 +32,7 @@ export class Article {
   srcImg: String = new String();
   resume: String = new String();
   fullText: String = new String();
-  listSources: Source[] = [];
+  sources: String = new String();
   listAuteurs: Auteur[] = [];
   listSectors: Secteur[] = [];
   listIdArticlesLies: Number[] = [];
@@ -57,10 +56,7 @@ export class Article {
     console.log("vues: " + this.vues)
     console.log("idArticleTraduit: " + this.idArticleTraduit)
     console.log("listSources: ")
-    console.log(this.listSources)
-    this.listSources.forEach(function (source) {
-      console.log("- " + source.name + " (" + source.link + ")")
-    })
+    console.log("sources" + this.sources)
     console.log("listAuteurs: ")
     console.log(this.listAuteurs)
     this.listAuteurs.forEach(function (autor) {
@@ -76,7 +72,7 @@ export class Article {
     })
   }
 
-  fromHashMap(data: KeywordData) {
+  fromHashMap(data: ArticleData) {
     this.id = Number(data.id);
     this.title = String(data.title);
     this.langue = String(data.langue);
@@ -89,15 +85,12 @@ export class Article {
     this.idArticleTraduit = Number(data.idArticleTraduit);
     this.time = String(data.time);
     this.timestamp = Number(data.timestamp);
-    this.listSources = data.listSources;
+    this.sources = String(data.sources);
     this.listAuteurs = data.listAuteurs;
     this.listSectors = data.listSectors;
     this.listIdArticlesLies = data.listIdArticlesLies;
     if (!this.listAuteurs) {
       this.listAuteurs = []
-    }
-    if (!this.listSources) {
-      this.listSources = []
     }
     if (!this.listSectors) {
       this.listSectors = []

@@ -3,9 +3,6 @@
   
   <div style="position:relative">
     <div id="corps" [innerHTML]="corpsArticleFilled | safeHtml"></div>
-    <!--<div id="corps">
-      <p>Les effets de la nature sur la <b class='descWord' id='word-psychologie' (mouseover)="printDescWord('psychologie', true)" (mouseout)="printDescWord('psychologie', false)">psychologie</b> et le fonctionnement du cerveau et le comportement sont désormais largement validés
-    </div>-->
     <div id="tooltipDescWord" *ngIf="isOneWordHovered" [style]="styleTooltip">
       <div id="arrow"></div>
       <div id="textDesc">
@@ -29,8 +26,8 @@
 <div id="sources">
   <h1>{{ 'blog.sources' | translate }}</h1>
   <div id="listSources">
-    <p *ngIf="article.listSources.length==0">{{ 'blog.noSource' | translate }}</p>
-    <p *ngFor="let source of article.listSources"><b>{{source.name}}</b> : {{source.link}}</p>
+    <p *ngIf="article.sources.length==0">{{ 'blog.noSource' | translate }}</p>
+    <p [innerHTML]="article.sources"></p>
   </div>
 </div>
 

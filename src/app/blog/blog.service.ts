@@ -23,7 +23,7 @@ export class BlogService {
   fillListArticle(){
     //this.baseLink = window.location.href.includes("localhost") ? "https://bmindprodtest.firebaseio.com/" : "https://bminddev.firebaseio.com";
     //this.baseLink = window.location.href.includes("localhost") ? "https://bminddev.firebaseio.com" : "https://bmindprodtest.firebaseio.com/";
-    this.baseLink = window.location.href.includes("localhost") ? "https://bmindprodtest-33e57.firebaseio.com/" : "https://bmindprodtest.firebaseio.com/";
+    this.baseLink = window.location.href.includes("localhost") ? "https://bmindprodtest-33e57.firebaseio.com/" : "https://bmindprodtest-33e57.firebaseio.com/";
     if (this.listArticles.length!=0 && this.listFavoriteArticles.length!=0){
       console.log("Liste articles déjà chargée")
       console.log(this.listArticles.length+" articles dont "+this.listFavoriteArticles.length+" en favori")
@@ -34,14 +34,18 @@ export class BlogService {
     }
     this.httpClient.get<any[]>(this.baseLink+'/articles.json').subscribe(
       (response) => {
-        var lKeys = Object.keys(response)
-        var listObject : Article[] = [];
-        lKeys.forEach(function(kw){
-          var oneArticle = new Article()
-          oneArticle.fromHashMap(response[kw])
-          listObject.push(oneArticle)
-        })
-        this.listArticles = listObject.slice();
+        if(!response){
+          this.listArticles=[];
+        } else{
+          var lKeys = Object.keys(response)
+          var listObject : Article[] = [];
+          lKeys.forEach(function(kw){
+            var oneArticle = new Article()
+            oneArticle.fromHashMap(response[kw])
+            listObject.push(oneArticle)
+          })
+          this.listArticles = listObject.slice();
+        }
         this.fillFavoriteArticles();
         this.emitListArticlesSubject();
       },
@@ -91,14 +95,19 @@ export class BlogService {
   fillListDefinition(){
     this.httpClient.get<any[]>(this.baseLink+'/keywords.json').subscribe(
       (response) => {
-        var lKeys = Object.keys(response)
-        var listObject : Keyword[] = [];
-        lKeys.forEach(function(kw){
-          var oneKw = new Keyword()
-          oneKw.fromHashMap(response[kw])
-          listObject.push(oneKw)
-        })
-        this.listKeywords = listObject.slice();
+        if (!response){
+          this.listKeywords = []
+        } else{
+          var lKeys = Object.keys(response)
+          var listObject : Keyword[] = [];
+          lKeys.forEach(function(kw){
+            var oneKw = new Keyword()
+            oneKw.fromHashMap(response[kw])
+            listObject.push(oneKw)
+          })
+          this.listKeywords = listObject.slice();
+        }
+        
         this.emitListKeywordsSubject();
       },
       (error) => {
@@ -126,14 +135,18 @@ export class BlogService {
 
     this.httpClient.get<any[]>(this.baseLink+'/articles.json').subscribe(
       (response) => {
-        var lKeys = Object.keys(response)
-        var listObject : Article[] = [];
-        lKeys.forEach(function(kw){
-          var oneArticle = new Article()
-          oneArticle.fromHashMap(response[kw])
-          listObject.push(oneArticle)
-        })
-        var listArticlesTempo = listObject.slice();
+        var listArticlesTempo = []
+        if (response){
+          var lKeys = Object.keys(response)
+          var listObject : Article[] = [];
+          lKeys.forEach(function(kw){
+            var oneArticle = new Article()
+            oneArticle.fromHashMap(response[kw])
+            listObject.push(oneArticle)
+          })
+          listArticlesTempo = listObject.slice();
+        }
+        
         for (var k=0; k<listArticlesTempo.length;k++){
           if (listArticlesTempo[k].id==idArticle){
             listArticlesTempo[k].vues=(+listArticlesTempo[k].vues)+1

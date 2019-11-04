@@ -138,7 +138,12 @@ export class SettingPannelComponent implements OnInit {
 
     this.httpClient.get<any[]>(this.globalService.baseLink+'/types.json').subscribe(
       (response) => {
-        this.listTypes = response.slice();
+        if(!response){
+          this.listTypes = [];
+        } else{
+          this.listTypes = response.slice();
+        }
+        
       },
       (error) => {
         console.log('Erreur ! : ' + error);

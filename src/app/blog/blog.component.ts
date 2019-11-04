@@ -564,7 +564,12 @@ export class BlogComponent implements OnInit {
 
     this.httpClient.get<any[]>(this.globalService.baseLink + '/secteurs.json').subscribe(
       (response) => {
-        this.fullListSecteurs = response.slice();
+        if (!response){
+          this.fullListSecteurs=[]
+        } else {
+          this.fullListSecteurs = response.slice();
+        }
+        
         this.generateFilter()
       },
       (error) => {
@@ -574,7 +579,11 @@ export class BlogComponent implements OnInit {
 
     this.httpClient.get<any[]>(this.globalService.baseLink + '/types.json').subscribe(
       (response) => {
-        this.fullListTypes = response.slice();
+        if (!response){
+          this.fullListTypes=[]
+        } else {
+          this.fullListTypes = response.slice();
+        }
         this.generateFilter()
       },
       (error) => {
