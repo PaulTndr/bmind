@@ -142,12 +142,11 @@ export class ArticleComponent implements OnInit, OnChanges {
     var wordsToFind = []
     for (var k = 0; k < Object.keys(this.mapDefinition).length; k++) {
       var word = Object.keys(this.mapDefinition)[k]
-      if (this.article.fullText.includes(" " + word + " ") || this.article.fullText.includes(" " + word + ".") || this.article.fullText.includes(" " + word + ".")) {
+      if (this.article.fullText.includes(word)) {
         wordsToFind.push(word)
       }
     }
-
-    var regex2 = /([A-z]|[a-z]){2,}/gi;
+    var regex2 = /([A-zÀ-ú]){2,}/gi;
 
     var stringCorps = "";
     var listWords = this.article.fullText.split(" ")
@@ -156,7 +155,6 @@ export class ArticleComponent implements OnInit, OnChanges {
       if (listWords[k].match(regex2) != null) {
         oneWord = listWords[k].match(regex2)[0]
       }
-
       if (wordsToFind.indexOf(oneWord.toLowerCase()) > -1) {
         wordsToFind = wordsToFind.splice(0, wordsToFind.indexOf(oneWord.toLowerCase())).concat(wordsToFind.splice(wordsToFind.indexOf(oneWord.toLowerCase()) + 1, wordsToFind.length));
         var newWtf = []
