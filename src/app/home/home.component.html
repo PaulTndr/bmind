@@ -35,6 +35,10 @@
 
       <div *ngIf="isMenuOpen" id="boxMenu">
         <img class="button" (click)="openOrCloseMenu()" id="blackCrossMobil" src="../../assets/images/grassCross.svg" />
+        <div class="textLogoTitre">
+          <h1 class="textMobile">B.mind</h1>
+          <p class="textMobile">cognitive innovation</p>
+        </div>
         <div id="menu" class="flexCol">
           <a class="button" href="#projets" (click)="resetMenu()">{{ 'home.menuProjets' | translate }}</a>
           <a class="button" href="#savoirFaire" (click)="resetMenu()">{{ 'home.menuSavoirs' | translate }}</a>
@@ -45,6 +49,21 @@
           <a class="button" href="#contact" (click)="resetMenu()">{{ 'home.menuContact' | translate }}</a>
           <div class="orangeCircle"></div>
           <a class="button" routerLink="/blog">{{ 'home.menuBlog' | translate }}</a>
+        </div>
+        <div class="logos flexRow">
+          <a href="https://twitter.com/BourgninaudJ" target="_blank">
+            <div class="divImage button">
+              <img src="../../assets/images/twitterBlack.svg">
+            </div>
+          </a>
+          <a href="https://www.linkedin.com/company/b-mind-innovation" target="_blank">
+            <div class="divImage button">
+              <img src="../../assets/images/inBlack.svg">
+            </div>
+          </a>
+          <div class="verticalSeparator"></div>
+          <p class="button buttonLangue" [ngClass]="{'isSelected': isFrSelected}" (click)="switchLangue('fr')">FR</p>
+          <p class="button buttonLangue" [ngClass]="{'isSelected': isEnSelected}" (click)="switchLangue('en')">EN</p>
         </div>
       </div>
     </div>

@@ -31,27 +31,8 @@
                 font-size: 30px !important;
             }
         }
-
-        .logos {
-            top: 25px !important;
-            width: 25vw !important;
-            right: 10px !important;
-            display: none !important;
-
-            .divImage {
-                width: 15px !important;
-                height: 15px !important;
-                padding: 3px !important;
-
-                img {
-                    width: 15px !important;
-                    height: 15px !important;
-                }
-            }
-
-            .buttonLangue {
-                font-size: 10px !important;
-            }
+        .logos{
+            display:none;
         }
     }
 
@@ -95,12 +76,15 @@
         }
 
         #menu {
-            padding-top: 20vh;
+            padding-top: 5vh !important;
+            padding-bottom: 10vh !important; 
         }
 
         #fixPannelTop {
             #blackCrossMobil {
                 display: block;
+                left:3vw !important;
+                right: auto !important;
             }
         }
     }
@@ -567,6 +551,45 @@
         .contactButton{
             margin-top: 7vh !important;
             margin-bottom: 7vh !important;
+        }
+    }
+
+    #boxMenu{
+        .logos{
+            display:flex !important;
+            height: 50px !important;
+            width: 60vw !important;
+            top: 80vh !important;
+            right: 20vw !important;
+
+            .divImage {
+                width: 30px !important;
+                height: 30px !important;
+                padding: 3px !important;
+
+                img {
+                    width: 30px !important;
+                    height: 30px !important;
+                }
+            }
+
+            .buttonLangue {
+                font-size: 22px !important;
+            }
+        }
+        
+        .textMobile{
+            display:block;
+            text-align: center;
+        }
+
+        .textLogoTitre{
+            h1{
+                margin-block-end: 0px;
+            }
+            p {
+                margin-block-start: 0px;
+            }
         }
     }
 }
