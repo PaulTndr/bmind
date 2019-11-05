@@ -364,6 +364,7 @@
   color: #F7F7F7;
   padding-bottom: 7vh;
   position: relative;
+  z-index: auto !important;
 
   #fixPannelTop {
 
@@ -404,7 +405,7 @@
     }
   }
 
-  :not(.fond) {
+  :not(.fond #toggle) {
     z-index: 2;
   }
 
@@ -675,7 +676,7 @@
       transform: scaleX(1.15) scaleY(0.9);
     }
 
-    :not(.fond) {
+    :not(.fond #toggle) {
       z-index: 2;
       position: relative;
     }
