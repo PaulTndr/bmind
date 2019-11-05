@@ -524,49 +524,49 @@
             }
         }
     }
-}
 
-#projets{
-    flex-direction: column !important;
-}
-
-.blockVideo{
-    padding:0px !important;
-}
-
-.hSeparator{
-    width:50vw !important;
-}
-
-.blockTextContainer{
-    flex-direction: column !important;
-    .blockTextOffer{
-        align-items: baseline !important;
-        width: 85vw !important;
-        margin: auto;
-        p{
-            width: 80vw !important;
+    #projets{
+        flex-direction: column !important;
+    }
+    
+    .blockVideo{
+        padding:0px !important;
+    }
+    
+    .hSeparator{
+        width:50vw !important;
+    }
+    
+    .blockTextContainer{
+        flex-direction: column !important;
+        .blockTextOffer{
+            align-items: baseline !important;
+            width: 85vw !important;
+            margin: auto;
+            p{
+                width: 80vw !important;
+            }
+            .pointSeparator{
+                width: 2vh !important;
+                height: 2vh !important;
+            }
         }
-        .pointSeparator{
-            width: 2vh !important;
-            height: 2vh !important;
+    }
+    
+    .plusOfferTitle{
+        margin-bottom:15vh !important;
+    }
+
+    #partenaires{
+        .blockFond{
+            display: none;
+        }
+    }
+
+    .infosJane{
+        .contactButton{
+            margin-top: 7vh !important;
+            margin-bottom: 7vh !important;
         }
     }
 }
-
-.plusOfferTitle{
-    margin-bottom:15vh !important;
-  }
-
-  #partenaires{
-      .blockFond{
-          display: none;
-      }
-  }
-
-  .infosJane{
-    .contactButton{
-        margin-top: 7vh !important;
-        margin-bottom: 7vh !important;
-    }
-  }

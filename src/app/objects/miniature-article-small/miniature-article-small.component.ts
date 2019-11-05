@@ -5,7 +5,7 @@ import { Article } from '../../classes/articles/article'
 @Component({
   selector: 'app-miniature-article-small',
   templateUrl: './miniature-article-small.component.html',
-  styleUrls: ['./miniature-article-small.component.scss', './miniature-article-small.responsive.component.scss']
+  styleUrls: ['./miniature-article-small.component.scss', './miniature-article-small.component.responsive.scss']
 })
 export class MiniatureArticleSmallComponent implements OnInit, OnChanges {
 
