@@ -36,6 +36,7 @@
             top: 25px !important;
             width: 25vw !important;
             right: 10px !important;
+            display: none !important;
 
             .divImage {
                 width: 15px !important;
@@ -59,9 +60,13 @@
 
         #textTitle {
             padding: 0px !important;
+            width: 78vw !important;
+            margin:auto !important;
+            padding-top: 20vh !important;
+            padding-bottom: 15vh !important;
 
             .title {
-                font-size: 20px !important;
+                font-size: 25px !important;
             }
 
             .subTitle {
@@ -77,8 +82,9 @@
 
             .fond {
                 width: 180vw !important;
-                margin-top: 0vh !important;
-                margin-left: -40vw !important;
+                margin-top: -12vh !important;
+                margin-left: 113vw !important;
+                transform: scale(3.5) !important;
             }
         }
 
@@ -100,28 +106,34 @@
     }
 
     #mainPannel {
-        padding-bottom: 5vh !important;
+        padding-bottom: 8vh !important;
 
         #savoirFaire {
             margin-bottom: 3vh !important;
 
             h1 {
-                font-size: 18px !important;
+                font-size: 20px !important;
                 width: 70% !important;
                 margin: auto !important;
             }
 
             #imageDyn {
-                height: 13vh !important;
+                height: 65vh !important;
                 padding-top: 25vh !important;
                 padding-bottom: 0vh !important;
 
                 p {
-                    font-size: 10px !important;
+                    font-size: 17px !important;
                 }
 
                 .logoTitre {
-                    top: 22vh !important;
+                    top: 35vh !important;
+                    h1{
+                        font-size: 40px !important;
+                    }
+                    p{
+                        font-size: 25px !important;
+                    }
                 }
 
                 .oneSegment,
@@ -130,31 +142,36 @@
                 }
 
                 #text0 {
-                    left: 35vw !important;
-                    width: 30vw !important;
+                    left: 20vw !important;
+                    width: 60vw !important;
                 }
 
                 #text1 {
-                    right: 5vw !important;
-                    width: 30vw !important;
+                    right: 20vw !important;
+                    width: 60vw !important;
+                    top: 20vh;
                 }
 
                 #text2 {
-                    right: 7vw !important;
-                    width: 30vw !important;
-                    bottom: 0vh !important;
+                    right: 20vw !important;
+                    width: 60vw !important;
+                    bottom: 30vh !important;
+                    top:auto !important;
                 }
 
 
                 #text3 {
-                    left: 7vw !important;
-                    width: 30vw !important;
-                    bottom: 0vh !important;
+                    left: 20vw !important;
+                    width: 60vw !important;
+                    bottom: 15vh !important;
+                    top:auto !important;
                 }
 
                 #text4 {
-                    left: 5vw !important;
-                    width: 30vw !important;
+                    left: 20vw !important;
+                    width: 60vw !important;
+                    bottom: 0vh !important;
+                    top:auto!important;
                 }
             }
         }
@@ -165,45 +182,55 @@
         }
 
         #offres {
-            padding-top: 3vh !important;
+            padding-top: 5vh !important;
 
             .fond {
                 width: auto !important;
                 height: 144vw !important;
-                margin-left: -70vw !important;
-                transform: scaleX(0.8) scaleY(0.9) !important;
+                margin-left: 277vw !important;
+                margin-top: 238vh !important;
+                transform: scaleX(5.5) scaleY(4.5) !important;
             }
 
             .title {
-                font-size: 18px !important;
+                font-size: 20px !important;
                 margin-top: 0px !important;
-                margin-bottom: 2vh !important;
+                margin-bottom: 5vh !important;
             }
 
             h2 {
-                font-size: 14px !important;
+                font-size: 20px !important;
+                margin-block-end: 5px !important;
             }
 
             p {
-                font-size: 10px !important;
+                margin-block-start: 0px !important;
+                font-size: 18px !important;
             }
 
             #listOffer {
                 width: 90% !important;
+                flex-direction: column !important;
 
                 .oneOffer {
-                    width: 28vw !important;
+                    width: 80vw !important;
+                    margin: auto;
+                    margin-bottom: 5vh;
 
                     .logoOffer {
-                        width: 50px !important;
-                        height: 50px !important;
+                        width: 75px !important;
+                        height: 75px !important;
                     }
                 }
             }
 
             .textOffer {
                 .text {
-                    font-size: 14px !important;
+                    font-size: 20px !important;
+                    width: 60%;
+                    margin:auto;
+                    padding-top: 7vh;
+                    padding-bottom: 7vh;
                 }
             }
 
@@ -231,44 +258,49 @@
 
     #thirdPannel {
         padding-top: 3vh !important;
-        padding-bottom: 3vh !important;
+        padding-bottom: 8vh !important;
 
         .title {
-            font-size: 18px !important;
-            margin-top: 0px !important;
-            margin-bottom: 2vh !important;
+            font-size: 20px !important;
+            margin-top: 3vh !important;
+            margin-bottom: 5vh !important;
         }
 
         #listValeurs {
             width: 95% !important;
             height: auto !important;
             align-items: flex-start !important;
+            flex-direction: column;
 
             .verticalSeparator {
-                height: 24vh !important;
-                margin-top: -1vh !important;
+                height: 20vh !important;
+                margin-top: 0vh !important;
+                margin: auto;
+                transform: rotate(90deg);
+
             }
 
             .oneValeur {
-
+                width:80% !important;
+                margin:auto !important;
                 .divImage,
                 .descValeur {
                     display: block !important;
                 }
 
                 .descValeur {
-                    font-size: 7px !important;
+                    font-size: 18px !important;
                 }
 
                 .divImage {
-                    width: 10px !important;
-                    height: 10px !important;
+                    width: 20px !important;
+                    height: 20px !important;
                     padding: 3px !important;
                 }
 
                 .valeur {
                     height: 30px !important;
-                    font-size: 11px !important;
+                    font-size: 20px !important;
                     line-height: 15px !important;
                 }
             }
@@ -281,16 +313,18 @@
 
         .mainText {
             width: 90% !important;
-            font-size: 14px !important;
-            line-height: 15px !important;
+            font-size: 20px !important;
+            line-height: 25px !important;
         }
 
         .discoverText {
-            margin-bottom: 3vh !important;
+            margin-bottom: 5vh !important;
+            margin-top: 3vh !important;
         }
 
         #articlesUnes {
             margin-bottom: 3vh !important;
+            flex-direction: column;
         }
     }
 
@@ -310,7 +344,7 @@
         }
 
         #rowPart1 {
-            width: 90% !important;
+            width: 50% !important;
 
             .part1 {
                 width: 119px;
@@ -321,15 +355,15 @@
                 width: 56px;
                 height: 59px;
             }
+        }
+
+        #rowPart2 {
+            width: 80% !important;
 
             .part3 {
                 width: 135px;
                 height: 47px;
             }
-        }
-
-        #rowPart2 {
-            width: 50% !important;
 
             .part4 {
                 width: 65px;
@@ -388,44 +422,82 @@
 
         #carteContact {
             width: 80%;
+            flex-direction: column;
 
             #photoJane {
-                height: 35vw;
+                height: 84vw;
+                width: 70vw;
                 margin-top: 3vh;
+                margin-left: 10vw !important;
+                margin-bottom: 5vh;
             }
 
             #fondPhoto {
-                width: 30vw;
-                height: 35vw;
-                left: -10px;
-                top: 13px;
+                width: 70vw;
+                height: 65vw;
+                left: 5px;
+                top: 0px;
             }
 
             .infosJane {
+                width: 100% !important;
                 .importantText {
-                    font-size: 14px;
+                    font-size: 20px;
                     line-height: inherit;
                 }
 
                 p {
-                    font-size: 10px;
+                    font-size: 18px;
                 }
             }
         }
     }
 
     #footer {
-        height: 9vh;
+        height: auto !important;
         padding: 5px 10px 5px 10px;
 
         p {
-            font-size: 7px;
+            font-size: 20px !important;
             line-height: inherit;
+            margin: 5px !important;
         }
 
         #info {
-            height: 8vh;
+            height: auto !important;
             width: 100%;
+            flex-direction: column;
+
+            .legal{
+                p{
+                    font-size: 15px;
+                    text-align: center;
+                }
+            }
+
+            .redirect{
+                width: 90vw !important;
+                text-align: center;
+            }
+
+            .linkCreator{
+                font-size: 12px !important;
+            }
+
+            .firstVertical{
+                display: none;
+            }
+            .verticalSeparator{
+                width: 45vw;
+                height: 2px;
+                margin: auto;
+                background-color: #F7F7F7;
+                margin-bottom: 8vh;
+                margin-top: 8vh;
+            }
+            .img{
+                display:none;
+            }
 
             #logoSignature {
                 height: 5vh;
@@ -434,16 +506,67 @@
             }
 
             .contact {
-                width: 20%;
-
-                p {
-                    font-size: 8px;
-                }
+                width: 70vw;
+                margin: auto;
 
                 .listLogoContact {
-                    width: 9vw;
+                    width: 25vw;
+                    margin-top: 5vh;
+
+                    .divImage{
+                        width: 7.5vw;
+                        height: 7.5vw;
+                        img{
+                            width: 7.5vw;
+                        }
+                    }
                 }
             }
         }
     }
 }
+
+#projets{
+    flex-direction: column !important;
+}
+
+.blockVideo{
+    padding:0px !important;
+}
+
+.hSeparator{
+    width:50vw !important;
+}
+
+.blockTextContainer{
+    flex-direction: column !important;
+    .blockTextOffer{
+        align-items: baseline !important;
+        width: 85vw !important;
+        margin: auto;
+        p{
+            width: 80vw !important;
+        }
+        .pointSeparator{
+            width: 2vh !important;
+            height: 2vh !important;
+        }
+    }
+}
+
+.plusOfferTitle{
+    margin-bottom:15vh !important;
+  }
+
+  #partenaires{
+      .blockFond{
+          display: none;
+      }
+  }
+
+  .infosJane{
+    .contactButton{
+        margin-top: 7vh !important;
+        margin-bottom: 7vh !important;
+    }
+  }
