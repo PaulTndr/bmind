@@ -378,17 +378,39 @@
         }
 
         #listCarriereOffer {
+            flex-direction: column;
             .oneOffer {
+                width:80vw !important;
+                margin-bottom:3vh !important;
+                &:first-of-type {
+                    margin-left: 0px !important;
+                }
                 .oneOfferBox {
+                    width: 80vw !important;
+                    height: auto !important;
+                    padding: 3vw 0vw 3vw 0vw !important;
+
+                    img{
+                        height: 20vw !important;
+                        padding-top: 10vw !important;
+                        padding-bottom: 10vw !important;
+                    }
+
                     .divImage {
-                        width: 10px;
-                        height: 10px;
+                        width: 30px !important;
+                        height: 30px !important;
                         padding: 3px;
+
+                        img{
+                            height: 30px !important;
+                            padding-top: 0vw !important;
+                            padding-bottom: 0vw !important;
+                        }
                     }
                 }
 
                 p {
-                    font-size: 11px;
+                    font-size: 18px;
                 }
             }
         }
