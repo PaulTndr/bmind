@@ -418,8 +418,8 @@
 
   #header {
     position: relative;
-    padding-top: 1vh;
-    padding-bottom: 1vh;
+    padding-top: 0.5vh;
+    padding-bottom: 0.5vh;
 
     .logoTitre {
       width: 20vw;
@@ -427,7 +427,7 @@
       margin: auto;
 
       h1 {
-        font-size: 35px;
+        font-size: 30px;
       }
 
       p,
@@ -465,7 +465,7 @@
     background-color: #171817;
     z-index: 100;
     position: absolute;
-    top: 10vh;
+    top: 9vh;
     width: 100vw;
 
     #menu {
@@ -1020,19 +1020,19 @@
   }
 }
 
-.hSeparator{
-  width:14vw;
-  margin :auto;
-  height:1px;
-  background-color:white;
+.hSeparator {
+  width: 14vw;
+  margin: auto;
+  height: 1px;
+  background-color: white;
   margin-top: 5vh;
   margin-bottom: 5vh;
 }
 
-.plusOfferTitle{
+.plusOfferTitle {
   text-align: center;
-  margin-top:1vh;
-  margin-bottom:3vh;
+  margin-top: 1vh;
+  margin-bottom: 3vh;
 }
 
 .logos {
@@ -1077,12 +1077,12 @@
   }
 }
 
-#boxMenu{
-  .logos{
-    display:none;
+#boxMenu {
+  .logos {
+    display: none;
   }
 
-  .textMobile{
-    display:none
+  .textMobile {
+    display: none
   }
 }
