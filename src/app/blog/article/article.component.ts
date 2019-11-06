@@ -63,6 +63,10 @@ export class ArticleComponent implements OnInit, OnChanges {
       this.printDescWord((e.target as HTMLTextAreaElement).id);
     });
 
+    document.body.addEventListener('click', (e) => {
+      this.printDescWord((e.target as HTMLTextAreaElement).id)
+    });
+
     this.listKeywordsSubscription = this.blogService.listKeywordsSubject.subscribe(
       (listKeywords: any[]) => {
         this.listKeywords = listKeywords;
@@ -89,6 +93,10 @@ export class ArticleComponent implements OnInit, OnChanges {
 
       document.body.addEventListener('mouseover', (e) => {
         this.printDescWord((e.target as HTMLTextAreaElement).id);
+      });
+  
+      document.body.addEventListener('click', (e) => {
+        this.printDescWord((e.target as HTMLTextAreaElement).id)
       });
 
       this.listKeywordsSubscription = this.blogService.listKeywordsSubject.subscribe(
