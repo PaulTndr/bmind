@@ -253,11 +253,13 @@ export class EditingPannelComponent implements OnInit {
 
   validateDelete() {
     var newListArticle = []
+    var idTradToDelete;
     for (var k = 0; k < this.listArticle.length; k++) {
       if (!(this.listArticle[k].id == this.articleToDelete.id)) {
         //On doit délier la traduction si il y en a une
         if (this.listArticle[k].idArticleTraduit == this.articleToDelete.id){
           this.listArticle[k].idArticleTraduit=0;
+          idTradToDelete = this.listArticle[k].id
         }
 
         //On doit délier l'article de tous ceux qui le référençait
@@ -273,7 +275,6 @@ export class EditingPannelComponent implements OnInit {
     }
     this.listArticle = newListArticle.slice()
     this.refreshDisplayedArticles()
-    this.closePopup()
     this.httpClient.put(this.globalService.baseLink+'/articles.json', newListArticle).subscribe(
       () => {
         console.log('Suppresion de l\'article terminée !');
@@ -282,6 +283,42 @@ export class EditingPannelComponent implements OnInit {
         console.log('Erreur lors de la suppression de l\'article! : ' + error);
       }
     );
+
+    //On supprime des favoris si besoin l'article et sa traduction
+    var newListFav = []
+    var newListFavProjet = []
+    for (var k=0; k<this.listIdFavorite.length; k++){
+      if (this.listIdFavorite[k]!=this.articleToDelete.id && this.listIdFavorite[k]!=idTradToDelete){
+        newListFav.push(this.listIdFavorite[k])
+      }
+    }
+    for (var k=0; k<this.listIdFavoriteProject.length; k++){
+      if (this.listIdFavoriteProject[k]!=this.articleToDelete.id && this.listIdFavoriteProject[k]!=idTradToDelete){
+        newListFavProjet.push(this.listIdFavoriteProject[k])
+      }
+    }
+    this.listIdFavorite = newListFav.slice()
+    this.listIdFavoriteProject = newListFavProjet.slice()
+
+    this.httpClient.put(this.globalService.baseLink+'/favorites.json', this.listIdFavorite).subscribe(
+      () => {
+        console.log('Enregistrement des favoris réussi !');
+      },
+      (error) => {
+        console.log('Erreur lors de l\'enregistrment des favoris! : ' + error);
+      }
+    );
+
+    this.httpClient.put(this.globalService.baseLink+'/favoritesProject.json', this.listIdFavoriteProject).subscribe(
+      () => {
+        console.log('Enregistrement des favoris réussi !');
+      },
+      (error) => {
+        console.log('Erreur lors de l\'enregistrment des favoris! : ' + error);
+      }
+    );
+
+    this.closePopup()
   }
 
   refreshMapFavorite(){
