@@ -120,7 +120,7 @@ export class ArticleComponent implements OnInit, OnChanges {
       //déplacement du tooltip
       var wordKey = wordId.split("-")[1]
       var topValue = $("#" + wordId)[0].offsetTop + 26
-      var leftValue = $("#" + wordId)[0].offsetLeft - 153
+      var leftValue = $("#" + wordId)[0].offsetLeft - 125
       this.styleTooltip = this.sanitizer.bypassSecurityTrustStyle("left:" + leftValue + "px; top:" + topValue + "px;")
       //maj mot et def
       this.keywordHovered = wordKey.substring(0, 1).toUpperCase() + wordKey.substring(1, wordKey.length)
