@@ -73,7 +73,7 @@ export class BlogComponent implements OnInit {
   isDirectlyOpen = false;
   articleToOpen: Article = new Article()
 
-  isLinkCopied=false;
+  isLinkCopied = false;
 
   constructor(private globalService: GlobalService, private blogService: BlogService, private sanitizer: DomSanitizer, private translate: TranslateService, private httpClient: HttpClient) { }
 
@@ -336,7 +336,7 @@ export class BlogComponent implements OnInit {
     this.listPagesArticles = []
     var newPage = []
     var i = 0
-    var nbrArticlePerPage = 3
+    var nbrArticlePerPage = 5
     for (var k = 0; k < this.listArticleDisplay.length; k++) {
       if (i == nbrArticlePerPage) {
         this.listPagesArticles.push(newPage)
@@ -564,12 +564,12 @@ export class BlogComponent implements OnInit {
 
     this.httpClient.get<any[]>(this.globalService.baseLink + '/secteurs.json').subscribe(
       (response) => {
-        if (!response){
-          this.fullListSecteurs=[]
+        if (!response) {
+          this.fullListSecteurs = []
         } else {
           this.fullListSecteurs = response.slice();
         }
-        
+
         this.generateFilter()
       },
       (error) => {
@@ -579,8 +579,8 @@ export class BlogComponent implements OnInit {
 
     this.httpClient.get<any[]>(this.globalService.baseLink + '/types.json').subscribe(
       (response) => {
-        if (!response){
-          this.fullListTypes=[]
+        if (!response) {
+          this.fullListTypes = []
         } else {
           this.fullListTypes = response.slice();
         }
@@ -592,8 +592,8 @@ export class BlogComponent implements OnInit {
     );
   }
 
-  share(){
-    var str = this.globalService.adresseLink+"/#/blog?idArticle="+this.articleOnReader.id;
+  share() {
+    var str = this.globalService.adresseLink + "/#/blog?idArticle=" + this.articleOnReader.id;
     var el = document.createElement('textarea');
     // Set value (string to be copied)
     el.value = str;
@@ -608,6 +608,6 @@ export class BlogComponent implements OnInit {
     document.body.removeChild(el);
 
     this.isLinkCopied = true;
-    setTimeout(()=>{this.isLinkCopied=false;}, 1000)
+    setTimeout(() => { this.isLinkCopied = false; }, 1000)
   }
 }
