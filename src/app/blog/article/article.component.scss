@@ -8,7 +8,11 @@
   margin: auto;
 
   #resume {
-    font: Bold 25px/30px Montserrat;
+    p{
+      font: Bold 25px/30px Montserrat;
+      font-weight: bold;
+    } 
+    
   }
 
   #corps {

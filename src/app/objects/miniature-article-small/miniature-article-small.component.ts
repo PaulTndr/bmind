@@ -26,7 +26,7 @@ export class MiniatureArticleSmallComponent implements OnInit, OnChanges {
         "width:80vw;" +
         "height:43vw;")
       this.sizingText = this.sanitizer.bypassSecurityTrustStyle("height:21vw;")
-      this.styleForSizingTitle = this.sanitizer.bypassSecurityTrustStyle("width:45vw;")
+      this.styleForSizingTitle = this.sanitizer.bypassSecurityTrustStyle("width:80vw;")
     }
     else if (this.size === 'small') {
       this.sizingWrap = this.sanitizer.bypassSecurityTrustStyle(

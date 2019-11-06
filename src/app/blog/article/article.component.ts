@@ -71,6 +71,7 @@ export class ArticleComponent implements OnInit, OnChanges {
     );
     this.blogService.emitListKeywordsSubject();
     this.fillMapDefinition();
+    this.article.resume = this.article.resume.replace("<p>","").replace("</p>","")
     this.generateCorpsArticle()
   }
 

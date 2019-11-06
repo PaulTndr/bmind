@@ -2,25 +2,29 @@
     #mainArticle{
         width:90%;
         #resume{
-            font: Bold 3.5vw Montserrat;
+            p{
+                font-weight: bold;
+                font-size: 20px;
+            }
+            
         }
         #corps{
-            font-size: 13px;
+            font-size: 20px;
         }
         #listAuteurs{
             .oneAuteur{
-                font-size: 13px;
+                font-size: 20px;
             }
         }
     }
     #sources{
-        padding-top: 3vh;
-        padding-bottom: 3vh;
+        padding-top: 8vh;
+        padding-bottom: 8vh;
         h1{
-            font-size: 15px;
+            font-size: 20px;
         }
         p{
-            font-size: 13px;
+            font-size: 16px;
         }
     }
     
