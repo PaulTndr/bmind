@@ -23,9 +23,7 @@ export class GlobalService {
   constructor(private blogService : BlogService, private httpClient : HttpClient) { }
 
   init(){
-    //this.baseLink = window.location.href.includes("localhost") ? "https://bmindprodtest.firebaseio.com/" : "https://bminddev.firebaseio.com";
-    //this.baseLink = window.location.href.includes("localhost") ? "https://bminddev.firebaseio.com" : "https://bmindprodtest.firebaseio.com/";
-    this.baseLink = window.location.href.includes("localhost") ? "https://bmindprodtest-33e57.firebaseio.com/" : "https://bmindprodtest-33e57.firebaseio.com/";
+    this.baseLink = window.location.href.includes("localhost") ? "https://bmindprodtest-33e57.firebaseio.com/" : "https://bmind-prod-e75t8a9e5r4e5z6a7e5.firebaseio.com/";
     if (window.location.href.includes("localhost")){
       this.adresseLink="http://localhost:4200"
     } else {

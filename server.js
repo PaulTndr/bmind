@@ -37,7 +37,7 @@ app.get('/send/mail', (req, res) => {
     var source = req.param('source');
 
     var mail_data = {
-        "to": "paul.tondereau@yahoo.fr",
+        "to": "janeb.mind@gmail.com",
         "subject": "Nouveau message ["+source+"]",
         "msg": body
     }
