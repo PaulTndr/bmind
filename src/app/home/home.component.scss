@@ -364,11 +364,12 @@
   color: #F7F7F7;
   padding-bottom: 7vh;
   position: relative;
+  z-index: auto !important;
 
   #fixPannelTop {
 
     .fixedTop {
-      background-color: black;
+      background-color: #171817;
       position: fixed;
       width: 100%;
       z-index: 100;
@@ -404,7 +405,7 @@
     }
   }
 
-  :not(.fond) {
+  :not(.fond #toggle) {
     z-index: 2;
   }
 
@@ -412,7 +413,7 @@
     position: absolute;
     width: 100%;
     height: 8vh;
-    background-color: black;
+    background-color: #171817;
   }
 
   #header {
@@ -432,48 +433,6 @@
       p,
       h1 {
         margin: 0px;
-      }
-    }
-
-    .logos {
-      height: 30px;
-      width: 11vw;
-      justify-content: space-between;
-      align-items: center;
-      position: absolute;
-      top: 25px;
-      right: 50px;
-
-      .divImage {
-        width: 20px;
-        height: 20px;
-        background-color: #D17B53;
-        padding: 5px;
-        border-radius: 4px;
-      }
-
-      img {
-        width: 20px;
-        height: 20px;
-        filter: invert(1);
-      }
-
-      .verticalSeparator {
-        width: 2px;
-        height: 100%;
-        background-color: #F7F7F7;
-      }
-
-      .buttonLangue {
-        border-radius: 4px;
-        border: 1px solid #F7F7F7;
-        font: Regular 16px/19px Montserrat;
-        padding: 3px;
-      }
-
-      .isSelected {
-        background-color: #F7F7F7;
-        color: black;
       }
     }
   }
@@ -503,7 +462,7 @@
   }
 
   #boxMenu {
-    background-color: black;
+    background-color: #171817;
     z-index: 100;
     position: absolute;
     top: 10vh;
@@ -717,7 +676,7 @@
       transform: scaleX(1.15) scaleY(0.9);
     }
 
-    :not(.fond) {
+    :not(.fond #toggle) {
       z-index: 2;
       position: relative;
     }
@@ -1058,5 +1017,72 @@
 
   a:hover {
     color: #D17B53 !important;
+  }
+}
+
+.hSeparator{
+  width:14vw;
+  margin :auto;
+  height:1px;
+  background-color:white;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+}
+
+.plusOfferTitle{
+  text-align: center;
+  margin-top:1vh;
+  margin-bottom:3vh;
+}
+
+.logos {
+  height: 30px;
+  width: 11vw;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 25px;
+  right: 50px;
+
+  .divImage {
+    width: 20px;
+    height: 20px;
+    background-color: #D17B53;
+    padding: 5px;
+    border-radius: 4px;
+  }
+
+  img {
+    width: 20px;
+    height: 20px;
+    filter: invert(1);
+  }
+
+  .verticalSeparator {
+    width: 2px;
+    height: 100%;
+    background-color: #F7F7F7;
+  }
+
+  .buttonLangue {
+    border-radius: 4px;
+    border: 1px solid #F7F7F7;
+    font: Regular 16px/19px Montserrat;
+    padding: 3px;
+  }
+
+  .isSelected {
+    background-color: #F7F7F7;
+    color: #171817;
+  }
+}
+
+#boxMenu{
+  .logos{
+    display:none;
+  }
+
+  .textMobile{
+    display:none
   }
 }

@@ -4,8 +4,13 @@
     #topPannel{
         padding-bottom: 3vh;
         .fond{
-            margin-top: 0vh;
-            //transform: scale(1.6);
+            width: 140vw;
+            margin-top: -45vh;
+            margin-left: 220vw;
+            margin-right: -20vw;
+            margin-bottom: -20vh;
+            z-index: 1;
+            transform: scale(5.5);
         }
         #header{
             .logoTitre{
@@ -15,28 +20,29 @@
                 }
             }
             .logos{
-                top:35px !important;
-                width: 25vw !important;
-                right: 10px !important;
+                top: 90px !important;
+                width: 35vw !important;
+                right: 32.5vw !important;
                 .divImage {
-                  width: 15px !important;
-                  height: 15px !important;
+                  width: 20px !important;
+                  height: 20px !important;
                   padding: 3px !important;
                   img{
-                    width: 15px !important;
-                    height: 15px !important;
+                    width: 20px !important;
+                    height: 20px !important;
                   }
                 }
                 .buttonLangue{
-                  font-size: 10px !important;
+                  font-size: 15px !important;
                 }
             }
         }
         .title{
-            font-size: 35px;
-            padding-top: 2vh;
-            padding-bottom: 0vh;
+            font-size: 25px;
+            padding-top: 10vh;
+            padding-bottom: 3vh;
             margin: 0px;
+            font-weight: 500;
         }
         .orangeCircle{
             width: 10px;
@@ -44,11 +50,14 @@
             margin-bottom: 3vh;
         }
         #listInput{
-            width: 90%;
+            width: 100%;
             padding-top: 0vh;
+            flex-direction: column-reverse;
             .oneInputDiv{
-                width: 45%;
+                width: 70%;
+                margin: auto;
                 padding: 3px 5px 3px 10px;
+                margin-top: 4vh;
                 input{
                     font-size: 10px;
                 }
@@ -82,39 +91,89 @@
         }
     }
 
-    #footer{
-        height:9vh;
-        padding : 5px 10px 5px 10px;
-        p{
-            font-size: 7px;
+
+    #footer {
+        height: auto !important;
+        padding: 50px 10px 5px 10px;
+
+        p {
+            font-size: 20px !important;
             line-height: inherit;
+            margin: 5px !important;
         }
-        #info{
-            height: 8vh;
-            width:100%;
-            #logoSignature{
-                height: 5vh;
-                margin-top:1.5vh;
-                display:block;
-            }
-            .contact{
-                width:20%;
+
+        #info {
+            height: auto !important;
+            width: 100%;
+            flex-direction: column;
+
+            .legal{
                 p{
-                    font-size: 8px;
-                }
-                .listLogoContact{
-                    width: 9vw;
+                    font-size: 15px;
+                    text-align: center;
                 }
             }
-        }  
+
+            .redirect{
+                width: 90vw !important;
+                text-align: center;
+            }
+
+            .linkCreator{
+                font-size: 12px !important;
+            }
+
+            .firstVertical{
+                display: none;
+            }
+            .verticalSeparator{
+                width: 45vw;
+                height: 2px;
+                margin: auto;
+                background-color: #171817;
+                margin-bottom: 8vh;
+                margin-top: 8vh;
+            }
+            .img{
+                display:none;
+            }
+
+            #logoSignature {
+                height: 5vh;
+                margin-top: 1.5vh;
+                display: block;
+            }
+
+            .contact {
+                width: 70vw;
+                margin: auto;
+
+                .listLogoContact {
+                    width: 25vw;
+                    margin-top: 5vh;
+
+                    .divImage{
+                        width: 7.5vw;
+                        height: 7.5vw;
+                        img{
+                            width: 7.5vw;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     #bottomContact{
-        padding-bottom: 3vh;
-        padding-top: 3vh;
+        padding-bottom: 8vh;
+        padding-top: 8vh;
         .contactText{
-            font: Bold 3vw Montserrat;
+            font: Bold 20px Montserrat;
             width: 80%;
+        }
+        .contactButton{
+            margin-bottom: 6vh;
+            margin-top: 8vh;
         }
     }
 
@@ -161,8 +220,19 @@
     }
 
     #articlesLies{
+        #articlesUnes{
+            width: 100%;
+            flex-direction: column;
+            .oneArticle{
+                width: 80vw;
+                padding: 0px;
+                margin: auto;
+            }
+        }
         h1{
-            font-size: 15px;
+            font-size: 20px;
+            padding-top: 4vh;
+            padding-bottom: 4vh;
         }
         p{
             font-size: 13px;

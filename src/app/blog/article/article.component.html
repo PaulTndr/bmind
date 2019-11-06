@@ -1,5 +1,7 @@
 <div id="mainArticle">
-  <div id="resume" [innerHTML]="article.resume"></div>
+  <div id="resume">
+    <p>{{article.resume}}</p>
+  </div>
 
   <div style="position:relative">
     <div id="corps" [innerHTML]="corpsArticleFilled | safeHtml"></div>
@@ -34,7 +36,7 @@
   </div>
 
   <div id="listSources" *ngIf="isShowSource">
-    <p *ngIf="article.sources.length==0">{{ 'blog.noSource' | translate }}</p>
-    <p [innerHTML]="article.sources"></p>
+    <p *ngIf="article.sources.length==0 || article.sources.includes('undefined')">{{ 'blog.noSource' | translate }}</p>
+    <p *ngIf="!article.sources.length==0 && !article.sources.includes('undefined')" [innerHTML]="article.sources"></p>
   </div>
 </div>
