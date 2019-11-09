@@ -1,4 +1,4 @@
-<div id="bodyTxt">
+<div *ngIf="isFrSelected" id="bodyTxt">
 
     <h1 style="text-align: center;">Cookie policy</h1>
 
@@ -108,7 +108,7 @@
     <p>5. Si vous souhaitez voir les cookies qui sont déjà sauvegardés sur votre ordinateur, cliquez sur « Afficher les
         cookies »</p>
 
-    <h2></h2>3. POURQUOI UTILISONS-NOUS LES COOKIES ?
+    <h2>3. POURQUOI UTILISONS-NOUS LES COOKIES ?</h2>
     <p><b>a. Utilisation nécessaire au fonctionnement.</b> L’utilisation de certains cookies peut être nécessaire pour
         le
         fonctionnement des sites. Cela inclut les technologies qui permettent d’éviter les activités frauduleuses et
@@ -139,4 +139,65 @@
         contenus présentés à l’utilisateur, par exemple en vérifiant s’il a sélectionné ou non une annonce publicitaire.
         Pour plus d’informations sur les cookies, visitez <a href="https://www.cnil.fr/">le site de la CNIL.</a></p>
 
+</div>
+
+<div *ngIf="!isFrSelected" id="bodyTxt">
+    <h1 style="text-align: center;">Cookie policy</h1>
+
+    <h2>LEARN MORE AND SET COOKIES</h2>
+    <p>This page aims to inform you about the use of cookies on our sites and to tell youhow to set them.</p>
+    <h2>1. WHAT IS A COOKIE ?</h2>
+    <p>Cookies are small text *les placed on your computer / tablet / smartphone / connected TV / video game console connected to the Internet (grouped under theterm “device”) when visiting a site. They aim to collect information about your navigation and to send you personalized o3ers and services. Cookies are managed by your internet browser.</p>
+    <p>The speci*c names and types of cookies used may change over time. To help youas a user better understand the rules and the use of these technologies, here are some important definitions.</p>
+    <p><b>Cookies :</b> Small text filles (usually letter and number formats) saved in the browseror device memory when you visit a site or display a message. Cookies allow a siteto recognize a particular device or browser. There are several types of cookies:</p>
+    <p class="decalageTxt">• Session cookies expire at the end of the browser session and allow us to link to the user’s actions during that speci*c session.</p>
+    <p class="decalageTxt">• Persistent cookies, however, remain stored in the user’s device even after the end of the browser session and allow user preferences or actions to be stored in more sites.</p>
+    <p class="decalageTxt">• The proprietary cookies (or First Party Cookies) are deposited by the site visited by the user.</p>
+    <p class="decalageTxt">• Third Party Cookies are deposited by a third party site di3erent from the one visited by the user.</p>
+    <p><b>Web beacons :</b> small images also called “pixel tags” or “transparent GIFs” that we can include on our sites, in our services, applications, messages and tools. In general, they work with cookies to identify our users and their activities.</p>
+    <p><b>Similar technologies: :</b>technologies for archiving data in the browser or device using locally shared objects or local archiving, including flash cookies, HTML 5 cookies, and other software methods for applications Web. These technologies work in all browsers. In some cases, the use of local archiving can not be fully managed by browsers but must be handled by speci*c instruments.</p>
+    <p>The terms “cookies”, “web beacons” and “similar technologies” may be used indiscriminately. For this reason, we will use the term “cookies” in reference to allthe technologies used to archive data in the user’s browser or device, or to data collection technologies or to identify the user.</p>
+    <h2>2. CHOICE OF THE USER</h2>
+    <p>The user can deactivate each type of cookies upon arrival on the site, via the acceptance of cookies banner and at any time during the navigation, via the cookie management module.</p>
+    <p>Cookies can also be disabled or deleted using the tools available in most browsers. The cookie preferences must be set separately for each browser used because each of these browsers offers specific features and options.</p>
+
+    <p><b>How to configure your browser</b></p>
+    <p>– Firefox :</p>
+    <p>1. Open Firefox</p>
+    <p>2. Press the “Alt” key</p>
+    <p>3. In the menu at the top of the page click on “Tools” then “Options”</p>
+    <p>4. Select the “Privacy” tab</p>
+    <p>5. In the drop-down menu to the right of “Retention Rules,” click “Use Custom Settings for History”</p>
+    <p>6. A little further down, uncheck “Accept cookies”</p>
+    <p>7. Save your preferences by clicking “OK”</p>
+    <br>
+    <p>– Internet Explorer :</p>
+    <p>1. Open Internet Explorer</p>
+    <p>2. In the “Tools” menu, select “Internet Options”</p>
+    <p>3. Click on the “Privacy” tab</p>
+    <p>4. Check the box “Ignore automatic cookie management”. This unlocks the options below
+    </p>
+    <p>5. Click on “Advanced” and uncheck “Accept”</p>
+    <p>6. Save your preferences by clicking “OK”</p>
+    <br>
+    <p>– Google Chrome :</p>
+    <p>1. Open Google Chrome</p>
+    <p>2. Click the tools icon in the menu bar, located to the right of the search bar and represented by three horizontal bars</p>
+    <p>3. Select “Settings”</p>
+    <p>4. At the bottom of the page, click on “Show advanced settings …”</p>
+    <p>5. In the “Privacy” section, click “Content Settings …” and check the box “Block cookies and data from third-party sites”</p>
+    <p>6. Save your preferences by clicking “OK”</p>
+    <br>
+    <p>– Safari :</p>
+    <p>1. Open Safari</p>
+    <p>2. In the menu bar at the top, click on “Safari”, then “Preferences”</p>
+    <p>3. Select the “Security” icon</p>
+    <p>4. Next to “Accept cookies”, tick “Never”</p>
+    <p>5. If you want to see the cookies that are already saved on your computer, click on “Show cookies”</p>
+
+    <h2>3. WHY DO WE USE COOKIES ?</h2>
+    <p><b>a. Use necessary for operation.</b> The use of certain cookies may be necessary for the operation of the sites. This includes technologies that prevent fraudulent activity and enhance security or provide advanced features.</p>
+    <p><b>b. Usage corresponding to the statistics of use of the site.</b> We may use cookies to evaluate the uses made of our websites, also as part of the analysis activities. The goal is to understand how visitors use our websites, to determine whether they have interacted with our messaging system or displayed an item or link, or to improve content, apps, services, or features. of the site.</p>
+    <p><b>c. Use corresponding to the features.</b> We may use cookies to provide the user with advanced features while accessing our sites or while using them. With these features, we can, for example, identify users who access our sites or monitor the preferences, interests or objects previously displayed, so as to improve the presentation of content on our sites.</p>
+    <p><b>d. Use corresponding to advertising or personalization of contents.</b> We may use our cookies or those of third parties to provide content, including advertisements corresponding to the interests of the user on our sites or on third party sites. This includes the use of technologies to better evaluate the usefulness of advertisements and content presented to the user, for example by checking whether or not he has selected an advertisement. For more information on cookies, visit the <a href="https://www.cnil.fr/">CNIL website</a>.</p>
 </div>
