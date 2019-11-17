@@ -239,4 +239,15 @@
             font-size: 13px;
         }
     }
+
+    .linksCreator{
+        position: relative !important;
+        flex-direction: row !important;
+        margin-top: 6vh !important;
+        justify-content: space-evenly !important;
+    
+        .linkCreator{
+            text-align: center !important;
+        }
+    }
 }

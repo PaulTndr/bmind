@@ -341,6 +341,7 @@
   background: #7E7E7E;
   height: 12vh;
   padding: 10px 20px 10px 20px;
+  position: relative;
 
   a {
     color: #171817;
@@ -383,6 +384,16 @@
 
       p {
         margin: 0px;
+      }
+    }
+
+    .linksCreator{
+      position: absolute;
+      left: 10px;
+      bottom: 5px;
+      p{
+        margin: 0px;
+        font-size: 10px !important;
       }
     }
 
