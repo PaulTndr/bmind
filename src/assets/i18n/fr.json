@@ -131,6 +131,7 @@
         "contact": "E-MAIL",
         "message": "VOTRE MESSAGE",
         "send": "ENVOYER",
-        "after": "Votre message a été envoyé !"
+        "after": "Votre message a été envoyé !",
+        "error": "Le mail saisi n'est pas correct, le message n'a pas été envoyé, réessayez."
     }
 }

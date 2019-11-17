@@ -10,6 +10,7 @@
       <textarea  id="message" type="text" placeholder="{{ 'contact.message' | translate }}" [(ngModel)]="message"></textarea>
     </div>
 
+    <p *ngIf="isErrorMail" class="incorrectMessage">{{ 'contact.error' | translate }}</p>
     <div id="buttonsPopup" class="flexRow">
       <div class="button" (click)="sendMessage()">
         <p>{{ 'contact.send' | translate }}</p>

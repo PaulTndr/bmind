@@ -131,6 +131,7 @@
         "contact": "MAIL",
         "message": "YOUR TEXT",
         "send": "SEND",
-        "after": "Your text has been sent !"
+        "after": "Your text has been sent !",
+        "error": "Your email adress isn't correct. Your message hasn't been send, try again."
     }
 }

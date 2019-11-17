@@ -15,6 +15,7 @@ export class AppComponent implements OnInit {
 
   mailContact : String;
   message : String;
+  isErrorMail : Boolean = false;
 
   hasBeenSent : Boolean = false;
 
@@ -32,6 +33,11 @@ export class AppComponent implements OnInit {
   }
 
   sendMessage(){
+    this.isErrorMail = !this.validateEmail(this.mailContact)
+    if(!this.isErrorMail){
+      return;
+    }
+    
     this.globalService.sendMail(this.mailContact, this.message)
     this.hasBeenSent=true;
     setTimeout(() => {this.closePopup();this.hasBeenSent=false;},3000)
@@ -41,5 +47,10 @@ export class AppComponent implements OnInit {
     this.globalService.managePopup("");
     this.mailContact = new String();
     this.message = new String();
+  }
+
+  validateEmail(email : String) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
   }
 }
