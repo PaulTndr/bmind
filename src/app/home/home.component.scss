@@ -15,6 +15,13 @@
   display: block;
 }
 
+#projets{
+  padding-top: 100px;
+  margin:auto;
+  justify-content:space-between;
+  width: 80%;
+}
+
 #partenaires {
   padding-top: 10vh;
   padding-bottom: 10vh;
@@ -458,7 +465,7 @@
 
   #textTitle {
     padding-top: 30vh;
-    padding-bottom: 35vh;
+    padding-bottom: 30vh;
     height: 30vh;
     text-align: center;
     position: relative;
@@ -670,10 +677,10 @@
   }
 
   #offres {
+    padding-top: 100px;
     .title {
       text-align: center;
       margin-bottom: 10vh;
-      margin-top: 17vh;
     }
 
     .fond {
