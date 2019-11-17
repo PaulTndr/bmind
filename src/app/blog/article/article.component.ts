@@ -43,7 +43,7 @@ export class ArticleComponent implements OnInit, OnChanges {
   isFrSelected: Boolean;
   isEnSelected: Boolean;
 
-  isShowSource: Boolean = true;
+  isShowSource: Boolean = false;
 
   constructor(private blogService: BlogService, private globalService: GlobalService, private route: ActivatedRoute, private sanitizer: DomSanitizer, private httpClient: HttpClient, private translate: TranslateService) { }
 
