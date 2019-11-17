@@ -83,6 +83,36 @@
                     font-size:7px;
                 }
             }
+
+            .oneAbsChoice {
+                padding: 0px 5px 0px 5px;
+          
+          
+                .checkUncheckAll {
+                  justify-content: space-between;
+                  width: 80px;
+          
+          
+                  p {
+                    font-size: 8px;
+          
+                    margin: 0px;
+                  }
+                }
+            }
+          
+          
+            /deep/ .mat-checkbox-layout {
+                /deep/ .mat-checkbox-label {
+                    font-size:8px;
+                    line-height: 15px;
+                }
+            }
+
+            /deep/ .mat-checkbox-inner-container {
+                width:10px;
+                height:10px;
+            }
         }
     }
 
