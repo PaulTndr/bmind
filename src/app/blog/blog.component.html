@@ -54,13 +54,15 @@
           <p class="button" (click)="checkUncheckAll('difficulte', true)">{{ 'blog.tousF' | translate }}</p>
           <p class="button" (click)="checkUncheckAll('difficulte', false)">{{ 'blog.aucunF' | translate }}</p>
         </div>
-        <mat-checkbox [(ngModel)]="mapFilter.difficulte['1']" (click)="checkboxChecked('difficulte')">+</mat-checkbox>
-        <mat-checkbox [(ngModel)]="mapFilter.difficulte['2']" (click)="checkboxChecked('difficulte')">++</mat-checkbox>
-        <mat-checkbox [(ngModel)]="mapFilter.difficulte['3']" (click)="checkboxChecked('difficulte')">+++</mat-checkbox>
-        <mat-checkbox [(ngModel)]="mapFilter.difficulte['4']" (click)="checkboxChecked('difficulte')">++++
-        </mat-checkbox>
-        <mat-checkbox [(ngModel)]="mapFilter.difficulte['5']" (click)="checkboxChecked('difficulte')">+++++
-        </mat-checkbox>
+        <div class="listChoices">
+          <mat-checkbox [(ngModel)]="mapFilter.difficulte['1']" (click)="checkboxChecked('difficulte')">+</mat-checkbox>
+          <mat-checkbox [(ngModel)]="mapFilter.difficulte['2']" (click)="checkboxChecked('difficulte')">++</mat-checkbox>
+          <mat-checkbox [(ngModel)]="mapFilter.difficulte['3']" (click)="checkboxChecked('difficulte')">+++</mat-checkbox>
+          <mat-checkbox [(ngModel)]="mapFilter.difficulte['4']" (click)="checkboxChecked('difficulte')">++++
+          </mat-checkbox>
+          <mat-checkbox [(ngModel)]="mapFilter.difficulte['5']" (click)="checkboxChecked('difficulte')">+++++
+          </mat-checkbox>
+        </div>
       </div>
     </div>
 
@@ -74,11 +76,13 @@
           <p class="button" (click)="checkUncheckAll('temps', true)">{{ 'blog.tousM' | translate }}</p>
           <p class="button" (click)="checkUncheckAll('temps', false)">{{ 'blog.aucunM' | translate }}</p>
         </div>
-        <mat-checkbox [(ngModel)]="mapFilter.temps['5 min']" (click)="checkboxChecked('temps')">5 min</mat-checkbox>
-        <mat-checkbox [(ngModel)]="mapFilter.temps['10 min']" (click)="checkboxChecked('temps')">10 min</mat-checkbox>
-        <mat-checkbox [(ngModel)]="mapFilter.temps['30 min']" (click)="checkboxChecked('temps')">30 min</mat-checkbox>
-        <mat-checkbox [(ngModel)]="mapFilter.temps['1 heure']" (click)="checkboxChecked('temps')">
-          {{ 'blog.oneHour' | translate }}</mat-checkbox>
+        <div class="listChoices">
+          <mat-checkbox [(ngModel)]="mapFilter.temps['5 min']" (click)="checkboxChecked('temps')">5 min</mat-checkbox>
+          <mat-checkbox [(ngModel)]="mapFilter.temps['10 min']" (click)="checkboxChecked('temps')">10 min</mat-checkbox>
+          <mat-checkbox [(ngModel)]="mapFilter.temps['30 min']" (click)="checkboxChecked('temps')">30 min</mat-checkbox>
+          <mat-checkbox [(ngModel)]="mapFilter.temps['1 heure']" (click)="checkboxChecked('temps')">
+            {{ 'blog.oneHour' | translate }}</mat-checkbox>
+        </div>
       </div>
     </div>
 
@@ -92,8 +96,10 @@
           <p class="button" (click)="checkUncheckAll('type', true)">{{ 'blog.tousM' | translate }}</p>
           <p class="button" (click)="checkUncheckAll('type', false)">{{ 'blog.aucunM' | translate }}</p>
         </div>
-        <mat-checkbox *ngFor="let type of listTypes" [(ngModel)]="mapFilter.type[type.key]"
-          (click)="checkboxChecked('type')">{{type.key}}</mat-checkbox>
+        <div class="listChoices">
+          <mat-checkbox *ngFor="let type of listTypes" [(ngModel)]="mapFilter.type[type.key]"
+            (click)="checkboxChecked('type')">{{type.key}}</mat-checkbox>
+        </div>
       </div>
     </div>
 
@@ -107,8 +113,18 @@
           <p class="button" (click)="checkUncheckAll('secteur', true)">{{ 'blog.tousM' | translate }}</p>
           <p class="button" (click)="checkUncheckAll('secteur', false)">{{ 'blog.aucunM' | translate }}</p>
         </div>
-        <mat-checkbox *ngFor="let secteur of listSecteurs" [(ngModel)]="mapFilter.secteur[secteur.key]"
-          (click)="checkboxChecked('secteur')">{{secteur.key}}</mat-checkbox>
+        <div class="listChoices">
+          <mat-checkbox *ngFor="let secteur of listSecteurs" [(ngModel)]="mapFilter.secteur[secteur.key]"
+            (click)="checkboxChecked('secteur')">{{secteur.key}}</mat-checkbox>
+            <mat-checkbox *ngFor="let secteur of listSecteurs" [(ngModel)]="mapFilter.secteur[secteur.key]"
+            (click)="checkboxChecked('secteur')">{{secteur.key}}</mat-checkbox>
+            <mat-checkbox *ngFor="let secteur of listSecteurs" [(ngModel)]="mapFilter.secteur[secteur.key]"
+            (click)="checkboxChecked('secteur')">{{secteur.key}}</mat-checkbox>
+            <mat-checkbox *ngFor="let secteur of listSecteurs" [(ngModel)]="mapFilter.secteur[secteur.key]"
+            (click)="checkboxChecked('secteur')">{{secteur.key}}</mat-checkbox>
+            <mat-checkbox *ngFor="let secteur of listSecteurs" [(ngModel)]="mapFilter.secteur[secteur.key]"
+            (click)="checkboxChecked('secteur')">{{secteur.key}}</mat-checkbox>
+        </div>
       </div>
     </div>
 

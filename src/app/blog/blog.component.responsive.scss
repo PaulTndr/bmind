@@ -85,7 +85,7 @@
             }
 
             .oneAbsChoice {
-                padding: 0px 5px 0px 5px;
+                padding: 0px 5px 5px 5px;
           
           
                 .checkUncheckAll {
@@ -279,5 +279,9 @@
         .linkCreator{
             text-align: center !important;
         }
+    }
+
+    .listChoices{
+        padding: 0px 10px 0px 0px !important;
     }
 }
