@@ -24,14 +24,14 @@ export class BlogService {
     //this.baseLink = window.location.href.includes("localhost") ? "https://bmindprodtest.firebaseio.com/" : "https://bminddev.firebaseio.com";
     //this.baseLink = window.location.href.includes("localhost") ? "https://bminddev.firebaseio.com" : "https://bmindprodtest.firebaseio.com/";
     this.baseLink = window.location.href.includes("localhost") ? "https://bmindprodtest-33e57.firebaseio.com/" : "https://bmind-prod-e75t8a9e5r4e5z6a7e5.firebaseio.com/";
-    if (this.listArticles.length!=0 && this.listFavoriteArticles.length!=0){
+    /*if (this.listArticles.length!=0 && this.listFavoriteArticles.length!=0){
       console.log("Liste articles déjà chargée")
       console.log(this.listArticles.length+" articles dont "+this.listFavoriteArticles.length+" en favori")
       this.emitListFavoriteArticlesSubject()
       this.emitListFavoriteArticlesProjectSubject()
       this.emitListArticlesSubject();
       return;
-    }
+    }*/
     this.httpClient.get<any[]>(this.baseLink+'/articles.json').subscribe(
       (response) => {
         if(!response){

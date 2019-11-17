@@ -191,6 +191,9 @@ export class HomeComponent implements OnInit {
         console.log('Erreur ! : ' + error);
       }
     );
+
+    console.log(this.favoriteArticles.length)
+    console.log(this.favoriteArticlesProject.length)
   }
 
   onInViewportChange(inViewport: boolean) {
@@ -346,6 +349,6 @@ export class HomeComponent implements OnInit {
   }
 
   resetMenu() {
-    this.isMenuOpen = false;
+    this.openOrCloseMenu()
   }
 }
