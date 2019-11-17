@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Pipe, PipeTransform, OnChanges, SimpleChanges } from '@angular/core';
+import { Component,ViewEncapsulation , OnInit, Input, Pipe, PipeTransform, OnChanges, SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
@@ -24,7 +24,8 @@ export class SafeHtmlPipe implements PipeTransform {
 @Component({
   selector: 'app-article',
   templateUrl: './article.component.html',
-  styleUrls: ['./article.component.scss', './article.component.responsive.scss']
+  styleUrls: ['./article.component.scss', './article.component.responsive.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class ArticleComponent implements OnInit, OnChanges {
 
@@ -75,7 +76,6 @@ export class ArticleComponent implements OnInit, OnChanges {
     );
     this.blogService.emitListKeywordsSubject();
     this.fillMapDefinition();
-    this.article.resume = this.article.resume.replace("<p>","").replace("</p>","")
     this.generateCorpsArticle()
   }
 

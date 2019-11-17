@@ -1,7 +1,5 @@
 <div id="mainArticle">
-  <div id="resume">
-    <p>{{article.resume}}</p>
-  </div>
+  <div id="resume" [innerHTML]="article.resume"></div>
 
   <div style="position:relative">
     <div id="corps" [innerHTML]="corpsArticleFilled | safeHtml"></div>
