@@ -166,7 +166,7 @@ export class ArticleComponent implements OnInit, OnChanges {
 
       //Pour chaque mot on va checker en ordre décroissant l'ensemble des i mots suivants
       //On cherche le nombre de mot max reconnu
-      for(var limit=5; limit>0; limit--){
+      for(var limit=7; limit>0; limit--){
         var ensWord = ""
         var limitTempo = limit
         for (var i=0; i<Math.min(limitTempo, listWords.length-k); i++){
