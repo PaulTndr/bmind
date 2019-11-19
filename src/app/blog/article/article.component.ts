@@ -118,7 +118,7 @@ export class ArticleComponent implements OnInit, OnChanges {
   printDescWord(wordId: String) {
     if (wordId != "" && wordId.startsWith("word")) {
       //déplacement du tooltip
-      var wordKey = wordId.split("-")[1]
+      var wordKey = wordId.split("-")[1].replace(/\_/g, " ")
       var topValue = $("#" + wordId)[0].offsetTop + 26
       var leftValue = Math.max($("#" + wordId)[0].offsetLeft - 100,0)
       this.styleTooltip = this.sanitizer.bypassSecurityTrustStyle("left:" + leftValue + "px; top:" + topValue + "px;")
@@ -143,7 +143,6 @@ export class ArticleComponent implements OnInit, OnChanges {
           this.mapDefinition["" + kw.key.toLowerCase()] = kw.def
         }
       }
-      console.log(this.mapDefinition)
     } else {
       setTimeout(() => { this.fillMapDefinition() }, 100)
     }
@@ -157,29 +156,55 @@ export class ArticleComponent implements OnInit, OnChanges {
         wordsToFind.push(word)
       }
     }
+    console.log(wordsToFind) //On a bien les mots
     var regex2 = /([A-zÀ-ú]){2,}/gi;
 
     var stringCorps = "";
     var listWords = this.article.fullText.split(" ")
+
     for (var k = 0; k < listWords.length; k++) {
-      var oneWord = ""
-      if (listWords[k].match(regex2) != null) {
-        oneWord = listWords[k].match(regex2)[0]
+
+      //Pour chaque mot on va checker en ordre décroissant l'ensemble des i mots suivants
+      //On cherche le nombre de mot max reconnu
+      for(var limit=5; limit>0; limit--){
+        var ensWord = ""
+        var limitTempo = limit
+        for (var i=0; i<Math.min(limitTempo, listWords.length-k); i++){
+          var oneWord = ""
+          if (listWords[k+i].match(regex2) != null) {
+            oneWord = listWords[k+i].match(regex2)[0]
+          } else{
+            limitTempo+=1
+          }
+          ensWord+=oneWord+" ";
+        }
+        ensWord = ensWord.trim();
+        if(wordsToFind.indexOf(ensWord.toLowerCase()) > -1){
+          console.log("'"+ensWord+"' has been recognized with "+limit+"words")
+          k+=limit //On saute les mots reconnus
+          limit=0 //On quitte la boucle
+        }
       }
-      if (wordsToFind.indexOf(oneWord.toLowerCase()) > -1) {
-        wordsToFind = wordsToFind.splice(0, wordsToFind.indexOf(oneWord.toLowerCase())).concat(wordsToFind.splice(wordsToFind.indexOf(oneWord.toLowerCase()) + 1, wordsToFind.length));
+      
+      
+      if (wordsToFind.indexOf(ensWord.toLowerCase()) > -1) {
+        wordsToFind = wordsToFind.splice(0, wordsToFind.indexOf(ensWord.toLowerCase())).concat(wordsToFind.splice(wordsToFind.indexOf(ensWord.toLowerCase()) + 1, wordsToFind.length));
         var newWtf = []
         for (var i = 0; i < wordsToFind.length; i++) {
-          if (wordsToFind[i] != oneWord.toLowerCase()) {
+          if (wordsToFind[i] != ensWord.toLowerCase()) {
             newWtf.push(wordsToFind[i])
           }
         }
         wordsToFind = newWtf.slice()
-        var stringReplacement = "<b class='descWord' id='word-" + oneWord.toLowerCase() + "'>" + oneWord + "</b>"
-        stringCorps += listWords[k].replace("" + oneWord, stringReplacement) + " "
+        var stringReplacement = "<b class='descWord' id='word-" + ensWord.toLowerCase().replace(/ /g, '_') + "'>" + ensWord + "</b>"
+        console.log(stringReplacement)
+        stringCorps += stringReplacement + " "
+        console.log(stringCorps)
       } else {
         stringCorps += listWords[k] + " "
       }
+
+      console.log("SWITCH WORD")
     }
     this.corpsArticleFilled = stringCorps;
   }
