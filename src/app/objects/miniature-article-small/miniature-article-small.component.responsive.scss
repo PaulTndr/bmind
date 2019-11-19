@@ -8,5 +8,16 @@
 
   .wrap {
     margin-top:2vh;
+    &:hover {
+      .image {
+        &:before {
+          background: none;
+        }
+  
+        .text {
+          display: none;
+        }
+      }
+    }
   }
 }
