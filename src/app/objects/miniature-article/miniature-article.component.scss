@@ -109,7 +109,8 @@
       line-height: inherit;
     }
     .title{
-      height: 14vw;
+      width: 90%;
+      height: 16vw;
       font-size: 16px;
       line-height: inherit;
       margin-bottom: 1.5vh;
@@ -119,6 +120,8 @@
       .oneDivData{
         width: 50%;
         .oneData{
+          margin:auto !important;
+          text-align:center;
           .data{
             font: Bold 3vw Montserrat;
           }
