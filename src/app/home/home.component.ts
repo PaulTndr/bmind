@@ -164,7 +164,7 @@ export class HomeComponent implements OnInit {
     );
     let self = this;
     window.addEventListener('scroll', function (e) {
-      if (this.window.scrollY >= 100 && this.window.innerWidth >= 640 && !self.isMenuOpen) {
+      if (self.isMenuOpen || (this.window.scrollY >= 100 && this.window.innerWidth >= 825)) {
         $("#header").addClass("fixedTop")
       } else {
         $("#header").removeClass("fixedTop")
@@ -306,11 +306,12 @@ export class HomeComponent implements OnInit {
 
   openOrCloseMenu() {
     if (!this.isMenuOpen) {
-      $("#projets")[0].style.marginTop = "100vh";
-      $("#header").addClass("headerOnBlack")
+      $("#header").addClass("fixedTop")
+      //$("#projets")[0].style.marginTop = "100vh";
+      //$("#header").addClass("headerOnBlack")
     } else {
-      $("#projets")[0].style.marginTop = "auto";
-      $("#header").removeClass("headerOnBlack")
+      //$("#projets")[0].style.marginTop = "auto";
+      //$("#header").removeClass("headerOnBlack")
     }
     this.isMenuOpen = !this.isMenuOpen;
   }

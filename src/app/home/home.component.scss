@@ -394,7 +394,7 @@
       z-index: 100;
 
       #toggle {
-        display: none;
+        display: block;
       }
     }
 
@@ -482,15 +482,15 @@
 
   #boxMenu {
     background-color: #171817;
-    z-index: 100;
-    position: absolute;
-    top: 9vh;
+    z-index: 99;
+    position: fixed;
+    top: 0vh;
     width: 100vw;
 
     #menu {
       text-align: center;
-      padding-top: 20vh;
-      padding-bottom: 21vh;
+      padding-top: 28vh;
+      padding-bottom: 34vh;
       text-transform: uppercase;
 
       a {
@@ -878,7 +878,7 @@
   display: block;
   width: 40px;
   height: 40px;
-  position: absolute;
+  position: fixed;
   left: 80px;
   top: 35px;
 }

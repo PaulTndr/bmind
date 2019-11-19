@@ -27,13 +27,14 @@
         </div>
       </div>
 
-      <div *ngIf="!isMenuOpen" id="textTitle">
+      <div id="textTitle">
         <h1 class="title">{{ 'home.title' | translate }}</h1>
         <h2 class="subTitle">{{ 'home.subtitle' | translate }}</h2>
         <div class="orangeCircle"></div>
       </div>
 
       <div *ngIf="isMenuOpen" id="boxMenu">
+        <a id="toggle" [ngClass]="{'on': isMenuOpen}" (click)="openOrCloseMenu()"><span></span></a>
         <div class="textLogoTitre">
           <h1 class="textMobile">B.mind</h1>
           <p class="textMobile">cognitive innovation</p>
