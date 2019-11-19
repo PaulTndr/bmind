@@ -34,7 +34,8 @@ export class AppComponent implements OnInit {
 
   sendMessage(){
     this.isErrorMail = !this.validateEmail(this.mailContact)
-    if(!this.isErrorMail){
+
+    if(this.isErrorMail){
       return;
     }
     
