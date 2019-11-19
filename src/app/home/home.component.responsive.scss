@@ -75,10 +75,16 @@
             margin-bottom: 3vh !important;
         }
 
-        #menu {
-            padding-top: 5vh !important;
-            padding-bottom: 10vh !important; 
+        #boxMenu{
+            #menu {
+                padding-top: 5vh !important;
+                padding-bottom: 10vh !important;
+                a{
+                    font : 25px/30px Montserrat;
+                }
+            }
         }
+        
 
         #fixPannelTop {
             #blackCrossMobil {
