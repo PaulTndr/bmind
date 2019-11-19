@@ -244,7 +244,6 @@ export class SettingPannelComponent implements OnInit {
     if (this.entryToEdit === 'keyword') {
       for (var k = 0; k < this.listKeyword.length; k++) {
         if (this.listKeyword[k].id === idItem) {
-          alert("oui")
           this.newKeyword = this.listKeyword[k].copy()
         }
       }

@@ -103,6 +103,7 @@ export class BlogService {
           lKeys.forEach(function(kw){
             var oneKw = new Keyword()
             oneKw.fromHashMap(response[kw])
+            oneKw.key = oneKw.key.trim();
             listObject.push(oneKw)
           })
           this.listKeywords = listObject.slice();
