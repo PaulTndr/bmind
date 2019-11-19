@@ -53,7 +53,7 @@ export class SettingPannelComponent implements OnInit {
   lastIdOffre: Number;
   mode: String;
 
-  basePdfLink = "http://ptondereau.perso.centrale-marseille.fr/assets/pdfOffres/";
+  basePdfLink = "http://bmindinnovation.com/assets/pdfOffres/";
   constructor(private httpClient: HttpClient, private globalService : GlobalService) { }
 
   ngOnInit() {
