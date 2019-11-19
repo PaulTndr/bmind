@@ -156,7 +156,7 @@ export class ArticleComponent implements OnInit, OnChanges {
         wordsToFind.push(word)
       }
     }
-    console.log(wordsToFind) //On a bien les mots
+    console.log("Les mots aillant été reconnus sont : "+wordsToFind) //On a bien les mots
     var regex2 = /([A-zÀ-ú]){2,}/gi;
 
     var stringCorps = "";
@@ -197,14 +197,10 @@ export class ArticleComponent implements OnInit, OnChanges {
         }
         wordsToFind = newWtf.slice()
         var stringReplacement = "<b class='descWord' id='word-" + ensWord.toLowerCase().replace(/ /g, '_') + "'>" + ensWord + "</b>"
-        console.log(stringReplacement)
         stringCorps += stringReplacement + " "
-        console.log(stringCorps)
       } else {
         stringCorps += listWords[k] + " "
       }
-
-      console.log("SWITCH WORD")
     }
     this.corpsArticleFilled = stringCorps;
   }
