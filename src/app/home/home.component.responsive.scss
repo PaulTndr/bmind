@@ -539,6 +539,8 @@
 
     #projets{
         flex-direction: column !important;
+        padding-top: 100px !important;
+        padding-bottom: 5vh !important;
     }
     
     .blockVideo{
@@ -630,5 +632,9 @@
         .linkCreator{
             text-align: center !important;
         }
+    }
+
+    .oneArticle{
+        margin-bottom: 2vh;
     }
 }
