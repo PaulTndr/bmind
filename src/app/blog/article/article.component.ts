@@ -149,11 +149,12 @@ export class ArticleComponent implements OnInit, OnChanges {
   }
 
   generateCorpsArticle() {
+    this.article.fullText = this.article.fullText.replace(/&nbsp;/gi, " ")
     var wordsToFind = []
     for (var k = 0; k < Object.keys(this.mapDefinition).length; k++) {
       var word = Object.keys(this.mapDefinition)[k]
-      if (this.article.fullText.includes(word)) {
-        wordsToFind.push(word)
+      if (this.article.fullText.toLowerCase().includes(word.toLowerCase())) {
+        wordsToFind.push(word.toLowerCase())
       }
     }
     console.log("Les mots aillant été reconnus sont : "+wordsToFind) //On a bien les mots
@@ -161,31 +162,26 @@ export class ArticleComponent implements OnInit, OnChanges {
 
     var stringCorps = "";
     var listWords = this.article.fullText.split(" ")
+    console.log(listWords)
 
     for (var k = 0; k < listWords.length; k++) {
 
       //Pour chaque mot on va checker en ordre décroissant l'ensemble des i mots suivants
       //On cherche le nombre de mot max reconnu
-      for(var limit=7; limit>0; limit--){
+      for(var limit=4; limit>0; limit--){
         var ensWord = ""
         var limitTempo = limit
         for (var i=0; i<Math.min(limitTempo, listWords.length-k); i++){
-          var oneWord = ""
-          if (listWords[k+i].match(regex2) != null) {
-            oneWord = listWords[k+i].match(regex2)[0]
-          } else{
-            limitTempo+=1
-          }
+          var oneWord = listWords[k+i]
           ensWord+=oneWord+" ";
         }
         ensWord = ensWord.trim();
         if(wordsToFind.indexOf(ensWord.toLowerCase()) > -1){
           console.log("'"+ensWord+"' has been recognized with "+limit+"words")
-          k+=limit //On saute les mots reconnus
+          k+=limit-1 //On saute les mots reconnus
           limit=0 //On quitte la boucle
         }
       }
-      
       
       if (wordsToFind.indexOf(ensWord.toLowerCase()) > -1) {
         wordsToFind = wordsToFind.splice(0, wordsToFind.indexOf(ensWord.toLowerCase())).concat(wordsToFind.splice(wordsToFind.indexOf(ensWord.toLowerCase()) + 1, wordsToFind.length));
