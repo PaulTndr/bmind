@@ -130,3 +130,12 @@
     }
   }
 }
+
+@media screen and (max-height: 420px) {
+  .text{
+    .title{
+      width: 90%;
+      height: 25vw;
+    }
+  }
+}

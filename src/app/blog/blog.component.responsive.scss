@@ -292,3 +292,21 @@
         margin-left: 5vw;
     }
 }
+
+@media screen and (max-height: 420px) {
+    #topPannel{
+        .title{
+            padding-top: 20vh !important;
+        }
+
+        #filtersList{
+            width: 72% !important;
+            margin-left: 14vw !important;
+
+            .oneEntete {
+                height: 5.8vh;
+            }
+        }
+    }
+}
+    
