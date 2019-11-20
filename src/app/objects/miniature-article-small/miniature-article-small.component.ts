@@ -21,7 +21,7 @@ export class MiniatureArticleSmallComponent implements OnInit, OnChanges {
   constructor(private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
-    if(window.innerWidth<640){
+    if(window.innerWidth<825){
       this.sizingWrap = this.sanitizer.bypassSecurityTrustStyle(
         "width:80vw;" +
         "height:43vw;")

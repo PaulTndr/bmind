@@ -638,3 +638,36 @@
         margin-bottom: 2vh;
     }
 }
+
+@media screen and (max-height: 420px) {
+    #mainPannel{
+        #savoirFaire{
+            #imageDyn{
+                height: 70vh!important;
+            }
+        }
+        #videoYt{
+            height: 60vh !important;
+        }
+        #offres{
+            .fond{
+                margin-left: 218vw !important;
+                margin-top: 295vh !important;
+                height: 50vw !important;
+            }
+        }
+    }
+
+    #topPannel{
+        #boxMenu{
+            #menu{
+                padding-top: 0vh !important;
+                padding-bottom: 0vh !important;
+                a{
+                    font: 20px/20px Montserrat !important;
+                }
+            }
+        }
+    }    
+}
+    
