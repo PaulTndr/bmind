@@ -1,4 +1,4 @@
-import { Component,ViewEncapsulation , OnInit, Input, Pipe, PipeTransform, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit, Input, Pipe, PipeTransform, OnChanges, SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
@@ -95,7 +95,7 @@ export class ArticleComponent implements OnInit, OnChanges {
         this.printDescWord((e.target as HTMLTextAreaElement).id);
       });
 
-      $("#corps")[0].addEventListener('click', function(e){
+      $("#corps")[0].addEventListener('click', function (e) {
         this.printDescWord((e.target as HTMLTextAreaElement).id)
       });
 
@@ -120,7 +120,7 @@ export class ArticleComponent implements OnInit, OnChanges {
       //déplacement du tooltip
       var wordKey = wordId.split("-")[1].replace(/\_/g, " ")
       var topValue = $("#" + wordId)[0].offsetTop + 26
-      var leftValue = Math.max($("#" + wordId)[0].offsetLeft - 100,0)
+      var leftValue = Math.max($("#" + wordId)[0].offsetLeft - 100, 0)
       this.styleTooltip = this.sanitizer.bypassSecurityTrustStyle("left:" + leftValue + "px; top:" + topValue + "px;")
       //maj mot et def
       this.keywordHovered = wordKey.substring(0, 1).toUpperCase() + wordKey.substring(1, wordKey.length)
@@ -157,7 +157,7 @@ export class ArticleComponent implements OnInit, OnChanges {
         wordsToFind.push(word.toLowerCase())
       }
     }
-    console.log("Les mots aillant été reconnus sont : "+wordsToFind) //On a bien les mots
+    console.log("Les mots aillant été reconnus sont : " + wordsToFind) //On a bien les mots
     var regex2 = /([A-zÀ-ú]){2,}/gi;
 
     var stringCorps = "";
@@ -168,7 +168,7 @@ export class ArticleComponent implements OnInit, OnChanges {
 
       //Pour chaque mot on va checker en ordre décroissant l'ensemble des i mots suivants
       //On cherche le nombre de mot max reconnu
-      for(var limit=4; limit>0; limit--){
+      for(var limit=7; limit>0; limit--){
         var ensWord = ""
         var limitTempo = limit
         for (var i=0; i<Math.min(limitTempo, listWords.length-k); i++){
