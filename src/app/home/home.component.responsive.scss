@@ -643,9 +643,18 @@
     #mainPannel{
         #savoirFaire{
             #imageDyn{
-                height: 85vh!important;
+                height: 120vh!important;
                 .logoTitre{
-                    top: 40vh !important;
+                    top: 55vh !important;
+                }
+                #text1{
+                    top: 30vh !important;
+                }
+                #text3{
+                    bottom: 25vh !important;
+                }
+                #text2{
+                    bottom: 40vh !important;
                 }
             }
         }
