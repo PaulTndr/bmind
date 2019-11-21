@@ -288,8 +288,17 @@ export class BlogComponent implements OnInit {
     for (var k = 0; k < listArticlesCorrectLang.length; k++) {
       var isInFilterRules = true;
       var article = listArticlesCorrectLang[k]
+
       //Test du filtre texte du champ recherche
-      if (!article.title.toLowerCase().includes(this.rechercheTxt.toLowerCase())) {
+      //On test sur le titre + resume + full text + auteur
+      console.log(article.listAuteurs.toString())
+      var listAuteursString=""
+      if(article.listAuteurs){
+        article.listAuteurs.forEach(function(elt){
+          listAuteursString+="|"+elt.prenom+" "+elt.nom
+        })
+      }
+      if (!(article.title.toLowerCase().includes(this.rechercheTxt.toLowerCase()) || article.fullText.toLowerCase().includes(this.rechercheTxt.toLowerCase()) || article.resume.toLowerCase().includes(this.rechercheTxt.toLowerCase()) || listAuteursString.toLowerCase().includes(this.rechercheTxt.toLowerCase()))) {
         isInFilterRules = false;
       }
 
