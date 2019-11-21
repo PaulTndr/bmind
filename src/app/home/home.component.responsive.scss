@@ -643,7 +643,10 @@
     #mainPannel{
         #savoirFaire{
             #imageDyn{
-                height: 70vh!important;
+                height: 85vh!important;
+                .logoTitre {
+                    top: 40vh !important;
+                }
             }
         }
         #videoYt{
@@ -660,11 +663,39 @@
 
     #topPannel{
         #boxMenu{
+
+            .textLogoTitre{
+                p{
+                    font-size:20px;
+                }
+                h1{
+                    font-size:30px;
+                    margin-block-start: 5px;
+                }
+            }
+
             #menu{
                 padding-top: 0vh !important;
                 padding-bottom: 0vh !important;
                 a{
-                    font: 20px/20px Montserrat !important;
+                    font: 20px/17px Montserrat !important;
+                }
+            }
+            .logos{
+                height: 30px !important;
+                width: 40vw !important;
+                top: 85vh !important;
+                right: 30vw !important;
+                .divImage{
+                    width: 20px !important;
+                    height: 20px !important;
+                    img{
+                        width: 20px !important;
+                        height: 20px !important;
+                    }
+                }
+                .buttonLangue{
+                    font-size: 15px !important;
                 }
             }
         }
