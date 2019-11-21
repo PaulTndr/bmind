@@ -103,7 +103,7 @@
 
             h1 {
                 font-size: 20px !important;
-                width: 70% !important;
+                width: 82% !important;
                 margin: auto !important;
             }
 
@@ -132,34 +132,35 @@
                 }
 
                 #text0 {
-                    left: 20vw !important;
-                    width: 60vw !important;
+                    left: 5vw !important;
+                    width: 90vw !important;
+                    top: 1vh !important;
                 }
 
                 #text1 {
-                    right: 20vw !important;
-                    width: 60vw !important;
+                    left: 5vw !important;
+                    width: 90vw !important;
                     top: 20vh;
                 }
 
                 #text2 {
-                    right: 20vw !important;
-                    width: 60vw !important;
+                    left: 5vw !important;
+                    width: 90vw !important;
                     bottom: 30vh !important;
                     top:auto !important;
                 }
 
 
                 #text3 {
-                    left: 20vw !important;
-                    width: 60vw !important;
+                    left: 5vw !important;
+                    width: 90vw !important;
                     bottom: 15vh !important;
                     top:auto !important;
                 }
 
                 #text4 {
-                    left: 20vw !important;
-                    width: 60vw !important;
+                    left: 5vw !important;
+                    width: 90vw !important;
                     bottom: 0vh !important;
                     top:auto!important;
                 }
@@ -637,6 +638,28 @@
     .oneArticle{
         margin-bottom: 2vh;
     }
+
+    .rondMobile{
+        display:block;
+        width:2vh;
+        height:2vh;
+        background-color: #D17B53;
+        border-radius: 100%;
+        position: absolute;
+    }
+
+    #rond1{
+        left: 49vw;
+        top: 17vh;
+    }
+    #rond2{
+        left: 49vw;
+        bottom: 28vh;
+    }
+    #rond3{
+        left: 49vw;
+        bottom: 13vh;
+    }
 }
 
 @media screen and (max-height: 420px) {
@@ -710,5 +733,23 @@
             }
         }
     }    
+
+    .rondMobile{
+        width:4vh;
+        height:4vh;
+    }
+
+    #rond1{
+        left: 48vw;
+        top: 23vh;
+    }
+    #rond2{
+        left: 48vw;
+        bottom: 40vh;
+    }
+    #rond3{
+        left: 48vw;
+        bottom: 19vh;
+    }
 }
     
