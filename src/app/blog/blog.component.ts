@@ -445,10 +445,14 @@ export class BlogComponent implements OnInit {
     this.generatePages()
   }
 
-  openArticle(article: Article) {
+  openArticle(article: Article, isOpenNormally : Boolean = true) {
     //window.location.href = window.location.href+"?idArticle="+article.id
     //console.log("open article")
     //on va chercher les articles liés
+    if(isOpenNormally){
+      this.isDirectlyOpen = false;
+    }
+    
     this.listArticlesLies = []
     for (var k = 0; k < this.listArticles.length; k++) {
       if (article.listIdArticlesLies.indexOf(this.listArticles[k].id) > -1) {
@@ -494,7 +498,7 @@ export class BlogComponent implements OnInit {
     //On set la langue fonction de la langue de l'article
     this.switchLangue(this.articleToOpen.langue === "FR" ? "fr" : "en")
     this.isDirectlyOpen = true;
-    this.openArticle(this.articleToOpen)
+    this.openArticle(this.articleToOpen, false)
 
 
   }
