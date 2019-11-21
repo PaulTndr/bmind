@@ -16,8 +16,8 @@
         "titleDyn2": "de vos solutions digitales et IA",
         "textDyn1": "Développer des solutions en fonction des humains qui les utilisent",
         "textDyn2": "Optimiser le niveau de concentration, diminuer le nombre d’erreurs",
-        "textDyn3": "Comprendre et parler le language du cerveau",
-        "textDyn4": "Utilisation intuitive Flexibilité, Acceptation, Performance",
+        "textDyn3": "Comprendre et parler le langage du cerveau",
+        "textDyn4": "Utilisation intuitive : Flexibilité, Acceptation, Performance",
         "textDyn5": "Donner du sens à la donnée humaine avant de l’intégrer à l’IA",
 
         "activitieTitle1": "Conseil",
@@ -30,10 +30,10 @@
 
         "offerPlusTitle1": "Nous vous accompagnons à travers des offres flexibles",
         "offerPlusTitle2": "et adaptables et réalisons pour vous :",
-        "offerPlusBlock1": "Amélioration de la performance des interactions d’un logiciel avec son utilisateur. Remise d’un rapport et de recommandation.",
+        "offerPlusBlock1": "Amélioration de la performance des interactions d’un logiciel avec son utilisateur. Remise d’un rapport et de recommandations.",
         "offerPlusBlock2": "Journée de formation avec vos équipes pour les sensibiliser aux méthodes cognitives qui améliorent le résultat.",
-        "offerPlusBlock3": "Analyse du processus de vente via un site internet avec la vision cognitive - Remise d’un rapport et de recommandation.",
-        "offerPlusBlock4": "Séance de Design thinking pour développer des idées innovantes centrées sur l’utilisateur.",
+        "offerPlusBlock3": "Analyse du processus de vente via un site internet avec la vision cognitive. Remise d’un rapport et de recommandations.",
+        "offerPlusBlock4": "Séance de Design Thinking pour développer des idées innovantes centrées sur l’utilisateur.",
 
         "diagnosticOffer": "Demandez votre diagnostic !",
 
@@ -52,12 +52,12 @@
 
         "jobOffer1": "Nous avons actuellement 2 postes à pourvoir.",
         "jobOffer2": "N’hésitez pas à télécharger les fiches de poste.",
-        "noJobOffer1": "Nous n'avons malheureusement pas",
-        "noJobOffer2": "d'ouverture de poste actuellement.",
+        "noJobOffer1": "Aucune ouverture de poste",
+        "noJobOffer2": "n'est disponible actuellement.",
 
         "janeJob": "Ingénieur en sciences cognitives",
         "janeMba": "MBA en entrepreneuriat",
-        "janeDesc": "Passionnée de sciences cognitives et d’innovation, j’ai hâte de voir toutes les applications innovantes et concrètes qui verront le jour grâce à la prise en compte des cette discipline et de ses concepts.",
+        "janeDesc": "Passionnée de sciences cognitives et d’innovation, j’ai hâte de voir toutes les applications concrètes qui verront le jour grâce à la prise en compte de cette discipline et de ses concepts.",
         "contactButtonLabel": "Contactez-nous",
 
         "legalMention": "Mentions légales",
@@ -80,7 +80,7 @@
         "back": "Retour aux articles",
         "noResult": "Aucun article ne semble correspondre à votre recherche",
         "interestArticles": "Ces articles pourraient également vous intéresser",
-        "suggestionBlog": "Vous avez une question, une suggestion, une remarque, un commentaire, envie de nous dire bonjour et de nous féliciter pour notre travail,",
+        "suggestionBlog": "Vous avez une question, une suggestion, une remarque, un commentaire, envie de nous dire bonjour ou de nous féliciter pour notre travail,",
         "contact": "Contactez-nous",
         "auteurNonRenseigne": "L'auteur de cet article n'est pas renseigné",
         "sources": "Sources",
