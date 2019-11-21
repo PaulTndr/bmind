@@ -644,7 +644,7 @@
         #savoirFaire{
             #imageDyn{
                 height: 85vh!important;
-                .logoTitre {
+                .logoTitre{
                     top: 40vh !important;
                 }
             }
@@ -678,14 +678,15 @@
                 padding-top: 0vh !important;
                 padding-bottom: 0vh !important;
                 a{
-                    font: 20px/17px Montserrat !important;
+                    font: 15px/13px Montserrat !important;
                 }
             }
             .logos{
                 height: 30px !important;
                 width: 40vw !important;
-                top: 85vh !important;
+                bottom: 5vh !important;
                 right: 30vw !important;
+                top:auto !important;
                 .divImage{
                     width: 20px !important;
                     height: 20px !important;
