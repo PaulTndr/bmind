@@ -83,7 +83,7 @@ export class HomeComponent implements OnInit {
 
     const viewport = {
       top: scroll,
-      bottom: scroll + window.innerHeight,
+      bottom: scroll + window.innerHeight - 300,
     }
 
     const bounds = {
@@ -122,13 +122,15 @@ export class HomeComponent implements OnInit {
 
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
-          e.preventDefault();
-  
-          document.querySelector(this.getAttribute('href')).scrollIntoView({
-              behavior: 'smooth'
-          });
+        e.preventDefault();
+
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth',
+          block: "start",
+          inline: "nearest"
+        });
       });
-  });
+    });
 
     this.isFrSelected = this.globalService.isFrSelected
     this.isEnSelected = this.globalService.isEnSelected

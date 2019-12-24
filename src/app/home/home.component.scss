@@ -15,11 +15,11 @@
   display: block;
 }
 
-#projets{
+#projets {
   padding-top: 30vh;
-  padding-bottom:25vh;
-  margin:auto;
-  justify-content:space-between;
+  padding-bottom: 25vh;
+  margin: auto;
+  justify-content: space-between;
   width: 80%;
 }
 
@@ -35,7 +35,7 @@
     margin-left: -21vw;
     margin-right: -20vw;
     margin-bottom: -20vh;
-    height: 119vh;
+    height: 129vh;
     overflow: hidden;
 
     .fond {
@@ -111,7 +111,7 @@
 #carriere {
   padding-top: 5vh;
   padding-bottom: 5vh;
-  height: 50vh;
+  height: 60vh;
   background-color: #171817;
   color: white;
   text-align: center;
@@ -318,11 +318,12 @@
       }
     }
 
-    .linksCreator{
+    .linksCreator {
       position: absolute;
       left: 10px;
       bottom: 5px;
-      p{
+
+      p {
         margin: 0px;
         font-size: 10px !important;
       }
@@ -679,6 +680,7 @@
 
   #offres {
     padding-top: 100px;
+
     .title {
       text-align: center;
       margin-bottom: 10vh;
@@ -1107,6 +1109,6 @@
   }
 }
 
-.rondMobile{
-  display:none;
+.rondMobile {
+  display: none;
 }
