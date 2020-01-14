@@ -136,8 +136,13 @@
       </div>
     </div>
 
-    <div class="blockVideo">
-      <iframe id="videoYt" width="560" height="315" src="https://www.youtube.com/embed/EynJFQObnqI" frameborder="0"
+    <div class="blockVideo" *ngIf="isFrSelected">
+      <iframe id="videoYt" width="560" height="315" src="https://www.youtube.com/embed/DDoZsAD9Y_s" frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
+    </div>
+
+    <div class="blockVideo" *ngIf="!isFrSelected">
+      <iframe id="videoYt" width="560" height="315" src="https://www.youtube.com/embed/P3w6-VvWzeA" frameborder="0"
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
     </div>
 
