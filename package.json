@@ -23,7 +23,7 @@
     "intersection-observer": "0.7.0",
     "jquery": "^3.4.1",
     "ng-in-viewport": "6.0.3",
-    "nodemailer": "^6.3.1",
+    "nodemailer": "^6.4.16",
     "rxjs": "^6.5.2",
     "rxjs-compat": "6.5.3",
     "zone.js": "0.9.1"
