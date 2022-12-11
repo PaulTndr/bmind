@@ -19,7 +19,7 @@
     "@ngx-translate/http-loader": "^4.0.0",
     "@thisissoon/angular-inviewport": "4.2.0",
     "core-js": "2.6.9",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "intersection-observer": "0.7.0",
     "jquery": "^3.4.1",
     "ng-in-viewport": "6.0.3",
